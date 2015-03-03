@@ -6,10 +6,6 @@ package nl.saxion.act.playground.model;
  * You should subclass this for your own game. In that subclass you will keep
  * track of all game-related state, like the score, who's turn it is, etc.
  * 
- * BLAAAAAAAAAAAAAANKFNDKFNJKNDFKNDNFKNKDNFKNDKFNKNFKNDSKF
- * gfjgfdgdfgjdfgjfdgj
- * JASPER IS GEK
- * 
  * @author Paul de Groot
  */
 public abstract class Game {
