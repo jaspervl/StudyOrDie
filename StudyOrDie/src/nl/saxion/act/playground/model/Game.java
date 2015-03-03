@@ -7,7 +7,7 @@ package nl.saxion.act.playground.model;
  * track of all game-related state, like the score, who's turn it is, etc.
  * 
  * BLAAAAAAAAAAAAAANKFNDKFNJKNDFKNDNFKNKDNFKNDKFNKNFKNDSKF
- * 
+ * gfjgfdgdfgjdfgjfdgj
  * JASPER IS GEK
  * 
  * @author Paul de Groot
@@ -17,7 +17,6 @@ public abstract class Game {
 
 	/**
 	 * Called when you create a new game.
-	 * dsgdfgdfgfhrtnshtrh
 	 * @param gameBoard
 	 */
 	public Game(GameBoard gameBoard) {
