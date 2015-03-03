@@ -8,6 +8,8 @@ package nl.saxion.act.playground.model;
  * 
  * BLAAAAAAAAAAAAAANKFNDKFNJKNDFKNDNFKNKDNFKNDKFNKNFKNDSKF
  * 
+ * JASPER IS GEK
+ * 
  * @author Paul de Groot
  */
 public abstract class Game {
