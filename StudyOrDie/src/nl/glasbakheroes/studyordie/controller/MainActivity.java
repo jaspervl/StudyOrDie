@@ -1,6 +1,6 @@
 package nl.glasbakheroes.studyordie.controller;
 
-import nl.saxion.act.playground.R;
+import nl.glasbakheroes.studyordie.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;

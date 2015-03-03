@@ -5,7 +5,7 @@ import nl.glasbakheroes.studyordie.customObjects.Rock;
 import nl.glasbakheroes.studyordie.customObjects.Wombat;
 import nl.glasbakheroes.studyordie.view.GameBoardView;
 import nl.glasbakheroes.studyordie.view.SpriteCache;
-import nl.saxion.act.playground.R;
+import nl.glasbakheroes.studyordie.R;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
