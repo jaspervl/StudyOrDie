@@ -1,6 +1,6 @@
 package nl.voorbeeld.coolgame;
 
-import nl.saxion.act.playground.model.GameBoard;
+import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
 /**
  * The game board for CoolGame.

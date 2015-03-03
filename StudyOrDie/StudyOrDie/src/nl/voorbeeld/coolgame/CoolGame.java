@@ -1,7 +1,7 @@
 package nl.voorbeeld.coolgame;
 
-import nl.saxion.act.playground.model.Game;
-import nl.saxion.act.playground.model.GameBoard;
+import nl.glasbakheroes.StudyOrDie.model.Game;
+import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.voorbeeld.coolgame.objects.Leaf;
 import nl.voorbeeld.coolgame.objects.Rock;
 import nl.voorbeeld.coolgame.objects.Wombat;

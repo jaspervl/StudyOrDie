@@ -1,4 +1,4 @@
-package nl.saxion.act.playground.model;
+package nl.glasbakheroes.StudyOrDie.model;
 
 /**
  * Each object type in the game will inherit from this class. Objects can then

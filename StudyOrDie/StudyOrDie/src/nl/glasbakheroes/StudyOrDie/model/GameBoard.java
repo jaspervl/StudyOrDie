@@ -1,4 +1,4 @@
-package nl.saxion.act.playground.model;
+package nl.glasbakheroes.StudyOrDie.model;
 
 import java.util.Observable;
 

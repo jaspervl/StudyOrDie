@@ -1,8 +1,8 @@
 package nl.voorbeeld.coolgame;
 
+import nl.glasbakheroes.StudyOrDie.view.GameBoardView;
+import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
 import nl.saxion.act.playground.R;
-import nl.saxion.act.playground.view.GameBoardView;
-import nl.saxion.act.playground.view.SpriteCache;
 import nl.voorbeeld.coolgame.objects.Leaf;
 import nl.voorbeeld.coolgame.objects.Rock;
 import nl.voorbeeld.coolgame.objects.Wombat;

@@ -1,8 +1,8 @@
 package nl.voorbeeld.coolgame.objects;
 
 import android.util.Log;
-import nl.saxion.act.playground.model.GameBoard;
-import nl.saxion.act.playground.model.GameObject;
+import nl.glasbakheroes.StudyOrDie.model.GameBoard;
+import nl.glasbakheroes.StudyOrDie.model.GameObject;
 import nl.voorbeeld.coolgame.CoolGame;
 
 /**

@@ -1,10 +1,10 @@
-package nl.saxion.act.playground.view;
+package nl.glasbakheroes.StudyOrDie.view;
 
 import java.util.Observable;
 import java.util.Observer;
 
-import nl.saxion.act.playground.model.GameBoard;
-import nl.saxion.act.playground.model.GameObject;
+import nl.glasbakheroes.StudyOrDie.model.GameBoard;
+import nl.glasbakheroes.StudyOrDie.model.GameObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
