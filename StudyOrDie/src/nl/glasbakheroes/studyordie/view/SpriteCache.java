@@ -1,4 +1,4 @@
-package nl.saxion.act.playground.view;
+package nl.glasbakheroes.studyordie.view;
 
 import java.util.HashMap;
 import java.util.Map;
