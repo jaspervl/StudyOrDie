@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
 import android.os.Bundle; 
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,9 +13,9 @@ public class CoreActivity extends Activity {
 	private StudyOrDieGame game;
 	private Button upButton;
 	private Button downButton;
-	private Button leftButton;
+	private Button leftButton; 
 	private Button rightButton;
-	
+	 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,20 +34,22 @@ public class CoreActivity extends Activity {
 		game = new StudyOrDieGame(this);
 		
 		/* Set listeners for direction-buttons */
-		MoveClickListener listener = new MoveClickListener();
-		upButton.setOnClickListener(listener);
-		downButton.setOnClickListener(listener); 
-		leftButton.setOnClickListener(listener); 
-		rightButton.setOnClickListener(listener);
+		MoveTouchListener listener = new MoveTouchListener();
+		upButton.setOnTouchListener(listener);
+		downButton.setOnTouchListener(listener); 
+		leftButton.setOnTouchListener(listener); 
+		rightButton.setOnTouchListener(listener);
 	}
-	
+		
 	/**
-	 * Listens for clicks on direction-buttons and tells the game instance to move the avatar.
+	 * Listens for touches on direction-buttons and tells the game instance to move the avatar.
 	 * @author enjee
 	 */
-	private class MoveClickListener implements View.OnClickListener {
+	private class MoveTouchListener implements View.OnTouchListener {
+
+		
 		@Override
-		public void onClick(View v) {
+		public boolean onTouch(View v, MotionEvent event) {
 			if (v == upButton) {
 				game.moveAvatar("Up");
 			} else if (v == downButton) {
@@ -56,7 +59,7 @@ public class CoreActivity extends Activity {
 			} else if (v == rightButton) {
 				game.moveAvatar("Right");
 			}
-			
+			return false;
 		}
 	}
 

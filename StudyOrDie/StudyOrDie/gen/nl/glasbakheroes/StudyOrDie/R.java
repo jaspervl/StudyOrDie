@@ -21,9 +21,9 @@ containing a value of this type.
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int leaf=0x7f020001;
-        public static final int rock2=0x7f020002;
-        public static final int tile_avatar=0x7f020003;
-        public static final int tile_floor_turqois=0x7f020004;
+        public static final int tile_avatar=0x7f020002;
+        public static final int tile_floor_turqois=0x7f020003;
+        public static final int tile_wall=0x7f020004;
         public static final int wombat=0x7f020005;
     }
     public static final class id {
@@ -39,8 +39,6 @@ containing a value of this type.
     }
     public static final class string {
         public static final int app_name=0x7f040000;
-        public static final int newgame=0x7f040001;
-        public static final int score=0x7f040002;
     }
     public static final class styleable {
         /** Attributes that can be used with a GameBoardView.

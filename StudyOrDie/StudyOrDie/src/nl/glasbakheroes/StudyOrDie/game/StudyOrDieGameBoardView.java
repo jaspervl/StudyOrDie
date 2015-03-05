@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.view.GameBoardView;
 import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
+import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,7 +11,7 @@ import android.util.Log;
 
 /**
  * A View on the SoD game board.
- * @author enjee
+ * @author enjee 
  *
  */
 public class StudyOrDieGameBoardView extends GameBoardView {
@@ -45,6 +46,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		setEmptyTile("empty");
 		
 		spriteCache.loadTile(Avatar.AVATAR_IMAGE, R.drawable.tile_avatar);
+		spriteCache.loadTile(Wall.WALL_IMAGE, R.drawable.tile_wall);
 
 	}
 }

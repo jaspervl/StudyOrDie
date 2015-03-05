@@ -1,9 +1,9 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
+import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.model.Game;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
-import nl.glasbakheroes.StudyOrDie.view.GameBoardView;
 
 /**
  * The actual game.
@@ -53,10 +53,38 @@ public class StudyOrDieGame extends Game {
 		
 		/* Sets the starting position of the avatar. */
 		board.addGameObject(avatar, board.getWidth() / 2, board.getHeight() / 2);
-		board.updateView();
-		
+		/* Create a wall */
+		createWall(0,10,2,2, board);
+		createWall(0,24,9,9, board);
+		createWall(10,10,0,3, board);
+		createWall(14,14,0,2, board);
+		createWall(14,24,2,2, board);
+		board.updateView();	
 	}
 	
+	/**
+	 * Creates a wall that is always or straight or perfectly angled, never inbetween.
+	 * if the difference between the x's and the y's is the same it will be angled.
+	 */
+	private void createWall(int x1, int x2, int y1, int y2, GameBoard board) {
+		int smallestX = 0;
+		int smallestY = 0;
+		if (x1 < x2) { smallestX = x1; } else { smallestX = x2; }
+		if (y1 < y2) { smallestY = y1; } else { smallestY = y2; }
+		
+		int differenceX = Math.abs(x1 - x2);
+		int differenceY = Math.abs(y1 - y2);
+		int biggestDifference = 0;
+		if (differenceX > differenceY) 	{ biggestDifference = differenceX; } 
+		else 							{ biggestDifference = differenceY; }
+		
+		for (int i = 0 ; i < biggestDifference ; i++) {
+			board.addGameObject(new Wall(), 
+					Math.round(smallestX + (i * (differenceX / biggestDifference))), 
+					Math.round(smallestY + (i * (differenceY / biggestDifference))));
+		}
+	}
+
 	/**
 	 * Method to move the avatar.
 	 * @param direction 	The direction the avatar wants to move.
@@ -68,7 +96,7 @@ public class StudyOrDieGame extends Game {
 		/* Checks wether the avatar is too close to boundies */
 		if (checkBoundries(direction, board)) {
 			/* Moves the avatar in a certain direction */
-			switch (direction) {
+			switch (direction) { 
 			case "Up" : board.moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() -1); break;
 			case "Down" : board.moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() +1); break;
 			case "Left" : board.moveObject(avatar, avatar.getPositionX() -1, avatar.getPositionY()); break;
@@ -90,7 +118,5 @@ public class StudyOrDieGame extends Game {
 		default : return false;
 		}
 	}
-
-	
 	
 }
