@@ -12,9 +12,10 @@ public class Avatar extends GameObject{
 		return AVATAR_IMAGE;
 	}
 
+	
+	
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		//
 		
 	}
 	
