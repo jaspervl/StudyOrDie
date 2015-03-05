@@ -47,15 +47,28 @@ public class StudyOrDieGame extends Game {
 		
 		GameBoard board = getGameBoard();
 		
-		/* Afhankelijk van de direction zal het board het opgeslagen avatar object verplaatsen */
-		switch (direction) {
-		case "Up" : board.moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() -1); break;
-		case "Down" : board.moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() +1); break;
-		case "Left" : board.moveObject(avatar, avatar.getPositionX() -1, avatar.getPositionY()); break;
-		case "Right" : board.moveObject(avatar, avatar.getPositionX() +1, avatar.getPositionY()); break;
-		default : break;
+		if (checkBoundries(direction, board)) {
+			/* Afhankelijk van de direction zal het board het opgeslagen avatar object verplaatsen */
+			switch (direction) {
+			case "Up" : board.moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() -1); break;
+			case "Down" : board.moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() +1); break;
+			case "Left" : board.moveObject(avatar, avatar.getPositionX() -1, avatar.getPositionY()); break;
+			case "Right" : board.moveObject(avatar, avatar.getPositionX() +1, avatar.getPositionY()); break;
+			default : break;
+			}
+			getGameBoard().updateView();
 		}
-		getGameBoard().updateView();
+		
+	}
+
+	private boolean checkBoundries(String direction, GameBoard board) {
+		switch (direction) {
+		case "Up" : if (avatar.getPositionY() > 0) { return true; } else { return false; }
+		case "Down" : if (avatar.getPositionY() < board.getHeight() - 1){ return true; } else { return false; }
+		case "Left" : if (avatar.getPositionX() > 0) { return true; } else { return false; }
+		case "Right" : if (avatar.getPositionX() < board.getWidth() - 1) { return true; } else { return false; }
+		default : return false;
+		}
 	}
 
 	

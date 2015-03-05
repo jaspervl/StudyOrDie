@@ -2,7 +2,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
-import android.os.Bundle;
+import android.os.Bundle; 
 import android.view.View;
 import android.widget.Button;
 
@@ -31,8 +31,8 @@ public class CoreActivity extends Activity {
 		
 		MoveClickListener listener = new MoveClickListener();
 		upButton.setOnClickListener(listener);
-		downButton.setOnClickListener(listener);
-		leftButton.setOnClickListener(listener);
+		downButton.setOnClickListener(listener); 
+		leftButton.setOnClickListener(listener); 
 		rightButton.setOnClickListener(listener);
 	}
 	
@@ -49,7 +49,6 @@ public class CoreActivity extends Activity {
 			} else if (v == rightButton) {
 				game.moveAvatar("Right");
 			}
-			
 			
 		}
 	}

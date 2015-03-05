@@ -79,7 +79,7 @@ public abstract class GameBoardView extends View implements Observer {
 	 * Constructor.
 	 */
 	public GameBoardView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
+		super(context, attrs, defStyle); 
 		setFocusable(true);
 	}
 
@@ -89,7 +89,7 @@ public abstract class GameBoardView extends View implements Observer {
 	public GameBoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		setFocusable(true);
-	}
+	} 
 
 	/**
 	 * Sets this view to 'fixed grid mode'. This means that the number of tiles
