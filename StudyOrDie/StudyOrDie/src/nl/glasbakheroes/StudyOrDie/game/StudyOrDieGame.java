@@ -122,7 +122,7 @@ public class StudyOrDieGame extends Game {
 				board.moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() - 1);
 				break;
-			case "Down":
+			case "Down": 
 				board.moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() + 1);
 				break;

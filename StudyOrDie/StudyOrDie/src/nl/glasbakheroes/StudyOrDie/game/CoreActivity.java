@@ -59,7 +59,7 @@ public class CoreActivity extends Activity {
 			} else if (v == rightButton) {
 				game.moveAvatar("Right");
 			}
-			return false;
+			return false; 
 		}
 	}
 

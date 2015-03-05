@@ -7,14 +7,14 @@ public class Wall extends GameObject {
 	public static final String WALL_IMAGE = "RockTwo";
 
 	/** Returns the ImageId of the image to show. */
-	@Override
-	public String getImageId() {
-		return WALL_IMAGE;
+	@Override 
+	public String getImageId() { 
+		return WALL_IMAGE;   
 	}
-
+   
 	@Override
 	public void onTouched(GameBoard gameBoard) {
 		
-	}
+	} 
 
 }

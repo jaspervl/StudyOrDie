@@ -11,7 +11,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	@Override
 	public void onEmptyTileClicked(int x, int y) {
 		// TODO Auto-generated method stub
