@@ -16,3 +16,4 @@ public class StudyOrDieGameBoard extends GameBoard {
 	}
 
 }
+	
