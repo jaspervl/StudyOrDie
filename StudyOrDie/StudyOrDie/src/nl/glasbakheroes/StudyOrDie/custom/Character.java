@@ -14,7 +14,11 @@ public class Character extends GameObject{
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		// TODO Auto-generated method stub
+		int newX = 0;
+		int newY = 0;
+		if (newX >= gameBoard.getWidth()) {
+			return;
+		}
 		
 	}
 	
