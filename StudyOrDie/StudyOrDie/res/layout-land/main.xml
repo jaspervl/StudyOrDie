@@ -1,12 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?> 
-  <LinearLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"  
-    android:layout_width="fill_parent" android:layout_height="fill_parent"  
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-      <nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoardView
-          android:id="@+id/studyOrDieGameBoardView1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content" />
-  
-</LinearLayout>  
+    <nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoardView
+        android:id="@+id/studyOrDieGameBoardView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/btnLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnUp"
+        android:layout_marginLeft="20dp"
+        android:text="left" />
+
+    <Button
+        android:id="@+id/btnUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnDown"
+        android:layout_centerVertical="true"
+        android:text="up" />
+
+    <Button
+        android:id="@+id/btnRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnUp"
+        android:layout_toRightOf="@+id/btnUp"
+        android:text="right" />
+
+    <Button
+        android:id="@+id/btnDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRight"
+        android:layout_toRightOf="@+id/btnLeft"
+        android:text="down" />
+
+</RelativeLayout>
