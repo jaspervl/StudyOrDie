@@ -4,8 +4,8 @@ import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
 public class StudyOrDieGameBoard extends GameBoard {
 
-	private static final int GAMEBOARD_WIDTH = 40;
-	private static final int GAMEBOARD_HEIGHT = 20;
+	private static final int GAMEBOARD_WIDTH = 24;
+	private static final int GAMEBOARD_HEIGHT = 12;
 	
 	public StudyOrDieGameBoard() {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
