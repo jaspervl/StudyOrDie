@@ -14,7 +14,7 @@ public class Character extends GameObject{
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		int newX = 0;
+		int newX = getPositionX();
 		int newY = 0;
 		if (newX >= gameBoard.getWidth()) {
 			return;
