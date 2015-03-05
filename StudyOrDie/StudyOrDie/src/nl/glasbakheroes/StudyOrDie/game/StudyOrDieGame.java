@@ -1,5 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
+import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.model.Game;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.view.GameBoardView;
@@ -18,7 +19,6 @@ public class StudyOrDieGame extends Game {
 		StudyOrDieGameBoardView gameView = activity.getGameBoardView();
 		GameBoard gameBoard = getGameBoard();
 		gameView.setGameBoard(gameBoard);
-		
 		gameView.setFixedGridSize(gameBoard.getWidth(), gameBoard.getHeight());
 		
 	}
@@ -28,7 +28,10 @@ public class StudyOrDieGame extends Game {
 		// Hier worden eventueel stats en eigenschappen naar 0 gezet
 		
 		GameBoard board = getGameBoard();
+		board.removeAllObjects();
 		
+		board.addGameObject(new Avatar(), board.getWidth() / 2, board.getHeight() / 2);
+		board.updateView();
 		
 	}
 

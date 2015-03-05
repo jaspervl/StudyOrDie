@@ -3,7 +3,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.view.GameBoardView;
 import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
-import nl.glasbakheroes.StudyOrDie.custom.Character;
+import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -27,7 +27,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		spriteCache.loadTile("empty", R.drawable.cell);
 		setEmptyTile("empty");
 		
-		spriteCache.loadTile(Character.IMAGE, R.drawable.rock);
+		spriteCache.loadTile(Avatar.ROCK_IMAGE, R.drawable.rock);
 
 	}
 }
