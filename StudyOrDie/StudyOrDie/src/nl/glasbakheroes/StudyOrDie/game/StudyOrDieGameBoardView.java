@@ -7,13 +7,26 @@ import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 
-
+/**
+ * A View on the SoD game board.
+ * @author enjee
+ *
+ */
 public class StudyOrDieGameBoardView extends GameBoardView {
 	private static final String TAG = "GameView";
 	public StudyOrDieGameBoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		if (!isInEditMode()) {
+			initGameView();
+		}
+	}
+
+	/**
+	 * Constructors
+	 */
+	public StudyOrDieGameBoardView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
 		if (!isInEditMode()) {
 			initGameView();
 		}
@@ -31,7 +44,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		spriteCache.loadTile("empty", R.drawable.tile_floor_turqois);
 		setEmptyTile("empty");
 		
-		spriteCache.loadTile(Avatar.ROCK_IMAGE, R.drawable.tile_avatar);
+		spriteCache.loadTile(Avatar.AVATAR_IMAGE, R.drawable.tile_avatar);
 
 	}
 }
