@@ -6,11 +6,17 @@ import android.os.Bundle;
 
 public class CoreActivity extends Activity {
 	
+	private StudyOrDieGameBoardView gameView;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
+	}
+
+	public StudyOrDieGameBoardView getGameBoardView() {
+		return gameView;
 	}
 
 }

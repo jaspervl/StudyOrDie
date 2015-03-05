@@ -7,8 +7,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 	private static final int GAMEBOARD_WIDTH = 30;
 	private static final int GAMEBOARD_HEIGHT = 20;
 	
-	public StudyOrDieGameBoard(int width, int height) {
-		super(width, height);
+	public StudyOrDieGameBoard() {
+		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 		// TODO Auto-generated constructor stub
 	}
 
