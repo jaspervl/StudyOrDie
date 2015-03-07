@@ -2,10 +2,12 @@ package nl.glasbakheroes.StudyOrDie.model;
 
 import java.util.Observable;
 
+import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
-import nl.glasbakheroes.StudyOrDie.Objects.*;
-
+import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
+import nl.glasbakheroes.StudyOrDie.game.CoreActivity;
+import android.content.Intent;
 import android.util.Log;
 
 /**
@@ -21,6 +23,7 @@ import android.util.Log;
  */
 public abstract class GameBoard extends Observable {
 	private static final String TAG = "Playground";
+	private CoreActivity activity;
 
 	/** The game this game board is a part of. */
 	private Game game;
@@ -309,10 +312,16 @@ public abstract class GameBoard extends Observable {
 			return true;
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GAMEBOARD", "ENTERING A FIGHT!!");
+			Intent combatIntent = new Intent(activity, CombatActivity.class);
+			activity.startActivity(combatIntent);
 			return false;
 		} else {
 			return false;
 		}
+	}
+
+	public void setCoreActivity(CoreActivity activity) {
+		this.activity = activity;
 	}
 
 }

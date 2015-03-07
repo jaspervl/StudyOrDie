@@ -23,7 +23,8 @@
         </activity>
         <activity
             android:name="nl.glasbakheroes.StudyOrDie.game.CombatActivity"
-            android:label="@string/title_activity_combat" >
+            android:label="@string/title_activity_combat"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

@@ -48,6 +48,7 @@ public class StudyOrDieGame extends Game {
 
 		/* Gets the saved board and removes all objects. */
 		GameBoard board = getGameBoard();
+		board.setCoreActivity(activity);
 		board.removeAllObjects();
 
 		/* Sets the starting position of the avatar. */

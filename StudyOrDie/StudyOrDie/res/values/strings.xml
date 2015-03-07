@@ -4,5 +4,6 @@
     <string name="app_name">Study or Die</string>
     <string name="title_activity_combat">CombatActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="fight">Fight!</string>
 
 </resources>

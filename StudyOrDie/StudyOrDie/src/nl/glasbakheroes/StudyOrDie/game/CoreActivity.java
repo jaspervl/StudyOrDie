@@ -18,7 +18,7 @@ public class CoreActivity extends Activity {
 	private Button rightButton;
 	 
 	
-	@Override
+	@Override 
 	public void onCreate(Bundle savedInstanceState) {
 		/* Load main xml */
 		super.onCreate(savedInstanceState);
@@ -35,22 +35,21 @@ public class CoreActivity extends Activity {
 		game = new StudyOrDieGame(this);
 		
 		/* Set listeners for direction-buttons */
-		MoveTouchListener listener = new MoveTouchListener();
-		upButton.setOnTouchListener(listener);
-		downButton.setOnTouchListener(listener); 
-		leftButton.setOnTouchListener(listener); 
-		rightButton.setOnTouchListener(listener);
+		MoveClickListener listener = new MoveClickListener();
+		upButton.setOnClickListener(listener);
+		downButton.setOnClickListener(listener); 
+		leftButton.setOnClickListener(listener); 
+		rightButton.setOnClickListener(listener);
 	}
 		
 	/**
 	 * Listens for touches on direction-buttons and tells the game instance to move the avatar.
 	 * @author enjee
 	 */
-	private class MoveTouchListener implements View.OnTouchListener {
+	private class MoveClickListener implements View.OnClickListener {
 
-		
 		@Override
-		public boolean onTouch(View v, MotionEvent event) {
+		public void onClick(View v) {
 			if (v == upButton) { 
 				game.getGameBoard().moveAvatar("Up");
 			} else if (v == downButton) {
@@ -60,7 +59,6 @@ public class CoreActivity extends Activity {
 			} else if (v == rightButton) {
 				game.getGameBoard().moveAvatar("Right");
 			}
-			return false; 
 		}
 	}
 
