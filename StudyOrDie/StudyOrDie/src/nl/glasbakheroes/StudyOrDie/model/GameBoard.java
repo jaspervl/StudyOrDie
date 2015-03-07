@@ -318,6 +318,7 @@ public abstract class GameBoard extends Observable {
 	 * @return				True for movement, false for no movement.
 	 */
 	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
+		LevelLoader levelLoader = activity.getGame().getLevelLoader();
 		if (getObject(avatarNewX, avatarNewY) == null) {
 			/* No object present, avatar can move. */
 			return true;
@@ -325,12 +326,17 @@ public abstract class GameBoard extends Observable {
 			/* Boss present, avatar will enter a fight and won't move. */
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
-			activity.getGame().getLevelLoader().killBoss(activity.getGame().getLevelLoader().getLevel());
+			levelLoader.killBoss(levelLoader.getLevel());
 			activity.startActivity(combatIntent);
 			return false;
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
 			/* Door present */
 			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
+				if (avatar.getKeys() > 0) {
+					Toast.makeText(activity, "Used a key on the door", Toast.LENGTH_SHORT).show();
+					removeObject(getObject(avatarNewX, avatarNewY));
+					levelLoader.unlockDoor(levelLoader.getLevel());
+				}
 				Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
 			} else {
 				removeObject(getObject(avatarNewX, avatarNewY));
@@ -339,13 +345,18 @@ public abstract class GameBoard extends Observable {
 			return false;
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
 			/* Elevator is present, go to the next/last major level */
-			LevelLoader levelLoader = activity.getGame().getLevelLoader();
 			if (levelLoader.getLevel() % 10 == 3) {
 				levelLoader.setLevel(levelLoader.getLevel() + 8);
 			} else {
 				levelLoader.setLevel(levelLoader.getLevel() - 8);
 			}
 			levelLoader.loadLevel("Elevator");
+			return false;
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
+			/* Key is present, take it */
+			levelLoader.takeKey(levelLoader.getLevel());
+			avatar.addKey();
+			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
 		} else {
 			/* Not a tile present to move on, avatar won't move. */
