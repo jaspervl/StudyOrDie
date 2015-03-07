@@ -228,9 +228,8 @@ public abstract class GameBoard extends Observable {
 	 * @param direction The direction the avatar wants to move. [Up / Down / Left / Right]
 	 */
 	public void moveAvatar(String direction) {
-		/* Gets the gameboard */
 		/* Checks weather the avatar is too close to boundaries and other objects */
-		if (checkBoundaries(direction)) {
+		if (checkBounadries(direction)) {
 			/* Moves the avatar in a certain direction */
 			switch (direction) {
 			case "Up":
@@ -262,18 +261,18 @@ public abstract class GameBoard extends Observable {
 	 * @param direction	The direction the avatar wants to move.
 	 * @return			Returns true for valid movement, false for invalid movement.
 	 */
-	private boolean checkBoundaries(String direction) {
+	private boolean checkBounadries(String direction) {
 		int avatarNewX = 0;
 		int avatarNewY = 0;
 		
 		switch (direction) {
 		case "Up":
-			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() -1;
 			if (avatarNewY >= 0 ) {
-				return inspectObject(avatarNewX, avatarNewY, direction);
+				/* Within playing field, inspect the new tile with inspectObject */
+				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
 			} else {
-				/* Edge of the screen, get new screen items */
+				/* Edge of the screen, get items from next sublevel */
 				LevelLoader levelLoader = activity.getGame().getLevelLoader();
 				levelLoader.setLevel(levelLoader.getLevel() + 1);
 				levelLoader.loadLevel("Bottom");
@@ -281,12 +280,12 @@ public abstract class GameBoard extends Observable {
 			}
 			
 		case "Down":
-			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() +1;
 			if (avatarNewY < getHeight() ) {
-				return inspectObject(avatarNewX, avatarNewY, direction);
+				/* Within playing field, inspect the new tile with inspectObject */
+				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
 			} else {
-				/* Edge of the screen, get new screen items */
+				/* Edge of the screen, get items from next sublevel */
 				LevelLoader levelLoader = activity.getGame().getLevelLoader();
 				levelLoader.setLevel(levelLoader.getLevel() - 1);
 				levelLoader.loadLevel("Top");
@@ -295,19 +294,21 @@ public abstract class GameBoard extends Observable {
 			
 		case "Left":
 			avatarNewX = avatar.getPositionX() -1;
-			avatarNewY = avatar.getPositionY();
 			if (avatarNewX >= 0 ) {
-				return inspectObject(avatarNewX, avatarNewY, direction);
+				/* Within playing field, inspect the new tile with inspectObject */
+				return inspectObject(avatarNewX, avatar.getPositionY(), direction);
 			} else {
+				/* Edge of the screen, level shift are only made on the top and bottom of the map */
 				return false;
 			}		
 			
 		case "Right":
 			avatarNewX = avatar.getPositionX() +1;
-			avatarNewY = avatar.getPositionY();
 			if (avatarNewX < getWidth() ) {
-				return inspectObject(avatarNewX, avatarNewY, direction);
+				/* Within playing field, inspect the new tile with inspectObject */
+				return inspectObject(avatarNewX, avatar.getPositionY(), direction);
 			} else {
+				/* Edge of the screen, level shift are only made on the top and bottom of the map */
 				return false;
 			}
 		default:
@@ -336,17 +337,20 @@ public abstract class GameBoard extends Observable {
 			activity.startActivity(combatIntent);
 			return false;
 			
-			/* Door present, either just open it or try to unlock */
+			/* Door present */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
 			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
 				if (avatar.getKeys() > 0) {
+					/* If the door is locked and the avatar has a key */
 					Toast.makeText(activity, "Used a key on the door", Toast.LENGTH_SHORT).show();
 					removeObject(getObject(avatarNewX, avatarNewY));
 					levelLoader.unlockDoor(levelLoader.getLevel());
 				} else {
+					/* door locked, no key */
 					Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
 				}
 			} else {
+				/* Normal unlocked door */
 				removeObject(getObject(avatarNewX, avatarNewY));
 				updateView();
 			}
@@ -354,6 +358,9 @@ public abstract class GameBoard extends Observable {
 
 			/* Elevator is present, go to the next/last major level */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
+			/* When current level ends with a 3, the avatar moves to the next floor.
+			 * When current level ends with a 1, the avatar moves to the last floor.
+			 */
 			if (levelLoader.getLevel() % 10 == 3) {
 				levelLoader.setLevel(levelLoader.getLevel() + 8);
 			} else {
@@ -362,7 +369,7 @@ public abstract class GameBoard extends Observable {
 			levelLoader.loadLevel("Elevator");
 			return false;
 			
-			/* Key is present, take it */
+			/* Key is present, avatar gets it and can now open a locked door */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
 			levelLoader.takeKey(levelLoader.getLevel());
 			avatar.addKey();
