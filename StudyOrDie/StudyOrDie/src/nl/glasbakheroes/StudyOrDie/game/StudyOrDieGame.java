@@ -50,7 +50,7 @@ public class StudyOrDieGame extends Game {
 		board.setCoreActivity(activity);
 		board.removeAllObjects();
 		levelLoader = new LevelLoader(board, new Avatar());
-		levelLoader.loadLevel("1.1");
+		levelLoader.loadLevel();
 	}
 	
 	

@@ -1,6 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import android.app.Activity;
 import android.os.Bundle; 
 import android.view.View;

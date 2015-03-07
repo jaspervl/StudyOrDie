@@ -2,10 +2,9 @@ package nl.glasbakheroes.StudyOrDie.model;
 
 import java.util.Observable;
 
-import nl.glasbakheroes.StudyOrDie.Objects.Boss;
-import nl.glasbakheroes.StudyOrDie.Objects.Door;
-import nl.glasbakheroes.StudyOrDie.Objects.Wall;
+import nl.glasbakheroes.StudyOrDie.Objects.*;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.game.CoreActivity;
 import android.content.Intent;
@@ -271,40 +270,40 @@ public abstract class GameBoard extends Observable {
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() -1;
 			if (avatarNewY >= 0 ) {
-				return inspectObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY, direction);
 			} else {
 				/* Edge of the screen, get new screen items */
-				activity.getGame().getLevelLoader().loadLevel("1.2");
+				LevelLoader levelLoader = activity.getGame().getLevelLoader();
+				levelLoader.setLevel(levelLoader.getLevel() + 1);
+				levelLoader.loadLevel();
 				return false;
 			}
 		case "Down":
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() +1;
 			if (avatarNewY < getHeight() ) {
-				return inspectObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY, direction);
 			} else {
 				/* Edge of the screen, get new screen items */
-				activity.getGame().getLevelLoader().loadLevel("1.2");
+				LevelLoader levelLoader = activity.getGame().getLevelLoader();
+				levelLoader.setLevel(levelLoader.getLevel() - 1);
+				levelLoader.loadLevel();
 				return false;
 			}
 		case "Left":
 			avatarNewX = avatar.getPositionX() -1;
 			avatarNewY = avatar.getPositionY();
 			if (avatarNewX >= 0 ) {
-				return inspectObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY, direction);
 			} else {
-				/* Edge of the screen, get new screen items */
-				activity.getGame().getLevelLoader().loadLevel("1.2");
 				return false;
 			}			
 		case "Right":
 			avatarNewX = avatar.getPositionX() +1;
 			avatarNewY = avatar.getPositionY();
 			if (avatarNewX < getWidth() ) {
-				return inspectObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY, direction);
 			} else {
-				/* Edge of the screen, get new screen items */
-				activity.getGame().getLevelLoader().loadLevel("1.2");
 				return false;
 			}
 		default:
@@ -318,7 +317,7 @@ public abstract class GameBoard extends Observable {
 	 * @param avatarNewY	Desired y of the avatar
 	 * @return				True for movement, false for no movement.
 	 */
-	private boolean inspectObject(int avatarNewX, int avatarNewY) {
+	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
 		if (getObject(avatarNewX, avatarNewY) == null) {
 			/* No object present, avatar can move. */
 			return true;
@@ -326,16 +325,28 @@ public abstract class GameBoard extends Observable {
 			/* Boss present, avatar will enter a fight and won't move. */
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
+			activity.getGame().getLevelLoader().killBoss(activity.getGame().getLevelLoader().getLevel());
 			activity.startActivity(combatIntent);
 			return false;
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
+			/* Door present */
 			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
 				Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
 			} else {
 				removeObject(getObject(avatarNewX, avatarNewY));
 				updateView();
 			}
-			return false; 
+			return false;
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
+			/* Elevator is present, go to the next/last major level */
+			LevelLoader levelLoader = activity.getGame().getLevelLoader();
+			if (levelLoader.getLevel() % 10 == 3) {
+				levelLoader.setLevel(levelLoader.getLevel() + 8);
+			} else {
+				levelLoader.setLevel(levelLoader.getLevel() - 8);
+			}
+			levelLoader.loadLevel();
+			return false;
 		} else {
 			/* Not a tile present to move on, avatar won't move. */
 			return false;
