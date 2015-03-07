@@ -3,12 +3,14 @@ package nl.glasbakheroes.StudyOrDie.model;
 import java.util.Observable;
 
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
+import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.game.CoreActivity;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * The game board, which is a rectangular array of GameObject.
@@ -20,6 +22,7 @@ import android.util.Log;
  * on it.
  * 
  * @author Paul de Groot
+ * @Co-Author EnJee
  */
 public abstract class GameBoard extends Observable {
 	private static final String TAG = "Playground";
@@ -228,7 +231,7 @@ public abstract class GameBoard extends Observable {
 	public void moveAvatar(String direction) {
 		/* Gets the gameboard */
 		/* Checks weather the avatar is too close to boundaries and other objects */
-		if (checkBoundries(direction)) {
+		if (checkBoundaries(direction)) {
 			/* Moves the avatar in a certain direction */
 			switch (direction) {
 			case "Up":
@@ -260,7 +263,7 @@ public abstract class GameBoard extends Observable {
 	 * @param direction	The direction the avatar wants to move.
 	 * @return			Returns true for valid movement, false for invalid movement.
 	 */
-	private boolean checkBoundries(String direction) {
+	private boolean checkBoundaries(String direction) {
 		int avatarNewX = 0;
 		int avatarNewY = 0;
 		switch (direction) {
@@ -268,7 +271,7 @@ public abstract class GameBoard extends Observable {
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() -1;
 			if (avatarNewY >= 0 ) {
-				return checkObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}
@@ -276,7 +279,7 @@ public abstract class GameBoard extends Observable {
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() +1;
 			if (avatarNewY < getHeight() ) {
-				return checkObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}
@@ -284,7 +287,7 @@ public abstract class GameBoard extends Observable {
 			avatarNewX = avatar.getPositionX() -1;
 			avatarNewY = avatar.getPositionY();
 			if (avatarNewX >= 0 ) {
-				return checkObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}			
@@ -292,7 +295,7 @@ public abstract class GameBoard extends Observable {
 			avatarNewX = avatar.getPositionX() +1;
 			avatarNewY = avatar.getPositionY();
 			if (avatarNewX < getWidth() ) {
-				return checkObject(avatarNewX, avatarNewY);
+				return inspectObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}
@@ -307,19 +310,31 @@ public abstract class GameBoard extends Observable {
 	 * @param avatarNewY	Desired y of the avatar
 	 * @return				True for movement, false for no movement.
 	 */
-	private boolean checkObject(int avatarNewX, int avatarNewY) {
+	private boolean inspectObject(int avatarNewX, int avatarNewY) {
 		if (getObject(avatarNewX, avatarNewY) == null) {
+			/* No object present, avatar can move. */
 			return true;
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
-			Log.w("GAMEBOARD", "ENTERING A FIGHT!!");
+			/* Boss present, avatar will enter a fight and won't move. */
+			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			activity.startActivity(combatIntent);
 			return false;
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
+			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
+				Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
+			} else {
+				removeObject(getObject(avatarNewX, avatarNewY));
+				updateView();
+			}
+			return false; 
 		} else {
+			/* Not a tile present to move on, avatar won't move. */
 			return false;
 		}
 	}
 
+	/** Save the core activity so the gameboard can start other activities. */
 	public void setCoreActivity(CoreActivity activity) {
 		this.activity = activity;
 	}

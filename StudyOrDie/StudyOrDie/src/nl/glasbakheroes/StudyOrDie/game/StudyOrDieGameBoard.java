@@ -1,6 +1,5 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
-import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
 public class StudyOrDieGameBoard extends GameBoard {
