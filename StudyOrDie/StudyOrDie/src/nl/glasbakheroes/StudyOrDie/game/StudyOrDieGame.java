@@ -1,8 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
-import nl.glasbakheroes.StudyOrDie.Objects.Boss;
-import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.Game;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
@@ -16,9 +15,10 @@ public class StudyOrDieGame extends Game {
 	/* Tag used for log messages. */
 	public static final String TAG = "StudyOrDieGame";
 
-	/* Instance of the CoreActivity and game avatar. */
+	/* Instance of the CoreActivity and LevelCache. */
 	private CoreActivity activity;
-
+	private LevelLoader levelLoader;
+	
 	/**
 	 * Constructor
 	 */
@@ -49,21 +49,13 @@ public class StudyOrDieGame extends Game {
 		GameBoard board = getGameBoard();
 		board.setCoreActivity(activity);
 		board.removeAllObjects();
-
-		/* Sets the starting position of the avatar. */
-		board.addGameObject(new Avatar(), board.getWidth() / 2, board.getHeight() / 2);
-		/* Create a wall */
-		board.createWallHorizontal(0, 4, 10);
-		board.createWallHorizontal(6, 10, 10);
-		board.addGameObject(new Door(true), 5, 10);
-		board.addGameObject(new Door(false), 20, 6);
-		board.createWallVertical(7, 11, 20);
-		board.createWallVertical(0, 10, 11);
-		board.createWallHorizontal(14, 23, 5);
-		board.createWallVertical(4, 0, 14);
-		board.updateView();
-		/* Create a boss */
-		board.addGameObject(new Boss(), 0, 11);
+		levelLoader = new LevelLoader(board, new Avatar());
+		levelLoader.loadLevel("1.1");
+	}
+	
+	
+	public LevelLoader getLevelLoader() {
+		return levelLoader;
 	}
 
 }

@@ -67,5 +67,9 @@ public class CoreActivity extends Activity {
 	public StudyOrDieGameBoardView getGameBoardView() {
 		return gameView;
 	}
+	
+	public StudyOrDieGame getGame() {
+		return game;
+	}
 
 }

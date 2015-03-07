@@ -11,4 +11,9 @@ public class CombatActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_combat);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		/* Don't do anything, there is no escape from the fight! */
+	}
 }

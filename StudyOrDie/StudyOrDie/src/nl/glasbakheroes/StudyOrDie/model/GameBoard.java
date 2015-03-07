@@ -273,6 +273,8 @@ public abstract class GameBoard extends Observable {
 			if (avatarNewY >= 0 ) {
 				return inspectObject(avatarNewX, avatarNewY);
 			} else {
+				/* Edge of the screen, get new screen items */
+				activity.getGame().getLevelLoader().loadLevel("1.2");
 				return false;
 			}
 		case "Down":
@@ -281,6 +283,8 @@ public abstract class GameBoard extends Observable {
 			if (avatarNewY < getHeight() ) {
 				return inspectObject(avatarNewX, avatarNewY);
 			} else {
+				/* Edge of the screen, get new screen items */
+				activity.getGame().getLevelLoader().loadLevel("1.2");
 				return false;
 			}
 		case "Left":
@@ -289,6 +293,8 @@ public abstract class GameBoard extends Observable {
 			if (avatarNewX >= 0 ) {
 				return inspectObject(avatarNewX, avatarNewY);
 			} else {
+				/* Edge of the screen, get new screen items */
+				activity.getGame().getLevelLoader().loadLevel("1.2");
 				return false;
 			}			
 		case "Right":
@@ -297,6 +303,8 @@ public abstract class GameBoard extends Observable {
 			if (avatarNewX < getWidth() ) {
 				return inspectObject(avatarNewX, avatarNewY);
 			} else {
+				/* Edge of the screen, get new screen items */
+				activity.getGame().getLevelLoader().loadLevel("1.2");
 				return false;
 			}
 		default:
