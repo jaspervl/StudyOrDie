@@ -4,6 +4,7 @@ import java.util.Observable;
 
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.Objects.*;
 
 import android.util.Log;
 
@@ -252,7 +253,7 @@ public abstract class GameBoard extends Observable {
 	}
 	
 	/**
-	 * Helper method, check weather the desired movement is possible.
+	 * Helper method, check weather the desired movement is possible and what objects are present.
 	 * @param direction	The direction the avatar wants to move.
 	 * @return			Returns true for valid movement, false for invalid movement.
 	 */
@@ -263,36 +264,53 @@ public abstract class GameBoard extends Observable {
 		case "Up":
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() -1;
-			if (avatar.getPositionY() > 0 && getObject(avatarNewX, avatarNewY) == null) {
-				return true;
+			if (avatarNewY >= 0 ) {
+				return checkObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}
 		case "Down":
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() +1;
-			if (avatar.getPositionY() < getHeight() - 1 && getObject(avatarNewX, avatarNewY) == null) {
-				return true;
+			if (avatarNewY < getHeight() ) {
+				return checkObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}
 		case "Left":
 			avatarNewX = avatar.getPositionX() -1;
 			avatarNewY = avatar.getPositionY();
-			if (avatar.getPositionX() > 0 && getObject(avatarNewX, avatarNewY) == null) {
-				return true;
+			if (avatarNewX >= 0 ) {
+				return checkObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
-			}
+			}			
 		case "Right":
 			avatarNewX = avatar.getPositionX() +1;
 			avatarNewY = avatar.getPositionY();
-			if (avatar.getPositionX() < getWidth() - 1 && getObject(avatarNewX, avatarNewY) == null) {
-				return true;
+			if (avatarNewX < getWidth() ) {
+				return checkObject(avatarNewX, avatarNewY);
 			} else {
 				return false;
 			}
 		default:
+			return false;
+		}
+	}
+
+	/**
+	 * Checks what object is present at the location the avatar wants to move.
+	 * @param avatarNewX	Desired x of the avatar
+	 * @param avatarNewY	Desired y of the avatar
+	 * @return				True for movement, false for no movement.
+	 */
+	private boolean checkObject(int avatarNewX, int avatarNewY) {
+		if (getObject(avatarNewX, avatarNewY) == null) {
+			return true;
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
+			Log.w("GAMEBOARD", "ENTERING A FIGHT!!");
+			return false;
+		} else {
 			return false;
 		}
 	}

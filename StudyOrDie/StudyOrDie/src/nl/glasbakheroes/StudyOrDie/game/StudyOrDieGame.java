@@ -1,6 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import android.util.Log;
+import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.model.Game;
@@ -57,6 +58,8 @@ public class StudyOrDieGame extends Game {
 		board.createWallHorizontal(14, 23, 5);
 		board.createWallVertical(4, 0, 14);
 		board.updateView();
+		/* Create a boss */
+		board.addGameObject(new Boss(), 0, 11);
 	}
 
 }
