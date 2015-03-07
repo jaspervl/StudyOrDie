@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.view.GameBoardView;
 import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
+import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import android.content.Context;
@@ -48,6 +49,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		spriteCache.loadTile(Avatar.AVATAR_IMAGE, R.drawable.tile_avatar);
 		spriteCache.loadTile(Wall.WALL_HORIZONTAL_IMAGE, R.drawable.tile_wall);
 		spriteCache.loadTile(Wall.WALL_VERTICAL_IMAGE, R.drawable.tile_wall);
+		spriteCache.loadTile(Boss.BOSS_IMAGE, R.drawable.wombat);
 
 	}
 }
