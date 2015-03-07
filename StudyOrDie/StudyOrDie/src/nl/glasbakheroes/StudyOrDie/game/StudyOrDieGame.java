@@ -18,7 +18,6 @@ public class StudyOrDieGame extends Game {
 
 	/* Instance of the CoreActivity and game avatar. */
 	private CoreActivity activity;
-	private Avatar avatar;
 
 	/**
 	 * Constructor
@@ -50,141 +49,14 @@ public class StudyOrDieGame extends Game {
 		GameBoard board = getGameBoard();
 		board.removeAllObjects();
 
-		/*
-		 * Avatar is created and saved so it can be used from the SoD Game
-		 * board.
-		 */
-		avatar = new Avatar();
-
 		/* Sets the starting position of the avatar. */
-		board.addGameObject(avatar, board.getWidth() / 2, board.getHeight() / 2);
+		board.addGameObject(new Avatar(), board.getWidth() / 2, board.getHeight() / 2);
 		/* Create a wall */
-		createWallHorizontal(0, 10, 10, board);
-		createWallVertical(0, 10, 11, board);
+		board.createWallHorizontal(0, 10, 10);
+		board.createWallVertical(0, 10, 11);
+		board.createWallHorizontal(14, 23, 5);
+		board.createWallVertical(4, 0, 14);
 		board.updateView();
-	}
-
-	/**
-	 * Create a horizontal wall in the gameboard.
-	 * @param x1	The x position in the grid to start the wall.
-	 * @param x2	The x position in the grid to end the wall.
-	 * @param y		The y position in the grid to place the wall.
-	 * @param board	The gameboard on which the wall will be placed.
-	 */
-	private void createWallHorizontal(int x1, int x2, int y, GameBoard board) {
-		int max = 0;
-		int min = 0;
-		if (x1 > x2) {
-			max = x1;
-			min = x2;
-		} else {
-			max = x2;
-			min = x1;
-		}
-		for (; min <= max ; min++) {
-			board.addGameObject(new Wall("Horizontal"), min, y);
-		}
-	}
-
-	/**
-	 * Create a vertical wall in the gameboard.
-	 * @param y1	The y position in the grid to start the wall.
-	 * @param y2	The y position in the grid to end the wall.
-	 * @param x		The x position in the grid to place the wall.
-	 * @param board	The gameboard on which the wall will be placed.
-	 */
-	private void createWallVertical(int y1, int y2, int x, GameBoard board) {
-		int max = 0;
-		int min = 0;
-		if (y1 > y2) {
-			max = y1;
-			min = y2;
-		} else {
-			max = y2;
-			min = y1;
-		}
-		for (; min <= max ; min++) {
-			board.addGameObject(new Wall("Vertical"), x, min);
-		}
-	}
-	
-	/**
-	 * Method to move the avatar.
-	 * 
-	 * @param direction
-	 *            The direction the avatar wants to move.
-	 */
-	public void moveAvatar(String direction) {
-		/* Gets the gameboard */
-		GameBoard board = getGameBoard();
-		/* Checks wether the avatar is too close to boundies and other objects */
-		if (checkBoundries(direction, board)) {
-			/* Moves the avatar in a certain direction */
-			switch (direction) {
-			case "Up":
-				board.moveObject(avatar, avatar.getPositionX(),
-						avatar.getPositionY() - 1);
-				break;
-			case "Down": 
-				board.moveObject(avatar, avatar.getPositionX(),
-						avatar.getPositionY() + 1);
-				break;
-			case "Left":
-				board.moveObject(avatar, avatar.getPositionX() - 1,
-						avatar.getPositionY());
-				break;
-			case "Right":
-				board.moveObject(avatar, avatar.getPositionX() + 1,
-						avatar.getPositionY());
-				break;
-			default:
-				break;
-			}
-			/* Update the gameboard with the new position of all objects */
-			getGameBoard().updateView();
-		}
-
-	}
-
-	private boolean checkBoundries(String direction, GameBoard board) {
-		int avatarNewX = 0;
-		int avatarNewY = 0;
-		switch (direction) {
-		case "Up":
-			avatarNewX = avatar.getPositionX();
-			avatarNewY = avatar.getPositionY() -1;
-			if (avatar.getPositionY() > 0 && board.getObject(avatarNewX, avatarNewY) == null) {
-				return true;
-			} else {
-				return false;
-			}
-		case "Down":
-			avatarNewX = avatar.getPositionX();
-			avatarNewY = avatar.getPositionY() +1;
-			if (avatar.getPositionY() < board.getHeight() - 1 && board.getObject(avatarNewX, avatarNewY) == null) {
-				return true;
-			} else {
-				return false;
-			}
-		case "Left":
-			avatarNewX = avatar.getPositionX() -1;
-			avatarNewY = avatar.getPositionY();
-			if (avatar.getPositionX() > 0 && board.getObject(avatarNewX, avatarNewY) == null) {
-				return true;
-			} else {
-				return false;
-			}
-		case "Right":
-			avatarNewX = avatar.getPositionX() +1;
-			avatarNewY = avatar.getPositionY();
-			if (avatar.getPositionX() < board.getWidth() - 1 && board.getObject(avatarNewX, avatarNewY) == null) {
-				return true;
-			} else {
-				return false;
-			}
-		default:
-			return false;
-		}
 	}
 
 }

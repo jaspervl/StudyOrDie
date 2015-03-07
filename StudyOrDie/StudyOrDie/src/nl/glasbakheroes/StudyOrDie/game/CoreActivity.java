@@ -50,14 +50,14 @@ public class CoreActivity extends Activity {
 		
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			if (v == upButton) {
-				game.moveAvatar("Up");
+			if (v == upButton) { 
+				game.getGameBoard().moveAvatar("Up");
 			} else if (v == downButton) {
-				game.moveAvatar("Down");
+				game.getGameBoard().moveAvatar("Down");
 			} else if (v == leftButton) {
-				game.moveAvatar("Left");
+				game.getGameBoard().moveAvatar("Left");
 			} else if (v == rightButton) {
-				game.moveAvatar("Right");
+				game.getGameBoard().moveAvatar("Right");
 			}
 			return false; 
 		}

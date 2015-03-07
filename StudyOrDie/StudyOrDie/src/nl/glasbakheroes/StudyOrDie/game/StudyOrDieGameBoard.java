@@ -1,5 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
+import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
 public class StudyOrDieGameBoard extends GameBoard {
@@ -11,7 +12,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 		// TODO Auto-generated constructor stub
 	}
- 
+	
 	@Override
 	public void onEmptyTileClicked(int x, int y) {
 		// TODO Auto-generated method stub

@@ -2,6 +2,9 @@ package nl.glasbakheroes.StudyOrDie.model;
 
 import java.util.Observable;
 
+import nl.glasbakheroes.StudyOrDie.Objects.Wall;
+import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+
 import android.util.Log;
 
 /**
@@ -23,6 +26,7 @@ public abstract class GameBoard extends Observable {
 	
 	/** The game objects on the board. */
 	private GameObject[][] gameBoard;
+	private Avatar avatar;
 
 	/**
 	 * Create a new game board.
@@ -58,6 +62,9 @@ public abstract class GameBoard extends Observable {
 	 * @throws IllegalArgumentException if (x,y) is not empty
 	 */
 	public void addGameObject(GameObject obj, int x, int y) {
+		if (obj instanceof Avatar) {
+			avatar = (Avatar) obj;
+		}
 		if( gameBoard[x][y] != null ) {
 			throw new IllegalArgumentException("Destination already contains an object");
 		}
@@ -165,6 +172,129 @@ public abstract class GameBoard extends Observable {
 	/** Used by Game. */
 	void setGame(Game game) {
 		this.game = game;
+	}
+	
+	/**
+	 * Create a horizontal wall in the gameboard.
+	 * @param x1	The x position in the grid to start the wall.
+	 * @param x2	The x position in the grid to end the wall.
+	 * @param y		The y position in the grid to place the wall.
+	 */
+	public void createWallHorizontal(int x1, int x2, int y) {
+		int max = 0;
+		int min = 0;
+		if (x1 > x2) {
+			max = x1;
+			min = x2;
+		} else {
+			max = x2;
+			min = x1;
+		}
+		for (; min <= max ; min++) {
+			addGameObject(new Wall("Horizontal"), min, y);
+		}
+	}
+	
+	/**
+	 * Create a vertical wall in the gameboard.
+	 * @param y1	The y position in the grid to start the wall.
+	 * @param y2	The y position in the grid to end the wall.
+	 * @param x		The x position in the grid to place the wall.
+	 */
+	public void createWallVertical(int y1, int y2, int x) {
+		int max = 0;
+		int min = 0;
+		if (y1 > y2) {
+			max = y1;
+			min = y2;
+		} else {
+			max = y2;
+			min = y1;
+		}
+		for (; min <= max ; min++) {
+			addGameObject(new Wall("Vertical"), x, min);
+		}
+	}
+	
+	/**
+	 * Method to move the avatar.
+	 * 
+	 * @param direction The direction the avatar wants to move. [Up / Down / Left / Right]
+	 */
+	public void moveAvatar(String direction) {
+		/* Gets the gameboard */
+		/* Checks weather the avatar is too close to boundaries and other objects */
+		if (checkBoundries(direction)) {
+			/* Moves the avatar in a certain direction */
+			switch (direction) {
+			case "Up":
+				moveObject(avatar, avatar.getPositionX(),
+						avatar.getPositionY() - 1);
+				break;
+			case "Down": 
+				moveObject(avatar, avatar.getPositionX(),
+						avatar.getPositionY() + 1);
+				break;
+			case "Left":
+				moveObject(avatar, avatar.getPositionX() - 1,
+						avatar.getPositionY());
+				break;
+			case "Right":
+				moveObject(avatar, avatar.getPositionX() + 1,
+						avatar.getPositionY());
+				break;
+			default:
+				break;
+			}
+			updateView();
+		}
+
+	}
+	
+	/**
+	 * Helper method, check weather the desired movement is possible.
+	 * @param direction	The direction the avatar wants to move.
+	 * @return			Returns true for valid movement, false for invalid movement.
+	 */
+	private boolean checkBoundries(String direction) {
+		int avatarNewX = 0;
+		int avatarNewY = 0;
+		switch (direction) {
+		case "Up":
+			avatarNewX = avatar.getPositionX();
+			avatarNewY = avatar.getPositionY() -1;
+			if (avatar.getPositionY() > 0 && getObject(avatarNewX, avatarNewY) == null) {
+				return true;
+			} else {
+				return false;
+			}
+		case "Down":
+			avatarNewX = avatar.getPositionX();
+			avatarNewY = avatar.getPositionY() +1;
+			if (avatar.getPositionY() < getHeight() - 1 && getObject(avatarNewX, avatarNewY) == null) {
+				return true;
+			} else {
+				return false;
+			}
+		case "Left":
+			avatarNewX = avatar.getPositionX() -1;
+			avatarNewY = avatar.getPositionY();
+			if (avatar.getPositionX() > 0 && getObject(avatarNewX, avatarNewY) == null) {
+				return true;
+			} else {
+				return false;
+			}
+		case "Right":
+			avatarNewX = avatar.getPositionX() +1;
+			avatarNewY = avatar.getPositionY();
+			if (avatar.getPositionX() < getWidth() - 1 && getObject(avatarNewX, avatarNewY) == null) {
+				return true;
+			} else {
+				return false;
+			}
+		default:
+			return false;
+		}
 	}
 
 }
