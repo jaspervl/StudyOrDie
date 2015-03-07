@@ -6,8 +6,20 @@ import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
+	/**
+	* 	Level loader, class where all levels are saved at.
+	*	Will be called by the GameBoard and certain activities.
+	*
+	*	- Alive bosses: 	Each 'floor' or major level has a position in this array.
+	*	- Keys:				Same principal as with the bosses.
+	*	- Door locked:		Again for each major level a boolean.
+	*	- Current level:	The level currently to displayed.
+	*						* 1,2 and 3 are major level 1.
+	*						* 11, 12 and 13 are major level 2. Etc.
+	*	@Author EnJee	
+	*/
 public class LevelLoader {
-
+	
 	private GameBoard board;
 	private Avatar avatar;
 	private int currentLevel;

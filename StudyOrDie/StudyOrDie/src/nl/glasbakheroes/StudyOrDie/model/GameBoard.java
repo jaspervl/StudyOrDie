@@ -265,6 +265,7 @@ public abstract class GameBoard extends Observable {
 	private boolean checkBoundaries(String direction) {
 		int avatarNewX = 0;
 		int avatarNewY = 0;
+		
 		switch (direction) {
 		case "Up":
 			avatarNewX = avatar.getPositionX();
@@ -278,6 +279,7 @@ public abstract class GameBoard extends Observable {
 				levelLoader.loadLevel("Bottom");
 				return false;
 			}
+			
 		case "Down":
 			avatarNewX = avatar.getPositionX();
 			avatarNewY = avatar.getPositionY() +1;
@@ -290,6 +292,7 @@ public abstract class GameBoard extends Observable {
 				levelLoader.loadLevel("Top");
 				return false;
 			}
+			
 		case "Left":
 			avatarNewX = avatar.getPositionX() -1;
 			avatarNewY = avatar.getPositionY();
@@ -297,7 +300,8 @@ public abstract class GameBoard extends Observable {
 				return inspectObject(avatarNewX, avatarNewY, direction);
 			} else {
 				return false;
-			}			
+			}		
+			
 		case "Right":
 			avatarNewX = avatar.getPositionX() +1;
 			avatarNewY = avatar.getPositionY();
@@ -319,32 +323,37 @@ public abstract class GameBoard extends Observable {
 	 */
 	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
 		LevelLoader levelLoader = activity.getGame().getLevelLoader();
+		
+		/* No object present, avatar can move. */
 		if (getObject(avatarNewX, avatarNewY) == null) {
-			/* No object present, avatar can move. */
 			return true;
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
+			
 			/* Boss present, avatar will enter a fight and won't move. */
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			levelLoader.killBoss(levelLoader.getLevel());
 			activity.startActivity(combatIntent);
 			return false;
+			
+			/* Door present, either just open it or try to unlock */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
-			/* Door present */
 			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
 				if (avatar.getKeys() > 0) {
 					Toast.makeText(activity, "Used a key on the door", Toast.LENGTH_SHORT).show();
 					removeObject(getObject(avatarNewX, avatarNewY));
 					levelLoader.unlockDoor(levelLoader.getLevel());
+				} else {
+					Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
 				}
-				Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
 			} else {
 				removeObject(getObject(avatarNewX, avatarNewY));
 				updateView();
 			}
 			return false;
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
+
 			/* Elevator is present, go to the next/last major level */
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
 			if (levelLoader.getLevel() % 10 == 3) {
 				levelLoader.setLevel(levelLoader.getLevel() + 8);
 			} else {
@@ -352,14 +361,16 @@ public abstract class GameBoard extends Observable {
 			}
 			levelLoader.loadLevel("Elevator");
 			return false;
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
+			
 			/* Key is present, take it */
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
 			levelLoader.takeKey(levelLoader.getLevel());
 			avatar.addKey();
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
+			
+			/* Not a tile present to move on, avatar won't move. [Out of bounds] */
 		} else {
-			/* Not a tile present to move on, avatar won't move. */
 			return false;
 		}
 	}
