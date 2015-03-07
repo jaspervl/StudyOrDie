@@ -59,52 +59,55 @@ public class StudyOrDieGame extends Game {
 		/* Sets the starting position of the avatar. */
 		board.addGameObject(avatar, board.getWidth() / 2, board.getHeight() / 2);
 		/* Create a wall */
-		createWall(0, 10, 2, 2, board);
-		createWall(0, 24, 9, 9, board);
-		createWall(10, 10, 0, 3, board);
-		createWall(14, 14, 0, 2, board);
-		createWall(14, 24, 2, 2, board);
+		createWallHorizontal(0, 10, 10, board);
+		createWallVertical(0, 10, 11, board);
 		board.updateView();
 	}
 
 	/**
-	 * Creates a wall that is always or straight or perfectly angled, never
-	 * inbetween. if the difference between the x's and the y's is the same it
-	 * will be angled.
+	 * Create a horizontal wall in the gameboard.
+	 * @param x1	The x position in the grid to start the wall.
+	 * @param x2	The x position in the grid to end the wall.
+	 * @param y		The y position in the grid to place the wall.
+	 * @param board	The gameboard on which the wall will be placed.
 	 */
-	private void createWall(int x1, int x2, int y1, int y2, GameBoard board) {
-		int smallestX = 0;
-		int smallestY = 0;
-		if (x1 < x2) {
-			smallestX = x1;
+	private void createWallHorizontal(int x1, int x2, int y, GameBoard board) {
+		int max = 0;
+		int min = 0;
+		if (x1 > x2) {
+			max = x1;
+			min = x2;
 		} else {
-			smallestX = x2;
+			max = x2;
+			min = x1;
 		}
-		if (y1 < y2) {
-			smallestY = y1;
-		} else {
-			smallestY = y2;
-		}
-
-		int differenceX = Math.abs(x1 - x2);
-		int differenceY = Math.abs(y1 - y2);
-		int biggestDifference = 0;
-		if (differenceX > differenceY) {
-			biggestDifference = differenceX;
-		} else {
-			biggestDifference = differenceY;
-		}
-
-		for (int i = 0; i < biggestDifference; i++) {
-			board.addGameObject(
-					new Wall(),
-					Math.round(smallestX
-							+ (i * (differenceX / biggestDifference))),
-					Math.round(smallestY
-							+ (i * (differenceY / biggestDifference))));
+		for (; min <= max ; min++) {
+			board.addGameObject(new Wall("Horizontal"), min, y);
 		}
 	}
 
+	/**
+	 * Create a vertical wall in the gameboard.
+	 * @param y1	The y position in the grid to start the wall.
+	 * @param y2	The y position in the grid to end the wall.
+	 * @param x		The x position in the grid to place the wall.
+	 * @param board	The gameboard on which the wall will be placed.
+	 */
+	private void createWallVertical(int y1, int y2, int x, GameBoard board) {
+		int max = 0;
+		int min = 0;
+		if (y1 > y2) {
+			max = y1;
+			min = y2;
+		} else {
+			max = y2;
+			min = y1;
+		}
+		for (; min <= max ; min++) {
+			board.addGameObject(new Wall("Vertical"), x, min);
+		}
+	}
+	
 	/**
 	 * Method to move the avatar.
 	 * 

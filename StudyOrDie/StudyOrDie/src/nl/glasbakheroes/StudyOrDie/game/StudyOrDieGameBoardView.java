@@ -46,7 +46,8 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		setEmptyTile("empty");
 		
 		spriteCache.loadTile(Avatar.AVATAR_IMAGE, R.drawable.tile_avatar);
-		spriteCache.loadTile(Wall.WALL_IMAGE, R.drawable.tile_wall);
+		spriteCache.loadTile(Wall.WALL_HORIZONTAL_IMAGE, R.drawable.tile_wall);
+		spriteCache.loadTile(Wall.WALL_VERTICAL_IMAGE, R.drawable.tile_wall);
 
 	}
 }

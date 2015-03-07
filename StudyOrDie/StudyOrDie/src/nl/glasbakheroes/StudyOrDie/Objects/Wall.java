@@ -4,12 +4,23 @@ import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 
 public class Wall extends GameObject {
-	public static final String WALL_IMAGE = "RockTwo";
+	public static final String WALL_HORIZONTAL_IMAGE = "RockTwo";
+	public static final String WALL_VERTICAL_IMAGE = "Rocktwo";
+	public String orientation;
 
+	public Wall(String orientation) {
+		this.orientation = orientation;
+	}
+	
+	
 	/** Returns the ImageId of the image to show. */
 	@Override 
 	public String getImageId() { 
-		return WALL_IMAGE;   
+		if (orientation.equals("Horizontal")) {
+			return WALL_HORIZONTAL_IMAGE;
+		} else {
+			return WALL_VERTICAL_IMAGE;
+		}
 	}
    
 	@Override
