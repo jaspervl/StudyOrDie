@@ -23,14 +23,18 @@ public class LevelLoader {
 	}
 	
 	
-	public void loadLevel() {
+	public void loadLevel(String spawnArea) {
 		
 		board.removeAllObjects();
 		
 		switch (currentLevel) {
 		/* case 1 is where ground floor starts */
 		case 1:	
-			board.addGameObject(avatar, board.getWidth() / 2, board.getHeight() / 2);
+			if (spawnArea.equals("Top")) {
+				board.addGameObject(avatar, board.getWidth() / 2, 1);
+			} else if (spawnArea.equals("Bottom")){
+				board.addGameObject(avatar, 20, 8);
+			}
 			board.createWallHorizontal(0, 23, 11);
 			board.createWallHorizontal(0, 11, 0);
 			board.createWallHorizontal(13, 23, 0);
@@ -43,7 +47,11 @@ public class LevelLoader {
 			break;
 			/* case 2 is part 2 of the ground floor */
 		case 2: 
-			board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 2);
+			if (spawnArea.equals("Top")) {
+				board.moveObject(avatar, board.getWidth() / 2, 0);
+			} else if (spawnArea.equals("Bottom")) {
+				board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 1);
+			}
 			board.createWallVertical(1, 10, 0);
 			board.createWallHorizontal(0, 10, 11);
 			board.createWallHorizontal(14, 23, 11);
@@ -58,10 +66,13 @@ public class LevelLoader {
 		case 3:
 			if (aliveBosses[0] == true) {
 				board.addGameObject(new Boss(), 2, 1);
-				board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 2);
-			} else {
-
+			} 
+			if (spawnArea.equals("Elevator")) {
 				board.moveObject(avatar, 2, 1);
+			} else if (spawnArea.equals("Bottom")) {
+				board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 1);
+			} else if (spawnArea.equals("Boss")) {
+				board.addGameObject(avatar, 2, 1);
 			}
 			board.createWallVertical(1, 10, 0);
 			board.createWallHorizontal(0, 10, 11);
@@ -76,11 +87,15 @@ public class LevelLoader {
 			break;
 			/* Case 11 is where the second floor starts */
 		case 11:
+			if (spawnArea.equals("Elevator")) {
+				board.moveObject(avatar, 2, 2);
+			} else if (spawnArea.equals("Top")) {
+				// Fill when expanding levels
+			}
 			board.createWallHorizontal(0, 23, 0);
 			board.createWallHorizontal(0, 23, 11);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(1, 10, 23);
-			board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 2);
 			board.addGameObject(new Elevator(), 1,1);
 			break;
 			/* case 12 is part 2 of the second floor */
@@ -111,6 +126,6 @@ public class LevelLoader {
 		case 13	: aliveBosses[1] = false; break;
 		default : break;
 		}
-		loadLevel();
+		loadLevel("Boss");
 	}
 }

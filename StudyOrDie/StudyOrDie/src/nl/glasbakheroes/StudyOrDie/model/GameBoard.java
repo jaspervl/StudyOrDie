@@ -275,7 +275,7 @@ public abstract class GameBoard extends Observable {
 				/* Edge of the screen, get new screen items */
 				LevelLoader levelLoader = activity.getGame().getLevelLoader();
 				levelLoader.setLevel(levelLoader.getLevel() + 1);
-				levelLoader.loadLevel();
+				levelLoader.loadLevel("Bottom");
 				return false;
 			}
 		case "Down":
@@ -287,7 +287,7 @@ public abstract class GameBoard extends Observable {
 				/* Edge of the screen, get new screen items */
 				LevelLoader levelLoader = activity.getGame().getLevelLoader();
 				levelLoader.setLevel(levelLoader.getLevel() - 1);
-				levelLoader.loadLevel();
+				levelLoader.loadLevel("Top");
 				return false;
 			}
 		case "Left":
@@ -345,7 +345,7 @@ public abstract class GameBoard extends Observable {
 			} else {
 				levelLoader.setLevel(levelLoader.getLevel() - 8);
 			}
-			levelLoader.loadLevel();
+			levelLoader.loadLevel("Elevator");
 			return false;
 		} else {
 			/* Not a tile present to move on, avatar won't move. */
