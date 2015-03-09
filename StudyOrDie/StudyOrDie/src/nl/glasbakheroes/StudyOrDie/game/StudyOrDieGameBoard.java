@@ -188,7 +188,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
 		LevelLoader levelLoader = activity.getGame().getLevelLoader();
 		
-		/* No object present, avatar can move. */
+			/* No object present, avatar can move. */
 		if (getObject(avatarNewX, avatarNewY) == null) {
 			return true;
 			
@@ -242,6 +242,12 @@ public class StudyOrDieGameBoard extends GameBoard {
 			avatar.addKey();
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
+			
+			/** Space for more objects here! 
+			 * 	replace <CLASS> with the object class, remove comment.
+			 * */
+//		} else if (getObject(avatarNewX, avatarNewY) instanceof <CLASS>) {
+			
 			
 			/* No tile present to move on, avatar won't move. [Out of bounds] */
 		} else {
