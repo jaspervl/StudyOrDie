@@ -133,7 +133,7 @@ public class LevelLoader {
 			
 			/** Case 11 is where the second floor starts */
 		case 11:
-
+			
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
 				board.moveObject(avatar, 2, 2);
