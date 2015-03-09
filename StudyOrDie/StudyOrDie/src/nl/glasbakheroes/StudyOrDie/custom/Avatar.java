@@ -1,9 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
 
-import java.util.ArrayList;
-
-import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 
@@ -13,12 +10,12 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
  *
  */
 public class Avatar extends GameObject {
-	public final static String AVATAR_FRONT = "Avatar";
-	public final static String AVATAR_BACK = "Avatar";
-	public final static String AVATAR_LEFT = "Avatar";
-	public final static String AVATAR_RIGHT = "Avatar";
+	public final static String AVATAR_FRONT = "AvatarFront";
+	public final static String AVATAR_BACK = "AvatarBack";
+	public final static String AVATAR_LEFT = "AvatarLeft";
+	public final static String AVATAR_RIGHT = "AvatarRight";
 	
-	public String currentImage = AVATAR_FRONT;
+	private String currentImage = AVATAR_FRONT;
 	
 	/* Amount of keys the avatar picked up */
 	private int numberOfKeys;
@@ -31,17 +28,18 @@ public class Avatar extends GameObject {
 	public void setImage(String direction){
 		switch (direction) {
 		case "Up" : if(!currentImage.equals(AVATAR_BACK)){
-				currentImage = AVATAR_BACK;
-				}
+				currentImage = AVATAR_BACK; 
+				} break;
 		case "Down" : if(!currentImage.equals(AVATAR_FRONT)){
-			currentImage = AVATAR_FRONT;
-			}
+			currentImage = AVATAR_FRONT; 
+			} break;
 		case "Left" : if(!currentImage.equals(AVATAR_LEFT)){
-			currentImage = AVATAR_LEFT;
-			}
+			currentImage = AVATAR_LEFT; 
+			} break;
 		case "Right" : if(!currentImage.equals(AVATAR_RIGHT)){
-			currentImage = AVATAR_RIGHT;
-			}
+			currentImage = AVATAR_RIGHT; 
+			} break;
+		default	: break;
 		}
 	}
 	@Override

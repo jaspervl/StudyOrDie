@@ -230,7 +230,9 @@ public abstract class GameBoard extends Observable {
 	public void moveAvatar(String direction) {
 		/* Checks weather the avatar is too close to boundaries and other objects */
 		if (checkBounadries(direction)) {
-			/* Moves the avatar in a certain direction */
+			/* Set the orientation of the avatar image in a certain direction */
+			avatar.setImage(direction);
+			/* Move the avatar in a certain direction */
 			switch (direction) {
 			case "Up":
 				moveObject(avatar, avatar.getPositionX(),
