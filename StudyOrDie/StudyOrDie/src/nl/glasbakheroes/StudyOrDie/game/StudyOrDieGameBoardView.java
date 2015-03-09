@@ -45,17 +45,22 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		spriteCache.setContext(this.getContext());
 
 		// Load the 'empty' cell bitmap and tell the tile view that this is the
-		// image to use for cells without GameObject
-		spriteCache.loadTile("empty", R.drawable.tile_floor_turqois);
-		setEmptyTile("empty");
-		
-		spriteCache.loadTile(Avatar.AVATAR_IMAGE, R.drawable.tile_avatar);
-		spriteCache.loadTile(Wall.WALL_HORIZONTAL_IMAGE, R.drawable.tile_wall);
-		spriteCache.loadTile(Wall.WALL_VERTICAL_IMAGE, R.drawable.tile_wall);
-		spriteCache.loadTile(Boss.BOSS_IMAGE, R.drawable.wombat);
-		spriteCache.loadTile(Door.DOOR_CLOSED_IMAGE, R.drawable.tile_door_closed);
-		spriteCache.loadTile(Elevator.ELEVATOR_IMAGE, R.drawable.tile_elevator);
-		spriteCache.loadTile(Key.KEY_IMAGE, R.drawable.tile_key);
+				// image to use for cells without GameObject
+				spriteCache.loadTile("empty", R.drawable.tile_floor_turqois);
+				setEmptyTile("empty");
+				
+				spriteCache.loadTile(Avatar.AVATAR_FRONT, R.drawable.char_player_front);
+				spriteCache.loadTile(Avatar.AVATAR_BACK, R.drawable.char_player_back);
+				spriteCache.loadTile(Avatar.AVATAR_LEFT, R.drawable.char_player_left);
+				spriteCache.loadTile(Avatar.AVATAR_RIGHT, R.drawable.char_player_right);
+				
+				spriteCache.loadTile(Wall.WALL_HORIZONTAL_IMAGE, R.drawable.wall_horizontal_1);
+				spriteCache.loadTile(Wall.WALL_VERTICAL_IMAGE, R.drawable.wall_vertical_1);
+				spriteCache.loadTile(Boss.BOSS_IMAGE, R.drawable.wombat);
+				spriteCache.loadTile(Door.DOOR_CLOSED_IMAGE, R.drawable.door_orange_south);
+				spriteCache.loadTile(Elevator.ELEVATOR_IMAGE, R.drawable.elevator_locked);
+				spriteCache.loadTile(Key.KEY_IMAGE, R.drawable.prop_keycard_blue);
+
 
 	}
 }
