@@ -19,8 +19,7 @@ public class Door extends GameObject {
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		// TODO Auto-generated method stub
-		
+		// Do nothing for now
 	}
 
 	public boolean isLocked() {

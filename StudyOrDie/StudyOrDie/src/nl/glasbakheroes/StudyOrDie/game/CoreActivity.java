@@ -31,7 +31,6 @@ public class CoreActivity extends Activity {
 		leftButton = (Button) findViewById(R.id.btnLeft);
 		rightButton = (Button) findViewById(R.id.btnRight);
 		menuButton = (Button) findViewById(R.id.btnMenu);
-	
 		
 		/* Create the game object */
 		game = new StudyOrDieGame(this);

@@ -28,9 +28,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 	/**
 	 * Create a horizontal wall in the gameboard.
-	 * @param x1	The x position in the grid to start the wall.
-	 * @param x2	The x position in the grid to end the wall.
-	 * @param y		The y position in the grid to place the wall.
+	 * @param x1	The x position in the grid to start the wall.	[0-23]
+	 * @param x2	The x position in the grid to end the wall.		[0-23]
+	 * @param y		The y position in the grid to place the wall.	[0-11]
 	 */
 	public void createWallHorizontal(int x1, int x2, int y) {
 		int max = 0;
@@ -49,9 +49,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 	
 	/**
 	 * Create a vertical wall in the gameboard.
-	 * @param y1	The y position in the grid to start the wall.
-	 * @param y2	The y position in the grid to end the wall.
-	 * @param x		The x position in the grid to place the wall.
+	 * @param y1	The y position in the grid to start the wall. 	[0-11]
+	 * @param y2	The y position in the grid to end the wall.		[0-11]
+	 * @param x		The x position in the grid to place the wall.	[0-23]
 	 */
 	public void createWallVertical(int y1, int y2, int x) {
 		int max = 0;
@@ -66,6 +66,21 @@ public class StudyOrDieGameBoard extends GameBoard {
 		for (; min <= max ; min++) {
 			addGameObject(new Wall("Vertical"), x, min);
 		}
+	}
+	
+	/**
+	 * Create four corners of wall, it can only be a 'rectangle'
+	 * @param x1	The lowest x value 	[0-23] 
+	 * @param x2	The highest x value [0-23]
+	 * @param y1	The lowest y value 	[0-11]
+	 * @param y2	The highest y value	[0-11]
+	 */
+	public void createWallCorners(int x1, int x2, int y1, int y2) {
+
+		addGameObject(new Wall("NW"), x1, y1);
+		addGameObject(new Wall("SW"), x1, y2);
+		addGameObject(new Wall("SE"), x2, y2);
+		addGameObject(new Wall("NE"), x2, y1);
 	}
 	
 	/**
@@ -234,7 +249,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 		}
 	}
 
-	
 	/** Save the core activity so the gameboard can start other activities. */
 	public void setCoreActivity(CoreActivity activity) {
 		this.activity = activity;

@@ -17,7 +17,7 @@ public class Avatar extends GameObject {
 	
 	private String currentImage = AVATAR_FRONT;
 	
-	/* Amount of keys the avatar picked up */
+	/* Amount of keys the avatar (picked up - amount used) */
 	private int numberOfKeys;
 	
 	@Override
@@ -44,7 +44,7 @@ public class Avatar extends GameObject {
 	}
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		// Do nothing for now.
+		// Do nothing for now
 	} 
 	
 	public int getKeys() {

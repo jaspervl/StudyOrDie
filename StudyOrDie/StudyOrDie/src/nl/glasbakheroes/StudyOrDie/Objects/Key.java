@@ -14,8 +14,7 @@ public class Key extends GameObject {
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		// TODO Auto-generated method stub
-		
+		// Do nothing for now
 	}
 	
 	

@@ -110,14 +110,8 @@ public class LevelLoader {
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(10, 7, 14);
-			board.addGameObject(new Wall("NW"), 0, 0);
-			board.addGameObject(new Wall("SW"), 0, 11);
-			board.addGameObject(new Wall("SE"), 23, 11);
-			board.addGameObject(new Wall("NE"), 23, 0);
-			board.addGameObject(new Wall("NW"), 14, 0);
-			board.addGameObject(new Wall("SW"), 14, 11);
-			board.addGameObject(new Wall("SE"), 10, 11);
-			board.addGameObject(new Wall("NE"), 10, 0);
+			board.createWallCorners(0, 10, 0, 11);
+			board.createWallCorners(14, 23, 0, 11);
 			board.addGameObject(new Door(false), 14, 6);
 			board.addGameObject(new Door(false), 10, 6);
 			break;
@@ -155,14 +149,8 @@ public class LevelLoader {
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(10, 7, 14);
-			board.addGameObject(new Wall("NW"), 0, 0);
-			board.addGameObject(new Wall("SW"), 0, 11);
-			board.addGameObject(new Wall("SE"), 23, 11);
-			board.addGameObject(new Wall("NE"), 23, 0);
-			board.addGameObject(new Wall("NW"), 14, 0);
-			board.addGameObject(new Wall("SW"), 14, 11);
-			board.addGameObject(new Wall("SE"), 10, 11);
-			board.addGameObject(new Wall("NE"), 10, 0);
+			board.createWallCorners(0, 10, 0, 11);
+			board.createWallCorners(14, 23, 0, 11);
 			board.addGameObject(new Door(false), 14, 6);
 			board.addGameObject(new Elevator(), 1, 1);
 			break;
@@ -180,10 +168,7 @@ public class LevelLoader {
 			board.createWallHorizontal(1, 22, 11);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(1, 10, 23);
-			board.addGameObject(new Wall("NW"), 0, 0);
-			board.addGameObject(new Wall("SW"), 0, 11);
-			board.addGameObject(new Wall("SE"), 23, 11);
-			board.addGameObject(new Wall("NE"), 23, 0);
+			board.createWallCorners(0, 23, 0, 11);
 			board.addGameObject(new Elevator(), 1,1);
 			break;
 			

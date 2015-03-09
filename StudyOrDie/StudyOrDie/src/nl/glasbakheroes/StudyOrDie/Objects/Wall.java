@@ -33,7 +33,7 @@ public class Wall extends GameObject {
    
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		
+		// Do nothing for now
 	} 
 
 }
