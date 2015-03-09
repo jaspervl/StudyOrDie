@@ -62,7 +62,7 @@ public class CoreActivity extends Activity {
 			} else if (v == rightButton) {
 				game.getGameBoard().moveAvatar("Right");
 			} else if (v == menuButton) {
-				Intent menuIntent = new Intent(CoreActivity.this, menuActivity.class);
+				Intent menuIntent = new Intent(CoreActivity.this, MenuActivity.class);
 				startActivity(menuIntent);
 				
 			}
