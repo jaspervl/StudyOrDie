@@ -1682,6 +1682,7 @@ containing a value of this type.
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
+        public static final int listFragment=0x7f09004b;
         public static final int listMode=0x7f09000a;
         public static final int listView1=0x7f090042;
         public static final int list_item=0x7f090025;
@@ -1770,7 +1771,8 @@ containing a value of this type.
         public static final int activity_menu=0x7f030018;
         public static final int fragment_character=0x7f030019;
         public static final int main=0x7f03001a;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001b;
+        public static final int menu_selection=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
