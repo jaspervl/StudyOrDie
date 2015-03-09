@@ -1,8 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.R;
-import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle; 
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +15,7 @@ public class CoreActivity extends Activity {
 	private Button downButton;
 	private Button leftButton; 
 	private Button rightButton;
+	private Button menuButton;
 	 
 	
 	@Override 
@@ -29,23 +30,26 @@ public class CoreActivity extends Activity {
 		downButton = (Button) findViewById(R.id.btnDown);
 		leftButton = (Button) findViewById(R.id.btnLeft);
 		rightButton = (Button) findViewById(R.id.btnRight);
+		menuButton = (Button) findViewById(R.id.btnMenu);
+	
 		
 		/* Create the game object */
 		game = new StudyOrDieGame(this);
 		
 		/* Set listeners for direction-buttons */
-		MoveClickListener listener = new MoveClickListener();
+		ClickListener listener = new ClickListener();
 		upButton.setOnClickListener(listener);
 		downButton.setOnClickListener(listener); 
 		leftButton.setOnClickListener(listener); 
 		rightButton.setOnClickListener(listener);
+		menuButton.setOnClickListener(listener);
 	}
 		
 	/**
 	 * Listens for touches on direction-buttons and tells the game instance to move the avatar.
 	 * @author enjee
 	 */
-	private class MoveClickListener implements View.OnClickListener {
+	private class ClickListener implements View.OnClickListener {
 
 		@Override
 		public void onClick(View v) {
@@ -57,6 +61,10 @@ public class CoreActivity extends Activity {
 				game.getGameBoard().moveAvatar("Left");
 			} else if (v == rightButton) {
 				game.getGameBoard().moveAvatar("Right");
+			} else if (v == menuButton) {
+				Intent menuIntent = new Intent(CoreActivity.this, menuActivity.class);
+				startActivity(menuIntent);
+				
 			}
 		}
 	}

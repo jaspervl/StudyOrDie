@@ -18,6 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/btnUp"
         android:layout_marginLeft="20dp"
+        android:alpha="0.5"
         android:text="left" />
 
     <Button
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btnDown"
         android:layout_centerVertical="true"
+        android:alpha="0.5"
         android:text="up" />
 
     <Button
@@ -34,6 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnUp"
         android:layout_toRightOf="@+id/btnUp"
+        android:alpha="0.5"
         android:text="right" />
 
     <Button
@@ -42,6 +45,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnRight"
         android:layout_toRightOf="@+id/btnLeft"
+        android:alpha="0.5"
         android:text="down" />
+
+    <Button
+        android:id="@+id/btnMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:alpha="0.7"
+        android:text="@string/menu" />
 
 </RelativeLayout>
