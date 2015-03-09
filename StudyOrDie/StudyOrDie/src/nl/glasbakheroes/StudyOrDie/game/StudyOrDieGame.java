@@ -3,7 +3,6 @@ package nl.glasbakheroes.StudyOrDie.game;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.Game;
-import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
 /**
  * The actual game.
@@ -33,7 +32,7 @@ public class StudyOrDieGame extends Game {
 
 		/* Tell the game which board to use. */
 		StudyOrDieGameBoardView gameView = activity.getGameBoardView();
-		GameBoard gameBoard = getGameBoard();
+		StudyOrDieGameBoard gameBoard = (StudyOrDieGameBoard) getGameBoard();
 		gameView.setGameBoard(gameBoard);
 
 		/* Set size of the view to that of one game board. */
@@ -46,7 +45,7 @@ public class StudyOrDieGame extends Game {
 	public void StartNewGame() {
 
 		/* Gets the saved board and removes all objects. */
-		GameBoard board = getGameBoard();
+		StudyOrDieGameBoard board = (StudyOrDieGameBoard) getGameBoard();
 		board.setCoreActivity(activity);
 		board.removeAllObjects();
 		levelLoader = new LevelLoader(board, new Avatar());

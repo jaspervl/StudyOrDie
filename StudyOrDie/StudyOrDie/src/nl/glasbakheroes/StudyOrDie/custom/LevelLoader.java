@@ -4,6 +4,8 @@ import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
+import nl.glasbakheroes.StudyOrDie.Objects.Wall;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
 	/**
@@ -20,26 +22,36 @@ import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 	*/
 public class LevelLoader {
 	
-	private GameBoard board;
+	/* Imported variables */
+	private StudyOrDieGameBoard board;
 	private Avatar avatar;
+	/* The current level being played */
 	private int currentLevel;
+	/* 3 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] aliveBosses = { true, true };
 	private boolean[] keys = {true, true};
 	private boolean[] doorLocked = {true, true};
 
 	public LevelLoader(GameBoard board, Avatar avatar) {
-		this.board = board;
+		this.board = (StudyOrDieGameBoard) board;
 		this.avatar = avatar;
 		this.currentLevel = 1;
 	}
 
+	/** Set the current level */
 	public void setLevel(int level) {
 		currentLevel = level;
 	}
 
 	/**
 	 * Load a new level with the correct items on the correct tile.
-	 * @param spawnArea		The area where the Avatar has to spawn (came from).
+	 * 
+	 * @param spawnArea		The area where the Avatar has to spawn (came from):
+	 * 						* Top:		Avatar came from a level from the top.
+	 * 						* Bottom:	Avatar came from a level from the bottom.
+	 * 						* Boss:		Level regenerated because the boss was fought.
+	 * 						* Elevator:	Avatar came from the elevator.
+	 * 						* Key:		Avatar picked up a key.
 	 */
 	public void loadLevel(String spawnArea) {
 		
@@ -57,13 +69,17 @@ public class LevelLoader {
 			}
 
 			/* Create all default objects */
-			board.createWallHorizontal(0, 23, 11);
-			board.createWallHorizontal(0, 11, 0);
-			board.createWallHorizontal(13, 23, 0);
+			board.createWallHorizontal(1, 22, 11);
+			board.createWallHorizontal(1, 11, 0);
+			board.createWallHorizontal(13, 22, 0);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(1, 10, 23);
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(7, 10, 14);
+			board.addGameObject(new Wall("NW"), 0, 0);
+			board.addGameObject(new Wall("SW"), 0, 11);
+			board.addGameObject(new Wall("SE"), 23, 11);
+			board.addGameObject(new Wall("NE"), 23, 0);
 			board.addGameObject(new Door(false), 12, 0);
 			board.addGameObject(new Door(false), 14, 6);
 			break;
@@ -73,9 +89,9 @@ public class LevelLoader {
 			
 			/* Create conditional objects */
 			if (spawnArea.equals("Top")) {
-				board.moveObject(avatar, board.getWidth() / 2, 0);
+				board.moveObject(avatar, 12, 0);
 			} else if (spawnArea.equals("Bottom")) {
-				board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 1);
+				board.moveObject(avatar,12, 11);
 			} else if (spawnArea.equals("Key")) {
 				board.moveObject(avatar, 19, 9);
 			}
@@ -84,15 +100,24 @@ public class LevelLoader {
 			}
 			
 			/* Create all default objects */
-			board.createWallHorizontal(0, 10, 11);
-			board.createWallHorizontal(14, 23, 11);
-			board.createWallHorizontal(0, 10, 0);
-			board.createWallHorizontal(14, 23, 0);
+			board.createWallHorizontal(1, 9, 11);
+			board.createWallHorizontal(15, 22, 11);
+			board.createWallHorizontal(1, 9, 0);
+			board.createWallHorizontal(15, 22, 0);
 			board.createWallVertical(1, 5, 10);
+			board.createWallVertical(1, 10, 23);
 			board.createWallVertical(10, 7, 10);
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(10, 7, 14);
+			board.addGameObject(new Wall("NW"), 0, 0);
+			board.addGameObject(new Wall("SW"), 0, 11);
+			board.addGameObject(new Wall("SE"), 23, 11);
+			board.addGameObject(new Wall("NE"), 23, 0);
+			board.addGameObject(new Wall("NW"), 14, 0);
+			board.addGameObject(new Wall("SW"), 14, 11);
+			board.addGameObject(new Wall("SE"), 10, 11);
+			board.addGameObject(new Wall("NE"), 10, 0);
 			board.addGameObject(new Door(false), 14, 6);
 			board.addGameObject(new Door(false), 10, 6);
 			break;
@@ -112,21 +137,32 @@ public class LevelLoader {
 			if (spawnArea.equals("Elevator")) {
 				board.moveObject(avatar, 2, 1);
 			} else if (spawnArea.equals("Bottom")) {
-				board.moveObject(avatar, board.getWidth() / 2, board.getHeight() - 1);
+				board.moveObject(avatar, 12, 11);
 			} else if (spawnArea.equals("Boss")) {
 				board.addGameObject(avatar, 2, 1);
 			}
 
 			/* Create all default objects */
-			board.createWallHorizontal(0, 10, 11);
-			board.createWallHorizontal(14, 23, 11);
-			board.createWallHorizontal(0, 23, 0);
+			board.createWallHorizontal(1, 9, 11);
+			board.createWallHorizontal(15, 22, 11);
+			board.createWallHorizontal(1, 9, 0);
+			board.createWallHorizontal(15, 22, 0);
+			board.createWallHorizontal(11, 13, 0);
+			board.createWallHorizontal(1, 2, 2);
 			board.createWallVertical(1, 5, 10);
+			board.createWallVertical(1, 10, 23);
 			board.createWallVertical(10, 7, 10);
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(10, 7, 14);
-			board.createWallHorizontal(1, 2, 2);
+			board.addGameObject(new Wall("NW"), 0, 0);
+			board.addGameObject(new Wall("SW"), 0, 11);
+			board.addGameObject(new Wall("SE"), 23, 11);
+			board.addGameObject(new Wall("NE"), 23, 0);
+			board.addGameObject(new Wall("NW"), 14, 0);
+			board.addGameObject(new Wall("SW"), 14, 11);
+			board.addGameObject(new Wall("SE"), 10, 11);
+			board.addGameObject(new Wall("NE"), 10, 0);
 			board.addGameObject(new Door(false), 14, 6);
 			board.addGameObject(new Elevator(), 1, 1);
 			break;
@@ -136,16 +172,18 @@ public class LevelLoader {
 			
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
-				board.moveObject(avatar, 2, 2);
-			} else if (spawnArea.equals("Top")) {
-				// Fill when expanding levels
-			}
+				board.moveObject(avatar, 2, 1);
+			} 
 			
 			/* Create all default objects */
-			board.createWallHorizontal(0, 23, 0);
-			board.createWallHorizontal(0, 23, 11);
+			board.createWallHorizontal(1, 22, 0);
+			board.createWallHorizontal(1, 22, 11);
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(1, 10, 23);
+			board.addGameObject(new Wall("NW"), 0, 0);
+			board.addGameObject(new Wall("SW"), 0, 11);
+			board.addGameObject(new Wall("SE"), 23, 11);
+			board.addGameObject(new Wall("NE"), 23, 0);
 			board.addGameObject(new Elevator(), 1,1);
 			break;
 			

@@ -53,14 +53,15 @@ public class CoreActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
+			StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
 			if (v == upButton) { 
-				game.getGameBoard().moveAvatar("Up");
+				board.moveAvatar("Up");
 			} else if (v == downButton) {
-				game.getGameBoard().moveAvatar("Down");
+				board.moveAvatar("Down");
 			} else if (v == leftButton) {
-				game.getGameBoard().moveAvatar("Left");
+				board.moveAvatar("Left");
 			} else if (v == rightButton) {
-				game.getGameBoard().moveAvatar("Right");
+				board.moveAvatar("Right");
 			} else if (v == menuButton) {
 				Intent menuIntent = new Intent(CoreActivity.this, MenuActivity.class);
 				startActivity(menuIntent);

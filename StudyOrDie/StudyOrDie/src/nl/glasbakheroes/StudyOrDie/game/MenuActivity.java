@@ -15,7 +15,7 @@ public class MenuActivity extends FragmentActivity {
 
 		FragmentManager manager = getSupportFragmentManager();
 
-		CharacterMenu menu = new CharacterMenu();
+		CharacterMenu menu = new CharacterMenu(); 
 
 		manager.beginTransaction().add(R.id.fragmentContainer, menu).commit();
 
