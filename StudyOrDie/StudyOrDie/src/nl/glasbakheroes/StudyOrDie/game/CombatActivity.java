@@ -35,14 +35,21 @@ public class CombatActivity extends Activity {
 		/* Don't do anything, there is no escape from the fight! */
 	}
 	
-	private void killBoss() {
+	/**
+	 * Kill the boss and return this result to the coreActivity.
+	 */
+	public void killBoss() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("bossDead", true);
 		setResult(1, resultIntent);
 		finish();
 	}
 	
-	private void killAvatar() {
+	/**
+	 * Kill the avatar by leaving the boss alive and passing that result to the core activity.
+	 * Public because Views want to use this. (e.g. forfeit button in battle mode)
+	 */
+	public void killAvatar() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("BossDead", false);
 		setResult(1, resultIntent);
