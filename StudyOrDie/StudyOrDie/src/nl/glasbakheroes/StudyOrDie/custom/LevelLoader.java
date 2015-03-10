@@ -4,7 +4,6 @@ import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
-import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
@@ -76,10 +75,7 @@ public class LevelLoader {
 			board.createWallVertical(1, 10, 23);
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(7, 10, 14);
-			board.addGameObject(new Wall("NW"), 0, 0);
-			board.addGameObject(new Wall("SW"), 0, 11);
-			board.addGameObject(new Wall("SE"), 23, 11);
-			board.addGameObject(new Wall("NE"), 23, 0);
+			board.createWallCorners(0, 23, 0, 11);
 			board.addGameObject(new Door(false), 12, 0);
 			board.addGameObject(new Door(false), 14, 6);
 			break;
@@ -122,6 +118,9 @@ public class LevelLoader {
 			/* Create conditional objects */
 			if (aliveBosses[0] == true) {
 				board.addGameObject(new Boss(), 2, 1);
+				board.addGameObject(new Elevator(true), 1, 1);
+			} else {
+				board.addGameObject(new Elevator(false), 1, 1);
 			}
 			if (doorLocked[0] == true) { 
 				board.addGameObject(new Door(true), 10, 6);
@@ -133,7 +132,7 @@ public class LevelLoader {
 			} else if (spawnArea.equals("Bottom")) {
 				board.moveObject(avatar, 12, 11);
 			} else if (spawnArea.equals("Boss")) {
-				board.addGameObject(avatar, 2, 1);
+				board.addGameObject(avatar, 3, 1);
 			}
 
 			/* Create all default objects */
@@ -152,7 +151,6 @@ public class LevelLoader {
 			board.createWallCorners(0, 10, 0, 11);
 			board.createWallCorners(14, 23, 0, 11);
 			board.addGameObject(new Door(false), 14, 6);
-			board.addGameObject(new Elevator(), 1, 1);
 			break;
 			
 			/** Case 11 is where the second floor starts */
@@ -169,7 +167,7 @@ public class LevelLoader {
 			board.createWallVertical(1, 10, 0);
 			board.createWallVertical(1, 10, 23);
 			board.createWallCorners(0, 23, 0, 11);
-			board.addGameObject(new Elevator(), 1,1);
+			board.addGameObject(new Elevator(false), 1,1);
 			break;
 			
 			/** case 12 is part 2 of the second floor */

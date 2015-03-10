@@ -196,8 +196,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
-			levelLoader.killBoss(levelLoader.getLevel());
-			activity.startActivity(combatIntent);
+//			levelLoader.killBoss(levelLoader.getLevel());		
+			activity.startActivityForResult(combatIntent, 1);
 			return false;
 			
 			/* Door present */
@@ -243,10 +243,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
 			
-			/** Space for more objects here! 
-			 * 	replace <CLASS> with the object class, remove comment.
-			 * */
-//		} else if (getObject(avatarNewX, avatarNewY) instanceof <CLASS>) {
+			
+			
+			/** ADD MORE CLASSES HERE */
+			
 			
 			
 			/* No tile present to move on, avatar won't move. [Out of bounds] */
