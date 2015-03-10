@@ -1,5 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
+import java.util.Currency;
+
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
@@ -192,19 +194,20 @@ public class StudyOrDieGameBoard extends GameBoard {
 	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
 		LevelLoader levelLoader = activity.getGame().getLevelLoader();
 		
-			/* No object present, avatar can move. */
+			/** No object present, avatar can move. */
 		if (getObject(avatarNewX, avatarNewY) == null) {
 			return true;
 			
-			/* Boss present, avatar will enter a fight and won't move. */
+			/** Boss present, avatar will enter a fight and won't move. */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
+			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
-//			levelLoader.killBoss(levelLoader.getLevel());		
+			combatIntent.putExtra("bossImageId", boss.getImageId());
 			activity.startActivityForResult(combatIntent, 1);
 			return false;
 			
-			/* Door present */
+			/** Door present */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
 			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
 				if (avatar.getKeys() > 0) {
@@ -223,7 +226,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			}
 			return false;
 
-			/* Elevator is present, go to the next/last major level */
+			/** Elevator is present, go to the next/last major level */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
 			
 			/* If the elevator is locked, player can't go through */
@@ -247,7 +250,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			levelLoader.loadLevel("Elevator");
 			return false;
 			
-			/* Key is present, avatar gets it and can now open a locked door */
+			/** Key is present, avatar gets it and can now open a locked door */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
 			levelLoader.takeKey(levelLoader.getLevel());
 			avatar.addKey();

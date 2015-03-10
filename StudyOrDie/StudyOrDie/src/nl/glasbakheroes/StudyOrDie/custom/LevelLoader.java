@@ -117,7 +117,7 @@ public class LevelLoader {
 
 			/* Create conditional objects */
 			if (aliveBosses[0] == true) {
-				board.addGameObject(new Boss(), 2, 1);
+				board.addGameObject(new Boss(), 1, 2);
 				board.addGameObject(new Elevator(true), 1, 1);
 			} else {
 				board.addGameObject(new Elevator(false), 1, 1);
@@ -132,7 +132,7 @@ public class LevelLoader {
 			} else if (spawnArea.equals("Bottom")) {
 				board.moveObject(avatar, 12, 11);
 			} else if (spawnArea.equals("Boss")) {
-				board.addGameObject(avatar, 3, 1);
+				board.addGameObject(avatar, 1, 3);
 			}
 
 			/* Create all default objects */

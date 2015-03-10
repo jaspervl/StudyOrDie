@@ -1,10 +1,12 @@
 package nl.glasbakheroes.StudyOrDie.view;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -42,7 +44,24 @@ public class BattleAttackOptionsView extends LinearLayout {
 		btnAttack3 = (Button) findViewById(R.id.btnAttack3);
 		btnAttack4 = (Button) findViewById(R.id.btnAttack4);
 		btnAttack5 = (Button) findViewById(R.id.btnAttack5);
-		btnAttack6 = (Button) findViewById(R.id.btnAttack6);
+		btnAttack6 = (Button) findViewById(R.id.btnAttack6); 
+		
+		ButtonListener listener = new ButtonListener();
+		btnAttack1.setOnClickListener(listener);
+		btnAttack2.setOnClickListener(listener);
+		btnAttack3.setOnClickListener(listener);
+		btnAttack4.setOnClickListener(listener);
+		btnAttack5.setOnClickListener(listener);
+		btnAttack6.setOnClickListener(listener);
+	}
+	
+	private class ButtonListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			CombatActivity activity = (CombatActivity) getContext();
+			activity.killBoss();
+		}
 		
 	}
 

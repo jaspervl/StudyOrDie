@@ -1,37 +1,29 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 
 /**
  * Activity where the avatar battles a boss
  * @author enjee
  */
 public class CombatActivity extends Activity {
-	private Button btnBeatMe;
+	private ImageView bossImage;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_combat);
 		
-		btnBeatMe = (Button) findViewById(R.id.btnBeatMe);
-		btnBeatMe.setOnClickListener(new ButtonListener());
-	}
-	
-	/** Listener for buttons in the UI */
-	private class ButtonListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			if (v == btnBeatMe) {
-				killBoss();
-			} 
-		}	
+		Bundle extras = getIntent().getExtras();
+		String bossImageId = extras.getString("BossImageId");
+		
+		// HOW TO FINISH THIS?!
+		
 	}
 	
 	/** Call this method when the back button is clicked */
