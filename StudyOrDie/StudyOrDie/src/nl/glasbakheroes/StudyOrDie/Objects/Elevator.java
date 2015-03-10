@@ -26,4 +26,8 @@ public class Elevator extends GameObject {
 	public void onTouched(GameBoard gameBoard) {
 		// Do nothing for now
 	}
+	
+	public boolean getLocked() {
+		return locked;
+	}
 }

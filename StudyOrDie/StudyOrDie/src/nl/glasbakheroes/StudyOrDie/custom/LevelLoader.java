@@ -141,7 +141,6 @@ public class LevelLoader {
 			board.createWallHorizontal(1, 9, 0);
 			board.createWallHorizontal(15, 22, 0);
 			board.createWallHorizontal(11, 13, 0);
-			board.createWallHorizontal(1, 2, 2);
 			board.createWallVertical(1, 5, 10);
 			board.createWallVertical(1, 10, 23);
 			board.createWallVertical(10, 7, 10);

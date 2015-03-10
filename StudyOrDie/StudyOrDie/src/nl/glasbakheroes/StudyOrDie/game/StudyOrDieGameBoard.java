@@ -221,10 +221,17 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 			/* Elevator is present, go to the next/last major level */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
+			
+			/* If the elevator is locked, player can't go through */
+			Elevator elevator = (Elevator) getObject(avatarNewX, avatarNewY);
+			if (elevator.getLocked()) {
+				Toast.makeText(activity, "Elevator is locked!", Toast.LENGTH_SHORT).show();
+				return false;
+			}
+			String elevatorMessage = "";
 			/* When current level ends with a 3, the avatar moves to the next floor.
 			 * When current level ends with a 1, the avatar moves to the last floor.
 			 */
-			String elevatorMessage = "";
 			if (levelLoader.getLevel() % 10 == 3) {
 				elevatorMessage = "Floor number: " + ((levelLoader.getLevel() / 10) + 1);
 				levelLoader.setLevel(levelLoader.getLevel() + 8);
