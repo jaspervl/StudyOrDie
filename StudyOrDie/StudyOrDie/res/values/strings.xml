@@ -7,5 +7,12 @@
     <string name="fight">Fight!</string>
     <string name="beatme">Beat me</string>
     <string name="menu">Menu</string>
+    <string name="attack">Attack</string>
+    <string name="inventory">Inventory</string>
+    <string name="character">Character</string>
+    <string name="forfeit">Forfeit</string>
+    <string name="hp">HP</string>
+    <string name="energy">Energy</string>
+    <string name="additional_stat">Stat?</string>
 
 </resources>

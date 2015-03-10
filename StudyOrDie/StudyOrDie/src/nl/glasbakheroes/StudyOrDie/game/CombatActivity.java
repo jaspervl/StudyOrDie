@@ -9,7 +9,6 @@ import android.widget.Button;
 
 public class CombatActivity extends Activity {
 	private Button btnBeatMe;
-	private Button btnDie;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +16,7 @@ public class CombatActivity extends Activity {
 		setContentView(R.layout.activity_combat);
 		
 		btnBeatMe = (Button) findViewById(R.id.btnBeatMe);
-		btnDie = (Button) findViewById(R.id.btnDie);
 		btnBeatMe.setOnClickListener(new ButtonListener());
-		btnDie.setOnClickListener(new ButtonListener());
 	}
 	
 	private class ButtonListener implements View.OnClickListener {
@@ -28,9 +25,7 @@ public class CombatActivity extends Activity {
 		public void onClick(View v) {
 			if (v == btnBeatMe) {
 				killBoss();
-			} else if (v == btnDie) {
-				killAvatar();
-			}
+			} 
 		}
 		
 	}

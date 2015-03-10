@@ -168,7 +168,6 @@ public class LevelLoader {
 			board.createWallCorners(0, 23, 0, 11);
 			board.addGameObject(new Elevator(false), 1,1);
 			break;
-			
 			/** case 12 is part 2 of the second floor */
 		case 12:
 			
