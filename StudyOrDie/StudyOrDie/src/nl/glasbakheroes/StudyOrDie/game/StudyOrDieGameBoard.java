@@ -11,6 +11,10 @@ import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 
+/**
+ * The SoD Game board
+ * @author enjee
+ */
 public class StudyOrDieGameBoard extends GameBoard {
 
 	private static final int GAMEBOARD_WIDTH = 24;

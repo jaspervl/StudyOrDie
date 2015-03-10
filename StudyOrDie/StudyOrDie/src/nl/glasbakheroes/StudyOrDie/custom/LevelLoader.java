@@ -190,6 +190,7 @@ public class LevelLoader {
 		return currentLevel;
 	}
 	
+	/** Remove a boss from the game in a certain sub-level */
 	public void killBoss(int subLevel) {
 		switch (subLevel) {
 		case 3 	: aliveBosses[0] = false; break;
@@ -199,6 +200,7 @@ public class LevelLoader {
 		loadLevel("Boss");
 	}
 	
+	/** Remove a key from the game in a certain sub-level */
 	public void takeKey(int subLevel) {
 		switch (subLevel) {
 		case 2 	: keys[0] = false; break;
@@ -208,6 +210,7 @@ public class LevelLoader {
 		loadLevel("Key");
 	}
 	
+	/** 'Unlock' a locked door in a certain sub-level */
 	public void unlockDoor(int subLevel) {
 		switch (subLevel) {
 		case 3 	: doorLocked[0] = false; break;
@@ -216,6 +219,7 @@ public class LevelLoader {
 		}
 	}
 	
+	/** Accessors and mutators */
 	public Avatar getAvatar() {
 		return avatar;
 	}

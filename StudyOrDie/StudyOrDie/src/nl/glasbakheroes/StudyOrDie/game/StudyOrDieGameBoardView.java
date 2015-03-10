@@ -15,8 +15,7 @@ import android.util.Log;
 
 /**
  * A View on the SoD game board.
- * @author enjee 
- *
+ * @author enjee & Jasper
  */
 public class StudyOrDieGameBoardView extends GameBoardView {
 	private static final String TAG = "GameView";
@@ -44,7 +43,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		SpriteCache spriteCache = SpriteCache.getInstance(); 
 		spriteCache.setContext(this.getContext());
 
-		// Load the 'empty' cell bitmap and tell the tile view that this is the
+				// Load the 'empty' cell bitmap and tell the tile view that this is the
 				// image to use for cells without GameObject
 				spriteCache.loadTile("empty", R.drawable.floortile_turqoise);
 				setEmptyTile("empty");

@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.Objects;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 
+/** A wall, non-interactable item ingame */
 public class Wall extends GameObject {
 	public static final String WALL_HORIZONTAL_IMAGE = "WallHorizontal";
 	public static final String WALL_VERTICAL_IMAGE = "WallVertical";

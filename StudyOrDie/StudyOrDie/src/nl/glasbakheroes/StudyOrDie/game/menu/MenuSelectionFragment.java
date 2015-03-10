@@ -8,7 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-
+/**
+ * ListView in which you can select what sub-menu to open
+ * @author Jasper
+ */
 public class MenuSelectionFragment extends Fragment {
 	ListView selection;
 	

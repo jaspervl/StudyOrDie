@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Main activity in the game, represents the overworld
+ * @author enjee & Jasper
+ */
 public class CoreActivity extends Activity {
 
 	private StudyOrDieGameBoardView gameView;

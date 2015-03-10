@@ -6,9 +6,7 @@ import nl.glasbakheroes.StudyOrDie.model.Game;
 
 /**
  * The actual game.
- * 
- * @author enjee
- * 
+ * @author enjee & Jasper
  */
 public class StudyOrDieGame extends Game {
 	/* Tag used for log messages. */

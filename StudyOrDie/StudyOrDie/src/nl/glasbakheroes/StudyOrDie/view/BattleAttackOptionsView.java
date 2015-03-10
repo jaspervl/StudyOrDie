@@ -8,6 +8,11 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+/**
+ * A UI component which contains 6 attack buttons which represent 
+ * 		different attacks the player can make.
+ * @author enjee
+ */
 public class BattleAttackOptionsView extends LinearLayout {
 	
 	private Button btnAttack1, btnAttack2, btnAttack3, btnAttack4, btnAttack5, btnAttack6;

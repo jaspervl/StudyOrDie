@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+/**
+ * A UI component which contains all the menu options accessible from within a battle.
+ * @author enjee
+ */
 public class BattleMenuOptionsView extends LinearLayout {
 	private Button btnItems, btnCharacter, btnMenu, btnForfeit;
 

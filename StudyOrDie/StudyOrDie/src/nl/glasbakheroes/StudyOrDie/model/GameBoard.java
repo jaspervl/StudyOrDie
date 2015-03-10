@@ -15,7 +15,7 @@ import android.util.Log;
  * on it.
  * 
  * @author Paul de Groot
- * @Co-Author EnJee
+ * @Edited by enjee
  */
 public abstract class GameBoard extends Observable {
 	private static final String TAG = "Playground";

@@ -6,8 +6,7 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 
 /**
  * Main avatar in the game which the player controls.
- * @author enjee & Jasper
- *
+ * @author enjee & Jasper & Thomas
  */
 public class Avatar extends GameObject {
 	public final static String AVATAR_FRONT = "AvatarFront";
@@ -27,6 +26,10 @@ public class Avatar extends GameObject {
 		return currentImage;
 	}
 
+	/**
+	 * Sets the image for the avatar in the appropriate direction.
+	 * @param direction	The direction the avatar is walking.
+	 */
 	public void setImage(String direction){
 		switch (direction) {
 		case "Up" : if(!currentImage.equals(AVATAR_BACK)){
@@ -49,6 +52,7 @@ public class Avatar extends GameObject {
 		// Do nothing for now
 	} 
 	
+	/** Accessors and mutators */
 	public int getKeys() {
 		return numberOfKeys;
 	}

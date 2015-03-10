@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Character menu fragment, displays the avatar details
+ * @author Jasper
+ */
 public class CharacterMenu extends Fragment {
 
 	

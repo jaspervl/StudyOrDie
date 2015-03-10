@@ -11,6 +11,11 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+/**
+ * Battle stats UI component which visualize the Avatars status within a battle.
+ * @author enjee
+ *
+ */
 public class BattleStatView extends LinearLayout {
 
 	private ProgressBar barHP, barEnergy, barStat;
