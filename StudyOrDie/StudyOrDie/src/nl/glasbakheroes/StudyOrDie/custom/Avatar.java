@@ -16,6 +16,8 @@ public class Avatar extends GameObject {
 	public final static String AVATAR_RIGHT = "AvatarRight";
 	
 	private String currentImage = AVATAR_FRONT;
+	private int currentHP = 100;
+	private int maxHP = 100;
 	
 	/* Amount of keys the avatar (picked up - amount used) */
 	private int numberOfKeys;
@@ -59,5 +61,12 @@ public class Avatar extends GameObject {
 		numberOfKeys++;
 	}
 	
+	public int getCurrentHP() {
+		return currentHP;
+	}
+	
+	public int getMaxHP() {
+		return maxHP;
+	}
 
 }

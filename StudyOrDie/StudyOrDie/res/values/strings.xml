@@ -14,5 +14,6 @@
     <string name="hp">HP</string>
     <string name="energy">Energy</string>
     <string name="additional_stat">Stat?</string>
+    <string name="motivation">Motivation</string>
 
 </resources>

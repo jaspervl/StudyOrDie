@@ -1895,6 +1895,7 @@ containing a value of this type.
         public static final int hp=0x7f0a001a;
         public static final int inventory=0x7f0a0017;
         public static final int menu=0x7f0a0015;
+        public static final int motivation=0x7f0a001d;
         public static final int title_activity_combat=0x7f0a0011;
     }
     public static final class style {

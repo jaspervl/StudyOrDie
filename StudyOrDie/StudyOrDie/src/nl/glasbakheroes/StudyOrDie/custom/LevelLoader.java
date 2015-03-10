@@ -215,4 +215,8 @@ public class LevelLoader {
 		default	: break;
 		}
 	}
+	
+	public Avatar getAvatar() {
+		return avatar;
+	}
 }

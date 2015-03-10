@@ -1,6 +1,9 @@
 package nl.glasbakheroes.StudyOrDie.view;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
+import nl.glasbakheroes.StudyOrDie.game.CoreActivity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -11,6 +14,7 @@ import android.widget.ProgressBar;
 public class BattleStatView extends LinearLayout {
 
 	private ProgressBar barHP, barEnergy, barStat;
+	private Avatar avatar;
 
 	public BattleStatView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
@@ -32,9 +36,18 @@ public class BattleStatView extends LinearLayout {
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}
+
 		barHP = (ProgressBar) findViewById(R.id.barHP);
 		barEnergy = (ProgressBar) findViewById(R.id.barEnergy);
 		barStat = (ProgressBar) findViewById(R.id.barStat);
+		
+		
+//		CANT CAST BattleActivity TO CoreActivity...
+//		Hoe de avatar hier krijgen?!?!
+//		avatar = ((CoreActivity) getContext()).getGame().getLevelLoader().getAvatar();
+//		
+//		barHP.setMax(avatar.getMaxHP());
+//		barHP.setProgress(avatar.getCurrentHP());
 		
 	}
 	
