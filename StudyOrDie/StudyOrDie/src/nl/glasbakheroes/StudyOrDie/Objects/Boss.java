@@ -6,7 +6,14 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 /** A boss in the game overworld */
 public class Boss extends GameObject{
 	public static final String BOSS_IMAGE = "Boss";
+	private String name;
 
+	
+	public Boss(String name) {
+		this.name = name;
+	}
+	
+	
 	@Override
 	public String getImageId() {
 		return BOSS_IMAGE;
@@ -15,5 +22,9 @@ public class Boss extends GameObject{
 	@Override
 	public void onTouched(GameBoard gameBoard) {
 		// Do nothing for now
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

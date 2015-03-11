@@ -4,8 +4,10 @@ import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 	/**
 	* 	Level loader, class where all levels are saved at.
@@ -22,19 +24,27 @@ import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 public class LevelLoader {
 	
 	/* Imported variables */
+	private StudyOrDieModel model;
 	private StudyOrDieGameBoard board;
 	private Avatar avatar;
 	/* The current level being played */
 	private int currentLevel;
 	/* 3 arrays which enable or disable special items/npc's for each major level */
-	private boolean[] aliveBosses = { true, true };
 	private boolean[] keys = {true, true};
 	private boolean[] doorLocked = {true, true};
 
+	/** Constructor */
 	public LevelLoader(GameBoard board, Avatar avatar) {
 		this.board = (StudyOrDieGameBoard) board;
 		this.avatar = avatar;
 		this.currentLevel = 1;
+		model = ((StudyOrDieApplication)this.board.getActivity().getApplication()).getModel();
+		createBosses();
+	}
+
+	private void createBosses() {
+		model.addBoss("Wombat");
+		model.addBoss("Ruud");
 	}
 
 	/** Set the current level */
@@ -114,10 +124,10 @@ public class LevelLoader {
 			
 			/** case 3 is part 3 of the ground floor */
 		case 3:
-
+			
 			/* Create conditional objects */
-			if (aliveBosses[0] == true) {
-				board.addGameObject(new Boss(), 1, 2);
+			if (model.bossExcist("Wombat")) {
+				board.addGameObject(model.getBoss("Wombat"), 1, 2);
 				board.addGameObject(new Elevator(true), 1, 1);
 			} else {
 				board.addGameObject(new Elevator(false), 1, 1);
@@ -190,15 +200,15 @@ public class LevelLoader {
 		return currentLevel;
 	}
 	
-	/** Remove a boss from the game in a certain sub-level */
-	public void killBoss(int subLevel) {
-		switch (subLevel) {
-		case 3 	: aliveBosses[0] = false; break;
-		case 13	: aliveBosses[1] = false; break;
-		default : break;
-		}
-		loadLevel("Boss");
-	}
+//	/** Remove a boss from the game in a certain sub-level */
+//	public void killBoss(int subLevel) {
+//		switch (subLevel) {
+//		case 3 	: aliveBosses[0] = false; break;
+//		case 13	: aliveBosses[1] = false; break;
+//		default : break;
+//		}
+//		loadLevel("Boss");
+//	}
 	
 	/** Remove a key from the game in a certain sub-level */
 	public void takeKey(int subLevel) {

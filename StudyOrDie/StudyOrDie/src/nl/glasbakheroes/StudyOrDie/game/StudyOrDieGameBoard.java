@@ -209,6 +209,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
+			combatIntent.putExtra("bossName", boss.getName());
 			combatIntent.putExtra("bossImageId", boss.getImageId());
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_CODE);
 			return false;
@@ -279,6 +280,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 	public void setCoreActivity(CoreActivity activity) {
 		this.activity = activity;
 		model = ((StudyOrDieApplication) activity.getApplication()).getModel();
+	}
+	
+	public CoreActivity getActivity() {
+		return activity;
 	}
 	
 }

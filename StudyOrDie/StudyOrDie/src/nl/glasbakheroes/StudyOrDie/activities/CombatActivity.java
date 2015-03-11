@@ -6,6 +6,7 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -14,6 +15,7 @@ import android.widget.ImageView;
  */
 public class CombatActivity extends Activity {
 	private ImageView bossImage;
+	private String bossName;
 	public static final int RESULT_COREACTIVITY_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
 
 	@Override
@@ -23,8 +25,9 @@ public class CombatActivity extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
+		bossName = extras.getString("bossName");
 		
-		// Get bosses from model later on when model has a boss array.
+		Log.w("Combat", bossName);
 		
 	}
 	
@@ -38,6 +41,7 @@ public class CombatActivity extends Activity {
 	public void killBoss() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("bossDead", true);
+		resultIntent.putExtra("bossName", bossName);
 		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
 		finish();
 	}

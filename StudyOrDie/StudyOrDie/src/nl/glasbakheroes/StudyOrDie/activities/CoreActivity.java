@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * Main activity in the game, represents the overworld
@@ -36,7 +37,6 @@ public class CoreActivity extends Activity {
 	private Handler handler;
 	protected String moveDirection = "";
 	private StudyOrDieModel model;
-	private boolean startScreenShown = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,11 +68,9 @@ public class CoreActivity extends Activity {
 		/**
 		 * StartScreen called from here!
 		 */
-		if (!startScreenShown) {
-			Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
-			startActivityForResult(startScreenIntent, REQUEST_START_CODE);
-			startScreenShown = true;
-		}
+		Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
+		startActivityForResult(startScreenIntent, REQUEST_START_CODE);
+		
 	}
 	
 	
@@ -151,10 +149,12 @@ public class CoreActivity extends Activity {
 		/** Result from combat screen occurred */
 		if (requestCode == REQUEST_COMBAT_CODE) { 
 			boolean bossDead = data.getBooleanExtra("bossDead", false);
+			String bossName = data.getStringExtra("bossName");
 			/* If the boss is dead according to the returned data, kill him */
 			if (bossDead) {
-				model.getLoader().killBoss(model.getLoader().getLevel());
+				model.killBoss(model.getBoss(bossName));
 				model.getLoader().loadLevel("Boss");
+				Toast.makeText(this, bossName + " has been killed!", Toast.LENGTH_SHORT).show();
 			} else {
 				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
 				model.getLoader().loadLevel("Bottom");
@@ -166,6 +166,7 @@ public class CoreActivity extends Activity {
 			String action = data.getStringExtra("action");
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
+			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
 				startNewGame(avatarName, avatarPicture);
