@@ -402,10 +402,6 @@ int id btnAttack5 0x7f09004a
 int id btnAttack6 0x7f09004b
 int id btnBattleCharacter 0x7f09004d
 int id btnBattleItems 0x7f09004c
-<<<<<<< Updated upstream
-int id btnBattleMenu 0x7f09004f
-=======
->>>>>>> Stashed changes
 int id btnDown 0x7f09005a
 int id btnForfeit 0x7f09004e
 int id btnLeft 0x7f090058
@@ -430,11 +426,7 @@ int id icon 0x7f090026
 int id ifRoom 0x7f090016
 int id image 0x7f090023
 int id imageView1 0x7f090040
-<<<<<<< Updated upstream
-int id listFragment 0x7f09005d
-=======
 int id listFragment 0x7f090055
->>>>>>> Stashed changes
 int id listMode 0x7f09000a
 int id listView1 0x7f090045
 int id list_item 0x7f090025
@@ -501,8 +493,8 @@ int layout battle_attack_options_view 0x7f030019
 int layout battle_menu_options_view 0x7f03001a
 int layout battle_stats_view 0x7f03001b
 int layout fragment_character 0x7f03001c
-int layout main 0x7f03001d
-int layout menu_selection 0x7f03001e
+int layout fragment_list 0x7f03001d
+int layout main 0x7f03001e
 int layout support_simple_spinner_dropdown_item 0x7f03001f
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_home_description_format 0x7f0a0005

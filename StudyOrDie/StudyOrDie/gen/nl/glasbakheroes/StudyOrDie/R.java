@@ -1703,10 +1703,6 @@ containing a value of this type.
         public static final int btnAttack6=0x7f09004b;
         public static final int btnBattleCharacter=0x7f09004d;
         public static final int btnBattleItems=0x7f09004c;
-<<<<<<< Updated upstream
-        public static final int btnBattleMenu=0x7f09004f;
-=======
->>>>>>> Stashed changes
         public static final int btnDown=0x7f09005a;
         public static final int btnForfeit=0x7f09004e;
         public static final int btnLeft=0x7f090058;
@@ -1731,11 +1727,7 @@ containing a value of this type.
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
         public static final int imageView1=0x7f090040;
-<<<<<<< Updated upstream
-        public static final int listFragment=0x7f09005d;
-=======
         public static final int listFragment=0x7f090055;
->>>>>>> Stashed changes
         public static final int listMode=0x7f09000a;
         public static final int listView1=0x7f090045;
         public static final int list_item=0x7f090025;
@@ -1828,8 +1820,8 @@ containing a value of this type.
         public static final int battle_menu_options_view=0x7f03001a;
         public static final int battle_stats_view=0x7f03001b;
         public static final int fragment_character=0x7f03001c;
-        public static final int main=0x7f03001d;
-        public static final int menu_selection=0x7f03001e;
+        public static final int fragment_list=0x7f03001d;
+        public static final int main=0x7f03001e;
         public static final int support_simple_spinner_dropdown_item=0x7f03001f;
     }
     public static final class string {
