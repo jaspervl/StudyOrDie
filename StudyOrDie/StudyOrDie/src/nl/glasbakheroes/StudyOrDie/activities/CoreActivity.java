@@ -23,8 +23,8 @@ import android.widget.Button;
  */
 public class CoreActivity extends Activity {
 
-	private static final int REQUEST_START_CODE = 1337;
-	private static final int REQUEST_COMBAT_CODE = 1;
+	public static final int REQUEST_START_CODE = 2;
+	public static final int REQUEST_COMBAT_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
 	
 	private StudyOrDieGameBoardView gameView;
 	private StudyOrDieGame game;
@@ -63,7 +63,7 @@ public class CoreActivity extends Activity {
 		downButton.setOnTouchListener(listener);
 		leftButton.setOnTouchListener(listener);
 		rightButton.setOnTouchListener(listener);
-		menuButton.setOnTouchListener(listener);
+		menuButton.setOnTouchListener(listener); 
 		
 		/**
 		 * StartScreen called from here!
@@ -144,26 +144,29 @@ public class CoreActivity extends Activity {
 		return game;
 	}
 
-	/**
-	 * If a result is returned from combatActivity, the boss in the current
-	 * level will be killed.
-	 */
+	/** Result from another activity received */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		
+		/** Result from combat screen occurred */
 		if (requestCode == REQUEST_COMBAT_CODE) { 
 			boolean bossDead = data.getBooleanExtra("bossDead", false);
+			/* If the boss is dead according to the returned data, kill him */
 			if (bossDead) {
-				model.getLoader()
-						.killBoss(model.getLoader().getLevel());
+				model.getLoader().killBoss(model.getLoader().getLevel());
 				model.getLoader().loadLevel("Boss");
 			} else {
 				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
 				model.getLoader().loadLevel("Bottom");
 			} 
+			
+		/** Result from start screen occurred */
 		} else if (requestCode == REQUEST_START_CODE) { 
+			/* Save the received data into strings */
 			String action = data.getStringExtra("action");
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
+			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
 				startNewGame(avatarName, avatarPicture);
 			} else if (action.equals("load")) {

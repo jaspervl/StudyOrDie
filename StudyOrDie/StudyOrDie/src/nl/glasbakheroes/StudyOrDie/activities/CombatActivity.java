@@ -2,6 +2,7 @@ package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
  */
 public class CombatActivity extends Activity {
 	private ImageView bossImage;
+	public static final int RESULT_COREACTIVITY_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class CombatActivity extends Activity {
 	public void killBoss() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("bossDead", true);
-		setResult(1, resultIntent);
+		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
 		finish();
 	}
 	
@@ -47,7 +49,7 @@ public class CombatActivity extends Activity {
 	public void killAvatar() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("BossDead", false);
-		setResult(1, resultIntent);
+		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
 		finish();
 	}
 }

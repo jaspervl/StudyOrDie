@@ -8,9 +8,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
+/**
+ * Activity where the player can pick a avatar and set his/her name
+ * @author enjee
+ */
 public class PickAvatarActivity extends Activity {
 	
-	private static final int RESULT_CODE = 1000;
+	public static final int RESULT_TO_STARTACTIVITY = StartActivity.REQUEST_AVATAR_SELECTION;
 	private ImageView imgAvatar1, imgAvatar2, imgAvatar3, imgAvatar4;
 	
 	@Override
@@ -35,16 +39,14 @@ public class PickAvatarActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			Intent resultIntent = new Intent();
+			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 			resultIntent.putExtra("action", "new");
 			resultIntent.putExtra("avatarName", "JasperVL");
 			resultIntent.putExtra("avatarPicure", "default_avatar_picture");
-			setResult(RESULT_CODE, resultIntent);
+			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
 			finish();
 		}
-		
 	}
-	
 	
 	/**
 	 * ENTER IMPLEMENTATION TO RETURN THE CHOSEN NAME AND PICURE, DUMMY ACTIVITY FOR NOW.

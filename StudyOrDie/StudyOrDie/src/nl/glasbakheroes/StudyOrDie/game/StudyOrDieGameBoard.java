@@ -25,6 +25,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 	private static final int GAMEBOARD_WIDTH = 24;
 	private static final int GAMEBOARD_HEIGHT = 12;
+	public static final int REQUEST_COMBAT_CODE = 1;
 	private CoreActivity activity;
 	private StudyOrDieModel model;
 	
@@ -209,7 +210,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			combatIntent.putExtra("bossImageId", boss.getImageId());
-			activity.startActivityForResult(combatIntent, 1);
+			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_CODE);
 			return false;
 			
 			/** Door present */
