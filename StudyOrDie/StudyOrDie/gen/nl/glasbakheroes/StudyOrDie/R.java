@@ -1672,7 +1672,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09003f;
-        public static final int RelativeLayout1=0x7f090056;
+        public static final int RelativeLayout1=0x7f090057;
         public static final int action_bar=0x7f090031;
         public static final int action_bar_activity_content=0x7f090003;
         public static final int action_bar_container=0x7f090030;
@@ -1704,12 +1704,12 @@ containing a value of this type.
         public static final int btnBattleCharacter=0x7f09004d;
         public static final int btnBattleItems=0x7f09004c;
         public static final int btnBattleMenu=0x7f09004f;
-        public static final int btnDown=0x7f09005a;
+        public static final int btnDown=0x7f09005b;
         public static final int btnForfeit=0x7f09004e;
-        public static final int btnLeft=0x7f090058;
-        public static final int btnMenu=0x7f09005c;
-        public static final int btnRight=0x7f09005b;
-        public static final int btnUp=0x7f090059;
+        public static final int btnLeft=0x7f090059;
+        public static final int btnMenu=0x7f09005d;
+        public static final int btnRight=0x7f09005c;
+        public static final int btnUp=0x7f09005a;
         public static final int checkbox=0x7f090029;
         public static final int collapseActionView=0x7f090015;
         public static final int decor_content_parent=0x7f09002f;
@@ -1728,7 +1728,7 @@ containing a value of this type.
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
         public static final int imageView1=0x7f090040;
-        public static final int listFragment=0x7f09005d;
+        public static final int listFragment=0x7f090056;
         public static final int listMode=0x7f09000a;
         public static final int listView1=0x7f090045;
         public static final int list_item=0x7f090025;
@@ -1754,7 +1754,7 @@ containing a value of this type.
         public static final int showHome=0x7f090011;
         public static final int showTitle=0x7f090012;
         public static final int split_action_bar=0x7f090004;
-        public static final int studyOrDieGameBoardView1=0x7f090057;
+        public static final int studyOrDieGameBoardView1=0x7f090058;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
         public static final int title=0x7f090027;
@@ -1821,8 +1821,8 @@ containing a value of this type.
         public static final int battle_menu_options_view=0x7f03001a;
         public static final int battle_stats_view=0x7f03001b;
         public static final int fragment_character=0x7f03001c;
-        public static final int main=0x7f03001d;
-        public static final int menu_selection=0x7f03001e;
+        public static final int fragment_list=0x7f03001d;
+        public static final int main=0x7f03001e;
         public static final int support_simple_spinner_dropdown_item=0x7f03001f;
     }
     public static final class string {
