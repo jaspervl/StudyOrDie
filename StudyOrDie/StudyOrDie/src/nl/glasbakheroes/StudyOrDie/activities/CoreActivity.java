@@ -162,7 +162,7 @@ public class CoreActivity extends Activity {
 			
 		/** Result from start screen occurred */
 		} else if (requestCode == REQUEST_START_CODE) { 
-			/* Save the received data into strings */
+			/* Save the received data into strings */ 
 			String action = data.getStringExtra("action");
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
