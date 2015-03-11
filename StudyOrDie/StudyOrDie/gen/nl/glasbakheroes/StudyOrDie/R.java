@@ -1695,11 +1695,14 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_settings=0x7f090066;
+        public static final int action_settings=0x7f09006e;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
         public static final int barEnergy=0x7f09005b;
         public static final int barHP=0x7f090059;
+        public static final int barOverWorldEnergy=0x7f09006b;
+        public static final int barOverWorldHP=0x7f090069;
+        public static final int barOverWorldMotivation=0x7f09006d;
         public static final int barStat=0x7f09005d;
         public static final int battleAttackOptionsView1=0x7f090041;
         public static final int battleMenuOptionsView1=0x7f090043;
@@ -1739,6 +1742,7 @@ containing a value of this type.
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
+        public static final int imageView1=0x7f090067;
         public static final int imgAvatar1=0x7f090049;
         public static final int imgAvatar2=0x7f09004a;
         public static final int imgAvatar3=0x7f09004b;
@@ -1752,6 +1756,7 @@ containing a value of this type.
         public static final int never=0x7f090017;
         public static final int none=0x7f09000f;
         public static final int normal=0x7f09000b;
+        public static final int overworldStatsView1=0x7f090066;
         public static final int progress_circular=0x7f090007;
         public static final int progress_horizontal=0x7f090008;
         public static final int radio=0x7f09002b;
@@ -1775,6 +1780,9 @@ containing a value of this type.
         public static final int tabMode=0x7f09000c;
         public static final int title=0x7f090027;
         public static final int tvFillName=0x7f090046;
+        public static final int tvOverWorldEnergy=0x7f09006a;
+        public static final int tvOverWorldHP=0x7f090068;
+        public static final int tvOverWorldMotivation=0x7f09006c;
         public static final int tvPickAvatar=0x7f090048;
         public static final int txtCurrentEnergy=0x7f09005a;
         public static final int txtCurrentHP=0x7f090058;
@@ -1843,7 +1851,8 @@ containing a value of this type.
         public static final int fragment_character=0x7f03001e;
         public static final int fragment_list=0x7f03001f;
         public static final int main=0x7f030020;
-        public static final int support_simple_spinner_dropdown_item=0x7f030021;
+        public static final int overworld_stats_view=0x7f030021;
+        public static final int support_simple_spinner_dropdown_item=0x7f030022;
     }
     public static final class menu {
         public static final int pick_avatar=0x7f0c0000;
