@@ -26,6 +26,7 @@ public class CoreActivity extends Activity {
 
 	public static final int REQUEST_START_CODE = 2;
 	public static final int REQUEST_COMBAT_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
+	private static boolean startMenuShown = false;
 	
 	private StudyOrDieGameBoardView gameView;
 	private StudyOrDieGame game;
@@ -43,34 +44,36 @@ public class CoreActivity extends Activity {
 		/* Load main xml */
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		handler = new Handler();
-		model = ((StudyOrDieApplication) getApplication()).getModel();
-
-		/* Find interface elements */
-		gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
-		upButton = (Button) findViewById(R.id.btnUp);
-		downButton = (Button) findViewById(R.id.btnDown);
-		leftButton = (Button) findViewById(R.id.btnLeft);
-		rightButton = (Button) findViewById(R.id.btnRight);
-		menuButton = (Button) findViewById(R.id.btnMenu);
-
-		/* Create the game object */
-		game = new StudyOrDieGame(this);
-
-		/* Set listeners for direction-buttons */
-		TouchListener listener = new TouchListener();
-		upButton.setOnTouchListener(listener);
-		downButton.setOnTouchListener(listener);
-		leftButton.setOnTouchListener(listener);
-		rightButton.setOnTouchListener(listener);
-		menuButton.setOnTouchListener(listener); 
 		
-		/**
-		 * StartScreen called from here!
-		 */
-		Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
-		startActivityForResult(startScreenIntent, REQUEST_START_CODE);
-		
+		/** Call start screen once for the lifetime of the application */
+		if (!startMenuShown) {
+			Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
+			startActivityForResult(startScreenIntent, REQUEST_START_CODE);
+			startMenuShown = true;
+
+		} else { 
+			handler = new Handler();
+			model = ((StudyOrDieApplication) getApplication()).getModel();
+
+			/* Find interface elements */
+			gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
+			upButton = (Button) findViewById(R.id.btnUp);
+			downButton = (Button) findViewById(R.id.btnDown);
+			leftButton = (Button) findViewById(R.id.btnLeft);
+			rightButton = (Button) findViewById(R.id.btnRight);
+			menuButton = (Button) findViewById(R.id.btnMenu);
+
+			/* Create the game object */
+			game = new StudyOrDieGame(this);
+
+			/* Set listeners for direction-buttons */
+			TouchListener listener = new TouchListener();
+			upButton.setOnTouchListener(listener);
+			downButton.setOnTouchListener(listener);
+			leftButton.setOnTouchListener(listener);
+			rightButton.setOnTouchListener(listener);
+			menuButton.setOnTouchListener(listener); 
+		}
 	}
 	
 	
@@ -153,7 +156,6 @@ public class CoreActivity extends Activity {
 			/* If the boss is dead according to the returned data, kill him */
 			if (bossDead) {
 				model.killBoss(model.getBoss(bossName));
-				model.getLoader().loadLevel("Boss");
 				Toast.makeText(this, bossName + " has been killed!", Toast.LENGTH_SHORT).show();
 			} else {
 				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
@@ -163,7 +165,7 @@ public class CoreActivity extends Activity {
 		/** Result from start screen occurred */
 		} else if (requestCode == REQUEST_START_CODE) { 
 			/* Save the received data into strings */ 
-			String action = data.getStringExtra("action");
+			String action = data.getStringExtra("action"); 
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
 			

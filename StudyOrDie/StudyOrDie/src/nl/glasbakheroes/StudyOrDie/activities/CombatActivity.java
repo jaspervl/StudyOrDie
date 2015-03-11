@@ -53,6 +53,7 @@ public class CombatActivity extends Activity {
 	public void killAvatar() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("BossDead", false);
+		resultIntent.putExtra("bossName", bossName);
 		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
 		finish();
 	}

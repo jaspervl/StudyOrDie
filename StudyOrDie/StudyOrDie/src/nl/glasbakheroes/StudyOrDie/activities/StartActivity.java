@@ -4,6 +4,7 @@ import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,7 +27,6 @@ public class StartActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
-		
 		btnNewGame = (Button) findViewById(R.id.btnNewGame);
 		btnLoad = (Button) findViewById(R.id.btnLoad); 
 		
@@ -50,7 +50,6 @@ public class StartActivity extends Activity {
 				resultIntent.putExtra("action", "load");
 				setResult(RESULT_TO_CORE_ACTIVITY, resultIntent);
 				finish();
-				return;
 			}
 		}
 	}
@@ -61,12 +60,13 @@ public class StartActivity extends Activity {
 		if (requestCode == REQUEST_AVATAR_SELECTION) { 
 			/* Pass the given information from the avatar selection activity to the core activity */
 			Intent resultIntent = new Intent();
-			resultIntent.putExtra("action", "new");
-			resultIntent.putExtra("avatarName", data.getStringExtra("avatarName"));
-			resultIntent.putExtra("avatarPicure", data.getStringExtra("avatarPicure"));
+			Bundle extras = new Bundle();
+			extras.putString("action", "new");
+			extras.putString("avatarName", data.getExtras().getString("avatarName"));
+			extras.putString("avatarPicure", data.getExtras().getString("avatarPicure"));
+			resultIntent.putExtras(extras);
 			setResult(RESULT_TO_CORE_ACTIVITY, resultIntent);
 			finish();
-			return;
 		}
 	}
 	
@@ -74,11 +74,12 @@ public class StartActivity extends Activity {
 	public void onBackPressed() {
 		/* When the back key is pressed pass 'abort' to the core activity */
 		Intent resultIntent = new Intent();
-		resultIntent.putExtra("action", "abort");
-		resultIntent.putExtra("avatarName", "default_avatar_name");
+		Bundle extras = new Bundle();
+		extras.putString("action", "abort");
+		extras.putString("avatarName", "default_avatar_name");
+		resultIntent.putExtras(extras);
 		setResult(RESULT_TO_CORE_ACTIVITY, resultIntent);
 		finish();
-		return;
 	}
 	
 	

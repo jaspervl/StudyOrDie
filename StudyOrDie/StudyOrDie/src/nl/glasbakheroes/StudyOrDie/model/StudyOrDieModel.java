@@ -58,6 +58,7 @@ public class StudyOrDieModel extends Observable {
 	
 	public void killBoss(Boss boss) {
 		bosses.remove(boss);
+		loader.loadLevel("Boss");
 	}
 	
 }

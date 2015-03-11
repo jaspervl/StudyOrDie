@@ -40,9 +40,11 @@ public class PickAvatarActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
-			resultIntent.putExtra("action", "new");
-			resultIntent.putExtra("avatarName", "JasperVL");
-			resultIntent.putExtra("avatarPicure", "default_avatar_picture");
+			Bundle extras = new Bundle();
+			extras.putString("action", "new");
+			extras.putString("avatarName", "JasperVL");
+			extras.putString("avatarPicure", "default_avatar_picture");
+			resultIntent.putExtras(extras);
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
 			finish();
 		}
