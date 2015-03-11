@@ -1,3 +1,4 @@
+
 package nl.glasbakheroes.StudyOrDie.game;
 
 import java.util.Currency;

@@ -46,8 +46,8 @@ public class StudyOrDieGame extends Game {
 		StudyOrDieGameBoard board = (StudyOrDieGameBoard) getGameBoard();
 		board.setCoreActivity(activity);
 		board.removeAllObjects();
-		
-		levelLoader = new LevelLoader(board, new Avatar());
+		StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
+		levelLoader = new LevelLoader(board, app.getModel().getAvatar());
 		levelLoader.loadLevel("Bottom");
 	}
 	

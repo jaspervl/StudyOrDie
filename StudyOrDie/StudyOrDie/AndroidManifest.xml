@@ -11,7 +11,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        android:name="nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication">
         <activity
             android:name=".game.CoreActivity"
             android:label="@string/app_name"

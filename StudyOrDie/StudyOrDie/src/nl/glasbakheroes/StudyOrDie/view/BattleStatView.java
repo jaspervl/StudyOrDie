@@ -4,6 +4,7 @@ import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.game.CoreActivity;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -20,18 +21,22 @@ public class BattleStatView extends LinearLayout {
 
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
+	private CombatActivity activity;
 
 	public BattleStatView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		activity = (CombatActivity) context;
 		init();
 	}
 	public BattleStatView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		activity = (CombatActivity) context;
 		init();
 	}
 	public BattleStatView(Context context) {
 		super(context);
+		activity = (CombatActivity) context;
 		init();
 	}
 	private void init() {
@@ -42,17 +47,14 @@ public class BattleStatView extends LinearLayout {
 			setBackgroundColor(Color.CYAN);
 		}
 
+		avatar = ((StudyOrDieApplication) activity.getApplication()).getModel().getAvatar();
 		barHP = (ProgressBar) findViewById(R.id.barHP);
 		barEnergy = (ProgressBar) findViewById(R.id.barEnergy);
 		barStat = (ProgressBar) findViewById(R.id.barStat);
 		
-		
-//		CANT CAST BattleActivity TO CoreActivity...
-//		Hoe de avatar hier krijgen?!?!
-//		avatar = ((CoreActivity) getContext()).getGame().getLevelLoader().getAvatar();
-//		
-//		barHP.setMax(avatar.getMaxHP());
-//		barHP.setProgress(avatar.getCurrentHP());
+	
+		barHP.setMax(avatar.getMaxHP());
+		barHP.setProgress(avatar.getCurrentHP());
 		
 	}
 	
