@@ -214,7 +214,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			extras.putString("bossName", boss.getName());
 			extras.putString("bossImageId", boss.getImageId());
 			combatIntent.putExtras(extras);
-			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_CODE);
+			activity.startActivity(combatIntent);
 			return false;
 			
 			/** Door present */

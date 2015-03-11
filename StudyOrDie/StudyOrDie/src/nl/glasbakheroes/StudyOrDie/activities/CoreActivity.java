@@ -154,7 +154,6 @@ public class CoreActivity extends Activity {
 
 	/** Result from another activity received */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
 		
 		/** Result from combat screen occurred */
 		if (requestCode == REQUEST_COMBAT_CODE) { 
@@ -162,7 +161,6 @@ public class CoreActivity extends Activity {
 			String bossName = data.getStringExtra("bossName");
 			/* If the boss is dead according to the returned data, kill him */
 			if (bossDead) {
-				model.killBoss(model.getBoss(bossName));
 				Toast.makeText(this, bossName + " has been killed!", Toast.LENGTH_SHORT).show();
 			} else {
 				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
