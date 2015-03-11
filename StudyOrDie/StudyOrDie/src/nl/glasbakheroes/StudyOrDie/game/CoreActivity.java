@@ -54,6 +54,7 @@ public class CoreActivity extends Activity {
 		menuButton.setOnTouchListener(listener);
 	}
 
+	/** Making a new runnable action which can be repeatedly played on 1 thread */
 	Runnable movement = new Runnable() {
 		@Override
 		public void run() {
@@ -71,7 +72,7 @@ public class CoreActivity extends Activity {
 		handler.removeCallbacks(movement);
 	}
 
-	/** Listner for the buttons in the overworld */
+	/** Listener for the buttons in the overworld */
 	private class TouchListener implements View.OnTouchListener {
 
 		@Override
@@ -108,42 +109,10 @@ public class CoreActivity extends Activity {
 			}
 			return false;
 		}
-
-	}
-
-	/**
-	 * Listens for touches on direction-buttons and tells the game instance to
-	 * move the avatar.
-	 * 
-	 * @author enjee
-	 */
-	private class ClickListener implements View.OnClickListener {
-
-		@Override
-		public void onClick(View v) {
-			StudyOrDieGameBoard board = (StudyOrDieGameBoard) game
-					.getGameBoard();
-			if (v == upButton) {
-				board.moveAvatar("Up");
-			} else if (v == downButton) {
-				board.moveAvatar("Down");
-			} else if (v == leftButton) {
-				board.moveAvatar("Left");
-			} else if (v == rightButton) {
-				board.moveAvatar("Right");
-			} else if (v == menuButton) {
-				Intent menuIntent = new Intent(CoreActivity.this,
-						MenuActivity.class);
-				startActivity(menuIntent);
-
-			}
-		}
 	}
 
 	/**
 	 * Game board view getter.
-	 * 
-	 * @return
 	 */
 	public StudyOrDieGameBoardView getGameBoardView() {
 		return gameView;
