@@ -1,7 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.R;
-import nl.glasbakheroes.StudyOrDie.game.menu.CharacterMenu;
+import nl.glasbakheroes.StudyOrDie.game.menu.CharacterFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +19,7 @@ public class MenuActivity extends FragmentActivity {
 
 		FragmentManager manager = getSupportFragmentManager();
 
-		CharacterMenu menu = new CharacterMenu(); 
+		CharacterFragment menu = new CharacterFragment(); 
 
 		manager.beginTransaction().add(R.id.fragmentContainer, menu).commit();
 
