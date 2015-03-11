@@ -9,7 +9,7 @@
         android:targetSdkVersion="21" />
 
     <application
-        android:name=".game.StudyOrDieApplication"
+        android:name="nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
@@ -24,12 +24,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".game.CombatActivity"
+            android:name="nl.glasbakheroes.StudyOrDie.activities.CombatActivity"
             android:label="@string/title_activity_combat"
             android:screenOrientation="landscape" >
         </activity>
         <activity
-            android:name=".game.MenuActivity"
+            android:name="nl.glasbakheroes.StudyOrDie.activities.MenuActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" />
         <activity

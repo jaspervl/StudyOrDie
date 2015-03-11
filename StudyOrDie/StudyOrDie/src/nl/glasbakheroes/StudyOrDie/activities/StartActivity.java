@@ -54,8 +54,7 @@ public class StartActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == REQUEST_CODE) { 
-			Log.w("StartActivity", "Player " + data.getStringExtra("avatarName") + " chose: " + data.getStringExtra("avatarPicure")); 
+		if (requestCode == REQUEST_CODE) {  
 			Intent resultIntent = new Intent();
 			resultIntent.putExtra("action", "new");
 			resultIntent.putExtra("avatarName", data.getStringExtra("avatarName"));
