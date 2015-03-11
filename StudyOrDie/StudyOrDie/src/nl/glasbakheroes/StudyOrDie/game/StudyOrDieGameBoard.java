@@ -13,6 +13,7 @@ import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
  * The SoD Game board
@@ -23,6 +24,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	private static final int GAMEBOARD_WIDTH = 24;
 	private static final int GAMEBOARD_HEIGHT = 12;
 	private CoreActivity activity;
+	private StudyOrDieModel model;
 	
 	public StudyOrDieGameBoard() {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
@@ -143,7 +145,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
 			} else {
 				/* Edge of the screen, get items from next sublevel */
-				LevelLoader levelLoader = activity.getGame().getLevelLoader();
+				LevelLoader levelLoader = model.getLoader();
 				levelLoader.setLevel(levelLoader.getLevel() + 1);
 				levelLoader.loadLevel("Bottom");
 				return false;
@@ -156,7 +158,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
 			} else {
 				/* Edge of the screen, get items from next sublevel */
-				LevelLoader levelLoader = activity.getGame().getLevelLoader();
+				LevelLoader levelLoader = model.getLoader();
 				levelLoader.setLevel(levelLoader.getLevel() - 1);
 				levelLoader.loadLevel("Top");
 				return false;
@@ -193,7 +195,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 * @return				True for movement, false for no movement.
 	 */
 	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
-		LevelLoader levelLoader = activity.getGame().getLevelLoader();
+		LevelLoader levelLoader = model.getLoader();
 		
 			/** No object present, avatar can move. */
 		if (getObject(avatarNewX, avatarNewY) == null) {
@@ -273,6 +275,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	/** Save the core activity so the gameboard can start other activities. */
 	public void setCoreActivity(CoreActivity activity) {
 		this.activity = activity;
+		model = ((StudyOrDieApplication) activity.getApplication()).getModel();
 	}
 	
 }

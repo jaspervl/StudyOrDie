@@ -56,4 +56,12 @@ public class StartActivity extends Activity {
 		}
 		
 	}
+	
+	public void onBackPressed() {
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra("action", "abort");
+		resultIntent.putExtra("avatarName", "Avatar");
+		setResult(1337, resultIntent);
+		finish();
+	}
 }

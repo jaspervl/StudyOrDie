@@ -19,6 +19,7 @@
             android:id="@+id/tvAvatarName"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginLeft="30dp"
             android:layout_weight="3"
             android:text="@string/avatar_name"
             android:textSize="20sp" />

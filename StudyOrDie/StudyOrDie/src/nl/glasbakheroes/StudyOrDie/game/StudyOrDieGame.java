@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.Game;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
  * The actual game.
@@ -15,6 +16,7 @@ public class StudyOrDieGame extends Game {
 	/* Instance of the CoreActivity and LevelCache. */
 	private CoreActivity activity;
 	private LevelLoader levelLoader;
+	private StudyOrDieModel model;
 	
 	/**
 	 * Constructor
@@ -22,6 +24,7 @@ public class StudyOrDieGame extends Game {
 	public StudyOrDieGame(CoreActivity activity) {
 		/* Create new board and pass it to the parent class (which saves it). */
 		super(new StudyOrDieGameBoard());
+		model = ((StudyOrDieApplication) activity.getApplication()).getModel();
 
 		this.activity = activity;
 
@@ -51,9 +54,8 @@ public class StudyOrDieGame extends Game {
 		levelLoader.loadLevel("Bottom");
 	}
 	
-	
-	public LevelLoader getLevelLoader() {
-		return levelLoader;
+	public StudyOrDieModel getModel() {
+		return model;
 	}
 
 }

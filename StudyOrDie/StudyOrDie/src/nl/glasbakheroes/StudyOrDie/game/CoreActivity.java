@@ -1,6 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class CoreActivity extends Activity {
 	private Button menuButton;
 	private Handler handler;
 	protected String moveDirection = "";
+	private StudyOrDieModel model;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class CoreActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		handler = new Handler();
+		model = ((StudyOrDieApplication) getApplication()).getModel();
 
 		/* Find interface elements */
 		gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
@@ -139,14 +142,13 @@ public class CoreActivity extends Activity {
 		if (requestCode == 1) { 
 			boolean bossDead = data.getBooleanExtra("bossDead", false);
 			if (bossDead) {
-				game.getLevelLoader()
-						.killBoss(game.getLevelLoader().getLevel());
-				game.getLevelLoader().loadLevel("Boss");
+				model.getLoader()
+						.killBoss(model.getLoader().getLevel());
+				model.getLoader().loadLevel("Boss");
 			} else {
-				game.getLevelLoader().setLevel(
-						game.getLevelLoader().getLevel() - 2);
-				game.getLevelLoader().loadLevel("Bottom");
-			}
+				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
+				model.getLoader().loadLevel("Bottom");
+			} 
 		} else if (requestCode == 1337) { 
 			String action = data.getStringExtra("action");
 			String avatarName = data.getStringExtra("avatarName");
@@ -154,6 +156,8 @@ public class CoreActivity extends Activity {
 				startNewGame(avatarName);
 			} else if (action.equals("load")) {
 				loadGame(avatarName); 
+			} else if (action.equals("abort")) {
+				startNewGame(avatarName);
 			}
 		}
 	}
