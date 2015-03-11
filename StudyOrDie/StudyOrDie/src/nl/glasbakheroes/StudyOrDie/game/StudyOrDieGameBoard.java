@@ -4,6 +4,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import java.util.Currency;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
@@ -209,8 +210,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
-			combatIntent.putExtra("bossName", boss.getName());
-			combatIntent.putExtra("bossImageId", boss.getImageId());
+			Bundle extras = new Bundle();
+			extras.putString("bossName", boss.getName());
+			extras.putString("bossImageId", boss.getImageId());
+			combatIntent.putExtras(extras);
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_CODE);
 			return false;
 			

@@ -57,30 +57,30 @@ public class CoreActivity extends Activity {
 			Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
 			startActivityForResult(startScreenIntent, REQUEST_START_CODE);
 			startMenuShown = true;
+		} 
+		
+		handler = new Handler();
+		model = ((StudyOrDieApplication) getApplication()).getModel();
 
-		} else { 
-			handler = new Handler();
-			model = ((StudyOrDieApplication) getApplication()).getModel();
+		/* Find interface elements */
+		gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
+		upButton = (Button) findViewById(R.id.btnUp);
+		downButton = (Button) findViewById(R.id.btnDown);
+		leftButton = (Button) findViewById(R.id.btnLeft);
+		rightButton = (Button) findViewById(R.id.btnRight);
+		menuButton = (Button) findViewById(R.id.btnMenu);
 
-			/* Find interface elements */
-			gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
-			upButton = (Button) findViewById(R.id.btnUp);
-			downButton = (Button) findViewById(R.id.btnDown);
-			leftButton = (Button) findViewById(R.id.btnLeft);
-			rightButton = (Button) findViewById(R.id.btnRight);
-			menuButton = (Button) findViewById(R.id.btnMenu);
+		/* Create the game object */
+		game = new StudyOrDieGame(this);
 
-			/* Create the game object */
-			game = new StudyOrDieGame(this);
-
-			/* Set listeners for direction-buttons */
-			TouchListener listener = new TouchListener();
-			upButton.setOnTouchListener(listener);
-			downButton.setOnTouchListener(listener);
-			leftButton.setOnTouchListener(listener);
-			rightButton.setOnTouchListener(listener);
-			menuButton.setOnTouchListener(listener); 
-		}
+		/* Set listeners for direction-buttons */
+		TouchListener listener = new TouchListener();
+		upButton.setOnTouchListener(listener);
+		downButton.setOnTouchListener(listener);
+		leftButton.setOnTouchListener(listener);
+		rightButton.setOnTouchListener(listener);
+		menuButton.setOnTouchListener(listener); 	
+		
 	}
 	
 	
@@ -90,7 +90,7 @@ public class CoreActivity extends Activity {
 		public void run() {
 			StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
 			board.moveAvatar(moveDirection);
-			handler.postDelayed(movement, 250);
+			handler.postDelayed(movement, 200);
 		}
 	};
 

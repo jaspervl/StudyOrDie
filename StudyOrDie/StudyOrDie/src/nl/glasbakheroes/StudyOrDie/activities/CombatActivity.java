@@ -48,8 +48,10 @@ public class CombatActivity extends Activity {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		Intent resultIntent = new Intent();
-		resultIntent.putExtra("bossDead", true);
-		resultIntent.putExtra("bossName", bossName);
+		Bundle extras = new Bundle();
+		extras.putBoolean("bossDead", true);
+		extras.putString("bossName", bossName);
+		resultIntent.putExtras(extras);
 		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
 		finish();
 	}
