@@ -1688,9 +1688,9 @@ containing a value of this type.
         public static final int action_mode_close_button=0x7f090020;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
-        public static final int barEnergy=0x7f090053;
-        public static final int barHP=0x7f090051;
-        public static final int barStat=0x7f090055;
+        public static final int barEnergy=0x7f090052;
+        public static final int barHP=0x7f090050;
+        public static final int barStat=0x7f090054;
         public static final int battleAttackOptionsView1=0x7f090041;
         public static final int battleMenuOptionsView1=0x7f090043;
         public static final int battleStatView1=0x7f090042;
@@ -1703,7 +1703,10 @@ containing a value of this type.
         public static final int btnAttack6=0x7f09004b;
         public static final int btnBattleCharacter=0x7f09004d;
         public static final int btnBattleItems=0x7f09004c;
+<<<<<<< Updated upstream
         public static final int btnBattleMenu=0x7f09004f;
+=======
+>>>>>>> Stashed changes
         public static final int btnDown=0x7f09005a;
         public static final int btnForfeit=0x7f09004e;
         public static final int btnLeft=0x7f090058;
@@ -1728,7 +1731,11 @@ containing a value of this type.
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
         public static final int imageView1=0x7f090040;
+<<<<<<< Updated upstream
         public static final int listFragment=0x7f09005d;
+=======
+        public static final int listFragment=0x7f090055;
+>>>>>>> Stashed changes
         public static final int listMode=0x7f09000a;
         public static final int listView1=0x7f090045;
         public static final int list_item=0x7f090025;
@@ -1758,9 +1765,9 @@ containing a value of this type.
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
         public static final int title=0x7f090027;
-        public static final int txtCurrentEnergy=0x7f090052;
-        public static final int txtCurrentHP=0x7f090050;
-        public static final int txtCurrentStat=0x7f090054;
+        public static final int txtCurrentEnergy=0x7f090051;
+        public static final int txtCurrentHP=0x7f09004f;
+        public static final int txtCurrentStat=0x7f090053;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
         public static final int withText=0x7f090018;

@@ -387,9 +387,9 @@ int id action_mode_bar_stub 0x7f09002d
 int id action_mode_close_button 0x7f090020
 int id activity_chooser_view_content 0x7f090021
 int id always 0x7f090014
-int id barEnergy 0x7f090053
-int id barHP 0x7f090051
-int id barStat 0x7f090055
+int id barEnergy 0x7f090052
+int id barHP 0x7f090050
+int id barStat 0x7f090054
 int id battleAttackOptionsView1 0x7f090041
 int id battleMenuOptionsView1 0x7f090043
 int id battleStatView1 0x7f090042
@@ -402,7 +402,10 @@ int id btnAttack5 0x7f09004a
 int id btnAttack6 0x7f09004b
 int id btnBattleCharacter 0x7f09004d
 int id btnBattleItems 0x7f09004c
+<<<<<<< Updated upstream
 int id btnBattleMenu 0x7f09004f
+=======
+>>>>>>> Stashed changes
 int id btnDown 0x7f09005a
 int id btnForfeit 0x7f09004e
 int id btnLeft 0x7f090058
@@ -427,7 +430,11 @@ int id icon 0x7f090026
 int id ifRoom 0x7f090016
 int id image 0x7f090023
 int id imageView1 0x7f090040
+<<<<<<< Updated upstream
 int id listFragment 0x7f09005d
+=======
+int id listFragment 0x7f090055
+>>>>>>> Stashed changes
 int id listMode 0x7f09000a
 int id listView1 0x7f090045
 int id list_item 0x7f090025
@@ -457,9 +464,9 @@ int id studyOrDieGameBoardView1 0x7f090057
 int id submit_area 0x7f09003c
 int id tabMode 0x7f09000c
 int id title 0x7f090027
-int id txtCurrentEnergy 0x7f090052
-int id txtCurrentHP 0x7f090050
-int id txtCurrentStat 0x7f090054
+int id txtCurrentEnergy 0x7f090051
+int id txtCurrentHP 0x7f09004f
+int id txtCurrentStat 0x7f090053
 int id up 0x7f090001
 int id useLogo 0x7f090013
 int id withText 0x7f090018

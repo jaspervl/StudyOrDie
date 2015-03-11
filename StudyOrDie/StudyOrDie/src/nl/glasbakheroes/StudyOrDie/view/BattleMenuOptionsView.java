@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
  * @author enjee
  */
 public class BattleMenuOptionsView extends LinearLayout {
-	private Button btnItems, btnCharacter, btnMenu, btnForfeit;
+	private Button btnItems, btnCharacter, btnForfeit;
 
 	public BattleMenuOptionsView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
@@ -40,7 +40,6 @@ public class BattleMenuOptionsView extends LinearLayout {
 		btnItems = (Button) findViewById(R.id.btnBattleItems);
 		btnCharacter = (Button) findViewById(R.id.btnBattleCharacter);
 		btnForfeit = (Button) findViewById(R.id.btnForfeit);
-		btnMenu = (Button) findViewById(R.id.btnBattleMenu);
 		
 		ButtonListener listener = new ButtonListener();
 		btnForfeit.setOnClickListener(listener);

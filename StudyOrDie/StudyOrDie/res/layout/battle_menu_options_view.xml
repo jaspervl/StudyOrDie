@@ -25,13 +25,6 @@
         android:layout_weight="3"
         android:text="@string/forfeit" />
 
-    <Button
-        android:id="@+id/btnBattleMenu"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3"
-        android:text="@string/menu" />
-
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
