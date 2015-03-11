@@ -22,5 +22,9 @@ public class StudyOrDieModel extends Observable {
 		return loader;
 		
 	}
+
+	public void setLoader(LevelLoader levelLoader) {
+		loader = levelLoader;
+	}
 	
 }
