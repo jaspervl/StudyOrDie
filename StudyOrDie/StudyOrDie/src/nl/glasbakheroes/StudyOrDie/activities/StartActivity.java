@@ -1,9 +1,10 @@
-package nl.glasbakheroes.StudyOrDie.game;
+package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,9 +16,11 @@ import android.widget.EditText;
  */
 public class StartActivity extends Activity {
 
+	private static final int RESULT_CODE = 1337;
+	private static final int REQUEST_CODE = 1000;
+	
 	private Button btnNewGame;
 	private Button btnLoad;
-	private EditText etAvatarName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +29,6 @@ public class StartActivity extends Activity {
 		
 		btnNewGame = (Button) findViewById(R.id.btnNewGame);
 		btnLoad = (Button) findViewById(R.id.btnLoad); 
-		etAvatarName = (EditText) findViewById(R.id.etAvatarName);
 		
 		ButtonListener listener = new ButtonListener();
 		btnNewGame.setOnClickListener(listener);
@@ -36,32 +38,39 @@ public class StartActivity extends Activity {
 	private class ButtonListener implements OnClickListener {
 
 		@Override
-		public void onClick(View v) {
-			String action = "";
-			String avatarName = "Avatar";
-			if ((etAvatarName.getText() + "").length() >= 2) {
-				avatarName = etAvatarName.getText() + "";
-			}
-			
+		public void onClick(View v) {	
 			if (v == btnNewGame) {
-				action = "new";
+				Intent pickAvatarIntent = new Intent(StartActivity.this, PickAvatarActivity.class);
+				startActivityForResult(pickAvatarIntent, REQUEST_CODE);
 			} else if (v == btnLoad) {
-				action = "load";
+				Intent resultIntent = new Intent();
+				resultIntent.putExtra("action", "load");
+				setResult(RESULT_CODE, resultIntent);
+				finish();
 			}
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == REQUEST_CODE) { 
+			Log.w("StartActivity", "Player " + data.getStringExtra("avatarName") + " chose: " + data.getStringExtra("avatarPicure")); 
 			Intent resultIntent = new Intent();
-			resultIntent.putExtra("action", action);
-			resultIntent.putExtra("avatarName", avatarName);
-			setResult(1337, resultIntent);
+			resultIntent.putExtra("action", "new");
+			resultIntent.putExtra("avatarName", data.getStringExtra("avatarName"));
+			resultIntent.putExtra("avatarPicure", data.getStringExtra("avatarPicure"));
+			setResult(RESULT_CODE, resultIntent);
 			finish();
 		}
-		
 	}
+	
 	
 	public void onBackPressed() {
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra("action", "abort");
 		resultIntent.putExtra("avatarName", "Avatar");
-		setResult(1337, resultIntent);
+		setResult(RESULT_CODE, resultIntent);
 		finish();
 	}
 }

@@ -1,4 +1,4 @@
-package nl.glasbakheroes.StudyOrDie.game;
+package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.game.menu.CharacterFragment;

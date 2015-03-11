@@ -20,5 +20,8 @@
     <string name="new_game">New game</string>
     <string name="load_game">Load game</string>
     <string name="avatar_name">Name:</string>
+    <string name="title_activity_pick_avatar">PickAvatarActivity</string>
+    <string name="pick_your_hero">Pick your hero</string>
+    <string name="pick_your_avatar">Pick your avatar:</string>
 
 </resources>

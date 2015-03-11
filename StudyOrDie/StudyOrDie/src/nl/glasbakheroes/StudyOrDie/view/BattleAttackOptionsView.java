@@ -1,7 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.view;
 
 import nl.glasbakheroes.StudyOrDie.R;
-import nl.glasbakheroes.StudyOrDie.game.CombatActivity;
+import nl.glasbakheroes.StudyOrDie.activities.CombatActivity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;

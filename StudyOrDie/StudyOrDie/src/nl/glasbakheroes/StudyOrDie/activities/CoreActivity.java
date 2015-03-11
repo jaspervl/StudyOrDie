@@ -1,6 +1,10 @@
-package nl.glasbakheroes.StudyOrDie.game;
+package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGame;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoardView;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,16 +23,20 @@ import android.widget.Button;
  */
 public class CoreActivity extends Activity {
 
+	private static final int REQUEST_START_CODE = 1337;
+	private static final int REQUEST_COMBAT_CODE = 1;
+	
 	private StudyOrDieGameBoardView gameView;
 	private StudyOrDieGame game;
 	private Button upButton;
-	private Button downButton;
+	private Button downButton; 
 	private Button leftButton;
 	private Button rightButton;
 	private Button menuButton;
 	private Handler handler;
 	protected String moveDirection = "";
 	private StudyOrDieModel model;
+	private boolean startScreenShown = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,12 +64,15 @@ public class CoreActivity extends Activity {
 		leftButton.setOnTouchListener(listener);
 		rightButton.setOnTouchListener(listener);
 		menuButton.setOnTouchListener(listener);
-	
+		
 		/**
 		 * StartScreen called from here!
 		 */
-		Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
-		startActivityForResult(startScreenIntent, 1337);
+		if (!startScreenShown) {
+			Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
+			startActivityForResult(startScreenIntent, REQUEST_START_CODE);
+			startScreenShown = true;
+		}
 	}
 	
 	
@@ -139,7 +150,7 @@ public class CoreActivity extends Activity {
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == 1) { 
+		if (requestCode == REQUEST_COMBAT_CODE) { 
 			boolean bossDead = data.getBooleanExtra("bossDead", false);
 			if (bossDead) {
 				model.getLoader()
@@ -149,22 +160,23 @@ public class CoreActivity extends Activity {
 				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
 				model.getLoader().loadLevel("Bottom");
 			} 
-		} else if (requestCode == 1337) { 
+		} else if (requestCode == REQUEST_START_CODE) { 
 			String action = data.getStringExtra("action");
 			String avatarName = data.getStringExtra("avatarName");
+			String avatarPicture = data.getStringExtra("avatarPicure");
 			if (action.equals("new")) {
-				startNewGame(avatarName);
+				startNewGame(avatarName, avatarPicture);
 			} else if (action.equals("load")) {
 				loadGame(avatarName); 
 			} else if (action.equals("abort")) {
-				startNewGame(avatarName);
+				startNewGame(avatarName, "default_picure_name");
 			}
 		}
 	}
 
 	/** At the moment these methods add nothing to the game, 
 	 * once we start allocating data to the model we can use these methods. */
-	private void startNewGame(String avatarName) {
+	private void startNewGame(String avatarName, String avatarPicure) {
 		// Set up the model for a new game.	
 		Log.w("CoreActivity", "New game was chosen by the player with avatar name: " + avatarName);
 	}
