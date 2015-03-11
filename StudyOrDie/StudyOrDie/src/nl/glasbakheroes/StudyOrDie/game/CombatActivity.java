@@ -22,7 +22,7 @@ public class CombatActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
 		
-		// HOW TO FINISH THIS?!
+		// Get bosses from model later on when model has a boss array.
 		
 	}
 	

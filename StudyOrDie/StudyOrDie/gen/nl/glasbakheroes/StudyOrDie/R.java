@@ -1544,6 +1544,15 @@ containing a value of this type.
  Default text size for action bar title.
          */
         public static final int abc_text_size_title_material_toolbar=0x7f070012;
+        /**  Default screen margins, per the Android Design guidelines. 
+
+         Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
+    
+         */
+        public static final int activity_horizontal_margin=0x7f07002b;
+        public static final int activity_vertical_margin=0x7f07002c;
         /**  The platform's desired fixed height for a dialog along the major axis
          (the screen is in portrait). This may be either a fraction or a dimension.
  The platform's desired fixed height for a dialog along the major axis
@@ -1672,7 +1681,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int LinearLayout1=0x7f09003f;
-        public static final int RelativeLayout1=0x7f090056;
+        public static final int RelativeLayout1=0x7f09005a;
         public static final int action_bar=0x7f090031;
         public static final int action_bar_activity_content=0x7f090003;
         public static final int action_bar_container=0x7f090030;
@@ -1686,29 +1695,32 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
+        public static final int action_settings=0x7f090061;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int always=0x7f090014;
-        public static final int barEnergy=0x7f090052;
-        public static final int barHP=0x7f090050;
-        public static final int barStat=0x7f090054;
+        public static final int barEnergy=0x7f090056;
+        public static final int barHP=0x7f090054;
+        public static final int barStat=0x7f090058;
         public static final int battleAttackOptionsView1=0x7f090041;
         public static final int battleMenuOptionsView1=0x7f090043;
         public static final int battleStatView1=0x7f090042;
         public static final int beginning=0x7f09001b;
-        public static final int btnAttack1=0x7f090046;
-        public static final int btnAttack2=0x7f090047;
-        public static final int btnAttack3=0x7f090048;
-        public static final int btnAttack4=0x7f090049;
-        public static final int btnAttack5=0x7f09004a;
-        public static final int btnAttack6=0x7f09004b;
-        public static final int btnBattleCharacter=0x7f09004d;
-        public static final int btnBattleItems=0x7f09004c;
-        public static final int btnDown=0x7f09005a;
-        public static final int btnForfeit=0x7f09004e;
-        public static final int btnLeft=0x7f090058;
-        public static final int btnMenu=0x7f09005c;
-        public static final int btnRight=0x7f09005b;
-        public static final int btnUp=0x7f090059;
+        public static final int btnAttack1=0x7f09004a;
+        public static final int btnAttack2=0x7f09004b;
+        public static final int btnAttack3=0x7f09004c;
+        public static final int btnAttack4=0x7f09004d;
+        public static final int btnAttack5=0x7f09004e;
+        public static final int btnAttack6=0x7f09004f;
+        public static final int btnBattleCharacter=0x7f090051;
+        public static final int btnBattleItems=0x7f090050;
+        public static final int btnDown=0x7f09005e;
+        public static final int btnForfeit=0x7f090052;
+        public static final int btnLeft=0x7f09005c;
+        public static final int btnLoad=0x7f090049;
+        public static final int btnMenu=0x7f090060;
+        public static final int btnNewGame=0x7f090048;
+        public static final int btnRight=0x7f09005f;
+        public static final int btnUp=0x7f09005d;
         public static final int checkbox=0x7f090029;
         public static final int collapseActionView=0x7f090015;
         public static final int decor_content_parent=0x7f09002f;
@@ -1718,6 +1730,7 @@ containing a value of this type.
         public static final int dropdown=0x7f09001a;
         public static final int edit_query=0x7f090033;
         public static final int end=0x7f09001c;
+        public static final int etAvatarName=0x7f090047;
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
         public static final int fragmentContainer=0x7f090044;
@@ -1727,7 +1740,7 @@ containing a value of this type.
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
         public static final int imageView1=0x7f090040;
-        public static final int listFragment=0x7f090055;
+        public static final int listFragment=0x7f090059;
         public static final int listMode=0x7f09000a;
         public static final int listView1=0x7f090045;
         public static final int list_item=0x7f090025;
@@ -1753,13 +1766,14 @@ containing a value of this type.
         public static final int showHome=0x7f090011;
         public static final int showTitle=0x7f090012;
         public static final int split_action_bar=0x7f090004;
-        public static final int studyOrDieGameBoardView1=0x7f090057;
+        public static final int studyOrDieGameBoardView1=0x7f09005b;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
         public static final int title=0x7f090027;
-        public static final int txtCurrentEnergy=0x7f090051;
-        public static final int txtCurrentHP=0x7f09004f;
-        public static final int txtCurrentStat=0x7f090053;
+        public static final int tvAvatarName=0x7f090046;
+        public static final int txtCurrentEnergy=0x7f090055;
+        public static final int txtCurrentHP=0x7f090053;
+        public static final int txtCurrentStat=0x7f090057;
         public static final int up=0x7f090001;
         public static final int useLogo=0x7f090013;
         public static final int withText=0x7f090018;
@@ -1816,13 +1830,17 @@ containing a value of this type.
         public static final int abc_simple_dropdown_hint=0x7f030016;
         public static final int activity_combat=0x7f030017;
         public static final int activity_menu=0x7f030018;
-        public static final int battle_attack_options_view=0x7f030019;
-        public static final int battle_menu_options_view=0x7f03001a;
-        public static final int battle_stats_view=0x7f03001b;
-        public static final int fragment_character=0x7f03001c;
-        public static final int fragment_list=0x7f03001d;
-        public static final int main=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
+        public static final int activity_start=0x7f030019;
+        public static final int battle_attack_options_view=0x7f03001a;
+        public static final int battle_menu_options_view=0x7f03001b;
+        public static final int battle_stats_view=0x7f03001c;
+        public static final int fragment_character=0x7f03001d;
+        public static final int fragment_list=0x7f03001e;
+        public static final int main=0x7f03001f;
+        public static final int support_simple_spinner_dropdown_item=0x7f030020;
+    }
+    public static final class menu {
+        public static final int start=0x7f0c0000;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1881,9 +1899,11 @@ containing a value of this type.
         /**  Content description for the Toolbar icon used to collapse an expanded action mode. [CHAR LIMIT=NONE] 
          */
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
+        public static final int action_settings=0x7f0a001f;
         public static final int additional_stat=0x7f0a001c;
         public static final int app_name=0x7f0a0010;
         public static final int attack=0x7f0a0016;
+        public static final int avatar_name=0x7f0a0022;
         public static final int beatme=0x7f0a0014;
         public static final int character=0x7f0a0018;
         public static final int energy=0x7f0a001b;
@@ -1892,9 +1912,12 @@ containing a value of this type.
         public static final int hello_world=0x7f0a0012;
         public static final int hp=0x7f0a001a;
         public static final int inventory=0x7f0a0017;
+        public static final int load_game=0x7f0a0021;
         public static final int menu=0x7f0a0015;
         public static final int motivation=0x7f0a001d;
+        public static final int new_game=0x7f0a0020;
         public static final int title_activity_combat=0x7f0a0011;
+        public static final int title_activity_start=0x7f0a001e;
     }
     public static final class style {
         public static final int Base_TextAppearance_AppCompat=0x7f0b0098;

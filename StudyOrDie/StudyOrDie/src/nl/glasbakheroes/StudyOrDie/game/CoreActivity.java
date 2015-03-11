@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 
 /**
@@ -52,8 +53,15 @@ public class CoreActivity extends Activity {
 		leftButton.setOnTouchListener(listener);
 		rightButton.setOnTouchListener(listener);
 		menuButton.setOnTouchListener(listener);
+	
+		/**
+		 * StartScreen called from here!
+		 */
+		Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
+		startActivityForResult(startScreenIntent, 1337);
 	}
-
+	
+	
 	/** Making a new runnable action which can be repeatedly played on 1 thread */
 	Runnable movement = new Runnable() {
 		@Override
@@ -73,7 +81,7 @@ public class CoreActivity extends Activity {
 	}
 
 	/** Listener for the buttons in the overworld */
-	private class TouchListener implements View.OnTouchListener {
+	private class TouchListener implements OnTouchListener {
 
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
@@ -128,7 +136,7 @@ public class CoreActivity extends Activity {
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == 1) {
+		if (requestCode == 1) { 
 			boolean bossDead = data.getBooleanExtra("bossDead", false);
 			if (bossDead) {
 				game.getLevelLoader()
@@ -139,7 +147,27 @@ public class CoreActivity extends Activity {
 						game.getLevelLoader().getLevel() - 2);
 				game.getLevelLoader().loadLevel("Bottom");
 			}
+		} else if (requestCode == 1337) { 
+			String action = data.getStringExtra("action");
+			String avatarName = data.getStringExtra("avatarName");
+			if (action.equals("new")) {
+				startNewGame(avatarName);
+			} else if (action.equals("load")) {
+				loadGame(avatarName); 
+			}
 		}
 	}
 
+	/** At the moment these methods add nothing to the game, 
+	 * once we start allocating data to the model we can use these methods. */
+	private void startNewGame(String avatarName) {
+		// Set up the model for a new game.	
+		Log.w("CoreActivity", "New game was chosen by the player with avatar name: " + avatarName);
+	}
+	
+	private void loadGame(String avatarName) {
+		// Start load screen from here.
+		Log.w("CoreActivity", "Load game was chosen by the player with avatar name: " + avatarName);
+	}
+	
 }

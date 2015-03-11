@@ -5,19 +5,18 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
     <application
+        android:name=".game.StudyOrDieApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:name="nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication">
+        android:label="@string/app_name" >
         <activity
             android:name=".game.CoreActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape" >
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,14 +24,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="nl.glasbakheroes.StudyOrDie.game.CombatActivity"
+            android:name=".game.CombatActivity"
             android:label="@string/title_activity_combat"
             android:screenOrientation="landscape" >
         </activity>
-         <activity
+        <activity
             android:name=".game.MenuActivity"
-              android:label="@string/app_name" 
+            android:label="@string/app_name"
             android:screenOrientation="landscape" />
+        <activity
+            android:name="nl.glasbakheroes.StudyOrDie.game.StartActivity"
+            android:label="@string/title_activity_start"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>
