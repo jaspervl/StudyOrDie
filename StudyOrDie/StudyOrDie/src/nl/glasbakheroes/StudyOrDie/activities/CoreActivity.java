@@ -16,10 +16,12 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
@@ -45,7 +47,7 @@ public class CoreActivity extends Activity {
 	protected String moveDirection = "";
 	private StudyOrDieModel model;
 	private OverworldStatsView statView;
-	private boolean folding = false;
+	private boolean folding = true;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,10 @@ public class CoreActivity extends Activity {
 		menuButton = (Button) findViewById(R.id.btnMenu);
 		btnFoldUnfold = (ImageView) findViewById(R.id.ivFoldUnfold);
 		statView = (OverworldStatsView) findViewById(R.id.overWorldStatView);
+		
+		/* Set transparant to certain interface elements */
+		statView.setAlpha(0.5F);
+		btnFoldUnfold.setAlpha(0.5F);
 
 		/* Create the game object */
 		game = new StudyOrDieGame(this);
@@ -89,8 +95,6 @@ public class CoreActivity extends Activity {
 		rightButton.setOnTouchListener(listener);
 		menuButton.setOnTouchListener(listener); 
 		btnFoldUnfold.setOnTouchListener(listener);
-		btnFoldUnfold.setAlpha(0.4F);
-		btnFoldUnfold.setBackgroundResource(R.drawable.fold_arrow);
 		
 	}
 	
@@ -142,12 +146,10 @@ public class CoreActivity extends Activity {
 					startActivity(menuIntent);
 				} else if (v == btnFoldUnfold) {
 					if (folding) {
-						btnFoldUnfold.setBackgroundResource(R.drawable.fold_arrow);
-						statView.setAlpha(0.9F);
+						statView.setMinimize(folding);
 						folding = false;
 					} else {
-						btnFoldUnfold.setBackgroundResource(R.drawable.unfold_arrow);
-						statView.setAlpha(0.01F);
+						statView.setMinimize(folding);
 						folding = true;
 					}
 				}

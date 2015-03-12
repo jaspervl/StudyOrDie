@@ -1719,7 +1719,6 @@ containing a value of this type.
         public static final int btnBattleCharacter=0x7f090056;
         public static final int btnBattleItems=0x7f090055;
         public static final int btnDown=0x7f090063;
-        public static final int btnFold=0x7f090069;
         public static final int btnForfeit=0x7f090057;
         public static final int btnLeft=0x7f090061;
         public static final int btnLoad=0x7f09004e;
@@ -1751,6 +1750,7 @@ containing a value of this type.
         public static final int imgAvatar4=0x7f09004c;
         public static final int imgBattleAvatar=0x7f090040;
         public static final int ivFoldUnfold=0x7f090067;
+        public static final int ivOverWorldAvatar=0x7f090069;
         public static final int listFragment=0x7f09005e;
         public static final int listMode=0x7f09000a;
         public static final int listView1=0x7f090045;

@@ -62,6 +62,7 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
+
     </nl.glasbakheroes.StudyOrDie.view.OverworldStatsView>
 
     <ImageView
@@ -70,6 +71,7 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/overWorldStatView"
+        android:alpha="0.5"
         android:maxHeight="50dp"
         android:maxWidth="50dp"
         android:src="@drawable/unfold_arrow" />

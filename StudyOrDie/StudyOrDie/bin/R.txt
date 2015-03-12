@@ -411,7 +411,6 @@ int id btnAttack6 0x7f090054
 int id btnBattleCharacter 0x7f090056
 int id btnBattleItems 0x7f090055
 int id btnDown 0x7f090063
-int id btnFold 0x7f090069
 int id btnForfeit 0x7f090057
 int id btnLeft 0x7f090061
 int id btnLoad 0x7f09004e
@@ -443,6 +442,7 @@ int id imgAvatar3 0x7f09004b
 int id imgAvatar4 0x7f09004c
 int id imgBattleAvatar 0x7f090040
 int id ivFoldUnfold 0x7f090067
+int id ivOverWorldAvatar 0x7f090069
 int id listFragment 0x7f09005e
 int id listMode 0x7f09000a
 int id listView1 0x7f090045

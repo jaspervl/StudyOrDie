@@ -9,8 +9,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class OverworldStatsView extends LinearLayout {
@@ -18,7 +20,8 @@ public class OverworldStatsView extends LinearLayout {
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
 	private CoreActivity activity;
-	private TextView tvOverworldvatarName;
+	private TextView tvOverworldvatarName, tvHP, tvEnergy, tvMotivation;
+	private ImageView ivAvatarImage;
 
 	public OverworldStatsView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
@@ -44,6 +47,11 @@ public class OverworldStatsView extends LinearLayout {
 			barHP = (ProgressBar) findViewById(R.id.barOverWorldHP);
 			barEnergy = (ProgressBar) findViewById(R.id.barOverWorldEnergy);
 			barStat = (ProgressBar) findViewById(R.id.barOverWorldMotivation);
+			tvHP = (TextView) findViewById(R.id.tvOverWorldHP);
+			tvEnergy = (TextView) findViewById(R.id.tvOverWorldEnergy);
+			tvMotivation = (TextView) findViewById(R.id.tvOverWorldMotivation);
+			ivAvatarImage = (ImageView) findViewById(R.id.ivOverWorldAvatar);
+			
 			setBackgroundColor(Color.BLACK);
 			setAlpha(0.8F);
 			barHP.setMax(avatar.getMaxHP()); 
@@ -54,6 +62,22 @@ public class OverworldStatsView extends LinearLayout {
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}		
+	}
+	
+	public void setMinimize(boolean minimal) {
+		if (minimal) {
+			tvHP.setText("H");
+			tvEnergy.setText("E");
+			tvMotivation.setText("M");
+			ivAvatarImage.setAlpha(0F);
+			this.setLayoutParams(new RelativeLayout.LayoutParams(200,200));
+		} else {
+			tvHP.setText("Health");
+			tvEnergy.setText("Energy");
+			tvMotivation.setText("Motivation");
+			ivAvatarImage.setAlpha(0.9F);
+			this.setLayoutParams(new RelativeLayout.LayoutParams(600,200));
+		}
 	}
 	
 }
