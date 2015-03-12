@@ -11,12 +11,14 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class OverworldStatsView extends LinearLayout {
 	
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
 	private CoreActivity activity;
+	private TextView tvOverworldvatarName;
 
 	public OverworldStatsView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
@@ -44,8 +46,11 @@ public class OverworldStatsView extends LinearLayout {
 			barStat = (ProgressBar) findViewById(R.id.barOverWorldMotivation);
 			setBackgroundColor(Color.BLACK);
 			setAlpha(0.8F);
-			barHP.setMax(avatar.getMaxHP());
+			barHP.setMax(avatar.getMaxHP()); 
 			barHP.setProgress(avatar.getCurrentHP());
+			tvOverworldvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
+			StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
+			tvOverworldvatarName.setText(app.getModel().getAvatar().getName());
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}		

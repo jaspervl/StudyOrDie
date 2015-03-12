@@ -57,11 +57,21 @@
         android:background="@drawable/button_menu" />
 
     <nl.glasbakheroes.StudyOrDie.view.OverworldStatsView
-        android:id="@+id/overworldStatsView1"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
+        android:id="@+id/overWorldStatView"
+        android:layout_width="400dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
     </nl.glasbakheroes.StudyOrDie.view.OverworldStatsView>
+
+    <ImageView
+        android:id="@+id/ivFoldUnfold"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/overWorldStatView"
+        android:maxHeight="50dp"
+        android:maxWidth="50dp"
+        android:src="@drawable/unfold_arrow" />
 
 </RelativeLayout>

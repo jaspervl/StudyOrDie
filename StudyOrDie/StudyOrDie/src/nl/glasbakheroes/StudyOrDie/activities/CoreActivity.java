@@ -6,8 +6,10 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGame;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoardView;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
+import nl.glasbakheroes.StudyOrDie.view.OverworldStatsView;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
@@ -37,9 +40,12 @@ public class CoreActivity extends Activity {
 	private Button leftButton;
 	private Button rightButton;
 	private Button menuButton;
+	private ImageView btnFoldUnfold;
 	private Handler handler;
 	protected String moveDirection = "";
 	private StudyOrDieModel model;
+	private OverworldStatsView statView;
+	private boolean folding = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,8 @@ public class CoreActivity extends Activity {
 		leftButton = (Button) findViewById(R.id.btnLeft);
 		rightButton = (Button) findViewById(R.id.btnRight);
 		menuButton = (Button) findViewById(R.id.btnMenu);
+		btnFoldUnfold = (ImageView) findViewById(R.id.ivFoldUnfold);
+		statView = (OverworldStatsView) findViewById(R.id.overWorldStatView);
 
 		/* Create the game object */
 		game = new StudyOrDieGame(this);
@@ -79,7 +87,10 @@ public class CoreActivity extends Activity {
 		downButton.setOnTouchListener(listener);
 		leftButton.setOnTouchListener(listener);
 		rightButton.setOnTouchListener(listener);
-		menuButton.setOnTouchListener(listener); 	
+		menuButton.setOnTouchListener(listener); 
+		btnFoldUnfold.setOnTouchListener(listener);
+		btnFoldUnfold.setAlpha(0.4F);
+		btnFoldUnfold.setBackgroundResource(R.drawable.fold_arrow);
 		
 	}
 	
@@ -129,6 +140,16 @@ public class CoreActivity extends Activity {
 				} else if (v == menuButton) {
 					Intent menuIntent = new Intent(CoreActivity.this, MenuActivity.class);
 					startActivity(menuIntent);
+				} else if (v == btnFoldUnfold) {
+					if (folding) {
+						btnFoldUnfold.setBackgroundResource(R.drawable.fold_arrow);
+						statView.setAlpha(0.9F);
+						folding = false;
+					} else {
+						btnFoldUnfold.setBackgroundResource(R.drawable.unfold_arrow);
+						statView.setAlpha(0.01F);
+						folding = true;
+					}
 				}
 				
 				/* A button is released */
@@ -173,6 +194,8 @@ public class CoreActivity extends Activity {
 			String action = data.getStringExtra("action"); 
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
+			
+			model.getAvatar().setName(avatarName);
 			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
