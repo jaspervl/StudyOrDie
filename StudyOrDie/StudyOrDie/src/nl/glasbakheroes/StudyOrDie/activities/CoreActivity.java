@@ -146,9 +146,11 @@ public class CoreActivity extends Activity {
 					startActivity(menuIntent);
 				} else if (v == btnFoldUnfold) {
 					if (folding) {
+						btnFoldUnfold.setImageResource(R.drawable.unfold_arrow);
 						statView.setMinimize(folding);
 						folding = false;
 					} else {
+						btnFoldUnfold.setImageResource(R.drawable.fold_arrow);
 						statView.setMinimize(folding);
 						folding = true;
 					}
