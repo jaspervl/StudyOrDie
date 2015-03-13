@@ -3,7 +3,7 @@
 
     <string name="app_name">Study or Die</string>
     <string name="title_activity_combat">CombatActivity</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="standardstring">No value input</string>
     <string name="fight">Fight!</string>
     <string name="beatme">Beat me</string>
     <string name="menu">Menu</string>
@@ -23,5 +23,6 @@
     <string name="title_activity_pick_avatar">PickAvatarActivity</string>
     <string name="pick_your_hero">Pick your hero</string>
     <string name="pick_your_avatar">Pick your avatar:</string>
+ 
 
 </resources>

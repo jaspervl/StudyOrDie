@@ -20,7 +20,7 @@ public class ListFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_list, container, false);
 		selection = (ListView)v.findViewById(R.id.listFragment);
-
+		
 		
 		return v;
 	}

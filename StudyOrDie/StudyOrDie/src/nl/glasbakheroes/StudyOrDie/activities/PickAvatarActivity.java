@@ -50,7 +50,7 @@ public class PickAvatarActivity extends Activity {
 			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 			Bundle extras = new Bundle();
 			extras.putString("action", "new");
-			extras.putString("avatarName", "JasperVL");
+			extras.putString("avatarName", "NOPE NIELS");
 			extras.putString("avatarPicure", "default_avatar_picture");
 			resultIntent.putExtras(extras);
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
