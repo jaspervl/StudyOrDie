@@ -1,6 +1,5 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
-import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
@@ -69,7 +68,7 @@ public class LevelLoader {
 		switch (currentLevel) {
 			/** case 1 is where ground floor starts */
 		case 1:	
-			
+		
 			/* Create conditional objects */
 			if (spawnArea.equals("Top")) {
 				board.addGameObject(avatar, board.getWidth() / 2, 1);
@@ -126,7 +125,7 @@ public class LevelLoader {
 		case 3:
 			
 			/* Create conditional objects */
-			if (model.bossExcist("Wombat")) {
+			if (model.getBoss("Wombat").getAlive()) {
 				board.addGameObject(model.getBoss("Wombat"), 1, 2);
 				board.addGameObject(new Elevator(true), 1, 1);
 			} else {
@@ -138,7 +137,7 @@ public class LevelLoader {
 				board.addGameObject(new Door(false), 10, 6);
 			}
 			if (spawnArea.equals("Elevator")) {
-				board.moveObject(avatar, 2, 1);
+				board.moveObject(avatar, 1, 2);
 			} else if (spawnArea.equals("Bottom")) {
 				board.moveObject(avatar, 12, 11);
 			} else if (spawnArea.equals("Boss")) {
@@ -167,7 +166,7 @@ public class LevelLoader {
 			
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
-				board.moveObject(avatar, 2, 1);
+				board.moveObject(avatar, 1, 2);
 			} 
 			
 			/* Create all default objects */
@@ -199,16 +198,6 @@ public class LevelLoader {
 	public int getLevel() {
 		return currentLevel;
 	}
-	
-//	/** Remove a boss from the game in a certain sub-level */
-//	public void killBoss(int subLevel) {
-//		switch (subLevel) {
-//		case 3 	: aliveBosses[0] = false; break;
-//		case 13	: aliveBosses[1] = false; break;
-//		default : break;
-//		}
-//		loadLevel("Boss");
-//	}
 	
 	/** Remove a key from the game in a certain sub-level */
 	public void takeKey(int subLevel) {

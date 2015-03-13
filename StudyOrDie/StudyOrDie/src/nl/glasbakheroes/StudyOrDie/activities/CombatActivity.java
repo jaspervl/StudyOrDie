@@ -2,7 +2,9 @@ package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,7 +35,7 @@ public class CombatActivity extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
-		bossName = extras.getString("bossName");
+		bossName = extras.getString("bossName"); 
 		
 		Log.w("Combat", bossName);
 		
@@ -47,24 +49,20 @@ public class CombatActivity extends Activity {
 	
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
-		Intent resultIntent = new Intent();
-		Bundle extras = new Bundle();
-		extras.putBoolean("bossDead", true);
-		extras.putString("bossName", bossName);
-		resultIntent.putExtras(extras);
-		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
+		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
+		app.getModel().getBoss(bossName).killBoss();
+		app.getModel().getLoader().loadLevel("Boss");
 		finish();
 	}
-	
+	 
 	/**
 	 * Kill the avatar by leaving the boss alive and passing that result to the core activity.
 	 * Public because Views want to use this. (e.g. forfeit button in battle mode)
 	 */
 	public void killAvatar() {
-		Intent resultIntent = new Intent();
-		resultIntent.putExtra("BossDead", false);
-		resultIntent.putExtra("bossName", bossName);
-		setResult(RESULT_COREACTIVITY_CODE, resultIntent);
+		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
+		app.getModel().getLoader().setLevel(app.getModel().getLoader().getLevel() - 2);
+		app.getModel().getLoader().loadLevel("Bottom");
 		finish();
 	}
 }

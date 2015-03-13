@@ -7,6 +7,7 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 public class Boss extends GameObject{
 	public static final String BOSS_IMAGE = "Boss";
 	private String name;
+	private boolean alive = true;
 
 	
 	public Boss(String name) {
@@ -26,5 +27,13 @@ public class Boss extends GameObject{
 	
 	public String getName() {
 		return name;
+	}
+	
+	public void killBoss() {
+		alive = false;
+	}
+	
+	public boolean getAlive() {
+		return alive;
 	}
 }

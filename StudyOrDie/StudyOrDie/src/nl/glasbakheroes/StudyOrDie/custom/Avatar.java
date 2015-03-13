@@ -17,9 +17,10 @@ public class Avatar extends GameObject {
 	private String currentImage = AVATAR_FRONT;
 	private int currentHP = 100;
 	private int maxHP = 100;
-	
+	private String name = "Avatar_name";	
 	/* Amount of keys the avatar (picked up - amount used) */
 	private int numberOfKeys;
+	
 	
 	@Override
 	public String getImageId() {
@@ -73,4 +74,12 @@ public class Avatar extends GameObject {
 		return maxHP;
 	}
 
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }

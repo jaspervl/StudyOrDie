@@ -54,11 +54,5 @@ public class StudyOrDieModel extends Observable {
 			}
 		}
 		return false;
-	}
-	
-	public void killBoss(Boss boss) {
-		bosses.remove(boss);
-		loader.loadLevel("Boss");
-	}
-	
+	}	
 }

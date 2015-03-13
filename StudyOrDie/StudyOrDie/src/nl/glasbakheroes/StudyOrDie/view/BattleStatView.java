@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
  * @author enjee
  *
  */
-public class BattleStatView extends LinearLayout {
+public class BattleStatView extends LinearLayout { 
 
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
