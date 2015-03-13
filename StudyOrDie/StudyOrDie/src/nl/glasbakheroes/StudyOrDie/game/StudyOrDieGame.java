@@ -1,7 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.game;
 
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
-import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.Game;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
