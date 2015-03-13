@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
-import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -35,8 +35,7 @@ public class CharacterFragment extends Fragment implements Observer{
 	
 	}
 	private void setter(){
-		StudyOrDieApplication app = (StudyOrDieApplication)getActivity().getApplication();
-		selectedAvatar = app.getModel().getAvatar();
+		selectedAvatar = StudyOrDieModel.getAvatar();
 		avatarHP.setText("HP : " + selectedAvatar.getMaxHP() + "/" + selectedAvatar.getCurrentHP());
 		avatarName.setText(selectedAvatar.getName());
 		

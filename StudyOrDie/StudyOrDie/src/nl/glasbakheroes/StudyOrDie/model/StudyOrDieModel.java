@@ -4,23 +4,25 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import android.util.Log;
-
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 
 public class StudyOrDieModel extends Observable {
 
-	private Avatar avatar;
+	private static Avatar avatar;
 	private LevelLoader loader;
-	private ArrayList<Boss> bosses;
+	private static ArrayList<Boss> bosses;
+	private static ArrayList<Item> itemList;
 	
 	public StudyOrDieModel() {
 		avatar = new Avatar();
 		bosses = new ArrayList<Boss>();
+		itemList = new ArrayList<Item>();
 	}
 	
-	public Avatar getAvatar() {
+	public static Avatar getAvatar() {
 		return avatar;
 	}
 	
@@ -37,7 +39,7 @@ public class StudyOrDieModel extends Observable {
 		bosses.add(new Boss(name));
 	}
 	
-	public Boss getBoss(String bossName) {
+	public static Boss getBoss(String bossName) {
 		for (Boss b : bosses) { 		  // Baas b ! xD
 			if (b.getName().equals(bossName)) {
 				return b;
@@ -54,5 +56,10 @@ public class StudyOrDieModel extends Observable {
 			}
 		}
 		return false;
-	}	
+	}
+
+	public static ArrayList<Item> getItemList() {
+		return itemList;
+	}
+
 }
