@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.activities;
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +48,8 @@ public class CombatActivity extends Activity {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
-		app.getModel().getBoss(bossName).killBoss();
+		app.getModel();
+		StudyOrDieModel.getBoss(bossName).killBoss();
 		app.getModel().getLoader().loadLevel("Boss");
 		finish();
 	}

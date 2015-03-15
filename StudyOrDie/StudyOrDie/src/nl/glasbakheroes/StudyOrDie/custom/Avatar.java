@@ -1,6 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
 
+import java.util.ArrayList;
+
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 
@@ -17,7 +19,8 @@ public class Avatar extends GameObject {
 	private String currentImage = AVATAR_FRONT;
 	private int currentHP = 100;
 	private int maxHP = 100;
-	private String name = "Avatar_name";	
+	private String name = "Avatar_name";
+	private ArrayList<Item> equipped = new ArrayList<>();
 	/* Amount of keys the avatar (picked up - amount used) */
 	private int numberOfKeys;
 	
@@ -80,6 +83,33 @@ public class Avatar extends GameObject {
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void addItem(Item item)
+	{
+		
+		int index = equipped.indexOf(item);
+		if(index != -1)
+		{
+			maxHP = maxHP + (equipped.get(index).addHP * -1);
+			equipped.remove(index);
+			return;
+		}
+		equipped.add(item);
+		checkItems();
+	}
+	
+	private void checkItems(){
+		int currentMax = maxHP;
+		for(Item a : equipped){
+		 currentMax = maxHP + a.getAddHP();
+		}
+		
+		this.maxHP = currentMax;
+		if(maxHP < currentHP)
+		{
+			currentHP = maxHP;
+		}
 	}
 	
 }

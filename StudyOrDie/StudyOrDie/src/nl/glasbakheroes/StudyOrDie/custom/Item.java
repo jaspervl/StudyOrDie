@@ -4,12 +4,14 @@ public class Item {
 	String name;
 	String description;
 	int addHP;
+	boolean equipped;
 	
 	
 	public Item(String name, String description, int addHP) {
 		this.name = name;
 		this.description = description;
 		this.addHP = addHP;
+		this.equipped = false;
 		
 	}
 	public String getName() {
@@ -29,6 +31,23 @@ public class Item {
 	}
 	public void setAddHP(int addHP) {
 		this.addHP = addHP;
+	}
+	
+	public boolean getEquipped()
+	{
+		return equipped;
+	}
+	
+	public void equip()
+	{
+		if (this.equipped)
+		{
+			this.equipped = false;
+		}
+		else
+		{
+			this.equipped = true;
+		}
 	}
 	
 

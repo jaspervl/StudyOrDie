@@ -11,11 +11,19 @@
         android:layout_weight="1" >
     </FrameLayout>
 
-    <ListView
-        android:id="@+id/listView1"
+    <LinearLayout
+        android:id="@+id/LinearLayout2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="4" >
-    </ListView>
+        android:layout_weight="4"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnItems"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/inventory_string" />
+
+    </LinearLayout>
 
 </LinearLayout>

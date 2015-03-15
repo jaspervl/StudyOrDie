@@ -42,6 +42,11 @@
             android:label="@string/title_activity_pick_avatar"
             android:screenOrientation="landscape" >
         </activity>
+          <activity
+            android:name="nl.glasbakheroes.StudyOrDie.activities.ItemActivity"
+            android:label="@string/title_activity_start"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

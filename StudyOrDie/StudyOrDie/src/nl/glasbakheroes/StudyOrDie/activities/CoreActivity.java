@@ -196,7 +196,7 @@ public class CoreActivity extends Activity {
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
 			
-			model.getAvatar().setName(avatarName);
+			StudyOrDieModel.getAvatar().setName(avatarName);
 			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {

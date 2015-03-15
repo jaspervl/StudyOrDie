@@ -125,8 +125,8 @@ public class LevelLoader {
 		case 3:
 			
 			/* Create conditional objects */
-			if (model.getBoss("Wombat").getAlive()) {
-				board.addGameObject(model.getBoss("Wombat"), 1, 2);
+			if (StudyOrDieModel.getBoss("Wombat").getAlive()) {
+				board.addGameObject(StudyOrDieModel.getBoss("Wombat"), 1, 2);
 				board.addGameObject(new Elevator(true), 1, 1);
 			} else {
 				board.addGameObject(new Elevator(false), 1, 1);

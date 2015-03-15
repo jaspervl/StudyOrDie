@@ -1,49 +1,52 @@
 package nl.glasbakheroes.StudyOrDie.game.menu;
 
-import java.util.ArrayList;
-
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
-import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ListAdapter<T> extends ArrayAdapter<T> {
+public class ListAdapter extends ArrayAdapter<Item> {
 	private ViewHolder holder;
-	T check;
+	
+	
 	static class ViewHolder {
-		ImageView image;
-		TextView titel;
-		TextView duration;
-		TextView date;
+		TextView name;
 	}
 	
 	public ListAdapter(Context context, int resource) {
 		super(context, resource);
-		
+		new TextView(context);
 	}
 	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
-		if(check instanceof Item){
-			
-		}
-		if(convertView == null)
-		{
-			
-			convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_list, parent, false);
+		Item item = StudyOrDieModel.getItemList().get(pos);
+		if(convertView == null){
+			convertView = LayoutInflater.from(getContext()).inflate(R.layout.simpleitem, parent, false);
 			holder = new ViewHolder();
+			holder.name = (TextView)convertView.findViewById(R.id.theitemname);
             convertView.setTag(holder);
 		}
 		else
 		{
-			holder = (ViewHolder) convertView.getTag();
+			convertView.getTag();
+		}
+		
+		holder.name.setText(String.format(item.getName()));
+		
+		if(item.getAddHP() > 0)
+		{
+			convertView.setBackgroundColor(Color.GREEN);
+		}
+		else
+		{
+			convertView.setBackgroundColor(Color.RED);
 		}
 	
 		
