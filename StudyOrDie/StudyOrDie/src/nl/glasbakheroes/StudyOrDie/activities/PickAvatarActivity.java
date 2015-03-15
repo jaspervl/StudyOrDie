@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 /**
@@ -18,6 +19,7 @@ public class PickAvatarActivity extends Activity {
 	
 	public static final int RESULT_TO_STARTACTIVITY = StartActivity.REQUEST_AVATAR_SELECTION;
 	private ImageView imgAvatar1, imgAvatar2, imgAvatar3, imgAvatar4;
+	private EditText inputChar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class PickAvatarActivity extends Activity {
 		imgAvatar2 = (ImageView)findViewById(R.id.imgAvatar2);
 		imgAvatar3 = (ImageView)findViewById(R.id.imgAvatar3);
 		imgAvatar4 = (ImageView)findViewById(R.id.imgAvatar4);
+		inputChar = (EditText)findViewById(R.id.etFillName);
 		
 		ButtonListener listener = new ButtonListener();
 		imgAvatar1.setOnClickListener(listener);
@@ -50,7 +53,7 @@ public class PickAvatarActivity extends Activity {
 			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 			Bundle extras = new Bundle();
 			extras.putString("action", "new");
-			extras.putString("avatarName", "NOPE NIELS");
+			extras.putString("avatarName", inputChar.getText().toString());
 			extras.putString("avatarPicure", "default_avatar_picture");
 			resultIntent.putExtras(extras);
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
