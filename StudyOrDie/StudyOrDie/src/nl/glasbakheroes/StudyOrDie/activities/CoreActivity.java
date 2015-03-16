@@ -45,6 +45,7 @@ public class CoreActivity extends Activity {
 	private StudyOrDieModel model;
 	private OverworldStatsView statView;
 	private boolean folding = true;
+	private boolean disableMovement = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -100,9 +101,11 @@ public class CoreActivity extends Activity {
 	Runnable movement = new Runnable() {
 		@Override
 		public void run() {
-			StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
-			board.moveAvatar(moveDirection);
-			handler.postDelayed(movement, 200);
+			if (!disableMovement) {
+				StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
+				board.moveAvatar(moveDirection);
+				handler.postDelayed(movement, 200);
+			}
 		}
 	};
 
@@ -179,6 +182,7 @@ public class CoreActivity extends Activity {
 		
 		/** Result from combat screen occurred */
 		if (requestCode == REQUEST_COMBAT_CODE) { 
+			disableMovement = false;
 			boolean bossDead = data.getBooleanExtra("bossDead", false);
 			String bossName = data.getStringExtra("bossName");
 			/* If the boss is dead according to the returned data, kill him */
@@ -219,6 +223,10 @@ public class CoreActivity extends Activity {
 	private void loadGame(String avatarName) {
 		// Start load screen from here.
 		Log.w("CoreActivity", "Load game was chosen by the player with avatar name: " + avatarName);
+	}
+
+	public void setMovementDisabled() {
+		disableMovement = true;
 	}
 	
 }
