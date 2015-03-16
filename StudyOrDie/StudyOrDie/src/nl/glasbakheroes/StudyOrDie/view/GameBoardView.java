@@ -27,7 +27,7 @@ import android.view.View;
  * remains good.
  * 
  * @author Jan Stroet
- * @author Paul de Groot
+ * @author Paul de Groot 
  */
 public abstract class GameBoardView extends View implements Observer {
 	private static final String TAG = "Playground";

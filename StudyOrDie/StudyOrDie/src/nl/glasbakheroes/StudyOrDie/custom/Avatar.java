@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
  * Main avatar in the game which the player controls.

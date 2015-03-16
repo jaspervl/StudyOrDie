@@ -71,5 +71,11 @@ public class StudyOrDieModel extends Observable {
 			itemList.add(new Item("Niels handtasje", "Its scary and pink", 10));
 			itemList.add(new Item("Niels sig..", "Guess I did run out of ideas", 20));
 	}
+	
+	public void addItemToAvatar(Item item) {
+		avatar.addItem(item);
+		setChanged();
+		notifyObservers();
+	}
 
 }

@@ -2,6 +2,7 @@ package nl.glasbakheroes.StudyOrDie.game.menu;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,7 +38,8 @@ public class ItemFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				StudyOrDieModel.getAvatar().addItem(currentItem);
+				StudyOrDieModel model = ((StudyOrDieApplication)getActivity().getApplication()).getModel();
+				model.addItemToAvatar(currentItem);
 				currentItem.equip();
 				if (currentItem.getEquipped()) {
 					equipButton.setText(String.format("Equipped"));

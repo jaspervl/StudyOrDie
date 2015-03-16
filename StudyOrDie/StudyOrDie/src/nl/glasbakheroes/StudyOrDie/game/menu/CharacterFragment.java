@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,14 +27,16 @@ public class CharacterFragment extends Fragment implements Observer{
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_character, container , false);
+		
+		StudyOrDieApplication app = ( StudyOrDieApplication ) getActivity().getApplication();
+		app.getModel().addObserver(this);
 		avatarDisplay = (ImageView) v.findViewById(R.id.characterpicture);
 		avatarName = (TextView)v.findViewById(R.id.charactername);
 		avatarHP = (TextView)v.findViewById(R.id.characterhp);
 		setter();		
 		return v;
-		
-	
 	}
+	
 	private void setter(){
 		selectedAvatar = StudyOrDieModel.getAvatar();
 		avatarHP.setText("HP : " + selectedAvatar.getMaxHP() + "/" + selectedAvatar.getCurrentHP());
