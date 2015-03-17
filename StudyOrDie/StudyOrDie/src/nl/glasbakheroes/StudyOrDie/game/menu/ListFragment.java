@@ -1,12 +1,16 @@
 package nl.glasbakheroes.StudyOrDie.game.menu;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 
@@ -17,36 +21,37 @@ import android.widget.ListView;
 public class ListFragment extends Fragment {
 	ListView selection;
 	ListAdapter adapter;
-	int pos;
+	TransmitInfo send;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_list, container, false);
-		selection = (ListView)v.findViewById(R.id.listFragment);
-		adapter = new ListAdapter(getActivity(), android.R.layout.simple_list_item_1);
+		selection = (ListView)v.findViewById(R.id.itemList);
+		adapter = new ListAdapter(getActivity(), android.R.layout.simple_list_item_1,StudyOrDieModel.getItemList());
 		selection.setAdapter(adapter);
+		selection.setOnItemClickListener(new OnItemClickListener(){
+			
 		
-		selection.setOnItemSelectedListener(new OnItemSelectedListener(){
 
 			@Override
-			public void onItemSelected(AdapterView<?> parent, View view,
+			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				pos = position;
-		
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-				// TODO Auto-generated method stub
+				send.getInfo(position);
 				
 			}});
 		
 		return v;
 	}
-	
-	public int getPosition(){
-		return pos;
-	}
+	@Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            send = (TransmitInfo) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " Transmit info interface not implemented");
+        }
 
+	}
 }

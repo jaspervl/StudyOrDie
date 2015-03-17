@@ -1757,10 +1757,10 @@ containing a value of this type.
         public static final int imgAvatar3=0x7f09004e;
         public static final int imgAvatar4=0x7f09004f;
         public static final int imgBattleAvatar=0x7f090040;
+        public static final int itemList=0x7f09006a;
         public static final int ivFoldUnfold=0x7f090073;
         public static final int ivItemPicture=0x7f090065;
         public static final int ivOverWorldAvatar=0x7f090075;
-        public static final int listFragment=0x7f09006a;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
         public static final int lvSelectItem=0x7f090044;
@@ -1792,10 +1792,10 @@ containing a value of this type.
         public static final int tabMode=0x7f09000c;
         public static final int theitemname=0x7f09007c;
         public static final int title=0x7f090027;
-        public static final int tvAddStat=0x7f090069;
-        public static final int tvDescription=0x7f090066;
+        public static final int tvAddStat=0x7f090067;
+        public static final int tvDescription=0x7f090069;
         public static final int tvFillName=0x7f090049;
-        public static final int tvItemName=0x7f090067;
+        public static final int tvItemName=0x7f090066;
         public static final int tvOverWorldEnergy=0x7f090078;
         public static final int tvOverWorldHP=0x7f090076;
         public static final int tvOverWorldMotivation=0x7f09007a;

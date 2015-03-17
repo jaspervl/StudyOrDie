@@ -1,8 +1,9 @@
 package nl.glasbakheroes.StudyOrDie.game.menu;
 
+import java.util.ArrayList;
+
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
-import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -19,14 +20,13 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		TextView name;
 	}
 	
-	public ListAdapter(Context context, int resource) {
-		super(context, resource);
-		new TextView(context);
+	public ListAdapter(Context context, int resource,ArrayList<Item> item) {
+		super(context, resource,item);
 	}
 	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
-		Item item = StudyOrDieModel.getItemList().get(pos);
+		Item item = getItem(pos);
 		if(convertView == null){
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.simpleitem, parent, false);
 			holder = new ViewHolder();

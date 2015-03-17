@@ -37,13 +37,13 @@ public class ItemActivity extends FragmentActivity implements TransmitInfo {
 	}
 
 	@Override
-	public void getInfo() {
-		item.getPosition();
+	public void getInfo(int key) {
+		actionUpdate(key);
 	}
 
 	@Override
 	public void actionUpdate(int key) {
-		// TODO Auto-generated method stub
+		detail.setVariables(key);
 		
 	}
 	

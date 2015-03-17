@@ -449,10 +449,10 @@ int id imgAvatar2 0x7f09004d
 int id imgAvatar3 0x7f09004e
 int id imgAvatar4 0x7f09004f
 int id imgBattleAvatar 0x7f090040
+int id itemList 0x7f09006a
 int id ivFoldUnfold 0x7f090073
 int id ivItemPicture 0x7f090065
 int id ivOverWorldAvatar 0x7f090075
-int id listFragment 0x7f09006a
 int id listMode 0x7f09000a
 int id list_item 0x7f090025
 int id lvSelectItem 0x7f090044
@@ -484,10 +484,10 @@ int id submit_area 0x7f09003c
 int id tabMode 0x7f09000c
 int id theitemname 0x7f09007c
 int id title 0x7f090027
-int id tvAddStat 0x7f090069
-int id tvDescription 0x7f090066
+int id tvAddStat 0x7f090067
+int id tvDescription 0x7f090069
 int id tvFillName 0x7f090049
-int id tvItemName 0x7f090067
+int id tvItemName 0x7f090066
 int id tvOverWorldEnergy 0x7f090078
 int id tvOverWorldHP 0x7f090076
 int id tvOverWorldMotivation 0x7f09007a
