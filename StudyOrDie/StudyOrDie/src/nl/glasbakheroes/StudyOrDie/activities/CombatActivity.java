@@ -20,7 +20,7 @@ import android.widget.ImageView;
 public class CombatActivity extends Activity {
 	private ImageView bossImage;
 	private String bossName;
-	public static final int RESULT_COREACTIVITY_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
+//	public static final int RESULT_COREACTIVITY_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class CombatActivity extends Activity {
 		app.getModel();
 		StudyOrDieModel.getBoss(bossName).killBoss();
 		app.getModel().getLoader().loadLevel("Boss");
+		
 		finish();
 	}
 	 

@@ -29,7 +29,6 @@ import android.widget.Toast;
 public class CoreActivity extends Activity {
 
 	public static final int REQUEST_START_CODE = 2;
-	public static final int REQUEST_COMBAT_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
 	private static boolean startMenuShown = false;
 	
 	private StudyOrDieGameBoardView gameView;
@@ -84,7 +83,7 @@ public class CoreActivity extends Activity {
 
 		/* Create the game object */
 		game = new StudyOrDieGame(this);
-
+ 
 		/* Set listeners for direction-buttons */
 		TouchListener listener = new TouchListener();
 		upButton.setOnTouchListener(listener);
@@ -101,6 +100,7 @@ public class CoreActivity extends Activity {
 	Runnable movement = new Runnable() {
 		@Override
 		public void run() {
+			Log.w("CoreActivity", "Movement is disabled");
 			if (!disableMovement) {
 				StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
 				board.moveAvatar(moveDirection);
@@ -179,22 +179,8 @@ public class CoreActivity extends Activity {
 
 	/** Result from another activity received */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
-		/** Result from combat screen occurred */
-		if (requestCode == REQUEST_COMBAT_CODE) { 
-			disableMovement = false;
-			boolean bossDead = data.getBooleanExtra("bossDead", false);
-			String bossName = data.getStringExtra("bossName");
-			/* If the boss is dead according to the returned data, kill him */
-			if (bossDead) {
-				Toast.makeText(this, bossName + " has been killed!", Toast.LENGTH_SHORT).show();
-			} else {
-				model.getLoader().setLevel(model.getLoader().getLevel() - 2);
-				model.getLoader().loadLevel("Bottom");
-			} 
-			
 		/** Result from start screen occurred */
-		} else if (requestCode == REQUEST_START_CODE) { 
+		 if (requestCode == REQUEST_START_CODE) { 
 			/* Save the received data into strings */ 
 			String action = data.getStringExtra("action"); 
 			String avatarName = data.getStringExtra("avatarName");
@@ -224,9 +210,21 @@ public class CoreActivity extends Activity {
 		// Start load screen from here.
 		Log.w("CoreActivity", "Load game was chosen by the player with avatar name: " + avatarName);
 	}
-
-	public void setMovementDisabled() {
+	
+	/** When activity is resumed */
+	@Override
+	protected void onResume() {
+		/* Enable all movement in this activity */
+		disableMovement = false;
+		super.onResume();
+	}
+	
+	/** When activity is paused */
+	@Override
+	protected void onPause() {
+		/* Disable all movement in this activity */
 		disableMovement = true;
+		super.onPause();
 	}
 	
 }
