@@ -1,6 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ public class PickAvatarActivity extends Activity {
 	private ImageView imgAvatar1, imgAvatar2, imgAvatar3, imgAvatar4;
 	private EditText inputChar;
 	Handler handler = new Handler();
+	private StudyOrDieModel model;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class PickAvatarActivity extends Activity {
 	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		setContentView(R.layout.activity_pick_avatar);
+		
+		model = ((StudyOrDieApplication)getApplication()).getModel();
 		
 		imgAvatar1 = (ImageView)findViewById(R.id.imgAvatar1);
 		imgAvatar2 = (ImageView)findViewById(R.id.imgAvatar2);
@@ -47,23 +52,16 @@ public class PickAvatarActivity extends Activity {
 		imgAvatar4.setOnClickListener(listener);
 	}
 	
-	/** Returns some default stuff [DUMMY] */
 	private class ButtonListener implements OnClickListener {
 
 		@Override
 		public void onClick(View v) {
 			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
-			Bundle extras = new Bundle();
-			extras.putString("action", "new");
-			extras.putString("avatarName", inputChar.getText().toString());
-			extras.putString("avatarPicure", "default_avatar_picture");
-			resultIntent.putExtras(extras);
+			model.getAvatar().setName(inputChar.getText() + "");
+//			model.getAvatar().setAvatarImage();  <--- Implement this
+			resultIntent.putExtra("action", "new");
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
-			handler.postDelayed(new Runnable() {
-				public void run() {
-					finish();
-				}
-			}, 1000);
+			finish();
 		}
 	}
 	

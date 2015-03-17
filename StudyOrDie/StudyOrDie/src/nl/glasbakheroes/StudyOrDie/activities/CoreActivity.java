@@ -192,7 +192,7 @@ public class CoreActivity extends Activity {
 			if (action.equals("new")) {
 				startNewGame(avatarName, avatarPicture);
 			} else if (action.equals("load")) {
-				loadGame(avatarName); 
+				loadGame(avatarName);  
 			} else if (action.equals("abort")) {
 				startNewGame(avatarName, "default_picure_name");
 			}

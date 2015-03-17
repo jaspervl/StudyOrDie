@@ -3,6 +3,8 @@ package nl.glasbakheroes.StudyOrDie.custom;
 
 import java.util.ArrayList;
 
+import android.util.Log;
+
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -83,6 +85,7 @@ public class Avatar extends GameObject {
 	}
 	
 	public void setName(String name) {
+		Log.w("LAST STAGE", "Name set to: " + name); 
 		this.name = name;
 	}
 	

@@ -1,6 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +34,7 @@ public class StartActivity extends Activity {
 	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		setContentView(R.layout.activity_start);
+		
 		btnNewGame = (Button) findViewById(R.id.btnNewGame);
 		btnLoad = (Button) findViewById(R.id.btnLoad); 
 		
@@ -45,7 +48,7 @@ public class StartActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {	
-			if (v == btnNewGame) {
+			if (v == btnNewGame) { 
 				/* Start a new activity for a result, the 'pick avatar' activity */
 				Intent pickAvatarIntent = new Intent(StartActivity.this, PickAvatarActivity.class);
 				startActivityForResult(pickAvatarIntent, REQUEST_AVATAR_SELECTION);
@@ -65,11 +68,7 @@ public class StartActivity extends Activity {
 		if (requestCode == REQUEST_AVATAR_SELECTION) { 
 			/* Pass the given information from the avatar selection activity to the core activity */
 			Intent resultIntent = new Intent();
-			Bundle extras = new Bundle();
-			extras.putString("action", "new");
-			extras.putString("avatarName", data.getExtras().getString("avatarName"));
-			extras.putString("avatarPicure", data.getExtras().getString("avatarPicure"));
-			resultIntent.putExtras(extras);
+			resultIntent.putExtra("action", "new");
 			setResult(RESULT_TO_CORE_ACTIVITY, resultIntent);
 			finish();
 		}
