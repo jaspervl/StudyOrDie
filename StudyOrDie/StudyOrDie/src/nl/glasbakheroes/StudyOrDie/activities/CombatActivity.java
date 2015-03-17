@@ -6,6 +6,7 @@ import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
+import nl.glasbakheroes.StudyOrDie.view.BattleAttackOptionsView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +28,7 @@ public class CombatActivity extends Activity {
 	private StudyOrDieModel model;
 	private TextView tvBossHP;
 	private int bossMaxHP;
+	private BattleAttackOptionsView attackOptions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class CombatActivity extends Activity {
 		String bossName = extras.getString("bossName"); 
 		
 		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
+		attackOptions = (BattleAttackOptionsView) findViewById(R.id.battleAttackOptionsView1);
 		
 		Log.w("Combat", bossName);
 		boss = model.getBoss(bossName);
@@ -55,13 +58,13 @@ public class CombatActivity extends Activity {
 	
 	/** Call this method when the back button is clicked */
 	@Override
-	public void onBackPressed() {
+	public void onBackPressed() { 
 		/* Don't do anything, there is no escape from the fight! */
 	}
 	
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
-		boss.killBoss();
+		boss.killBoss(); 
 		model.getLoader().loadLevel("Boss");
 		delayedFinish();	
 	}
@@ -92,6 +95,8 @@ public class CombatActivity extends Activity {
 		
 		boss.setHP(boss.getHP() - damage);
 		if (boss.getHP() <= 0) {
+			attackOptions.disableAll();
+			boss.setHP(0);
 			killBoss();
 		}
 		tvBossHP.setText("HP: " + boss.getHP() + "/" + bossMaxHP);

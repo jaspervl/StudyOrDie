@@ -7,6 +7,7 @@ import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -24,6 +25,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 	private CoreActivity activity;
 	private TextView tvOverworldvatarName, tvHP, tvEnergy, tvMotivation;
 	private ImageView ivAvatarImage;
+	private StudyOrDieModel model;
 
 	public OverworldStatsView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
@@ -45,6 +47,10 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 		if (!isInEditMode()) {
 			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			inflater.inflate(R.layout.overworld_stats_view, this);
+			
+			StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
+			model = app.getModel();
+			
 			avatar = ((StudyOrDieApplication) activity.getApplication()).getModel().getAvatar();
 			barHP = (ProgressBar) findViewById(R.id.barOverWorldHP);
 			barEnergy = (ProgressBar) findViewById(R.id.barOverWorldEnergy);
@@ -53,13 +59,13 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			tvEnergy = (TextView) findViewById(R.id.tvOverWorldEnergy);
 			tvMotivation = (TextView) findViewById(R.id.tvOverWorldMotivation);
 			ivAvatarImage = (ImageView) findViewById(R.id.ivOverWorldAvatar);
+			tvOverworldvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
 			
 			setBackgroundColor(Color.BLACK);
 			setAlpha(0.8F);
 			updateData();
 			tvOverworldvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
-			StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
-			tvOverworldvatarName.setText(app.getModel().getAvatar().getName());
+			tvOverworldvatarName.setText(model.getAvatar().getName());
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}		
@@ -92,6 +98,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 		barEnergy.setProgress(avatar.getCurrentEnergy());
 		barStat.setMax(avatar.getMaxMotivation());
 		barStat.setProgress(avatar.getCurrentMotivation());
+		tvOverworldvatarName.setText(model.getAvatar().getName());
 	}
 	
 	
