@@ -57,11 +57,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 		btnAttack3.setText("Apple talk\nCost: -3E, -5M\n12 Damage");
 		btnAttack4.setText("Skip class\nCost: +5E, -10M\n10 Damage");
 		
-		ButtonListener listener = new ButtonListener();
-		btnAttack1.setOnClickListener(listener);
-		btnAttack2.setOnClickListener(listener); 
-		btnAttack3.setOnClickListener(listener);
-		btnAttack4.setOnClickListener(listener);
+		enableAllButtons();
 	}
 	
 	private class ButtonListener implements OnClickListener {
@@ -98,16 +94,24 @@ public class BattleAttackOptionsView extends LinearLayout {
 			
 			model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() + energyModifier);
 			model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() + motivationModifier);
-			activity.performAttack(damage);
 			Toast.makeText(activity, "Attack casted: " + attackName, Toast.LENGTH_SHORT).show();
+			activity.performAttack(damage);
 		}
 	}
 
-	public void disableAll() {
+	public void disableAllButtons() {
 		btnAttack1.setOnClickListener(null);
 		btnAttack2.setOnClickListener(null);
 		btnAttack3.setOnClickListener(null);
 		btnAttack4.setOnClickListener(null);
+	}
+	
+	public void enableAllButtons() {
+		ButtonListener listener = new ButtonListener();
+		btnAttack1.setOnClickListener(listener);
+		btnAttack2.setOnClickListener(listener); 
+		btnAttack3.setOnClickListener(listener);
+		btnAttack4.setOnClickListener(listener);
 	}
 
 }

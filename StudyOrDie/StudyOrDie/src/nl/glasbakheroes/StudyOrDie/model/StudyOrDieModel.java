@@ -41,7 +41,7 @@ public class StudyOrDieModel extends Observable {
 	 * @param hitPoints	The amount of hitpoints the boss starts with
 	 */
 	public void addBoss(String name, int hitPoints) {
-		bosses.add(new Boss(name, hitPoints));
+		bosses.add(new Boss(name, hitPoints, this));
 	}
 	
 	public Boss getBoss(String bossName) {
