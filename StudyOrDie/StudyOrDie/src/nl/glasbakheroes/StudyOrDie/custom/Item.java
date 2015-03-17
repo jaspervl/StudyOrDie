@@ -1,17 +1,19 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
 public class Item {
-	String name;
-	String description;
-	int addHP;
-	boolean equipped;
+	private String name;
+	private String description;
+	private int addHP;
+	private boolean equipped;
+	private boolean consumesOnUse;
 	
 	
-	public Item(String name, String description, int addHP) {
+	public Item(String name, String description, int addHP,boolean consumesOnUse) {
 		this.name = name;
 		this.description = description;
 		this.addHP = addHP;
 		this.equipped = false;
+		this.consumesOnUse = consumesOnUse;
 		
 	}
 	public String getName() {
@@ -48,6 +50,11 @@ public class Item {
 		{
 			this.equipped = true;
 		}
+	}
+	
+	public boolean isConsumable()
+	{
+		return consumesOnUse;
 	}
 	
 

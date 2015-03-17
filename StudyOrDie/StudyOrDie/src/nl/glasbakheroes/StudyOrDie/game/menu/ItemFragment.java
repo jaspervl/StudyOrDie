@@ -42,9 +42,9 @@ public class ItemFragment extends Fragment {
 				model.addItemToAvatar(currentItem);
 				currentItem.equip();
 				if (currentItem.getEquipped()) {
-					equipButton.setText(String.format("Equipped"));
+					equipButton.setText(String.format("Unequip"));
 				} else {
-					equipButton.setText(String.format("Unequipped"));
+					equipButton.setText(String.format("Equip"));
 				}
 
 			}
@@ -60,9 +60,14 @@ public class ItemFragment extends Fragment {
 		description.setText(String.format(currentItem.getDescription()));
 		stats.setText(String.format("HP " + currentItem.getAddHP()));
 		if (currentItem.getEquipped()) {
-			equipButton.setText(String.format("Equipped"));
+			equipButton.setText(String.format("Unequip"));
 		} else {
-			equipButton.setText(String.format("Unequipped"));
+			equipButton.setText(String.format("Equip"));
+		}
+		
+		if(currentItem.isConsumable())
+		{
+			equipButton.setText("Use");
 		}
 
 	}

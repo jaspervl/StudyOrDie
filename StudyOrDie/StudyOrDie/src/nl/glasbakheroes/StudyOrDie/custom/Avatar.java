@@ -92,7 +92,7 @@ public class Avatar extends GameObject {
 		int index = equipped.indexOf(item);
 		if(index != -1)
 		{
-			maxHP = maxHP + (equipped.get(index).addHP * -1);
+			maxHP = maxHP + (equipped.get(index).getAddHP() * -1);
 			equipped.remove(index);
 			return;
 		}

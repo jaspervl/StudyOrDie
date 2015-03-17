@@ -39,7 +39,7 @@ public class CharacterFragment extends Fragment implements Observer{
 	
 	private void setter(){
 		selectedAvatar = StudyOrDieModel.getAvatar();
-		avatarHP.setText("HP : " + selectedAvatar.getMaxHP() + "/" + selectedAvatar.getCurrentHP());
+		avatarHP.setText("HP : " + selectedAvatar.getCurrentHP() + "/"+ selectedAvatar.getMaxHP());
 		avatarName.setText(selectedAvatar.getName());
 		
 		
