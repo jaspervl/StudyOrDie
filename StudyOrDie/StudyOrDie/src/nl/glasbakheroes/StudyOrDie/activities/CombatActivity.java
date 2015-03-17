@@ -26,6 +26,8 @@ import android.widget.Toast;
  * @author Niels Jan
  */
 public class CombatActivity extends Activity implements Observer {
+	
+	/** Instance variables */
 	private ImageView bossImage;
 	private Boss boss;
 	private Handler handler = new Handler();
@@ -35,6 +37,7 @@ public class CombatActivity extends Activity implements Observer {
 	private BattleAttackOptionsView attackOptions;
 	private ProgressBar barBossHp;
 
+	/** Will be called when the activity is created [also after it finished / got destroyed] */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

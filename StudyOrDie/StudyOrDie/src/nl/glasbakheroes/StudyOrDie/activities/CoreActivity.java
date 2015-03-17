@@ -25,25 +25,31 @@ import android.widget.ImageView;
  * @author Niels Jan & Jasper
  */
 public class CoreActivity extends Activity {
-
+	/** Instance variables */
 	public static final int REQUEST_START_CODE = 2;
 	private static boolean startMenuShown = false;
 	
+	/* Major class instances */
 	private StudyOrDieGameBoardView gameView;
 	private StudyOrDieGame game;
+	private StudyOrDieModel model;
+	
+	/* Interface components */
 	private Button upButton;
 	private Button downButton; 
 	private Button leftButton;
 	private Button rightButton;
 	private Button menuButton;
 	private ImageView btnFoldUnfold;
+	private OverworldStatsView statView;
+
+	/* Helper variables */
 	private Handler handler;
 	protected String moveDirection = "";
-	private StudyOrDieModel model;
-	private OverworldStatsView statView;
 	private boolean folding = true;
 	private boolean disableMovement = false;
 
+	/* Will be called when the activity is created [Also after it got destroyed/finished] */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,6 +68,7 @@ public class CoreActivity extends Activity {
 			startMenuShown = true;
 		} 
 		
+		/* Retrieve the model from the application and create a handler for delayed actions */
 		handler = new Handler();
 		model = ((StudyOrDieApplication) getApplication()).getModel();
 
