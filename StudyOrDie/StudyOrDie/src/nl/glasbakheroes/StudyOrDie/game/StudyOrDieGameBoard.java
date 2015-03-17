@@ -203,7 +203,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			return true;
 			
 			/** Boss present, avatar will enter a fight and won't move. */
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) { 
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);

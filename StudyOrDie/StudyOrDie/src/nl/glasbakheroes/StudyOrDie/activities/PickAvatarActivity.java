@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Activity where the player can pick a avatar and set his/her name
@@ -57,17 +58,22 @@ public class PickAvatarActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			model.getAvatar().setName(etFillName.getText() + "");
-//			model.getAvatar().setAvatarImage();  <--- Implement this
-			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
-			resultIntent.putExtra("action", "new");
-			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
+			if ((etFillName.getText() + "").length() == 0) {
+				Toast.makeText(getApplicationContext(), "Please enter a name before picking a avatar", Toast.LENGTH_SHORT).show();
+			} else {
+				model.getAvatar().setName(etFillName.getText() + "");
+//				model.getAvatar().setAvatarImage();  <--- Implement this
+				Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
+				resultIntent.putExtra("action", "new");
+				setResult(RESULT_TO_STARTACTIVITY, resultIntent);
+				
+				handler.postDelayed(new Runnable() {
+					public void run() {
+						finish();
+					}
+				}, 2000);
+			}
 			
-			handler.postDelayed(new Runnable() {
-				public void run() {
-					finish();
-				}
-			}, 2000);
 		}
 	}
 	

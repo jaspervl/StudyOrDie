@@ -28,6 +28,7 @@
     <string name="input_stats">Stats</string>
     <string name="equip_button">Equip</string>
     <string name="inventory_string">inventory</string>
+    <string name="pick_avatar">"        Pick your avatar:"</string>
  
 
 </resources>
