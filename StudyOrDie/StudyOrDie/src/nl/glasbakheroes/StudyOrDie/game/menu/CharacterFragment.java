@@ -47,8 +47,6 @@ public class CharacterFragment extends Fragment implements Observer{
 		// Above is a temporary solution, add textViews and make seperate strings.
 		avatarName.setText(selectedAvatar.getName());
 		
-		
-		
 	}
 
 	@Override

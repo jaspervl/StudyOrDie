@@ -42,8 +42,8 @@ public class LevelLoader {
 	}
 
 	private void createBosses() {
-		model.addBoss("Wombat");
-		model.addBoss("Ruud");
+		model.addBoss("Wombat", 100);
+		model.addBoss("Ruud", 120);
 	}
 
 	/** Set the current level */

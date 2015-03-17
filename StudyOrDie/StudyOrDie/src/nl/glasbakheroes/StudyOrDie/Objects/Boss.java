@@ -8,10 +8,12 @@ public class Boss extends GameObject{
 	public static final String BOSS_IMAGE = "Boss";
 	private String name;
 	private boolean alive = true;
+	private int hitPoints;
 
 	
-	public Boss(String name) {
+	public Boss(String name, int hitPoints) {
 		this.name = name;
+		this.hitPoints = hitPoints;
 	}
 	
 	
@@ -35,5 +37,13 @@ public class Boss extends GameObject{
 	
 	public boolean getAlive() {
 		return alive;
+	}
+	
+	public void setHP(int hp) {
+		this.hitPoints = hp;
+	}
+	
+	public int getHP() {
+		return hitPoints;
 	}
 }

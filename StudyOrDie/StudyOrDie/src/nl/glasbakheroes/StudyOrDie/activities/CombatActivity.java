@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.activities;
 
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
@@ -13,6 +14,7 @@ import android.view.Surface;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Activity where the avatar battles a boss
@@ -20,8 +22,11 @@ import android.widget.ImageView;
  */
 public class CombatActivity extends Activity {
 	private ImageView bossImage;
-	private String bossName;
+	private Boss boss;
 	private Handler handler = new Handler();
+	private StudyOrDieModel model;
+	private TextView tvBossHP;
+	private int bossMaxHP;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +39,17 @@ public class CombatActivity extends Activity {
 		
 		setContentView(R.layout.activity_combat);
 		
+		model = ((StudyOrDieApplication) getApplication()).getModel();
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
-		bossName = extras.getString("bossName"); 
+		String bossName = extras.getString("bossName"); 
+		
+		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
 		
 		Log.w("Combat", bossName);
+		boss = model.getBoss(bossName);
+		bossMaxHP = boss.getHP();
+		tvBossHP.setText("HP: " + boss.getHP() + "/" + boss.getHP());
 		
 	}
 	
@@ -50,9 +61,8 @@ public class CombatActivity extends Activity {
 	
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
-		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
-		app.getModel().getBoss(bossName).killBoss();
-		app.getModel().getLoader().loadLevel("Boss");
+		boss.killBoss();
+		model.getLoader().loadLevel("Boss");
 		delayedFinish();	
 	}
 	 
@@ -61,9 +71,8 @@ public class CombatActivity extends Activity {
 	 * Public because Views want to use this. (e.g. forfeit button in battle mode)
 	 */
 	public void killAvatar() {
-		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
-		app.getModel().getLoader().setLevel(app.getModel().getLoader().getLevel() - 2);
-		app.getModel().getLoader().loadLevel("Bottom");
+		model.getLoader().setLevel(model.getLoader().getLevel() - 2);
+		model.getLoader().loadLevel("Bottom");
 		delayedFinish();
 	}
 	
@@ -73,6 +82,19 @@ public class CombatActivity extends Activity {
 			public void run() {
 				finish();
 			}
-		}, 2000);
+		}, 1000);
+	}
+	
+	/**
+	 * Perform a attack against the saved boss
+	 */
+	public void performAttack(int damage) {
+		
+		boss.setHP(boss.getHP() - damage);
+		if (boss.getHP() <= 0) {
+			killBoss();
+		}
+		tvBossHP.setText("HP: " + boss.getHP() + "/" + bossMaxHP);
+		
 	}
 }

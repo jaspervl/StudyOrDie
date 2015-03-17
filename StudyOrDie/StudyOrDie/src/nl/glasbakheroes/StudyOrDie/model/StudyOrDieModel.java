@@ -35,8 +35,13 @@ public class StudyOrDieModel extends Observable {
 		loader = levelLoader;
 	}
 	
-	public void addBoss(String name) {
-		bosses.add(new Boss(name));
+	/**
+	 * Adds a boss with a certain name and hitPoints.
+	 * @param name	The name of the boss
+	 * @param hitPoints	The amount of hitpoints the boss starts with
+	 */
+	public void addBoss(String name, int hitPoints) {
+		bosses.add(new Boss(name, hitPoints));
 	}
 	
 	public Boss getBoss(String bossName) {
