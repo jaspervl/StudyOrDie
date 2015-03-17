@@ -54,6 +54,10 @@ public class BattleStatView extends LinearLayout {
 	
 		barHP.setMax(avatar.getMaxHP());
 		barHP.setProgress(avatar.getCurrentHP());
+		barEnergy.setMax(avatar.getMaxEnergy());
+		barEnergy.setProgress(avatar.getCurrentEnergy());
+		barStat.setMax(avatar.getMaxMotivation());
+		barStat.setProgress(avatar.getCurrentMotivation());
 		
 	}
 	

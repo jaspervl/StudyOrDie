@@ -20,13 +20,28 @@ public class Avatar extends GameObject {
 	public final static String AVATAR_RIGHT = "AvatarRight";
 	
 	private String currentImage = AVATAR_FRONT;
+	private String name = "Avatar_name";
+	private StudyOrDieModel model;
+	
+	/* Dynamic game variables */
 	private int currentHP = 100;
 	private int maxHP = 100;
-	private String name = "Avatar_name";
+	private int currentEnergy = 100;
+	private int maxEnergy = 100;
+	private int currentMotivation = 100;
+	private int maxMotivation = 100;
+	/* The current items equipped by the avatar */
 	private ArrayList<Item> equipped = new ArrayList<>();
 	/* Amount of keys the avatar (picked up - amount used) */
 	private int numberOfKeys;
 	
+	/**
+	 * Constructor
+	 * @param model	The only version of the model (Given by the model itself)
+	 */
+	public Avatar(StudyOrDieModel model) {
+		this.model = model;
+	}
 	
 	@Override
 	public String getImageId() {
@@ -71,14 +86,6 @@ public class Avatar extends GameObject {
 	public void addKey() {
 		numberOfKeys++;
 	}
-	
-	public int getCurrentHP() {
-		return currentHP;
-	}
-	
-	public int getMaxHP() {
-		return maxHP;
-	}
 
 	public String getName() {
 		return name;
@@ -120,5 +127,59 @@ public class Avatar extends GameObject {
 			currentHP = maxHP;
 		}
 	}
+	
+	
+	
+	/** Accessors and mutators for dynamic game variables */
+	
+	public int getCurrentHP() {
+		return currentHP;
+	}
+	
+	public int getMaxHP() {
+		return maxHP;
+	}
+	
+	public int getCurrentEnergy() {
+		return currentEnergy;
+	}
+	
+	public int getMaxEnergy() {
+		return maxEnergy;
+	}
+
+	public int getCurrentMotivation() {
+		return currentMotivation;
+	}
+	
+	public int getMaxMotivation() {
+		return maxMotivation;
+	}
+	
+	public void setCurrentEnergy(int currentEnergy) {
+		this.currentEnergy = currentEnergy;
+		model.update();
+	}
+
+	public void setMaxEnergy(int maxEnergy) {
+		this.maxEnergy = maxEnergy;
+		model.update();
+	}
+
+	public void setCurrentHP(int currentHP) {
+		this.currentHP = currentHP;
+		model.update();
+	}
+
+	public void setMaxHP(int maxHP) {
+		this.maxHP = maxHP;
+		model.update();
+	}
+
+	public void setCurrentMotivation(int currentMotivation) {
+		this.currentMotivation = currentMotivation;
+		model.update();
+	}
+
 	
 }

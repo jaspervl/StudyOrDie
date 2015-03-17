@@ -1,5 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
@@ -14,7 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class OverworldStatsView extends LinearLayout {
+public class OverworldStatsView extends LinearLayout implements Observer {
 	
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
@@ -53,8 +56,7 @@ public class OverworldStatsView extends LinearLayout {
 			
 			setBackgroundColor(Color.BLACK);
 			setAlpha(0.8F);
-			barHP.setMax(avatar.getMaxHP()); 
-			barHP.setProgress(avatar.getCurrentHP());
+			updateData();
 			tvOverworldvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
 			StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
 			tvOverworldvatarName.setText(app.getModel().getAvatar().getName());
@@ -78,5 +80,19 @@ public class OverworldStatsView extends LinearLayout {
 			this.setLayoutParams(new RelativeLayout.LayoutParams(600,200));
 		}
 	}
+	@Override
+	public void update(Observable observable, Object data) {
+		updateData();
+	}
+	
+	public void updateData() {
+		barHP.setMax(avatar.getMaxHP());
+		barHP.setProgress(avatar.getCurrentHP());
+		barEnergy.setMax(avatar.getMaxEnergy());
+		barEnergy.setProgress(avatar.getCurrentEnergy());
+		barStat.setMax(avatar.getMaxMotivation());
+		barStat.setProgress(avatar.getCurrentMotivation());
+	}
+	
 	
 }

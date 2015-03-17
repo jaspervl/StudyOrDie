@@ -17,10 +17,10 @@ public class StudyOrDieModel extends Observable {
 	private ArrayList<Item> itemList;
 	
 	public StudyOrDieModel() {
-		avatar = new Avatar();
+		avatar = new Avatar(this);
 		bosses = new ArrayList<Boss>();
 		itemList = new ArrayList<Item>();
-		fillArray();
+		fillArray(); // What array? ;-)
 	}
 	
 	public Avatar getAvatar() {
@@ -29,7 +29,6 @@ public class StudyOrDieModel extends Observable {
 	
 	public LevelLoader getLoader() {
 		return loader;
-		
 	}
 
 	public void setLoader(LevelLoader levelLoader) {
@@ -65,8 +64,7 @@ public class StudyOrDieModel extends Observable {
 	public void removeItem(Item item)
 	{
 		getItemList().remove(item);
-		setChanged();
-		notifyObservers();
+		update();
 	}
 	
 	private void fillArray(){
@@ -80,6 +78,10 @@ public class StudyOrDieModel extends Observable {
 	
 	public void addItemToAvatar(Item item) {
 		avatar.addItem(item);
+		update();
+	}
+	
+	public void update() {
 		setChanged();
 		notifyObservers();
 	}
