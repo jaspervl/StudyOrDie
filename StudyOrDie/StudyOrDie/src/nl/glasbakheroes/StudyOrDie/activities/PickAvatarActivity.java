@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -58,15 +59,16 @@ public class PickAvatarActivity extends Activity {
 		public void onClick(View v) {
 			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 			model.getAvatar().setName(inputChar.getText() + "");
+			Log.w("FIRST STAGE", "Name should be: " + inputChar.getText());
 //			model.getAvatar().setAvatarImage();  <--- Implement this
 			resultIntent.putExtra("action", "new");
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
-			finish();
+			handler.postDelayed(new Runnable() {
+				public void run() {
+					finish();
+				}
+			}, 1000);
 		}
 	}
-	
-	/**
-	 * ENTER IMPLEMENTATION TO RETURN THE CHOSEN NAME AND PICURE, DUMMY ACTIVITY FOR NOW.
-	 */
 	
 }

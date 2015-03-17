@@ -182,34 +182,19 @@ public class CoreActivity extends Activity {
 		 if (requestCode == REQUEST_START_CODE) { 
 			/* Save the received data into strings */ 
 			String action = data.getStringExtra("action"); 
-			String avatarName = data.getStringExtra("avatarName");
-			String avatarPicture = data.getStringExtra("avatarPicure");
-			
-			model.getAvatar().setName(avatarName);
 			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
-				startNewGame(avatarName, avatarPicture);
+				startNewGame();
 			} else if (action.equals("load")) {
-				loadGame(avatarName);  
+				loadGame();  
 			} else if (action.equals("abort")) {
-				startNewGame(avatarName, "default_picure_name");
+				// Do something when player backs out of start menu.
+				startNewGame();
 			}
 		}
 	}
 
-	/** At the moment these methods add nothing to the game, 
-	 * once we start allocating data to the model we can use these methods. */
-	private void startNewGame(String avatarName, String avatarPicure) {
-		// Set up the model for a new game.	
-		Log.w("CoreActivity", "New game was chosen by the player with avatar name: " + avatarName);
-	}
-	
-	private void loadGame(String avatarName) {
-		// Start load screen from here.
-		Log.w("CoreActivity", "Load game was chosen by the player with avatar name: " + avatarName);
-	}
-	
 	/** When activity is resumed */
 	@Override
 	protected void onResume() {
@@ -225,5 +210,18 @@ public class CoreActivity extends Activity {
 		disableMovement = true;
 		super.onPause();
 	}
+	
+	/**
+	 * Dummy methods at the moment!
+	 */
+	private void startNewGame() {
+		// Set up the model for a new game.	
+	}
+	private void loadGame() {
+		// Start load screen from here.
+	}
+	/**
+	 * End of dummy methods
+	 */
 	
 }

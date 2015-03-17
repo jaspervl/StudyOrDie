@@ -65,7 +65,7 @@ public class Avatar extends GameObject {
 			} break;
 		case "Right" : if(!currentImage.equals(AVATAR_RIGHT)){
 			currentImage = AVATAR_RIGHT; 
-			} break;
+			} break; 
 		default	: break;
 		}
 	}
