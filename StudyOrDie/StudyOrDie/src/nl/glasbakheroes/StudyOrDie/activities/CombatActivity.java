@@ -14,7 +14,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Surface;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -24,7 +23,7 @@ import android.widget.Toast;
 
 /**
  * Activity where the avatar battles a boss
- * @author enjee
+ * @author Niels Jan
  */
 public class CombatActivity extends Activity implements Observer {
 	private ImageView bossImage;

@@ -17,15 +17,17 @@ import android.widget.ProgressBar;
 
 /**
  * Battle stats UI component which visualize the Avatars status within a battle.
- * @author enjee
+ * @author Niels Jan
  *
  */
 public class BattleStatView extends LinearLayout implements Observer { 
 
+	/** Instance variables */
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
 	private CombatActivity activity;
 
+	/** Constructors */
 	public BattleStatView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -42,30 +44,39 @@ public class BattleStatView extends LinearLayout implements Observer {
 		activity = (CombatActivity) context;
 		init();
 	}
+	
+	/** Initialize method which will be called from every constructor */
 	private void init() {
 		if (!isInEditMode()) {
+			/* Convert the views XML file into java-code */
 			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			inflater.inflate(R.layout.battle_stats_view, this);
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}
 		
+		/* Get the model from the application */
 		StudyOrDieModel model = ((StudyOrDieApplication) getContext().getApplicationContext()).getModel();
+		/* Add the view as a observer to the model */
 		model.addObserver(this);
 		
+		/* Link the interface components to this class instance and retrieve the avatar from the model */
 		avatar = ((StudyOrDieApplication) activity.getApplication()).getModel().getAvatar();
 		barHP = (ProgressBar) findViewById(R.id.barHP);
 		barEnergy = (ProgressBar) findViewById(R.id.barEnergy);
 		barStat = (ProgressBar) findViewById(R.id.barStat);
 		
+		/* Fill the progressbars with relevant data */
 		updateData();
-		
 	}
+	
+	/** Update will be called from the Observable class StudyOrDieModel */
 	@Override
 	public void update(Observable observable, Object data) {
 		updateData();
 	}
 	
+	/** Update all data that is dynamic (the progress bars) */
 	private void updateData() {
 		barHP.setMax(avatar.getMaxHP());
 		barHP.setProgress(avatar.getCurrentHP());

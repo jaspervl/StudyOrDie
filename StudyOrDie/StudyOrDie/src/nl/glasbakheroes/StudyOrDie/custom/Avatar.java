@@ -11,7 +11,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
  * Main avatar in the game which the player controls.
- * @author enjee & Jasper & Thomas
+ * @author Niels Jan & Jasper & Thomas
  */
 public class Avatar extends GameObject {
 	public final static String AVATAR_FRONT = "AvatarFront";

@@ -11,7 +11,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -19,12 +18,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 /**
  * Main activity in the game, represents the overworld
  * 
- * @author enjee & Jasper
+ * @author Niels Jan & Jasper
  */
 public class CoreActivity extends Activity {
 
@@ -108,10 +106,12 @@ public class CoreActivity extends Activity {
 		}
 	};
 
+	/** Starts the movement method for infinite time, untill stop moving is called. */
 	void startMovingLoop() {
 		movement.run();
 	}
 
+	/** Stop the infinite movement loop */
 	void stopMovingLoop() {
 		handler.removeCallbacks(movement);
 	}
@@ -165,13 +165,12 @@ public class CoreActivity extends Activity {
 		}
 	}
 
-	/**
-	 * Game board view getter.
-	 */
+	/** Game board view getter. */
 	public StudyOrDieGameBoardView getGameBoardView() {
 		return gameView;
 	}
 
+	/** Game getter. */
 	public StudyOrDieGame getGame() {
 		return game;
 	}
@@ -216,6 +215,7 @@ public class CoreActivity extends Activity {
 	 * Dummy methods at the moment!
 	 */
 	private void startNewGame() {
+		// Start a fresh game.
 	}
 	private void loadGame() {
 		// Start load screen from here.

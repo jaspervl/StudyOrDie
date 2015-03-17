@@ -1,8 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
-import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
-import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +12,7 @@ import android.widget.Button;
 
 /**
  * The start screen activity, gives back a result to the core activity.
- * @author enjee
+ * @author Niels Jan
  */
 public class StartActivity extends Activity {
 
@@ -62,11 +60,11 @@ public class StartActivity extends Activity {
 		}
 	}
 	
+	/** When a result came in from a activity started for a result, daisy chain the result to the Core Activity. */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == REQUEST_AVATAR_SELECTION) { 
-			/* Pass the given information from the avatar selection activity to the core activity */
 			Intent resultIntent = new Intent();
 			resultIntent.putExtra("action", "new");
 			setResult(RESULT_TO_CORE_ACTIVITY, resultIntent);
@@ -74,9 +72,9 @@ public class StartActivity extends Activity {
 		}
 	}
 	
-	
+
+	/** When the back key is pressed pass 'abort' to the core activity */
 	public void onBackPressed() {
-		/* When the back key is pressed pass 'abort' to the core activity */
 		Intent resultIntent = new Intent();
 		Bundle extras = new Bundle();
 		extras.putString("action", "abort");

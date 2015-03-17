@@ -15,7 +15,7 @@ import android.util.Log;
 
 /**
  * A View on the SoD game board.
- * @author enjee & Jasper
+ * @author Niels Jan & Jasper
  */
 public class StudyOrDieGameBoardView extends GameBoardView {
 	private static final String TAG = "GameView";
@@ -26,9 +26,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		}
 	}
 
-	/**
-	 * Constructors
-	 */
+	/** Constructor */
 	public StudyOrDieGameBoardView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		if (!isInEditMode()) {

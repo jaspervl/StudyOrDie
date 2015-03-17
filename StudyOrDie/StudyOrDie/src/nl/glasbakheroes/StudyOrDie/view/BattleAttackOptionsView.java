@@ -16,13 +16,15 @@ import android.widget.Toast;
 /**
  * A UI component which contains 6 attack buttons which represent 
  * 		different attacks the player can make.
- * @author enjee
+ * @author Niels Jan
  */
 public class BattleAttackOptionsView extends LinearLayout {
 	
+	/** Instance variables */
 	private Button btnAttack1, btnAttack2, btnAttack3, btnAttack4;
 	private StudyOrDieModel model;
 
+	/** Constructors */
 	public BattleAttackOptionsView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -36,16 +38,21 @@ public class BattleAttackOptionsView extends LinearLayout {
 		super(context);
 		init();
 	}
+	
+	/** Initialize method which will be called from every constructor */
 	private void init() {
 		if (!isInEditMode()) {
+			/* Convert the XML view into java-code */
 			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			inflater.inflate(R.layout.battle_attack_options_view, this);
 		} else {
 			setBackgroundColor(Color.BLUE);
 		}
 		
+		/* Retrieve the model from the application */
 		model = ((StudyOrDieApplication) getContext().getApplicationContext()).getModel();
 		
+		/* Link all buttons to the interface */
 		btnAttack1 = (Button) findViewById(R.id.btnAttack1);
 		btnAttack2 = (Button) findViewById(R.id.btnAttack2);
 		btnAttack3 = (Button) findViewById(R.id.btnAttack3);
@@ -60,14 +67,19 @@ public class BattleAttackOptionsView extends LinearLayout {
 		enableAllButtons();
 	}
 	
+	/** Listens for button presses */
 	private class ButtonListener implements OnClickListener {
 
+		/* Initialize the local variables */
 		String attackName = "";
 		int damage = 0;
 		int energyModifier = 0;
 		int motivationModifier = 0;
+		
+		/* Get the activity where this view is called from */
 		CombatActivity activity = (CombatActivity) getContext();
 		
+		/* Set the local variables according to the value of the button that is clicked */
 		@Override
 		public void onClick(View v) {
 			if (v == btnAttack1) {
@@ -92,6 +104,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 				motivationModifier = -10;
 			}
 			
+			/* Modify the avatar and the boss (through a activity method) according to the button that is clicked */
 			model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() + energyModifier);
 			model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() + motivationModifier);
 			Toast.makeText(activity, "Attack casted: " + attackName, Toast.LENGTH_SHORT).show();
@@ -99,6 +112,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 		}
 	}
 
+	/** Disable all buttons while the conditions require them to be disabled */
 	public void disableAllButtons() {
 		btnAttack1.setOnClickListener(null);
 		btnAttack2.setOnClickListener(null);
@@ -106,6 +120,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 		btnAttack4.setOnClickListener(null);
 	}
 	
+	/** Enable all buttons again, will be called if it's the players turn and neither the boss or the player lost all their HP */
 	public void enableAllButtons() {
 		ButtonListener listener = new ButtonListener();
 		btnAttack1.setOnClickListener(listener);

@@ -12,11 +12,13 @@ import android.widget.LinearLayout;
 
 /**
  * A UI component which contains all the menu options accessible from within a battle.
- * @author enjee
+ * @author Niels Jan
  */
 public class BattleMenuOptionsView extends LinearLayout {
+	/** Instance variables */
 	private Button btnItems, btnCharacter, btnForfeit;
 
+	/** Constructors */
 	public BattleMenuOptionsView(Context context, AttributeSet attrs,
 			int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -30,21 +32,28 @@ public class BattleMenuOptionsView extends LinearLayout {
 		super(context);
 		init();
 	}
+	
+	/** Initialize method which will be called from every constructor */
 	private void init() {
 		if (!isInEditMode()) {
+			/* Convert the views XML into java-code */
 			LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			inflater.inflate(R.layout.battle_menu_options_view, this);
 		} else {
 			setBackgroundColor(Color.GREEN);
 		}
+		
+		/* Link the interface components to this class instance */
 		btnItems = (Button) findViewById(R.id.btnBattleItems);
 		btnCharacter = (Button) findViewById(R.id.btnBattleCharacter);
 		btnForfeit = (Button) findViewById(R.id.btnForfeit);
 		
+		/* Set a listener for the forfeit button */
 		ButtonListener listener = new ButtonListener();
 		btnForfeit.setOnClickListener(listener);
 	}
 	
+	/* Listener which listens to the forfeit button only at the moment */
 	private class ButtonListener implements OnClickListener {
 
 		@Override
@@ -58,7 +67,5 @@ public class BattleMenuOptionsView extends LinearLayout {
 			
 			}
 		}
-		
 	}
-	
 }

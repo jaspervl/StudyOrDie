@@ -18,7 +18,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
  * The SoD Game board
- * @author enjee
+ * @author Niels Jan
  */
 public class StudyOrDieGameBoard extends GameBoard {
 

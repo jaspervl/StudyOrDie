@@ -7,17 +7,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 /**
  * Activity where the player can pick a avatar and set his/her name
- * @author enjee
+ * @author Niels Jan
  */
 public class PickAvatarActivity extends Activity {
 	
@@ -53,6 +52,7 @@ public class PickAvatarActivity extends Activity {
 		imgAvatar4.setOnClickListener(listener);
 	}
 	
+	/** Listens to button clicks, which avatar is clicked does not matter at this point in time. */
 	private class ButtonListener implements OnClickListener {
 
 		@Override
