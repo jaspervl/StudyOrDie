@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Surface;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -53,7 +54,6 @@ public class CombatActivity extends Activity {
 		app.getModel(); 
 		StudyOrDieModel.getBoss(bossName).killBoss();
 		app.getModel().getLoader().loadLevel("Boss");
-		 
 		delayedFinish();	
 	}
 	 
@@ -65,7 +65,6 @@ public class CombatActivity extends Activity {
 		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
 		app.getModel().getLoader().setLevel(app.getModel().getLoader().getLevel() - 2);
 		app.getModel().getLoader().loadLevel("Bottom");
-		
 		delayedFinish();
 	}
 	
@@ -75,6 +74,6 @@ public class CombatActivity extends Activity {
 			public void run() {
 				finish();
 			}
-		}, 1000);
+		}, 2000);
 	}
 }

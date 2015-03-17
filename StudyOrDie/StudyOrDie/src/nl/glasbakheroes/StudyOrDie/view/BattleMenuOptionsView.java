@@ -52,6 +52,10 @@ public class BattleMenuOptionsView extends LinearLayout {
 			if (v == btnForfeit) {
 				CombatActivity activity = (CombatActivity) getContext();
 				activity.killAvatar();
+			} else if (v == btnItems) {
+				
+				// intent to open menu with intventory HERE!
+			
 			}
 		}
 		
