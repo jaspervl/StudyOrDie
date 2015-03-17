@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,13 +26,17 @@ public class ListFragment extends Fragment implements Observer{
 	ListView selection;
 	ListAdapter adapter;
 	TransmitInfo send;
+	private StudyOrDieModel model;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_list, container, false);
+				
+		model = ((StudyOrDieApplication) v.getContext().getApplicationContext()).getModel();
+		
 		selection = (ListView)v.findViewById(R.id.itemList);
-		adapter = new ListAdapter(getActivity(), android.R.layout.simple_list_item_1,StudyOrDieModel.getItemList());
+		adapter = new ListAdapter(getActivity(), android.R.layout.simple_list_item_1,model.getItemList());
 		selection.setAdapter(adapter);
 		selection.setOnItemClickListener(new OnItemClickListener(){
 			
@@ -60,7 +65,7 @@ public class ListFragment extends Fragment implements Observer{
 	@Override
 	public void update(Observable observable, Object data) {
 		adapter.clear();
-		adapter.addAll(StudyOrDieModel.getItemList());
+		adapter.addAll(model.getItemList());
 		adapter.notifyDataSetChanged();
 		
 	}

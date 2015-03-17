@@ -21,16 +21,19 @@ public class ItemFragment extends Fragment {
 	TextView stats;
 	Button equipButton;
 	Item currentItem;
+	private StudyOrDieModel model;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_item, container, false);
+		
+		model = ((StudyOrDieApplication) v.getContext().getApplicationContext()).getModel();
+		
 		name = (TextView) v.findViewById(R.id.tvItemName);
 		description = (TextView) v.findViewById(R.id.tvDescription);
 		equipButton = (Button) v.findViewById(R.id.btnEquipButton);
 		stats = (TextView) v.findViewById(R.id.tvAddStat);
-		if (StudyOrDieModel.getItemList().get(0) == null) {
+		if (model.getItemList().get(0) == null) {
 			return v;
 		}
 		setVariables(0);
@@ -41,7 +44,7 @@ public class ItemFragment extends Fragment {
 				StudyOrDieModel model = ((StudyOrDieApplication)getActivity().getApplication()).getModel();
 				if(currentItem.isConsumable())
 				{
-					StudyOrDieModel.getAvatar().setCurrent(currentItem.getAddHP());
+					model.getAvatar().setCurrent(currentItem.getAddHP());
 					model.removeItem(currentItem);
 					return;
 				}
@@ -61,7 +64,7 @@ public class ItemFragment extends Fragment {
 	}
 
 	public void setVariables(int pos) {
-		currentItem = StudyOrDieModel.getItemList().get(pos);
+		currentItem = model.getItemList().get(pos);
 		name.setText(String.format(currentItem.getName()));
 		description.setText(String.format(currentItem.getDescription()));
 		stats.setText(String.format("HP " + currentItem.getAddHP()));

@@ -100,7 +100,6 @@ public class CoreActivity extends Activity {
 	Runnable movement = new Runnable() {
 		@Override
 		public void run() {
-			Log.w("CoreActivity", "Movement is disabled");
 			if (!disableMovement) {
 				StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
 				board.moveAvatar(moveDirection);
@@ -186,7 +185,7 @@ public class CoreActivity extends Activity {
 			String avatarName = data.getStringExtra("avatarName");
 			String avatarPicture = data.getStringExtra("avatarPicure");
 			
-			StudyOrDieModel.getAvatar().setName(avatarName);
+			model.getAvatar().setName(avatarName);
 			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {

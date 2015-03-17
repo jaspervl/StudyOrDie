@@ -49,7 +49,7 @@ public class StudyOrDieGame extends Game {
 		StudyOrDieGameBoard board = (StudyOrDieGameBoard) getGameBoard();
 		board.setCoreActivity(activity);
 		board.removeAllObjects();
-		levelLoader = new LevelLoader(board, StudyOrDieModel.getAvatar());
+		levelLoader = new LevelLoader(board, model.getAvatar());
 		model.setLoader(levelLoader);
 		levelLoader.loadLevel("Bottom");
 	}

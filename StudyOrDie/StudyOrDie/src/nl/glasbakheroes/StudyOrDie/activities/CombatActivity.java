@@ -51,8 +51,7 @@ public class CombatActivity extends Activity {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
-		app.getModel(); 
-		StudyOrDieModel.getBoss(bossName).killBoss();
+		app.getModel().getBoss(bossName).killBoss();
 		app.getModel().getLoader().loadLevel("Boss");
 		delayedFinish();	
 	}
@@ -68,7 +67,7 @@ public class CombatActivity extends Activity {
 		delayedFinish();
 	}
 	
-	/** Finish the activity after a second to make */
+	/** Finish the activity after a second to make sure the active events get time to finish (Toast) */
 	private void delayedFinish() {
 		handler.postDelayed(new Runnable() {
 			public void run() {

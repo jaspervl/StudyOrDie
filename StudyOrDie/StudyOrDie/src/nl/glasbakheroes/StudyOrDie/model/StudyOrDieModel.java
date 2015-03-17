@@ -11,10 +11,10 @@ import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 
 public class StudyOrDieModel extends Observable {
 
-	private static Avatar avatar;
+	private Avatar avatar;
 	private LevelLoader loader;
-	private static ArrayList<Boss> bosses;
-	private static ArrayList<Item> itemList;
+	private ArrayList<Boss> bosses;
+	private ArrayList<Item> itemList;
 	
 	public StudyOrDieModel() {
 		avatar = new Avatar();
@@ -23,7 +23,7 @@ public class StudyOrDieModel extends Observable {
 		fillArray();
 	}
 	
-	public static Avatar getAvatar() {
+	public Avatar getAvatar() {
 		return avatar;
 	}
 	
@@ -40,8 +40,8 @@ public class StudyOrDieModel extends Observable {
 		bosses.add(new Boss(name));
 	}
 	
-	public static Boss getBoss(String bossName) {
-		for (Boss b : bosses) { 		  // Baas b ! xD
+	public Boss getBoss(String bossName) {
+		for (Boss b : bosses) { 		 
 			if (b.getName().equals(bossName)) {
 				return b;
 			}
@@ -59,7 +59,7 @@ public class StudyOrDieModel extends Observable {
 		return false;
 	}
 
-	public static ArrayList<Item> getItemList() {
+	public ArrayList<Item> getItemList() {
 		return itemList;
 	}
 	public void removeItem(Item item)

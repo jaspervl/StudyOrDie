@@ -24,12 +24,14 @@ public class CharacterFragment extends Fragment implements Observer{
 	TextView avatarName;
 	TextView avatarHP;
 	Avatar selectedAvatar;
+	private StudyOrDieModel model;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_character, container , false);
 		
 		StudyOrDieApplication app = ( StudyOrDieApplication ) getActivity().getApplication();
-		app.getModel().addObserver(this);
+		model = app.getModel();
+		model.addObserver(this);
 		avatarDisplay = (ImageView) v.findViewById(R.id.characterpicture);
 		avatarName = (TextView)v.findViewById(R.id.charactername);
 		avatarHP = (TextView)v.findViewById(R.id.characterhp);
@@ -38,7 +40,7 @@ public class CharacterFragment extends Fragment implements Observer{
 	}
 	
 	private void setter(){
-		selectedAvatar = StudyOrDieModel.getAvatar();
+		selectedAvatar = model.getAvatar();
 		avatarHP.setText("HP : " + selectedAvatar.getCurrentHP() + "/"+ selectedAvatar.getMaxHP());
 		avatarName.setText(selectedAvatar.getName());
 		
