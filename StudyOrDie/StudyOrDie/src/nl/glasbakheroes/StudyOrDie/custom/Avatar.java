@@ -92,8 +92,9 @@ public class Avatar extends GameObject {
 	}
 	
 	public void setName(String name) {
-		Log.w("LAST STAGE", "Name set to: " + name); 
+		Log.w("Avatar.setName", "Name set to: " + name); 
 		this.name = name;
+		model.update();
 	}
 	
 	public void addItem(Item item)

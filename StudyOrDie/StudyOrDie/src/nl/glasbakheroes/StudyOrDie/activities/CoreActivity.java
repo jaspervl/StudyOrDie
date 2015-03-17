@@ -179,6 +179,7 @@ public class CoreActivity extends Activity {
 	/** Result from another activity received */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		/** Result from start screen occurred */
+		statView.setDisplayName(model.getAvatar().getName());
 		 if (requestCode == REQUEST_START_CODE) { 
 			/* Save the received data into strings */ 
 			String action = data.getStringExtra("action"); 
@@ -215,7 +216,6 @@ public class CoreActivity extends Activity {
 	 * Dummy methods at the moment!
 	 */
 	private void startNewGame() {
-		// Set up the model for a new game.	
 	}
 	private void loadGame() {
 		// Start load screen from here.

@@ -23,7 +23,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
 	private CoreActivity activity;
-	private TextView tvOverworldvatarName, tvHP, tvEnergy, tvMotivation;
+	private TextView tvOverworldAvatarName, tvHP, tvEnergy, tvMotivation;
 	private ImageView ivAvatarImage;
 	private StudyOrDieModel model;
 
@@ -59,13 +59,11 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			tvEnergy = (TextView) findViewById(R.id.tvOverWorldEnergy);
 			tvMotivation = (TextView) findViewById(R.id.tvOverWorldMotivation);
 			ivAvatarImage = (ImageView) findViewById(R.id.ivOverWorldAvatar);
-			tvOverworldvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
+			tvOverworldAvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
 			
+			updateData();
 			setBackgroundColor(Color.BLACK);
 			setAlpha(0.8F);
-			updateData();
-			tvOverworldvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
-			tvOverworldvatarName.setText(model.getAvatar().getName());
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}		
@@ -98,8 +96,9 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 		barEnergy.setProgress(avatar.getCurrentEnergy());
 		barStat.setMax(avatar.getMaxMotivation());
 		barStat.setProgress(avatar.getCurrentMotivation());
-		tvOverworldvatarName.setText(model.getAvatar().getName());
 	}
 	
-	
+	public void setDisplayName(String name) {
+		this.tvOverworldAvatarName.setText(name);
+	}
 }

@@ -23,7 +23,7 @@ public class PickAvatarActivity extends Activity {
 	
 	public static final int RESULT_TO_STARTACTIVITY = StartActivity.REQUEST_AVATAR_SELECTION;
 	private ImageView imgAvatar1, imgAvatar2, imgAvatar3, imgAvatar4;
-	private EditText inputChar;
+	private EditText etFillName;
 	Handler handler = new Handler();
 	private StudyOrDieModel model;
 	
@@ -44,7 +44,7 @@ public class PickAvatarActivity extends Activity {
 		imgAvatar2 = (ImageView)findViewById(R.id.imgAvatar2);
 		imgAvatar3 = (ImageView)findViewById(R.id.imgAvatar3);
 		imgAvatar4 = (ImageView)findViewById(R.id.imgAvatar4);
-		inputChar = (EditText)findViewById(R.id.etFillName);
+		etFillName = (EditText)findViewById(R.id.etFillName);
 		
 		ButtonListener listener = new ButtonListener();
 		imgAvatar1.setOnClickListener(listener); 
@@ -57,17 +57,17 @@ public class PickAvatarActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
-			model.getAvatar().setName(inputChar.getText() + "");
-			Log.w("FIRST STAGE", "Name should be: " + inputChar.getText());
+			model.getAvatar().setName(etFillName.getText() + "");
 //			model.getAvatar().setAvatarImage();  <--- Implement this
+			Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 			resultIntent.putExtra("action", "new");
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
+			
 			handler.postDelayed(new Runnable() {
 				public void run() {
 					finish();
 				}
-			}, 1000);
+			}, 2000);
 		}
 	}
 	

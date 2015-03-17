@@ -49,6 +49,7 @@ public class CombatActivity extends Activity implements Observer {
 		
 		model = ((StudyOrDieApplication) getApplication()).getModel();
 		model.addObserver(this);
+		
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
 		String bossName = extras.getString("bossName"); 
@@ -57,7 +58,6 @@ public class CombatActivity extends Activity implements Observer {
 		tvBossName = (TextView) findViewById(R.id.tvCombatBossName);
 		barBossHp = (ProgressBar) findViewById(R.id.barBossHp);
 		attackOptions = (BattleAttackOptionsView) findViewById(R.id.battleAttackOptionsView1);
-		
 		Log.w("Combat", bossName);
 		boss = model.getBoss(bossName);
 		bossMaxHP = boss.getHP();
