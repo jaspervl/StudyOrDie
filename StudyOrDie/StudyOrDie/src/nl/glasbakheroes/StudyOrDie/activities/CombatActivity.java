@@ -7,6 +7,7 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,7 +20,7 @@ import android.widget.ImageView;
 public class CombatActivity extends Activity {
 	private ImageView bossImage;
 	private String bossName;
-//	public static final int RESULT_COREACTIVITY_CODE = StudyOrDieGameBoard.REQUEST_COMBAT_CODE;
+	private Handler handler = new Handler();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +50,11 @@ public class CombatActivity extends Activity {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
-		app.getModel();
+		app.getModel(); 
 		StudyOrDieModel.getBoss(bossName).killBoss();
 		app.getModel().getLoader().loadLevel("Boss");
-		
-		finish();
+		 
+		delayedFinish();	
 	}
 	 
 	/**
@@ -64,6 +65,16 @@ public class CombatActivity extends Activity {
 		StudyOrDieApplication app = (StudyOrDieApplication) getApplication();
 		app.getModel().getLoader().setLevel(app.getModel().getLoader().getLevel() - 2);
 		app.getModel().getLoader().loadLevel("Bottom");
-		finish();
+		
+		delayedFinish();
+	}
+	
+	/** Finish the activity after a second to make */
+	private void delayedFinish() {
+		handler.postDelayed(new Runnable() {
+			public void run() {
+				finish();
+			}
+		}, 1000);
 	}
 }

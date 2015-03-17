@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * A UI component which contains 6 attack buttons which represent 
@@ -43,12 +44,14 @@ public class BattleAttackOptionsView extends LinearLayout {
 		btnAttack2 = (Button) findViewById(R.id.btnAttack2);
 		btnAttack3 = (Button) findViewById(R.id.btnAttack3);
 		btnAttack4 = (Button) findViewById(R.id.btnAttack4);
-		btnAttack5 = (Button) findViewById(R.id.btnAttack5);
+		btnAttack5 = (Button) findViewById(R.id.btnAttack5); 
 		btnAttack6 = (Button) findViewById(R.id.btnAttack6); 
+		btnAttack1.setText("Throw exception");
+		btnAttack2.setText("Ask socratic question");
 		
 		ButtonListener listener = new ButtonListener();
 		btnAttack1.setOnClickListener(listener);
-		btnAttack2.setOnClickListener(listener);
+		btnAttack2.setOnClickListener(listener); 
 		btnAttack3.setOnClickListener(listener);
 		btnAttack4.setOnClickListener(listener);
 		btnAttack5.setOnClickListener(listener);
@@ -60,6 +63,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 		@Override
 		public void onClick(View v) {
 			CombatActivity activity = (CombatActivity) getContext();
+			Toast.makeText(activity, "Attack casted: " + ((Button) v).getText(), Toast.LENGTH_SHORT).show();
 			activity.killBoss();
 		}
 		

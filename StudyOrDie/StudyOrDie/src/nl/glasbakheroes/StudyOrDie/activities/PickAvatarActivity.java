@@ -4,6 +4,7 @@ import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +21,7 @@ public class PickAvatarActivity extends Activity {
 	public static final int RESULT_TO_STARTACTIVITY = StartActivity.REQUEST_AVATAR_SELECTION;
 	private ImageView imgAvatar1, imgAvatar2, imgAvatar3, imgAvatar4;
 	private EditText inputChar;
+	Handler handler = new Handler();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class PickAvatarActivity extends Activity {
 		inputChar = (EditText)findViewById(R.id.etFillName);
 		
 		ButtonListener listener = new ButtonListener();
-		imgAvatar1.setOnClickListener(listener);
+		imgAvatar1.setOnClickListener(listener); 
 		imgAvatar2.setOnClickListener(listener);
 		imgAvatar3.setOnClickListener(listener);
 		imgAvatar4.setOnClickListener(listener);
@@ -57,7 +59,11 @@ public class PickAvatarActivity extends Activity {
 			extras.putString("avatarPicure", "default_avatar_picture");
 			resultIntent.putExtras(extras);
 			setResult(RESULT_TO_STARTACTIVITY, resultIntent);
-			finish();
+			handler.postDelayed(new Runnable() {
+				public void run() {
+					finish();
+				}
+			}, 1000);
 		}
 	}
 	
