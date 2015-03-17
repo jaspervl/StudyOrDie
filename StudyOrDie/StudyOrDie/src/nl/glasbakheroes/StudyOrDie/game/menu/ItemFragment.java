@@ -41,7 +41,9 @@ public class ItemFragment extends Fragment {
 				StudyOrDieModel model = ((StudyOrDieApplication)getActivity().getApplication()).getModel();
 				if(currentItem.isConsumable())
 				{
-					model.getAvatar().setCurrent(currentItem.getAddHP());
+					StudyOrDieModel.getAvatar().setCurrent(currentItem.getAddHP());
+					model.removeItem(currentItem);
+					return;
 				}
 				model.addItemToAvatar(currentItem);
 				currentItem.equip();

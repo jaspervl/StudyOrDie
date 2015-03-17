@@ -62,6 +62,12 @@ public class StudyOrDieModel extends Observable {
 	public static ArrayList<Item> getItemList() {
 		return itemList;
 	}
+	public void removeItem(Item item)
+	{
+		getItemList().remove(item);
+		setChanged();
+		notifyObservers();
+	}
 	
 	private void fillArray(){
 			itemList.add(new Item("Niels sigar", "Smoking is bad for you", -5,true));
@@ -69,7 +75,7 @@ public class StudyOrDieModel extends Observable {
 			itemList.add(new Item("Thomas pencilcase", "I ran out of ideas", 2,false));
 			itemList.add(new Item("Ruuds' Iphone", "None is as feared", 5,false));
 			itemList.add(new Item("Niels handtasje", "Its scary and pink", 10,false));
-			itemList.add(new Item("Niels sig..", "Guess I did run out of ideas", 20,true));
+			itemList.add(new Item("Niels sig..", "Guess I did run out of ideas", 20,false));
 	}
 	
 	public void addItemToAvatar(Item item) {

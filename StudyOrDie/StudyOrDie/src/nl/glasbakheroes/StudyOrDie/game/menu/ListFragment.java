@@ -1,5 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.game.menu;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -18,7 +21,7 @@ import android.widget.ListView;
  * ListView in which you can select what sub-menu to open
  * @author Jasper
  */
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements Observer{
 	ListView selection;
 	ListAdapter adapter;
 	TransmitInfo send;
@@ -53,5 +56,12 @@ public class ListFragment extends Fragment {
                     + " Transmit info interface not implemented");
         }
 
+	}
+	@Override
+	public void update(Observable observable, Object data) {
+		adapter.clear();
+		adapter.addAll(StudyOrDieModel.getItemList());
+		adapter.notifyDataSetChanged();
+		
 	}
 }
