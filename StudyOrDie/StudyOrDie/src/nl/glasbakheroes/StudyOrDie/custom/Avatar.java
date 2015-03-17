@@ -100,6 +100,11 @@ public class Avatar extends GameObject {
 		checkItems();
 	}
 	
+	public void setCurrent(int i)
+	{
+		this.currentHP += i;
+	}
+	
 	private void checkItems(){
 		int currentMax = maxHP;
 		for(Item a : equipped){
