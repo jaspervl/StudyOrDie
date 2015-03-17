@@ -124,8 +124,17 @@ public class CombatActivity extends Activity implements Observer {
 	private void bossAttack() {
 		handler.postDelayed(new Runnable() {
 			public void run() {
-				String attackName = "Homework";
-				int damage = 7;
+
+				String attackName = "";
+				int damage = 0;
+				
+				switch ((int)(Math.random() * 4) + 1) {
+				case 1 : attackName = "Homework"; damage = 7; break;
+				case 2 : attackName = "Door policy"; damage = 5; break;
+				case 3 : attackName = "F grade"; damage = 15; break;
+				case 4 : attackName = "Knowledge overload"; damage = 10; break;
+				default : attackName = "No attack" ; damage = 0; break; 	// something went wrong if this occurs
+				}
 				Toast.makeText(getApplicationContext(), boss.getName() + " attacks with " + attackName + " and does " + damage + " damage!", Toast.LENGTH_SHORT).show();
 				model.getAvatar().setCurrentHP(model.getAvatar().getCurrentHP() - damage);
 				handler.postDelayed(new Runnable() {
