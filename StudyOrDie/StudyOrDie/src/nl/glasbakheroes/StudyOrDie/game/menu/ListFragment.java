@@ -22,7 +22,7 @@ import android.widget.ListView;
  * ListView in which you can select what sub-menu to open
  * @author Jasper
  */
-public class ListFragment extends Fragment implements Observer{
+public class ListFragment extends Fragment implements Observer {
 	ListView selection;
 	ListAdapter adapter;
 	TransmitInfo send;
@@ -34,6 +34,7 @@ public class ListFragment extends Fragment implements Observer{
 		View v = inflater.inflate(R.layout.fragment_list, container, false);
 				
 		model = ((StudyOrDieApplication) v.getContext().getApplicationContext()).getModel();
+		model.addObserver(this); // Was forgotten ;-)   	/NJ
 		
 		selection = (ListView)v.findViewById(R.id.itemList);
 		adapter = new ListAdapter(getActivity(), android.R.layout.simple_list_item_1,model.getItemList());
@@ -64,8 +65,9 @@ public class ListFragment extends Fragment implements Observer{
 	}
 	@Override
 	public void update(Observable observable, Object data) {
-		adapter.clear();
-		adapter.addAll(model.getItemList());
+		/* These commented things are not needed afaik, it removes the complete list and gives index out of bounds exception 		/NJ */
+//		adapter.clear();
+//		adapter.addAll(model.getItemList());
 		adapter.notifyDataSetChanged();
 		
 	}

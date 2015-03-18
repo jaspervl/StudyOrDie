@@ -1,5 +1,8 @@
 package nl.glasbakheroes.StudyOrDie.game.menu;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
@@ -33,6 +36,7 @@ public class ItemFragment extends Fragment {
 		description = (TextView) v.findViewById(R.id.tvDescription);
 		equipButton = (Button) v.findViewById(R.id.btnEquipButton);
 		stats = (TextView) v.findViewById(R.id.tvAddStat);
+		
 		if (model.getItemList().get(0) == null) {
 			return v;
 		}
@@ -48,7 +52,7 @@ public class ItemFragment extends Fragment {
 					model.removeItem(currentItem);
 					return;
 				}
-				model.addItemToAvatar(currentItem);
+				model.addItemToAvatar(currentItem); 
 				currentItem.equip();
 				if (currentItem.getEquipped()) {
 					equipButton.setText(String.format("Unequip"));
@@ -67,7 +71,8 @@ public class ItemFragment extends Fragment {
 		currentItem = model.getItemList().get(pos);
 		name.setText(String.format(currentItem.getName()));
 		description.setText(String.format(currentItem.getDescription()));
-		stats.setText(String.format("HP " + currentItem.getHpModifier()));
+		stats.setText(String.format("HP " + currentItem.getHpModifier()) + String.format("\nEnergy " + currentItem.getEnergyModifier()) + String.format("\nMotivation " + currentItem.getMotivationModifier()));
+		// Make 3 textviews for this 'thing' above.
 		if (currentItem.getEquipped()) {
 			equipButton.setText(String.format("Unequip"));
 		} else {

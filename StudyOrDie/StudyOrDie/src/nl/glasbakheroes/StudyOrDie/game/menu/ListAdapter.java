@@ -40,13 +40,15 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		
 		holder.name.setText(String.format(item.getName()));
 		
-		if(item.getHpModifier() > 0)
+		if(item.isConsumable())
 		{
+			/* Green for consumables - Just testing */
 			convertView.setBackgroundColor(Color.GREEN);
 		}
 		else
 		{
-			convertView.setBackgroundColor(Color.RED);
+			/* Blue for equipment items */
+			convertView.setBackgroundColor(Color.BLUE);
 		}
 	
 		
