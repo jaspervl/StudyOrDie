@@ -51,12 +51,13 @@ public class ItemFragment extends Fragment {
 					model.getAvatar().setCurrent(currentItem.getHpModifier(), currentItem.getEnergyModifier(), currentItem.getMotivationModifier());
 					model.removeItem(currentItem);
 					return;
-				}
-				model.addItemToAvatar(currentItem); 
+				} 
 				currentItem.equip();
 				if (currentItem.getEquipped()) {
+					model.addItemToAvatar(currentItem); 
 					equipButton.setText(String.format("Unequip"));
 				} else {
+					model.removeItemFromAvatar(currentItem); 
 					equipButton.setText(String.format("Equip"));
 				}
 

@@ -119,6 +119,12 @@ public class StudyOrDieModel extends Observable {
 		update();
 	}
 	
+	/** Remove a item from the avatar */
+	public void removeItemFromAvatar(Item item) {
+		avatar.removeItem(item);
+		update();
+	}
+	
 	/** Tell the observers that the data has changed */
 	public void update() {
 		setChanged();

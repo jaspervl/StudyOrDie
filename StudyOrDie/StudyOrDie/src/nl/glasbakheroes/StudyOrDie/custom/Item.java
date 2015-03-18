@@ -48,8 +48,8 @@ public class Item {
 		return hpModifier;
 	}
 	
-	public void setHpModifier(int addHP) {
-		this.hpModifier = addHP;
+	public void setHpModifier(int hpModifier) {
+		this.hpModifier = hpModifier;
 	}
 	
 	public int getEnergyModifier() {
