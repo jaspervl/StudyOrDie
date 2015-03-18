@@ -129,7 +129,6 @@ public class StudyOrDieModel extends Observable {
 	public void update() {
 		setChanged();
 		notifyObservers();
-		Log.w("Model", "Sending signal to minions, UPDATE!");
 	}
 	
 	/** Set the current level */
@@ -169,7 +168,7 @@ public class StudyOrDieModel extends Observable {
 		@Override
 		public void run() {
 			timerValue += 1;
-//			handler.postDelayed(timer, 1000);
+			handler.postDelayed(timer, 1000);
 			/* Can we also just update the overworld stat view? */
 			update();
 			if (timerValue % 10 == 0) {
