@@ -11,7 +11,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
  * Main avatar in the game which the player controls.
- * @author Niels Jan & Jasper & Thomas
+ * @author Niels Jan & Jasper
  */
 public class Avatar extends GameObject {
 	public final static String AVATAR_FRONT = "AvatarFront";
@@ -78,14 +78,6 @@ public class Avatar extends GameObject {
 	public int getKeys() {
 		return numberOfKeys;
 	}
-	
-	public void removeKey() {
-		numberOfKeys--;
-	}
-	
-	public void addKey() {
-		numberOfKeys++;
-	}
 
 	public String getName() {
 		return name;
@@ -97,57 +89,73 @@ public class Avatar extends GameObject {
 		model.update();
 	}
 	
-	public void addItem(Item item)
-	{
-		
-		int index = equipped.indexOf(item);
-		if(index != -1)
-		{
-			maxHP = maxHP + (equipped.get(index).getHpModifier() * -1);
-			maxEnergy = maxEnergy + (equipped.get(index).getEnergyModifier() * -1);
-			maxMotivation = maxMotivation + (equipped.get(index).getMotivationModifier() * -1);
-			equipped.remove(index);
-			return;
+	/** Add a item to the currently equipped item list */
+	public void addItem(Item item) {
+		/* Add the item to the equipped list if there isn't one with the same name already */
+		if (!itemExists(item.getName())) {
+			equipped.add(item);
 		}
-		equipped.add(item);
-		checkItems();
+		/* Adjust the HP with item values */
+		maxHP += item.getHpModifier();
+		maxEnergy += item.getEnergyModifier();
+		maxMotivation += item.getMotivationModifier();
+		/* Check for crazy stats */
+		checkStats();
 	}
-	
-	public void setCurrent(int hp, int energy, int motivation)
-	{
-		this.currentHP += hp;
-		this.currentEnergy += energy;
-		this.currentMotivation += motivation;
-	}
-	
-	private void checkItems(){
-		int currentMaxHP = maxHP;
-		int currentMaxE = maxEnergy;
-		int currentMaxM = maxMotivation;
-		
-		for(Item a : equipped){
-		 currentMaxHP = maxHP + a.getHpModifier();
-		 currentMaxE = maxEnergy + a.getEnergyModifier();
-		 currentMaxHP = maxMotivation + a.getMotivationModifier();
+
+	/** Remove a item from the currently equipped item list */
+	public void removeItem(Item item) {
+		/* Remove the item from the equipped list if there is one with the requested name */
+		if (itemExists(item.getName())) {
+			for (Item i : equipped) {
+				if (i == item) {
+					equipped.remove(item);
+				}
+			}
 		}
-		
-		this.maxHP = currentMaxHP;
-		this.maxEnergy = currentMaxE;
-		this.maxMotivation = currentMaxM;
-		if(maxHP < currentHP) {
+		/* Adjust the HP with item values */
+		maxHP -= item.getHpModifier();
+		maxEnergy -= item.getEnergyModifier();
+		maxMotivation -= item.getMotivationModifier();
+		/* Check for crazy stats */
+		checkStats();
+		}
+
+	/** Check the current max values compared to current values and adjust if needed */
+	private void checkStats() {
+		if (maxHP < currentHP) {
 			currentHP = maxHP;
 		}
-		
-		if(maxEnergy < currentEnergy) {
-			currentEnergy = maxEnergy;
+		if (maxEnergy < currentEnergy) {
+			currentEnergy = maxEnergy ;
 		}
-		
-		if(maxMotivation < currentMotivation) {
+		if (maxMotivation < currentMotivation) {
 			currentMotivation = maxMotivation;
 		}
 	}
 	
-	
+	/** Check whether the item exists in the equipped item list or not */
+	private boolean itemExists(String name) {
+		for (Item item : equipped) {
+			if (item.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 *  Set the current stats to a new value 
+	 * @param hp	The amount of HP to add or substract
+	 * @param energy	The amount of energy to add or substract
+	 * @param motivation	The amount of motivation to add or substract
+	 */
+	public void setCurrent(int hp, int energy, int motivation)
+	{
+		setCurrentHP(this.currentHP += hp);
+		setCurrentEnergy(this.currentEnergy += energy);
+		setCurrentMotivation(this.currentMotivation += motivation);
+	}	
 	
 	/** Accessors and mutators for dynamic game variables */
 	
@@ -176,7 +184,34 @@ public class Avatar extends GameObject {
 	}
 	
 	public void setCurrentEnergy(int currentEnergy) {
-		this.currentEnergy = currentEnergy;
+		if (currentEnergy > maxEnergy) {
+			this.currentEnergy = maxEnergy;
+		} else {
+			this.currentEnergy = currentEnergy;
+		}
+		model.update();
+	}
+
+	public void setCurrentHP(int currentHP) {
+		if (currentHP > maxHP) {
+			this.currentHP = maxHP;
+		} else {
+			this.currentHP = currentHP;
+		}
+		model.update();
+	}
+	
+	public void setCurrentMotivation(int currentMotivation) {
+		if (currentMotivation > maxMotivation) {
+			this.currentMotivation = maxMotivation;
+		} else {
+			this.currentMotivation = currentMotivation;
+		}
+		model.update();
+	}
+	
+	public void setMaxHP(int maxHP) {
+		this.maxHP = maxHP;
 		model.update();
 	}
 
@@ -184,21 +219,12 @@ public class Avatar extends GameObject {
 		this.maxEnergy = maxEnergy;
 		model.update();
 	}
-
-	public void setCurrentHP(int currentHP) {
-		this.currentHP = currentHP;
-		model.update();
+	public void removeKey() {
+		numberOfKeys--;
 	}
-
-	public void setMaxHP(int maxHP) {
-		this.maxHP = maxHP;
-		model.update();
+	
+	public void addKey() {
+		numberOfKeys++;
 	}
-
-	public void setCurrentMotivation(int currentMotivation) {
-		this.currentMotivation = currentMotivation;
-		model.update();
-	}
-
 	
 }
