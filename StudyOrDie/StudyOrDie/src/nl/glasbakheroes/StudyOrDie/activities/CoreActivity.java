@@ -48,6 +48,7 @@ public class CoreActivity extends Activity {
 	protected String moveDirection = "";
 	private boolean folding = true;
 	private boolean disableMovement = false;
+	private boolean allowFinish = false;
 
 	/* Will be called when the activity is created [Also after it got destroyed/finished] */
 	@Override
@@ -199,6 +200,8 @@ public class CoreActivity extends Activity {
 				// Do something when player backs out of start menu.
 				startNewGame();
 			}
+		} else if (requestCode == StudyOrDieGameBoard.REQUEST_COMBAT_INTENT) {
+			// do nothing
 		}
 	}
 
@@ -230,5 +233,21 @@ public class CoreActivity extends Activity {
 	/**
 	 * End of dummy methods
 	 */
+	
+	@Override
+	public void onBackPressed() {
+		allowFinish = true;
+		super.onBackPressed();
+	}
+	
+	@Override
+	public void finish() {
+		
+		if (allowFinish) {
+			super.finish();
+		} else {
+			// Keep this activity going for ever unless back button pressed! (Try to fix this with onSavedInstanceState!!!)
+		}
+	}
 	
 }

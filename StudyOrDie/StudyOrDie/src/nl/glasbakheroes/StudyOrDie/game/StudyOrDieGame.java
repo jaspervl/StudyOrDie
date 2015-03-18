@@ -28,7 +28,6 @@ public class StudyOrDieGame extends Game {
 
 		this.activity = activity;
 
-		/* Start a new game. */
 		StartNewGame();
 
 		/* Tell the game which board to use. */
@@ -53,6 +52,14 @@ public class StudyOrDieGame extends Game {
 		model.setLoader(levelLoader);
 		levelLoader.loadLevel("Bottom");
 	}
+	
+	public void resumeGame() {
+
+			/* Gets the saved board and removes all objects. */
+			StudyOrDieGameBoard board = (StudyOrDieGameBoard) getGameBoard();
+			model.getLoader().setLevel(3);
+			model.getLoader().loadLevel("Boss");
+		}
 	
 	public StudyOrDieModel getModel() {
 		return model;

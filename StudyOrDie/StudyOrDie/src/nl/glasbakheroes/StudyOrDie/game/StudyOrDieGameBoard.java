@@ -22,6 +22,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
  */
 public class StudyOrDieGameBoard extends GameBoard {
 
+	public static final int REQUEST_COMBAT_INTENT = 1337;
 	private static final int GAMEBOARD_WIDTH = 24;
 	private static final int GAMEBOARD_HEIGHT = 12;
 	private CoreActivity activity;
@@ -149,7 +150,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				LevelLoader levelLoader = model.getLoader();
 				levelLoader.setLevel(levelLoader.getLevel() + 1);
 				levelLoader.loadLevel("Bottom");
-				return false;
+				return false; 
 			}
 			
 		case "Down":
@@ -211,7 +212,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			extras.putString("bossName", boss.getName());
 			extras.putString("bossImageId", boss.getImageId());
 			combatIntent.putExtras(extras);
-			activity.startActivity(combatIntent);
+			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_INTENT);
 			return false;
 			
 			/** Door present */

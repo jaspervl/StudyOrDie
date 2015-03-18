@@ -90,5 +90,4 @@ public class StudyOrDieModel extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-
 }

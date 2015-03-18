@@ -8,9 +8,11 @@ import java.util.Observer;
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import nl.glasbakheroes.StudyOrDie.view.BattleAttackOptionsView;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -41,7 +43,6 @@ public class CombatActivity extends Activity implements Observer {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		/* Remove title bar */
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */
@@ -99,6 +100,9 @@ public class CombatActivity extends Activity implements Observer {
 	private void delayedFinish() {
 		handler.postDelayed(new Runnable() {
 			public void run() {
+				Intent returnCoreIntent = new Intent(CombatActivity.this, CoreActivity.class);
+				returnCoreIntent.putExtra("result", "Dummy");
+				setResult(StudyOrDieGameBoard.REQUEST_COMBAT_INTENT, returnCoreIntent);
 				finish();
 			}
 		}, 2000);

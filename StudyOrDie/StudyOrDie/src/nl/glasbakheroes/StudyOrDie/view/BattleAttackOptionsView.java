@@ -84,7 +84,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 		public void onClick(View v) {
 			if (v == btnAttack1) {
 				attackName = "Throw exception";
-				damage = 15;
+				damage = 100; 	// 100 for testing 
 				energyModifier = -5;
 				motivationModifier = -5;
 			} else if (v == btnAttack2) {
