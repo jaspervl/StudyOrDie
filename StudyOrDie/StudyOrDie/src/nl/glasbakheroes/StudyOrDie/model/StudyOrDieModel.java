@@ -26,7 +26,7 @@ public class StudyOrDieModel extends Observable {
 	private StudyOrDieGameBoard board;
 	private int totalSteps;
 	private Handler handler;
-	private int timerValue = 0;;
+	private int timerValue = -10;
 	
 	
 	/** Constructor */
@@ -53,7 +53,7 @@ public class StudyOrDieModel extends Observable {
 	public void setLoader(LevelLoader levelLoader) {
 		loader = levelLoader;
 	}
-	
+	 
 	/**
 	 * Adds a boss with a certain name and hitPoints.
 	 * @param name	The name of the boss
