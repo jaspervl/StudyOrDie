@@ -76,7 +76,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			tvTime = (TextView) findViewById(R.id.tvTimePassed);
 			ivAvatarImage = (ImageView) findViewById(R.id.ivOverWorldAvatar);
 			tvOverworldAvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
-			
+
 			/* Put the relevant data inside the interface components */
 			updateData();
 		} else {
@@ -87,12 +87,6 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 	/** Make the overworld view small or full-size */
 	public void setMinimize(boolean minimal) {
 		if (minimal) {
-			/* Minimize the view */
-//			tvHP.setText("H");
-//			tvEnergy.setText("E");
-//			tvMotivation.setText("M");
-//			ivAvatarImage.setAlpha(0F);
-//			this.setLayoutParams(new RelativeLayout.LayoutParams(200,200));
 			this.setLayoutParams(new RelativeLayout.LayoutParams(0,200));
 		} else {
 			/* Set the view to its full size */
@@ -119,6 +113,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 		barStat.setProgress(avatar.getCurrentMotivation());
 		tvSteps.setText("Steps taken: " + model.getSteps());
 		tvTime.setText("Time passed: " + model.getTime());
+		this.setAlpha(0.9F);
 	}
 	
 	/** Method which will be called from the CoreActivity, sets the Avatar name that will be displayed. */
