@@ -103,7 +103,9 @@ public class Avatar extends GameObject {
 		int index = equipped.indexOf(item);
 		if(index != -1)
 		{
-			maxHP = maxHP + (equipped.get(index).getAddHP() * -1);
+			maxHP = maxHP + (equipped.get(index).getHpModifier() * -1);
+			maxEnergy = maxEnergy + (equipped.get(index).getEnergyModifier() * -1);
+			maxMotivation = maxMotivation + (equipped.get(index).getMotivationModifier() * -1);
 			equipped.remove(index);
 			return;
 		}
@@ -111,21 +113,37 @@ public class Avatar extends GameObject {
 		checkItems();
 	}
 	
-	public void setCurrent(int i)
+	public void setCurrent(int hp, int energy, int motivation)
 	{
-		this.currentHP += i;
+		this.currentHP += hp;
+		this.currentEnergy += energy;
+		this.currentMotivation += motivation;
 	}
 	
 	private void checkItems(){
-		int currentMax = maxHP;
+		int currentMaxHP = maxHP;
+		int currentMaxE = maxEnergy;
+		int currentMaxM = maxMotivation;
+		
 		for(Item a : equipped){
-		 currentMax = maxHP + a.getAddHP();
+		 currentMaxHP = maxHP + a.getHpModifier();
+		 currentMaxE = maxEnergy + a.getEnergyModifier();
+		 currentMaxHP = maxMotivation + a.getMotivationModifier();
 		}
 		
-		this.maxHP = currentMax;
-		if(maxHP < currentHP)
-		{
+		this.maxHP = currentMaxHP;
+		this.maxEnergy = currentMaxE;
+		this.maxMotivation = currentMaxM;
+		if(maxHP < currentHP) {
 			currentHP = maxHP;
+		}
+		
+		if(maxEnergy < currentEnergy) {
+			currentEnergy = maxEnergy;
+		}
+		
+		if(maxMotivation < currentMotivation) {
+			currentMotivation = maxMotivation;
 		}
 	}
 	

@@ -44,7 +44,7 @@ public class ItemFragment extends Fragment {
 				StudyOrDieModel model = ((StudyOrDieApplication)getActivity().getApplication()).getModel();
 				if(currentItem.isConsumable())
 				{
-					model.getAvatar().setCurrent(currentItem.getAddHP());
+					model.getAvatar().setCurrent(currentItem.getHpModifier(), currentItem.getEnergyModifier(), currentItem.getMotivationModifier());
 					model.removeItem(currentItem);
 					return;
 				}
@@ -67,7 +67,7 @@ public class ItemFragment extends Fragment {
 		currentItem = model.getItemList().get(pos);
 		name.setText(String.format(currentItem.getName()));
 		description.setText(String.format(currentItem.getDescription()));
-		stats.setText(String.format("HP " + currentItem.getAddHP()));
+		stats.setText(String.format("HP " + currentItem.getHpModifier()));
 		if (currentItem.getEquipped()) {
 			equipButton.setText(String.format("Unequip"));
 		} else {

@@ -40,7 +40,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		
 		holder.name.setText(String.format(item.getName()));
 		
-		if(item.getAddHP() > 0)
+		if(item.getHpModifier() > 0)
 		{
 			convertView.setBackgroundColor(Color.GREEN);
 		}

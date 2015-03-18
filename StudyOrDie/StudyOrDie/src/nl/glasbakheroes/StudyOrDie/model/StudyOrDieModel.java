@@ -101,12 +101,13 @@ public class StudyOrDieModel extends Observable {
 	
 	/** Fill the item array with items */
 	private void fillArray(){
-			itemList.add(new Item("Niels sigar", "Smoking is bad for you", -5,true));	// javadoc on constructor for Item?
-			itemList.add(new Item("Percy DJ kit", "party..huh", 10,false));
-			itemList.add(new Item("Thomas pencilcase", "I ran out of ideas", 2,false));
-			itemList.add(new Item("Ruuds' Iphone", "None is as feared", 5,false));
-			itemList.add(new Item("Niels handtasje", "Its scary and pink", 10,false));
-			itemList.add(new Item("Niels sig..", "Guess I did run out of ideas", 20,false));
+		
+		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
+		itemList.add(new Item("Spiekpriefje", "Take a peek.", 5, 10, 0, false));
+		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
+		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
+		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false));
+		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false));
 	}
 	
 	/** Add a item to the avatar */

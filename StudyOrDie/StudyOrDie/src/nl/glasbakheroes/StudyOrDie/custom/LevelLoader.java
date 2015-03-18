@@ -175,17 +175,11 @@ public class LevelLoader {
 		case 13:
 	
 	
-	break;
-			
+			break;
 		default:
 			break;
 		}
 		
 		board.updateView();
-	}
-	
-	/** Accessors and mutators */
-	public Avatar getAvatar() {
-		return avatar;
 	}
 }
