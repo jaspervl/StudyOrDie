@@ -10,6 +10,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class ListFragment extends Fragment implements Observer {
 		View v = inflater.inflate(R.layout.fragment_list, container, false);
 				
 		model = ((StudyOrDieApplication) v.getContext().getApplicationContext()).getModel();
-		model.addObserver(this); // Was forgotten ;-)   	/NJ
+		model.addObserver(this);
 		
 		selection = (ListView)v.findViewById(R.id.itemList);
 		adapter = new ListAdapter(getActivity(), android.R.layout.simple_list_item_1,model.getItemList());
@@ -46,8 +47,7 @@ public class ListFragment extends Fragment implements Observer {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				send.getInfo(position);
-				
+				send.getInfo(position);				
 			}});
 		
 		return v;
@@ -65,10 +65,9 @@ public class ListFragment extends Fragment implements Observer {
 	}
 	@Override
 	public void update(Observable observable, Object data) {
-		/* These commented things are not needed afaik, it removes the complete list and gives index out of bounds exception 		/NJ */
 //		adapter.clear();
 //		adapter.addAll(model.getItemList());
 		adapter.notifyDataSetChanged();
-		
+		Log.w("ListFragment", "Data set changed, calling the adapter to update");
 	}
 }

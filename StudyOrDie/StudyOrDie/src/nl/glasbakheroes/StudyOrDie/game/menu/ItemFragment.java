@@ -49,7 +49,6 @@ public class ItemFragment extends Fragment {
 				if(currentItem.isConsumable())
 				{
 					model.getAvatar().setCurrent(currentItem.getHpModifier(), currentItem.getEnergyModifier(), currentItem.getMotivationModifier());
-					equipButton.setOnClickListener(null); // Disable use button, so consumable can only be used once
 					model.removeItem(currentItem);
 					return;
 				} 
@@ -87,5 +86,4 @@ public class ItemFragment extends Fragment {
 		}
 
 	}
-
 }

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
+		Log.w("ListAdapter", "getView called");
 		Item item = getItem(pos);
 		if(convertView == null){
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.simpleitem, parent, false);
@@ -44,15 +48,14 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		{
 			/* Green for consumables - Just testing */
 			convertView.setBackgroundColor(Color.GREEN);
+			Log.w("ListAdapter", item.getName() + " Is a consumable");
 		}
 		else
 		{
 			/* Blue for equipment items */
 			convertView.setBackgroundColor(Color.BLUE);
+			Log.w("ListAdapter", item.getName() + " Is equipment");
 		}
-	
-		
 		return convertView;
 	}
-
 }
