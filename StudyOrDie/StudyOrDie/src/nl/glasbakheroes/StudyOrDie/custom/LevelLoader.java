@@ -26,9 +26,6 @@ public class LevelLoader {
 	private StudyOrDieModel model;
 	private StudyOrDieGameBoard board;
 	private Avatar avatar;
-	/* 3 arrays which enable or disable special items/npc's for each major level */
-	private boolean[] keys = {true, true};
-	private boolean[] doorLocked = {true, true};
 
 	/** Constructor */
 	public LevelLoader(GameBoard board, Avatar avatar) {
@@ -92,7 +89,7 @@ public class LevelLoader {
 			} else if (spawnArea.equals("Key")) {
 				board.moveObject(avatar, 19, 9);
 			}
-			if (keys[0] == true) {
+			if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(), 19, 9);
 			}
 			
@@ -123,7 +120,7 @@ public class LevelLoader {
 			} else {
 				board.addGameObject(new Elevator(false), 1, 1);
 			}
-			if (doorLocked[0] == true) { 
+			if (model.getDoors()[0] == true) { 
 				board.addGameObject(new Door(true), 10, 6);
 			} else {
 				board.addGameObject(new Door(false), 10, 6);
@@ -185,25 +182,6 @@ public class LevelLoader {
 		}
 		
 		board.updateView();
-	}
-	
-	/** Remove a key from the game in a certain sub-level */
-	public void takeKey(int subLevel) {
-		switch (subLevel) {
-		case 2 	: keys[0] = false; break;
-		case 12 : keys[1] = false; break;
-		default	: break;
-		}
-		loadLevel("Key");
-	}
-	
-	/** 'Unlock' a locked door in a certain sub-level */
-	public void unlockDoor(int subLevel) {
-		switch (subLevel) {
-		case 3 	: doorLocked[0] = false; break;
-		case 13 : doorLocked[1] = false; break;
-		default	: break;
-		}
 	}
 	
 	/** Accessors and mutators */

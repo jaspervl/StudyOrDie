@@ -27,6 +27,9 @@ public class StudyOrDieModel extends Observable {
 	private int totalSteps;
 	private Handler handler;
 	private int timerValue = -10;
+	/* 2 arrays which enable or disable special items/npc's for each major level */
+	private boolean[] keys = {true, true};
+	private boolean[] doorLocked = {true, true};
 	
 	
 	/** Constructor */
@@ -166,5 +169,34 @@ public class StudyOrDieModel extends Observable {
 	/** Gets the approximate time passed in seconds */
 	public int getTime() {
 		return timerValue;
+	}
+	
+	/** Returns the array with booleans for each key to see if it is present or not */
+	public boolean[] getKeys() {
+		return keys;
+	}
+	
+	/** Returns the array with booleans for each door to see whether it is locked or not */
+	public boolean[] getDoors() {
+		return doorLocked;
+	}
+	
+	/** Remove a key from the game in a certain sub-level */
+	public void removeKey(int subLevel) {
+		switch (subLevel) {
+		case 2 	: keys[0] = false; break;
+		case 12 : keys[1] = false; break;
+		default	: break;
+		}
+		loader.loadLevel("Key");
+	}
+	
+	/** 'Unlock' a locked door in a certain sub-level */
+	public void unlockDoor(int subLevel) {
+		switch (subLevel) {
+		case 3 	: doorLocked[0] = false; break;
+		case 13 : doorLocked[1] = false; break;
+		default	: break;
+		}
 	}
 }
