@@ -108,7 +108,7 @@ public class StudyOrDieModel extends Observable {
 		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
 		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
 		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
-		itemList.add(new Item("Spiekpriefje", "Take a peek.", 5, 10, 0, false));
+		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false));
 		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false));
 		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false));
 	}
