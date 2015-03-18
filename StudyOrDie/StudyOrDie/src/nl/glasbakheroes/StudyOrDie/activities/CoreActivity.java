@@ -234,22 +234,5 @@ public class CoreActivity extends Activity {
 	}
 	/**
 	 * End of dummy methods
-	 */
-	
-	@Override
-	public void onBackPressed() {
-		allowFinish = true;
-		super.onBackPressed();
-	}
-	
-	@Override
-	public void finish() {
-		
-		if (allowFinish) {
-			super.finish();
-		} else {
-			// Keep this activity going for ever unless back button pressed! (Try to fix this with onSavedInstanceState!!!)
-		}
-	}
-	
+	 */	
 }

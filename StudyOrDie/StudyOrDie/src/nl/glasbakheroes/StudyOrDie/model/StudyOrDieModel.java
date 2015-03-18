@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import android.os.Handler;
 import android.util.Log;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
@@ -23,6 +24,9 @@ public class StudyOrDieModel extends Observable {
 	private ArrayList<Item> itemList;
 	private int currentLevel = 1;
 	private StudyOrDieGameBoard board;
+	private int totalSteps;
+	private Handler handler;
+	private int timerValue = 0;;
 	
 	
 	/** Constructor */
@@ -31,6 +35,8 @@ public class StudyOrDieModel extends Observable {
 		bosses = new ArrayList<Boss>();
 		itemList = new ArrayList<Item>();
 		fillArray(); // What array? ;-)
+		handler = new Handler();
+		timer.run();
 	}
 	
 	/** Return the avatar */
@@ -126,5 +132,39 @@ public class StudyOrDieModel extends Observable {
 	public void setBoard(StudyOrDieGameBoard gameBoard) {
 		this.board = gameBoard;
 		board.setAvatar(avatar);
+	}
+	
+	/** Add a step to the total number of steps made in the game by the avatar 
+	 * if there were 10 steps since the last energy-burn. Burn 1 energy*/
+	public void addStep() {
+		this.totalSteps++;
+		update();
+		if (totalSteps % 10 == 0) {
+			avatar.setCurrentEnergy(avatar.getCurrentEnergy() - 1);
+		}
+	}
+	
+	/** Get the total number of steps made until now by the avatar */
+	public int getSteps() {
+		return totalSteps;
+	}
+	
+	/** Add 1 (second) to the timerValue to keep track of the time played 
+	 * Every time 10 seconds pass a motivation point will vanish */
+	Runnable timer = new Runnable() {
+		@Override
+		public void run() {
+			timerValue += 1;
+			handler.postDelayed(timer, 1000);
+			update();
+			if (timerValue % 10 == 0) {
+				avatar.setCurrentMotivation(avatar.getCurrentMotivation() - 1);
+			}
+		}
+	};	
+	
+	/** Gets the approximate time passed in seconds */
+	public int getTime() {
+		return timerValue;
 	}
 }

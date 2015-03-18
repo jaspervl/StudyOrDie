@@ -111,18 +111,22 @@ public class StudyOrDieGameBoard extends GameBoard {
 			case "Up":
 				moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() - 1);
+				model.addStep();
 				break;
 			case "Down": 
 				moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() + 1);
+				model.addStep();
 				break;
 			case "Left":
 				moveObject(avatar, avatar.getPositionX() - 1,
 						avatar.getPositionY());
+				model.addStep();
 				break;
 			case "Right":
 				moveObject(avatar, avatar.getPositionX() + 1,
 						avatar.getPositionY());
+				model.addStep();
 				break;
 			default:
 				break;

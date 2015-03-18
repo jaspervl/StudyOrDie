@@ -30,7 +30,7 @@ public class MenuActivity extends FragmentActivity {
 		setContentView(R.layout.activity_menu);
 
 		FragmentManager manager = getSupportFragmentManager();
-
+ 
 		CharacterFragment menu = new CharacterFragment(); 
 
 		manager.beginTransaction().add(R.id.fragmentContainer, menu).commit();

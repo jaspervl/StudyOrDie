@@ -30,7 +30,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 	private ProgressBar barHP, barEnergy, barStat;
 	private Avatar avatar;
 	private CoreActivity activity;
-	private TextView tvOverworldAvatarName, tvHP, tvEnergy, tvMotivation;
+	private TextView tvOverworldAvatarName, tvHP, tvEnergy, tvMotivation, tvTime, tvSteps;
 	private ImageView ivAvatarImage;
 	private StudyOrDieModel model;
 
@@ -62,6 +62,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			/* Retrieve the application and get the model from it */
 			StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
 			model = app.getModel();
+			model.addObserver(this);
 			
 			/* Set / link the instance variables */
 			avatar = ((StudyOrDieApplication) activity.getApplication()).getModel().getAvatar();
@@ -71,14 +72,13 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			tvHP = (TextView) findViewById(R.id.tvOverWorldHP);
 			tvEnergy = (TextView) findViewById(R.id.tvOverWorldEnergy);
 			tvMotivation = (TextView) findViewById(R.id.tvOverWorldMotivation);
+			tvSteps = (TextView) findViewById(R.id.tvAmountOfSteps);
+			tvTime = (TextView) findViewById(R.id.tvTimePassed);
 			ivAvatarImage = (ImageView) findViewById(R.id.ivOverWorldAvatar);
 			tvOverworldAvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
 			
 			/* Put the relevant data inside the interface components */
 			updateData();
-			
-			setBackgroundColor(Color.BLACK);
-			setAlpha(0.8F);
 		} else {
 			setBackgroundColor(Color.CYAN);
 		}		
@@ -88,17 +88,17 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 	public void setMinimize(boolean minimal) {
 		if (minimal) {
 			/* Minimize the view */
-			tvHP.setText("H");
-			tvEnergy.setText("E");
-			tvMotivation.setText("M");
-			ivAvatarImage.setAlpha(0F);
-			this.setLayoutParams(new RelativeLayout.LayoutParams(200,200));
+//			tvHP.setText("H");
+//			tvEnergy.setText("E");
+//			tvMotivation.setText("M");
+//			ivAvatarImage.setAlpha(0F);
+//			this.setLayoutParams(new RelativeLayout.LayoutParams(200,200));
+			this.setLayoutParams(new RelativeLayout.LayoutParams(0,200));
 		} else {
 			/* Set the view to its full size */
 			tvHP.setText("Health");
 			tvEnergy.setText("Energy");
 			tvMotivation.setText("Motivation");
-			ivAvatarImage.setAlpha(0.9F);
 			this.setLayoutParams(new RelativeLayout.LayoutParams(600,200));
 		}
 	}
@@ -117,6 +117,8 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 		barEnergy.setProgress(avatar.getCurrentEnergy());
 		barStat.setMax(avatar.getMaxMotivation());
 		barStat.setProgress(avatar.getCurrentMotivation());
+		tvSteps.setText("Steps taken: " + model.getSteps());
+		tvTime.setText("Time passed: " + model.getTime());
 	}
 	
 	/** Method which will be called from the CoreActivity, sets the Avatar name that will be displayed. */

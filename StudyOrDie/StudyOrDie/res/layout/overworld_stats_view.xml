@@ -2,17 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/button_background"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/tvOverworldvatarName"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_weight="3"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="11sp" />
+        android:layout_weight="3" >
+
+        <TextView
+            android:id="@+id/tvOverworldvatarName"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#111111"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tvAmountOfSteps"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#111111"
+            android:textSize="11sp" />
+
+        <TextView
+            android:id="@+id/tvTimePassed"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#111111"
+            android:textSize="11sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -45,6 +82,7 @@
                     android:layout_weight="3"
                     android:text="@string/hp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#111111"
                     android:textSize="11sp" />
 
                 <ProgressBar
@@ -67,6 +105,7 @@
                     android:layout_weight="3"
                     android:text="@string/energy"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#111111"
                     android:textSize="11sp" />
 
                 <ProgressBar
@@ -89,6 +128,7 @@
                     android:layout_weight="3"
                     android:text="@string/motivation"
                     android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#111111"
                     android:textSize="11sp" />
 
                 <ProgressBar
