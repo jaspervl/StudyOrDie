@@ -5,10 +5,13 @@ import java.util.Observable;
 
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
+import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 
 /**
@@ -163,6 +166,7 @@ public class StudyOrDieModel extends Observable {
 			update();
 			if (timerValue % 10 == 0) {
 				avatar.setCurrentMotivation(avatar.getCurrentMotivation() - 1);
+				exhaustCheck();
 			}
 		}
 	};	
@@ -190,6 +194,22 @@ public class StudyOrDieModel extends Observable {
 		default	: break;
 		}
 		loader.loadLevel("Key");
+	}
+	
+	/** Checking for the value of avatar energy, avatar motivation.
+	 * If both are 0, GAME OVER and start from scratch */
+	private void exhaustCheck() {
+		if (avatar.getCurrentEnergy() <= 0 && avatar.getCurrentMotivation() <= 0) {
+			currentLevel = 1; 
+			loader.loadLevel("Bottom");
+			String name = avatar.getName();
+			avatar = new Avatar(this);
+			totalSteps = 0;
+			timerValue = 0;
+			avatar.setName(name);
+			Toast.makeText((CoreActivity) board.getActivity(), "You are exhausted and lose! GAME OVER", Toast.LENGTH_LONG).show();
+			update();
+		}
 	}
 	
 	/** 'Unlock' a locked door in a certain sub-level */

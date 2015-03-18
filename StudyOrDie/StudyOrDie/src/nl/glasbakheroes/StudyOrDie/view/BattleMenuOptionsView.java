@@ -2,7 +2,11 @@ package nl.glasbakheroes.StudyOrDie.view;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.activities.CombatActivity;
+import nl.glasbakheroes.StudyOrDie.activities.ItemActivity;
+import nl.glasbakheroes.StudyOrDie.activities.MenuActivity;
+import nl.glasbakheroes.StudyOrDie.activities.StartActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -50,6 +54,7 @@ public class BattleMenuOptionsView extends LinearLayout {
 		
 		/* Set a listener for the forfeit button */
 		ButtonListener listener = new ButtonListener();
+		btnItems.setOnClickListener(listener);
 		btnForfeit.setOnClickListener(listener);
 	}
 	
@@ -58,13 +63,14 @@ public class BattleMenuOptionsView extends LinearLayout {
 
 		@Override
 		public void onClick(View v) {
+			CombatActivity activity = (CombatActivity) getContext();
 			if (v == btnForfeit) {
-				CombatActivity activity = (CombatActivity) getContext();
 				activity.killAvatar();
 			} else if (v == btnItems) {
-				
+				Intent menuIntent = new Intent(activity, ItemActivity.class);
+				menuIntent.putExtra("onlyConsumables", true);
+				activity.startActivity(menuIntent);
 				// intent to open menu with intventory HERE!
-			
 			}
 		}
 	}

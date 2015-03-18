@@ -26,6 +26,17 @@ public class ItemActivity extends FragmentActivity implements TransmitInfo {
 		
 		setContentView(R.layout.activity_item);
 
+		/* Check if this activity started with extras */
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			/* If the onlyConsumables true boolean was given, don't show equippable items */
+			boolean onlyConsumables = extras.getBoolean("onlyConsumables");
+			if (onlyConsumables) {
+				// implementation to only show consumables here
+			}
+		}
+		
+		
 		FragmentManager manager = getSupportFragmentManager();
 
 		item = new ListFragment(); 
