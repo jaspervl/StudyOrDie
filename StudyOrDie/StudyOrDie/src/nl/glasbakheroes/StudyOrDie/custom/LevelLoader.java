@@ -26,8 +26,6 @@ public class LevelLoader {
 	private StudyOrDieModel model;
 	private StudyOrDieGameBoard board;
 	private Avatar avatar;
-	/* The current level being played */
-	private int currentLevel;
 	/* 3 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
 	private boolean[] doorLocked = {true, true};
@@ -36,7 +34,6 @@ public class LevelLoader {
 	public LevelLoader(GameBoard board, Avatar avatar) {
 		this.board = (StudyOrDieGameBoard) board;
 		this.avatar = avatar;
-		this.currentLevel = 1;
 		model = ((StudyOrDieApplication)this.board.getActivity().getApplication()).getModel();
 		createBosses();
 	}
@@ -44,11 +41,6 @@ public class LevelLoader {
 	private void createBosses() {
 		model.addBoss("Wombat", 100);
 		model.addBoss("Ruud", 120);
-	}
-
-	/** Set the current level */
-	public void setLevel(int level) {
-		currentLevel = level;
 	}
 
 	/**
@@ -65,7 +57,7 @@ public class LevelLoader {
 		
 		board.removeAllObjects();
 		
-		switch (currentLevel) {
+		switch (model.getLevel()) {
 			/** case 1 is where ground floor starts */
 		case 1:	
 		
@@ -193,10 +185,6 @@ public class LevelLoader {
 		}
 		
 		board.updateView();
-	}
-
-	public int getLevel() {
-		return currentLevel;
 	}
 	
 	/** Remove a key from the game in a certain sub-level */

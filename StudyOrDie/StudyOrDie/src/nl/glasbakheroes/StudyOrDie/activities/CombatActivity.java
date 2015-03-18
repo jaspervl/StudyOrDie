@@ -90,7 +90,7 @@ public class CombatActivity extends Activity implements Observer {
 	 * Public because Views want to use this. (e.g. forfeit button in battle mode)
 	 */
 	public void killAvatar() {
-		model.getLoader().setLevel(model.getLoader().getLevel() - 2);
+		model.setLevel(model.getLevel() - 2);
 		model.getLoader().loadLevel("Bottom");
 		Toast.makeText(getApplicationContext(), "You have been defeated!", Toast.LENGTH_SHORT).show();
 		delayedFinish();

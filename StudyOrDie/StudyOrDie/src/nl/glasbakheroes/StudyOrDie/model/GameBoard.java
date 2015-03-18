@@ -22,7 +22,6 @@ public abstract class GameBoard extends Observable {
 
 	/** The game this game board is a part of. */
 	private Game game;
-	protected Avatar avatar;	// Avatar which the StudyOrDieGameBoard can access.
 	
 	/** The game objects on the board. */
 	private GameObject[][] gameBoard;
@@ -61,9 +60,6 @@ public abstract class GameBoard extends Observable {
 	 * @throws IllegalArgumentException if (x,y) is not empty
 	 */
 	public void addGameObject(GameObject obj, int x, int y) {
-		if (obj instanceof Avatar) {
-			avatar = (Avatar) obj;
-		}
 		if( gameBoard[x][y] != null ) {
 			throw new IllegalArgumentException("Destination already contains an object");
 		}

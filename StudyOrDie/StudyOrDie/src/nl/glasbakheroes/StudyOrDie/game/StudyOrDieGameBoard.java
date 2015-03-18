@@ -12,6 +12,7 @@ import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.activities.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
+import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -27,6 +28,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	private static final int GAMEBOARD_HEIGHT = 12;
 	private CoreActivity activity;
 	private StudyOrDieModel model;
+	private Avatar avatar;
 	
 	public StudyOrDieGameBoard() {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
@@ -148,7 +150,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			} else {
 				/* Edge of the screen, get items from next sublevel */
 				LevelLoader levelLoader = model.getLoader();
-				levelLoader.setLevel(levelLoader.getLevel() + 1);
+				model.setLevel(model.getLevel() + 1);
 				levelLoader.loadLevel("Bottom");
 				return false; 
 			}
@@ -161,7 +163,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			} else {
 				/* Edge of the screen, get items from next sublevel */
 				LevelLoader levelLoader = model.getLoader();
-				levelLoader.setLevel(levelLoader.getLevel() - 1);
+				model.setLevel(model.getLevel() - 1);
 				levelLoader.loadLevel("Top");
 				return false;
 			}
@@ -222,7 +224,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 					/* If the door is locked and the avatar has a key */
 					Toast.makeText(activity, "Used a key on the door", Toast.LENGTH_SHORT).show();
 					removeObject(getObject(avatarNewX, avatarNewY));
-					levelLoader.unlockDoor(levelLoader.getLevel());
+					levelLoader.unlockDoor(model.getLevel());
 				} else {
 					/* door locked, no key */
 					Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
@@ -247,12 +249,12 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/* When current level ends with a 3, the avatar moves to the next floor.
 			 * When current level ends with a 1, the avatar moves to the last floor.
 			 */
-			if (levelLoader.getLevel() % 10 == 3) {
-				elevatorMessage = "Floor number: " + ((levelLoader.getLevel() / 10) + 1);
-				levelLoader.setLevel(levelLoader.getLevel() + 8);
+			if (model.getLevel() % 10 == 3) {
+				elevatorMessage = "Floor number: " + ((model.getLevel() / 10) + 1);
+				model.setLevel(model.getLevel() + 8);
 			} else {
-				elevatorMessage = "Floor number: " + ((levelLoader.getLevel() / 10) - 1);
-				levelLoader.setLevel(levelLoader.getLevel() - 8);
+				elevatorMessage = "Floor number: " + ((model.getLevel() / 10) - 1);
+				model.setLevel(model.getLevel() - 8);
 			}
 			Toast.makeText(activity, elevatorMessage, Toast.LENGTH_SHORT).show();
 			levelLoader.loadLevel("Elevator");
@@ -260,7 +262,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			
 			/** Key is present, avatar gets it and can now open a locked door */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
-			levelLoader.takeKey(levelLoader.getLevel());
+			levelLoader.takeKey(model.getLevel());
 			avatar.addKey();
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
@@ -285,6 +287,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 	
 	public CoreActivity getActivity() {
 		return activity;
+	}
+	
+	public void setAvatar(Avatar avatar) {
+		this.avatar = avatar;
 	}
 	
 }

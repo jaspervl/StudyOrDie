@@ -48,7 +48,7 @@ public class CoreActivity extends Activity {
 	protected String moveDirection = "";
 	private boolean folding = true;
 	private boolean disableMovement = false;
-	private boolean allowFinish = false;
+	private boolean allowFinish = true;
 
 	/* Will be called when the activity is created [Also after it got destroyed/finished] */
 	@Override
@@ -67,7 +67,9 @@ public class CoreActivity extends Activity {
 			Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
 			startActivityForResult(startScreenIntent, REQUEST_START_CODE);
 			startMenuShown = true;
+			
 		} 
+		allowFinish = false;
 		
 		/* Retrieve the model from the application and create a handler for delayed actions */
 		handler = new Handler();
