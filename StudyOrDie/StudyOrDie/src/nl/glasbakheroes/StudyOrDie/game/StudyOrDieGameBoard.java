@@ -102,7 +102,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 * @param direction The direction the avatar wants to move. [Up / Down / Left / Right]
 	 */
 	public void moveAvatar(String direction) {
-		/* Checks weather the avatar is too close to boundaries and other objects */
+		/* Checks whether the avatar is too close to boundaries and other objects */
 		if (checkBoundaries(direction)) {
 			/* Set the orientation of the avatar image in a certain direction */
 			avatar.setImage(direction);
