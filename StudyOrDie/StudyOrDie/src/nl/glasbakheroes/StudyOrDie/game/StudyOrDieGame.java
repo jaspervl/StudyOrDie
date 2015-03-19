@@ -54,7 +54,6 @@ public class StudyOrDieGame extends Game {
 		board.removeAllObjects();
 		levelLoader = new LevelLoader(board, model.getAvatar());
 		model.setLoader(levelLoader);
-		
 		/* If this method is called from a final level (always ends with a 3) then the CoreActivity onCreate is called after a bossfight */
 		if ((model.getLevel() - 3) % 10 == 0) {
 			levelLoader.loadLevel("Boss");

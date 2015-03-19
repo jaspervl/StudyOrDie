@@ -63,7 +63,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			StudyOrDieApplication app = (StudyOrDieApplication) activity.getApplication();
 			model = app.getModel();
 			model.addObserver(this);
-			
+			 
 			/* Set / link the instance variables */
 			avatar = ((StudyOrDieApplication) activity.getApplication()).getModel().getAvatar();
 			barHP = (ProgressBar) findViewById(R.id.barOverWorldHP);
@@ -76,6 +76,8 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 			tvTime = (TextView) findViewById(R.id.tvTimePassed);
 			ivAvatarImage = (ImageView) findViewById(R.id.ivOverWorldAvatar);
 			tvOverworldAvatarName = (TextView) findViewById(R.id.tvOverworldvatarName);
+			
+			tvOverworldAvatarName.setText(model.getAvatar().getName()); 
 
 			/* Put the relevant data inside the interface components */
 			updateData();

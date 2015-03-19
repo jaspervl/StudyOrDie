@@ -51,13 +51,11 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		{
 			/* Green for consumables - Just testing */
 			convertView.setBackgroundColor(Color.GREEN);
-			Log.w("ListAdapter", item.getName() + " Is a consumable");
 		}
 		else
 		{
 			/* Blue for equipment items */
 			convertView.setBackgroundColor(Color.BLUE);
-			Log.w("ListAdapter", item.getName() + " Is equipment");
 		}
 		holder.name.setText(String.format(item.getName()));
 		return convertView;
