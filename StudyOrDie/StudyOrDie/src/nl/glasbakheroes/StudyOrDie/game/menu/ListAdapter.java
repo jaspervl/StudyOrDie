@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
-import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
-import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -30,7 +28,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
 		Log.w("ListAdapter", "getView called");
-		Item item = getItem(pos);
+		Item item = super.getItem(pos);
 		if(convertView == null){
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.simpleitem, parent, false);
 			holder = new ViewHolder();
@@ -42,7 +40,6 @@ public class ListAdapter extends ArrayAdapter<Item> {
 			convertView.getTag();
 		}
 		
-		holder.name.setText(String.format(item.getName()));
 		
 		if(item.isConsumable())
 		{
@@ -56,6 +53,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 			convertView.setBackgroundColor(Color.BLUE);
 			Log.w("ListAdapter", item.getName() + " Is equipment");
 		}
+		holder.name.setText(String.format(item.getName()));
 		return convertView;
 	}
 }

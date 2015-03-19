@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -63,10 +64,12 @@ public class ListFragment extends Fragment implements Observer {
         }
 
 	}
+	public void remove(Item item)
+	{
+		adapter.remove(item);
+	}
 	@Override
 	public void update(Observable observable, Object data) {
-//		adapter.clear();
-//		adapter.addAll(model.getItemList());
 		adapter.notifyDataSetChanged();
 		Log.w("ListFragment", "Data set changed, calling the adapter to update");
 	}

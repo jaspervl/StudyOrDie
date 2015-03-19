@@ -1,6 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
 import nl.glasbakheroes.StudyOrDie.game.menu.ItemFragment;
 import nl.glasbakheroes.StudyOrDie.game.menu.ListFragment;
@@ -49,12 +50,12 @@ public class ItemActivity extends FragmentActivity implements TransmitInfo {
 
 	@Override
 	public void getInfo(int key) {
-		actionUpdate(key);
+		detail.setVariables(key);;
 	}
 
 	@Override
-	public void actionUpdate(int key) {
-		detail.setVariables(key);
+	public void actionUpdate(Item currentItem) {
+		item.remove(currentItem);
 		
 	}
 	

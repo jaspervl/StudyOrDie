@@ -1,8 +1,5 @@
 package nl.glasbakheroes.StudyOrDie.game.menu;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
