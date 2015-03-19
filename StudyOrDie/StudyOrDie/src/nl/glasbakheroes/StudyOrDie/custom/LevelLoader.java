@@ -2,6 +2,7 @@ package nl.glasbakheroes.StudyOrDie.custom;
 
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
+import nl.glasbakheroes.StudyOrDie.Objects.Prop;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
@@ -108,6 +109,7 @@ public class LevelLoader {
 			board.createWallCorners(14, 23, 0, 11);
 			board.addGameObject(new Door(false), 14, 6);
 			board.addGameObject(new Door(false), 10, 6);
+			board.addGameObject(new Prop("TableGreyImac"), 6, 6);
 			break;
 			
 			/** case 3 is part 3 of the ground floor */
