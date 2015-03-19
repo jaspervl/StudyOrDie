@@ -23,7 +23,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 	
 	public ListAdapter(Context context, int resource,ArrayList<Item> item) {
 		super(context, resource,item);
-	}
+	} 
 	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
@@ -37,7 +37,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		}
 		else
 		{
-			convertView.getTag();
+			convertView.getTag(); 
 		}
 		
 		
@@ -45,13 +45,11 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		{
 			/* Green for consumables - Just testing */
 			convertView.setBackgroundColor(Color.GREEN);
-			Log.w("ListAdapter", item.getName() + " Is a consumable");
 		}
 		else
 		{
 			/* Blue for equipment items */
 			convertView.setBackgroundColor(Color.BLUE);
-			Log.w("ListAdapter", item.getName() + " Is equipment");
 		}
 		holder.name.setText(String.format(item.getName()));
 		return convertView;

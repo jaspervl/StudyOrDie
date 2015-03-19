@@ -40,7 +40,7 @@ public class StudyOrDieModel extends Observable {
 		avatar = new Avatar(this);
 		bosses = new ArrayList<Boss>();
 		itemList = new ArrayList<Item>();
-		fillArray(); // What array? ;-)
+		fillItemList(); // What array? ;-)
 		handler = new Handler();
 		timer.run();
 	}
@@ -102,15 +102,15 @@ public class StudyOrDieModel extends Observable {
 		update();
 	}
 	
-	/** Fill the item array with items */
-	private void fillArray(){
+	/** Helper method to fill the item array with items */
+	private void fillItemList(){
 		
-		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
-		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
-		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
 		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false));
 		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false));
 		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false));
+		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
+		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
+		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
 	}
 	
 	/** Add a item to the avatar */
@@ -120,7 +120,7 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	/** Remove a item from the avatar */
-	public void removeItemFromAvatar(Item item) {
+	public void unEquipAvatarItem(Item item) {
 		avatar.removeItem(item);
 		update();
 	}

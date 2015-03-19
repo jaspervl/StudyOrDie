@@ -54,7 +54,7 @@ public class ItemFragment extends Fragment {
 					model.addItemToAvatar(currentItem); 
 					equipButton.setText(String.format("Unequip"));
 				} else {
-					model.removeItemFromAvatar(currentItem); 
+					model.unEquipAvatarItem(currentItem); 
 					equipButton.setText(String.format("Equip"));
 				}
 

@@ -71,6 +71,5 @@ public class ListFragment extends Fragment implements Observer {
 	@Override
 	public void update(Observable observable, Object data) {
 		adapter.notifyDataSetChanged();
-		Log.w("ListFragment", "Data set changed, calling the adapter to update");
 	}
 }
