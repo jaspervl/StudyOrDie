@@ -104,12 +104,18 @@ public class StudyOrDieModel extends Observable {
 	/** Fill the item array with items */
 	private void fillItemList(){
 		
-		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
-		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
-		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
 		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false));
 		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false));
 		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false));
+		itemList.add(new Item("Tristans terminal", "You didnt practice enough.", 3, 30, -10, false));
+		itemList.add(new Item("CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false));
+		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
+		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
+		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
+		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
+		itemList.add(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true));
+		itemList.add(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true));
+		itemList.add(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true));
 	}
 	
 	/** Add a item to the avatar */

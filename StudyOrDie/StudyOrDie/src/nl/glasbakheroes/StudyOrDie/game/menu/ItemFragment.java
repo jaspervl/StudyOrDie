@@ -13,7 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+/**
+ * 			
+ * @author Jasper
+ * Displays an item in the detail fragment
+ */
 public class ItemFragment extends Fragment {
 	ImageView picture;
 	TextView name;
