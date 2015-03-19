@@ -9,7 +9,7 @@ import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Activity;
-import android.os.Bundle;
+import android.os.Bundle; 
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;

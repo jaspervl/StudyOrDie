@@ -1672,20 +1672,21 @@ containing a value of this type.
         public static final int prop_keycard_orange=0x7f020050;
         public static final int prop_keycard_yellow=0x7f020051;
         public static final int prop_table_grey=0x7f020052;
-        public static final int unfold_arrow=0x7f020053;
-        public static final int van_galenstraat_background=0x7f020054;
-        public static final int wall_corner_northeast=0x7f020055;
-        public static final int wall_corner_northwest=0x7f020056;
-        public static final int wall_corner_southeast=0x7f020057;
-        public static final int wall_corner_southwest=0x7f020058;
-        public static final int wall_end_east=0x7f020059;
-        public static final int wall_end_north=0x7f02005a;
-        public static final int wall_end_south=0x7f02005b;
-        public static final int wall_end_west=0x7f02005c;
-        public static final int wall_horizontal=0x7f02005d;
-        public static final int wall_pillar=0x7f02005e;
-        public static final int wall_vertical=0x7f02005f;
-        public static final int wombat=0x7f020060;
+        public static final int prop_table_grey_imac=0x7f020053;
+        public static final int unfold_arrow=0x7f020054;
+        public static final int van_galenstraat_background=0x7f020055;
+        public static final int wall_corner_northeast=0x7f020056;
+        public static final int wall_corner_northwest=0x7f020057;
+        public static final int wall_corner_southeast=0x7f020058;
+        public static final int wall_corner_southwest=0x7f020059;
+        public static final int wall_end_east=0x7f02005a;
+        public static final int wall_end_north=0x7f02005b;
+        public static final int wall_end_south=0x7f02005c;
+        public static final int wall_end_west=0x7f02005d;
+        public static final int wall_horizontal=0x7f02005e;
+        public static final int wall_pillar=0x7f02005f;
+        public static final int wall_vertical=0x7f020060;
+        public static final int wombat=0x7f020061;
     }
     public static final class id {
         public static final int GridLayout1=0x7f090063;

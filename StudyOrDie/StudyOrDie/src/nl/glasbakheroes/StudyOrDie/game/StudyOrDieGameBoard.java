@@ -103,7 +103,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 */
 	public void moveAvatar(String direction) {
 		/* Checks weather the avatar is too close to boundaries and other objects */
-		if (checkBounadries(direction)) {
+		if (checkBoundaries(direction)) {
 			/* Set the orientation of the avatar image in a certain direction */
 			avatar.setImage(direction);
 			/* Move the avatar in a certain direction */
@@ -137,11 +137,11 @@ public class StudyOrDieGameBoard extends GameBoard {
 	}
 	
 	/**
-	 * Helper method, check weather the desired movement is possible and what objects are present.
+	 * Helper method, check wheather the desired movement is possible and what objects are present.
 	 * @param direction	The direction the avatar wants to move.
 	 * @return			Returns true for valid movement, false for invalid movement.
 	 */
-	private boolean checkBounadries(String direction) {
+	private boolean checkBoundaries(String direction) {
 		int avatarNewX = 0;
 		int avatarNewY = 0;
 		

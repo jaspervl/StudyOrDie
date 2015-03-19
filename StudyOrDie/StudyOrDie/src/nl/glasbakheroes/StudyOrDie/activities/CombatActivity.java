@@ -125,6 +125,7 @@ public class CombatActivity extends Activity implements Observer {
 		
 	}
 	
+	/** Boss will attack and cast a random attack, chosen from 4 presets */
 	private void bossAttack() {
 		handler.postDelayed(new Runnable() {
 			public void run() {
@@ -139,7 +140,9 @@ public class CombatActivity extends Activity implements Observer {
 				case 4 : attackName = "Knowledge overload"; damage = 10; break;
 				default : attackName = "No attack" ; damage = 0; break; 	// something went wrong if this occurs
 				}
-				Toast.makeText(getApplicationContext(), boss.getName() + " attacks with " + attackName + " and does " + damage + " damage!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), 
+						boss.getName() + " attacks with " + attackName + " and does " + damage + " damage!",
+						Toast.LENGTH_SHORT).show();
 				model.getAvatar().setCurrentHP(model.getAvatar().getCurrentHP() - damage);
 				handler.postDelayed(new Runnable() {
 					public void run() {
