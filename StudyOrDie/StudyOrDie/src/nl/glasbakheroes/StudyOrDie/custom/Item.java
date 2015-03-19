@@ -1,6 +1,9 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
 /**
+ * 
+ * @author Jasper
+ * 
  * Construct a Item.
  * @param name	The name of the item.
  * @param description	The description of the item.
@@ -9,6 +12,7 @@ package nl.glasbakheroes.StudyOrDie.custom;
  * @param motivationModifier The amount of HP motivation item adds or substracts if negative	
  * @param consumesOnUse	True if the item is a consumable, false if not.
  */
+
 public class Item {
 	private String name;
 	private String description;

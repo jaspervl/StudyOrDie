@@ -11,7 +11,6 @@ import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
-import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 
 /**
@@ -40,7 +39,7 @@ public class StudyOrDieModel extends Observable {
 		avatar = new Avatar(this);
 		bosses = new ArrayList<Boss>();
 		itemList = new ArrayList<Item>();
-		fillItemList(); // What array? ;-)
+		fillItemList(); // Fills the item array
 		handler = new Handler();
 		timer.run();
 	}
@@ -102,15 +101,15 @@ public class StudyOrDieModel extends Observable {
 		update();
 	}
 	
-	/** Helper method to fill the item array with items */
+	/** Fill the item array with items */
 	private void fillItemList(){
 		
-		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false));
-		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false));
-		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false));
 		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true));
 		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true));
 		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true));
+		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false));
+		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false));
+		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false));
 	}
 	
 	/** Add a item to the avatar */

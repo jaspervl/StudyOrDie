@@ -11,12 +11,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 import android.view.WindowManager;
-
+/**
+ * 
+ * @author Jasper
+ *	Activity that handles the inventory screen. A player can use / equip items
+ */
 public class ItemActivity extends FragmentActivity implements TransmitInfo {
 	ListFragment item;
 	ItemFragment detail;
 	int position;
 	
+	/**
+	 * Initialize variables  & binds fragments to the containers.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +54,10 @@ public class ItemActivity extends FragmentActivity implements TransmitInfo {
 		transaction.add(R.id.detailContainer, detail).commit();
 
 	}
-
+	/*
+	 * Interface methods for fragment communication
+	 * @see nl.glasbakheroes.StudyOrDie.custom.TransmitInfo#getInfo(int)
+	 */
 	@Override
 	public void getInfo(int key) {
 		detail.setVariables(key);;

@@ -22,6 +22,9 @@ import android.widget.ListView;
 
 /**
  * ListView in which you can select what sub-menu to open
+ * Current submenu's
+ * 
+ * 1.Inventory(Item screen)
  * @author Jasper
  */
 public class ListFragment extends Fragment implements Observer {
@@ -30,6 +33,10 @@ public class ListFragment extends Fragment implements Observer {
 	TransmitInfo send;
 	private StudyOrDieModel model;
 	
+	/*
+	 * Basic inflation of the view that needs to be returned to the activity.
+	 * This fragment showcases the items in a suitable list
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -53,6 +60,10 @@ public class ListFragment extends Fragment implements Observer {
 		
 		return v;
 	}
+	/*
+	 * 
+	 * Checks whether the calling activity has the interface Transmit info  implemented
+	 */
 	@Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -64,10 +75,16 @@ public class ListFragment extends Fragment implements Observer {
         }
 
 	}
+	/**
+	 * 	Removes an item directly from the adapters arrayList
+	 */
 	public void remove(Item item)
 	{
 		adapter.remove(item);
 	}
+	/**
+	 * Update method when changes occur in the model
+	 */
 	@Override
 	public void update(Observable observable, Object data) {
 		adapter.notifyDataSetChanged();
