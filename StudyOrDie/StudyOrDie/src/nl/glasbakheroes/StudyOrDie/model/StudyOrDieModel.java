@@ -214,7 +214,7 @@ public class StudyOrDieModel extends Observable {
 	/** Checking for the value of avatar energy, avatar motivation.
 	 * If both are 0, GAME OVER and start from scratch */
 	private void exhaustCheck() {
-		if (avatar.getCurrentEnergy() <= 98 && avatar.getCurrentMotivation() <= 98) {
+		if (avatar.getCurrentEnergy() <= 0 && avatar.getCurrentMotivation() <= 0) {
 			currentLevel = 1; 
 			loader.loadLevel("Bottom");
 			String name = avatar.getName();
@@ -222,6 +222,7 @@ public class StudyOrDieModel extends Observable {
 			totalSteps = 0;
 			timerValue = 0;
 			avatar.setName(name);
+			avatar.resetStats();
 			Intent gameOverIntent = new Intent(activity, GameOverActivity.class);
 			activity.startActivity(gameOverIntent);
 			update();

@@ -226,5 +226,14 @@ public class Avatar extends GameObject {
 	public void addKey() {
 		numberOfKeys++;
 	}
+
+	public void resetStats() {
+		currentHP = 100;
+		maxHP = 100;
+		currentEnergy = 100;
+		maxEnergy = 100;
+		currentMotivation = 100;
+		maxMotivation = 100;		
+	}
 	
 }
