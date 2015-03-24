@@ -29,6 +29,10 @@
     <string name="equip_button">Equip</string>
     <string name="inventory_string">inventory</string>
     <string name="pick_avatar">"        Pick your avatar:"</string>
- 
+    <string name="title_activity_game_over">GameOverActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="game_over">Get rekt</string>
+    <string name="restart">Restart game</string>
+    <string name="get_rekt">Game over</string>
 
 </resources>

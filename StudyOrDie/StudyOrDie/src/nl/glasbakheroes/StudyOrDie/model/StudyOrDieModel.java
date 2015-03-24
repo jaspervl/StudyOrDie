@@ -3,11 +3,13 @@ package nl.glasbakheroes.StudyOrDie.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
+import nl.glasbakheroes.StudyOrDie.activities.GameOverActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
@@ -29,6 +31,8 @@ public class StudyOrDieModel extends Observable {
 	private int totalSteps;
 	private Handler handler;
 	private int timerValue = -10;
+	private CoreActivity activity;
+	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
 	private boolean[] doorLocked = {true, true};
@@ -210,7 +214,7 @@ public class StudyOrDieModel extends Observable {
 	/** Checking for the value of avatar energy, avatar motivation.
 	 * If both are 0, GAME OVER and start from scratch */
 	private void exhaustCheck() {
-		if (avatar.getCurrentEnergy() <= 0 && avatar.getCurrentMotivation() <= 0) {
+		if (avatar.getCurrentEnergy() <= 98 && avatar.getCurrentMotivation() <= 98) {
 			currentLevel = 1; 
 			loader.loadLevel("Bottom");
 			String name = avatar.getName();
@@ -218,7 +222,8 @@ public class StudyOrDieModel extends Observable {
 			totalSteps = 0;
 			timerValue = 0;
 			avatar.setName(name);
-			Toast.makeText((CoreActivity) board.getActivity(), "You are exhausted and lose! GAME OVER", Toast.LENGTH_LONG).show();
+			Intent gameOverIntent = new Intent(activity, GameOverActivity.class);
+			activity.startActivity(gameOverIntent);
 			update();
 		}
 	}
@@ -230,5 +235,15 @@ public class StudyOrDieModel extends Observable {
 		case 13 : doorLocked[1] = false; break;
 		default	: break;
 		}
+	}
+	
+	/** Set the core activity */
+	public void setActivity(CoreActivity activity) {
+		this.activity = activity;
+	}
+	
+	/** Set the timer value to 0 */
+	public void resetTimer() {
+		timerValue = 0;
 	}
 }

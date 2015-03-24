@@ -74,6 +74,7 @@ public class CoreActivity extends Activity {
 		/* Retrieve the model from the application and create a handler for delayed actions */
 		handler = new Handler();
 		model = ((StudyOrDieApplication) getApplication()).getModel();
+		model.setActivity(this);
 
 		/* Find interface elements */
 		gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
