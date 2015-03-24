@@ -2,10 +2,10 @@ package nl.glasbakheroes.StudyOrDie.activities;
 
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.game.menu.CharacterFragment;
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -16,7 +16,7 @@ import android.widget.Button;
  * The menu screen activity
  * @author Jasper
  */
-public class MenuActivity extends FragmentActivity {
+public class MenuActivity extends Activity {
 	Button temp;
 	
 	@Override
@@ -29,7 +29,7 @@ public class MenuActivity extends FragmentActivity {
 		
 		setContentView(R.layout.activity_menu);
 
-		FragmentManager manager = getSupportFragmentManager();
+		FragmentManager manager = getFragmentManager();
  
 		CharacterFragment menu = new CharacterFragment(); 
 

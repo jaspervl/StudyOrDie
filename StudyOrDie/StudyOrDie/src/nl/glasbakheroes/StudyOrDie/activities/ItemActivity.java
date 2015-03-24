@@ -5,10 +5,10 @@ import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.TransmitInfo;
 import nl.glasbakheroes.StudyOrDie.game.menu.ItemFragment;
 import nl.glasbakheroes.StudyOrDie.game.menu.ListFragment;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
 import android.view.WindowManager;
 /**
@@ -16,7 +16,7 @@ import android.view.WindowManager;
  * @author Jasper
  *	Activity that handles the inventory screen. A player can use / equip items
  */
-public class ItemActivity extends FragmentActivity implements TransmitInfo {
+public class ItemActivity extends Activity implements TransmitInfo {
 	ListFragment item;
 	ItemFragment detail;
 	int position;
@@ -45,7 +45,7 @@ public class ItemActivity extends FragmentActivity implements TransmitInfo {
 		}
 		
 		
-		FragmentManager manager = getSupportFragmentManager();
+		FragmentManager manager = getFragmentManager();
 
 		item = new ListFragment(); 
 		detail = new ItemFragment();
