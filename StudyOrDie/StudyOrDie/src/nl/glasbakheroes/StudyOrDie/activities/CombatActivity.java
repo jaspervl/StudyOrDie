@@ -55,7 +55,6 @@ public class CombatActivity extends Activity implements Observer {
 		
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
-		String type = extras.getString("Type");
 		String bossName = extras.getString("bossName"); 
 		
 		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
@@ -81,7 +80,11 @@ public class CombatActivity extends Activity implements Observer {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		boss.killBoss(); 
-		model.getLoader().loadLevel("Boss");
+		if (boss.isRandomBoss()) {
+			model.getLoader().loadLevel("RandomBoss");
+		} else {
+			model.getLoader().loadLevel("Boss");
+		}
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		delayedFinish();	
 	}

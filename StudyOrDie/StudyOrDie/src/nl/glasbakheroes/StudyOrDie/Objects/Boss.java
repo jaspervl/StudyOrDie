@@ -1,5 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.Objects;
 
+import android.util.Log;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -12,20 +13,41 @@ public class Boss extends GameObject{
 	private boolean alive = true;
 	private int hitPoints;
 	private StudyOrDieModel model;
+	private boolean randomBoss = false;
 
 	
 	public Boss(String name, int hitPoints, StudyOrDieModel model) {
-		this.name = name;
+		if (name.equals("Random")) {
+			this.name = generateRandomName();
+			randomBoss = true;
+		} else {
+			this.name = name;
+		}
+		Log.w("Boss", "Boss name is now:" + name);
 		this.hitPoints = hitPoints;
 		this.model = model;
 	}
 	
-	
+	/** Generate a random name for a random boss */
+	private String generateRandomName() {
+		switch ((int)(Math.random() * 10 + 1)) {
+		case 1: return "Henk";
+		case 2: return "Piet";
+		case 3: return "Gerard";
+		case 4: return "Jos";
+		case 5: return "Willem";
+		case 6: return "Klaas";
+		case 7: return "Peter";
+		case 8: return "Kees";
+		case 9: return "Nick";
+		case 10: return "Jasper";
+		default: return "Sjoerd";
+		}
+	}
+
+
 	@Override
 	public String getImageId() {
-		if (name.equals("Henk the concierge")) {
-			return BOSS_IMAGE_HENK;
-		} 
 		return BOSS_IMAGE;
 	}
 
@@ -39,7 +61,11 @@ public class Boss extends GameObject{
 	}
 	
 	public void killBoss() {
-		alive = false;
+		if (randomBoss) {
+			model.removeBoss(this);
+		} else {
+			alive = false;
+		}
 	}
 	
 	public boolean getAlive() {
@@ -54,4 +80,11 @@ public class Boss extends GameObject{
 	public int getHP() {
 		return hitPoints;
 	}
+	
+	/** Check whether the boss is randomly generated one or not */
+	public boolean isRandomBoss() {
+		return randomBoss;
+	}
+	
+	
 }

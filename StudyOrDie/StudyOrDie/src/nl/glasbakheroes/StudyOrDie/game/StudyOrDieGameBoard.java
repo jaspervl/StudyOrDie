@@ -134,16 +134,18 @@ public class StudyOrDieGameBoard extends GameBoard {
 			}
 			
 			if (model.fightRandomBoss()) {
-				model.addBoss("Henk the concierge", 100);
-				Boss concierge = model.getBoss("Henk the concierge");
+				model.randomEncounterOccured();
 				
+				/* Save the current location of the avatar in the level loader */
+				model.getLoader().setRandomBossLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
+				model.addBoss("Random", 100);
+				Boss randomBoss = model.findRandomBoss();
+				Log.w("Penis", randomBoss.getName());
 				Intent randomCombatIntent = new Intent(activity, CombatActivity.class);
-				randomCombatIntent.putExtra("bossName", concierge.getName());
-				randomCombatIntent.putExtra("Type", "Concierge");
-				randomCombatIntent.putExtra("bossImageId", concierge.getImageId());
+				randomCombatIntent.putExtra("bossName", randomBoss.getName());
+				randomCombatIntent.putExtra("bossImageId", randomBoss.getImageId());
 				activity.startActivity(randomCombatIntent);
 			}
-			
 			updateView();
 		}
 
@@ -229,7 +231,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			Bundle extras = new Bundle();
 			extras.putString("bossName", boss.getName());
-			extras.putString("Type", "Boss");
 			extras.putString("bossImageId", boss.getImageId());
 			combatIntent.putExtras(extras);
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_INTENT);

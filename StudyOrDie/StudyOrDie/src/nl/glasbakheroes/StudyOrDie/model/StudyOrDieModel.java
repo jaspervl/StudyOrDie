@@ -254,11 +254,27 @@ public class StudyOrDieModel extends Observable {
 	
 	/** Return whether or not the avatar enters a random battle, the chance to enter a fight raises exponential after more steps taken */
 	public boolean fightRandomBoss() {
-		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 40), 2);
+		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 70), 4);
 		if (Math.random() < chance) {
 			return true;
 		}
 		return false;
+	}
+	
+	/** Find the random boss and return it */
+	public Boss findRandomBoss() {
+		for (Boss b : bosses) {
+			if (b.isRandomBoss()) {
+				return b;
+			}
+		}
+		Log.w("StudyOrDieModel", "No random boss found, null returned");
+		return null;
+	}
+
+	/** Remove a boss from boss array list */
+	public void removeBoss(Boss boss) {
+		bosses.remove(boss);
 	}
 	
 }
