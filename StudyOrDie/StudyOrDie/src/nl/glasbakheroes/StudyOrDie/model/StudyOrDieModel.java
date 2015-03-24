@@ -6,7 +6,6 @@ import java.util.Observable;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.activities.GameOverActivity;
@@ -32,6 +31,7 @@ public class StudyOrDieModel extends Observable {
 	private Handler handler;
 	private int timerValue = -10;
 	private CoreActivity activity;
+	private int lastRandomBossStep = 0;
 	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
@@ -247,4 +247,18 @@ public class StudyOrDieModel extends Observable {
 	public void resetTimer() {
 		timerValue = 0;
 	}
+	
+	public void randomEncounterOccured() {
+		lastRandomBossStep = totalSteps;
+	}
+	
+	/** Return whether or not the avatar enters a random battle, the chance to enter a fight raises exponential after more steps taken */
+	public boolean fightRandomBoss() {
+		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 40), 2);
+		if (Math.random() < chance) {
+			return true;
+		}
+		return false;
+	}
+	
 }

@@ -112,6 +112,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() - 1);
 				model.addStep();
+				
 				break;
 			case "Down": 
 				moveObject(avatar, avatar.getPositionX(),
@@ -131,6 +132,18 @@ public class StudyOrDieGameBoard extends GameBoard {
 			default:
 				break;
 			}
+			
+			if (model.fightRandomBoss()) {
+				model.addBoss("Henk the concierge", 100);
+				Boss concierge = model.getBoss("Henk the concierge");
+				
+				Intent randomCombatIntent = new Intent(activity, CombatActivity.class);
+				randomCombatIntent.putExtra("bossName", concierge.getName());
+				randomCombatIntent.putExtra("Type", "Concierge");
+				randomCombatIntent.putExtra("bossImageId", concierge.getImageId());
+				activity.startActivity(randomCombatIntent);
+			}
+			
 			updateView();
 		}
 
@@ -216,6 +229,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			Bundle extras = new Bundle();
 			extras.putString("bossName", boss.getName());
+			extras.putString("Type", "Boss");
 			extras.putString("bossImageId", boss.getImageId());
 			combatIntent.putExtras(extras);
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_INTENT);

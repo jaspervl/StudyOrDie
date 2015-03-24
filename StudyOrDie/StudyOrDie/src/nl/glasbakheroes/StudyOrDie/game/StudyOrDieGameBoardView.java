@@ -60,6 +60,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Wall.WALL_NORTH_EAST, R.drawable.wall_corner_northeast);
 				
 				spriteCache.loadTile(Boss.BOSS_IMAGE, R.drawable.wombat);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_HENK, R.drawable.concierge);
 				spriteCache.loadTile(Door.DOOR_CLOSED_IMAGE, R.drawable.door_orange_south);
 				spriteCache.loadTile(Elevator.ELEVATOR_LOCKED_IMAGE, R.drawable.door_elevator_locked);
 				spriteCache.loadTile(Elevator.ELEVATOR_OPENED_IMAGE, R.drawable.door_elevator_open);

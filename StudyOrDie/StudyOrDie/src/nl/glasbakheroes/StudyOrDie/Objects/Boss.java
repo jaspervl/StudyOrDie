@@ -7,6 +7,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 /** A boss in the game overworld */
 public class Boss extends GameObject{
 	public static final String BOSS_IMAGE = "Boss";
+	public static final String BOSS_IMAGE_HENK = "Henkie";
 	private String name;
 	private boolean alive = true;
 	private int hitPoints;
@@ -22,6 +23,9 @@ public class Boss extends GameObject{
 	
 	@Override
 	public String getImageId() {
+		if (name.equals("Henk the concierge")) {
+			return BOSS_IMAGE_HENK;
+		} 
 		return BOSS_IMAGE;
 	}
 

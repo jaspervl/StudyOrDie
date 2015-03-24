@@ -55,6 +55,7 @@ public class CombatActivity extends Activity implements Observer {
 		
 		Bundle extras = getIntent().getExtras();
 		String bossImageId = extras.getString("BossImageId");
+		String type = extras.getString("Type");
 		String bossName = extras.getString("bossName"); 
 		
 		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
