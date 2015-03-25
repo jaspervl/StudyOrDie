@@ -27,7 +27,6 @@ public class LevelLoader {
 	private StudyOrDieModel model;
 	private StudyOrDieGameBoard board;
 	private Avatar avatar;
-	private int[] beforeFightLocation = new int[2];
 	
 	/** Constructor */
 	public LevelLoader(GameBoard board, Avatar avatar) {
@@ -66,7 +65,7 @@ public class LevelLoader {
 			} else if (spawnArea.equals("Bottom")){
 				board.addGameObject(avatar, 20, 8);
 			} else if (spawnArea.equals("Fight")) {
-				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
+				board.addGameObject(avatar, model.getBeforeFightLocation()[0], model.getBeforeFightLocation()[1]);
 			}
 
 			/* Create all default objects */
@@ -87,13 +86,13 @@ public class LevelLoader {
 			
 			/* Create conditional objects */
 			if (spawnArea.equals("Top")) {
-				board.moveObject(avatar, 12, 0);
+				board.addGameObject(avatar, 12, 0);
 			} else if (spawnArea.equals("Bottom")) {
-				board.moveObject(avatar,12, 11);
+				board.addGameObject(avatar,12, 11);
 			} else if (spawnArea.equals("Key")) {
-				board.moveObject(avatar, 19, 9);
+				board.addGameObject(avatar, 19, 9);
 			} else if (spawnArea.equals("Fight")) {
-				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
+				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
 			if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(), 19, 9);
@@ -133,11 +132,11 @@ public class LevelLoader {
 				board.addGameObject(new Door(false), 10, 6);
 			}
 			if (spawnArea.equals("Elevator")) {
-				board.moveObject(avatar, 1, 2);
+				board.addGameObject(avatar, 1, 2);
 			} else if (spawnArea.equals("Bottom")) {
-				board.moveObject(avatar, 12, 11);
+				board.addGameObject(avatar, 12, 11);
 			} else if (spawnArea.equals("Fight")) {
-				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
+				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
 
 			/* Create all default objects */
@@ -162,9 +161,9 @@ public class LevelLoader {
 			
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
-				board.moveObject(avatar, 1, 2);
+				board.addGameObject(avatar, 1, 2);
 			} else if (spawnArea.equals("Fight")) {
-				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
+				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
 			
 			/* Create all default objects */
@@ -190,10 +189,5 @@ public class LevelLoader {
 		}
 		
 		board.updateView();
-	}
-	
-	public void setBeforeFightLocation(int x, int y) {
-		beforeFightLocation[0] = x;
-		beforeFightLocation[1] = y;
 	}
 }

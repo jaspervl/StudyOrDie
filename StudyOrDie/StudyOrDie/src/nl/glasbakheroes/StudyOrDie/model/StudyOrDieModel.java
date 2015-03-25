@@ -31,7 +31,9 @@ public class StudyOrDieModel extends Observable {
 	private Handler handler;
 	private int timerValue = -10;
 	private CoreActivity activity;
-	private int lastRandomBossStep = 0;
+	private int lastRandomBossStep = 0; 
+	private boolean gameInitialized = false;
+	private int[] beforeFightLocation = {12, 6};
 	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
@@ -275,6 +277,29 @@ public class StudyOrDieModel extends Observable {
 	/** Remove a boss from boss array list */
 	public void removeBoss(Boss boss) {
 		bosses.remove(boss);
+	}
+	
+	/** Make sure the model knows that the game has already been initialized
+	 * Called from StudyOrDieGame constructor */
+	public void gameHasBeenInitialized() {
+		this.gameInitialized = true;
+	}
+	
+	/** Check if the game has been initialized already
+	 * Called from StudyOrDieGame constructor */
+	public boolean isGameInitialized() {
+		return gameInitialized;
+	}
+	
+	/** Get the location of the avatar where he was before a fight occurred */
+	public int[] getBeforeFightLocation() {
+		return beforeFightLocation;
+	}
+	
+	/** Save the current location of the avatar, called when entering a fight */
+	public void setBeforeFightLocation(int x, int y) {
+		 beforeFightLocation[0] = x;
+		 beforeFightLocation[1] = y;
 	}
 	
 }

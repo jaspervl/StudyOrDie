@@ -89,7 +89,7 @@ public class CombatActivity extends Activity implements Observer {
 	 */
 	public void killAvatar() {
 		model.setLevel(model.getLevel() - 2);
-		model.getLoader().loadLevel("Bottom");
+		model.getLoader().loadLevel("Fight");
 		Intent gameOverIntent = new Intent(this, GameOverActivity.class);
 		startActivity(gameOverIntent);
 		delayedFinish();

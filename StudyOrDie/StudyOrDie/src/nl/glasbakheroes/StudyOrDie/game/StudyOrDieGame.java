@@ -29,8 +29,8 @@ public class StudyOrDieGame extends Game {
 
 		this.activity = activity;
 
-		StartNewGame();
-
+		updateGame(); 
+ 
 		/* Tell the game which board to use. */
 		StudyOrDieGameBoardView gameView = activity.getGameBoardView();
 		StudyOrDieGameBoard gameBoard = (StudyOrDieGameBoard) getGameBoard();
@@ -42,23 +42,24 @@ public class StudyOrDieGame extends Game {
 	}
 
 	/**
-	 * Starts a new game.
+	 * Starts a new game or updates the game when the CoreActivity was destroyed.
 	 */
-	public void StartNewGame() {
-
-		Log.w("StudyOrDie Game", "New game is being started");
+	public void updateGame() {
 		
 		/* Gets the saved board and removes all objects. */
 		StudyOrDieGameBoard board = (StudyOrDieGameBoard) getGameBoard();
-		board.setCoreActivity(activity);
+		board.setCoreActivity(activity); 
 		board.removeAllObjects();
 		levelLoader = new LevelLoader(board, model.getAvatar());
 		model.setLoader(levelLoader);
-		/* If this method is called from a final level (always ends with a 3) then the CoreActivity onCreate is called after a bossfight */
-		if ((model.getLevel() - 3) % 10 == 0) {
-			levelLoader.loadLevel("Boss");
-		/* If not a boss-level, start from the bottom */
+		/* Called when the game already has been initialized */
+		if (model.isGameInitialized()) {
+			Log.w("StudyOrDie Game", "Game is being reloaded, CoreActivity had been destroyed for freeing memory");
+			levelLoader.loadLevel("Fight"); 
+		/* If the game is new, start a new game */
 		} else {
+			Log.w("StudyOrDie Game", "New game is being started");
+			model.gameHasBeenInitialized();
 			levelLoader.loadLevel("Bottom");
 		}
 	}

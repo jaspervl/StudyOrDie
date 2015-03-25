@@ -137,7 +137,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 				model.randomEncounterOccured();
 				
 				/* Save the current location of the avatar in the level loader */
-				model.getLoader().setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
+				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ";" + model.getAvatar().getPositionY());
+				model.setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
 				/* Create a new boss and fetch it from the model */
 				model.addBoss("Random", 100);
 				Boss randomBoss = model.findRandomBoss();
@@ -228,7 +229,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/** Boss present, avatar will enter a fight and won't move. */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) { 
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
-			model.getLoader().setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
+			model.setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			Bundle extras = new Bundle();
