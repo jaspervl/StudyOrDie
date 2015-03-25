@@ -33,7 +33,7 @@ public class StudyOrDieModel extends Observable {
 	private CoreActivity activity;
 	private int lastRandomBossStep = 0; 
 	private boolean gameInitialized = false;
-	private int[] beforeFightLocation = {12, 6};
+	private int[] beforeFightLocation = {20, 8};
 	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
@@ -48,7 +48,7 @@ public class StudyOrDieModel extends Observable {
 		fillItemList(); // Fills the item array
 		handler = new Handler();
 		timer.run();
-	}
+	} 
 	
 	/** Return the avatar */
 	public Avatar getAvatar() {
