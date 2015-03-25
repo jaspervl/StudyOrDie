@@ -16,6 +16,7 @@ public class Boss extends GameObject{
 	private boolean randomBoss = false;
 
 	
+	/** Constructor, if the boss name is 'Random' pick a random name and set it */
 	public Boss(String name, int hitPoints, StudyOrDieModel model) {
 		if (name.equals("Random")) {
 			this.name = generateRandomName();
@@ -23,7 +24,6 @@ public class Boss extends GameObject{
 		} else {
 			this.name = name;
 		}
-		Log.w("Boss", "Boss name is now:" + name);
 		this.hitPoints = hitPoints;
 		this.model = model;
 	}
@@ -44,7 +44,6 @@ public class Boss extends GameObject{
 		default: return "Sjoerd";
 		}
 	}
-
 
 	@Override
 	public String getImageId() {

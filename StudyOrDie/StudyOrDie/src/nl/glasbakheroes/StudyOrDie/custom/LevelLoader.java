@@ -27,8 +27,8 @@ public class LevelLoader {
 	private StudyOrDieModel model;
 	private StudyOrDieGameBoard board;
 	private Avatar avatar;
-	private int[] randomBossLocation = new int[2];
-
+	private int[] beforeFightLocation = new int[2];
+	
 	/** Constructor */
 	public LevelLoader(GameBoard board, Avatar avatar) {
 		this.board = (StudyOrDieGameBoard) board;
@@ -65,8 +65,8 @@ public class LevelLoader {
 				board.addGameObject(avatar, board.getWidth() / 2, 1);
 			} else if (spawnArea.equals("Bottom")){
 				board.addGameObject(avatar, 20, 8);
-			} else if (spawnArea.equals("RandomBoss")) {
-				board.moveObject(avatar, randomBossLocation[0], randomBossLocation[1]);
+			} else if (spawnArea.equals("Fight")) {
+				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
 			}
 
 			/* Create all default objects */
@@ -92,8 +92,8 @@ public class LevelLoader {
 				board.moveObject(avatar,12, 11);
 			} else if (spawnArea.equals("Key")) {
 				board.moveObject(avatar, 19, 9);
-			} else if (spawnArea.equals("RandomBoss")) {
-				board.moveObject(avatar, randomBossLocation[0], randomBossLocation[1]);
+			} else if (spawnArea.equals("Fight")) {
+				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
 			}
 			if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(), 19, 9);
@@ -136,10 +136,8 @@ public class LevelLoader {
 				board.moveObject(avatar, 1, 2);
 			} else if (spawnArea.equals("Bottom")) {
 				board.moveObject(avatar, 12, 11);
-			} else if (spawnArea.equals("Boss")) {
-				board.addGameObject(avatar, 1, 3);
-			} else if (spawnArea.equals("RandomBoss")) {
-				board.moveObject(avatar, randomBossLocation[0], randomBossLocation[1]);
+			} else if (spawnArea.equals("Fight")) {
+				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
 			}
 
 			/* Create all default objects */
@@ -165,8 +163,8 @@ public class LevelLoader {
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
 				board.moveObject(avatar, 1, 2);
-			} else if (spawnArea.equals("RandomBoss")) {
-				board.moveObject(avatar, randomBossLocation[0], randomBossLocation[1]);
+			} else if (spawnArea.equals("Fight")) {
+				board.moveObject(avatar, beforeFightLocation[0], beforeFightLocation[1]);
 			}
 			
 			/* Create all default objects */
@@ -194,8 +192,8 @@ public class LevelLoader {
 		board.updateView();
 	}
 	
-	public void setRandomBossLocation(int x, int y) {
-		randomBossLocation[0] = x;
-		randomBossLocation[1] = y;
+	public void setBeforeFightLocation(int x, int y) {
+		beforeFightLocation[0] = x;
+		beforeFightLocation[1] = y;
 	}
 }

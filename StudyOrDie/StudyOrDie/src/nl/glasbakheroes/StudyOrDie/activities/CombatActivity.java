@@ -61,7 +61,6 @@ public class CombatActivity extends Activity implements Observer {
 		tvBossName = (TextView) findViewById(R.id.tvCombatBossName);
 		barBossHp = (ProgressBar) findViewById(R.id.barBossHp);
 		attackOptions = (BattleAttackOptionsView) findViewById(R.id.battleAttackOptionsView1);
-		Log.w("Combat", bossName);
 		boss = model.getBoss(bossName);
 		bossMaxHP = boss.getHP();
 		tvBossHP.setText("HP: " + boss.getHP() + "/" + boss.getHP());
@@ -80,11 +79,6 @@ public class CombatActivity extends Activity implements Observer {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		boss.killBoss(); 
-		if (boss.isRandomBoss()) {
-			model.getLoader().loadLevel("RandomBoss");
-		} else {
-			model.getLoader().loadLevel("Boss");
-		}
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		delayedFinish();	
 	}
