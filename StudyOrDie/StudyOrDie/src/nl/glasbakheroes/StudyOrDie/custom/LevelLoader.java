@@ -1,5 +1,6 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
+import android.util.Log;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Prop;
@@ -13,14 +14,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 	/**
 	* 	Level loader, class where all levels are saved at.
 	*	Will be called by the GameBoard and certain activities.
-	*
-	*	- Alive bosses: 	Each 'floor' or major level has a position in this array.
-	*	- Keys:				Same principal as with the bosses.
-	*	- Door locked:		Again for each major level a boolean.
-	*	- Current level:	The level currently to displayed.
-	*						* 1,2 and 3 are major level 1.
-	*						* 11, 12 and 13 are major level 2. Etc.
-	*	@Author EnJee	
+	*	@Author Niels Jan	
 	*/
 public class LevelLoader {
 	
@@ -80,7 +74,7 @@ public class LevelLoader {
 	public static final int TENTH_FLOOR_3 = 103;
 	public static final int TENTH_FLOOR_4 = 104;
 	
-	/* Spacial constants */
+	/* Gameboard measurement constants */
 	private static final int MAX_BOARD_WIDHT = 23;
 	private static final int MAX_BOARD_HEIGHT = 11;
 	
@@ -106,11 +100,11 @@ public class LevelLoader {
 	 * Load a new level with the correct items on the correct tile.
 	 * 
 	 * @param spawnArea		The area where the Avatar has to spawn (came from):
-	 * 						* Top:		Avatar came from a level from the top.
-	 * 						* Bottom:	Avatar came from a level from the bottom.
-	 * 						* Boss:		Level regenerated because the boss was fought.
-	 * 						* Elevator:	Avatar came from the elevator.
-	 * 						* Key:		Avatar picked up a key.
+	 * 						* Top:			Avatar came from a level from the top.
+	 * 						* Bottom:		Avatar came from a level from the bottom.
+	 * 						* savedLocation:The previous avatar location.
+	 * 						* Elevator:		Avatar came from the elevator.
+	 * 						* Key:			Avatar picked up a key.
 	 */
 	public void loadLevel(String spawnArea) {
 		
@@ -125,8 +119,9 @@ public class LevelLoader {
 				board.addGameObject(avatar, board.getWidth() / 2, 1);
 			} else if (spawnArea.equals("Bottom")){
 				board.addGameObject(avatar, 20, 8);
-			} else if (spawnArea.equals("Fight")) {
-				board.addGameObject(avatar, model.getBeforeFightLocation()[0], model.getBeforeFightLocation()[1]);
+			} else if (spawnArea.equals("savedLocation")) {
+				board.addGameObject(avatar, model.getSavedLocation()[0], model.getSavedLocation()[1]);
+				Log.w("Saved location:", model.getSavedLocation()[0] + "   " + model.getSavedLocation()[1]);
 			}
 
 			/* Create all default objects */
@@ -152,8 +147,8 @@ public class LevelLoader {
 				board.addGameObject(avatar,12, 11);
 			} else if (spawnArea.equals("Key")) {
 				board.addGameObject(avatar, 18, 9);
-			} else if (spawnArea.equals("Fight")) {
-				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
+			} else if (spawnArea.equals("savedLocation")) {
+				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
 			}
 			if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(1), 19, 8);
@@ -196,8 +191,8 @@ public class LevelLoader {
 				board.addGameObject(avatar, 1, 2);
 			} else if (spawnArea.equals("Bottom")) {
 				board.addGameObject(avatar, 12, 11);
-			} else if (spawnArea.equals("Fight")) {
-				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
+			} else if (spawnArea.equals("savedLocation")) {
+				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
 			}
 
 			/* Create all default objects 
@@ -225,8 +220,8 @@ public class LevelLoader {
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
 				board.addGameObject(avatar, 1, 2);
-			} else if (spawnArea.equals("Fight")) {
-				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
+			} else if (spawnArea.equals("savedLocation")) {
+				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
 			}
 			
 			/* Create all default objects */

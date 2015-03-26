@@ -33,7 +33,7 @@ public class StudyOrDieModel extends Observable {
 	private CoreActivity activity;
 	private int lastRandomBossStep = 0; 
 	private boolean gameInitialized = false;
-	private int[] beforeFightLocation = {20, 8};
+	private int[] savedAvatarLocation = {20, 8}; 
 	private boolean[] levelOpened = {true, false, false, false, false, false, false, false, false, false, false};
 	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
@@ -211,7 +211,7 @@ public class StudyOrDieModel extends Observable {
 		case 12 : keys[1] = false; break;
 		default	: break;
 		}
-		setBeforeFightLocation(avatar.getPositionX(), avatar.getPositionY());
+		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 		loader.loadLevel("Fight");
 	}
 	
@@ -294,14 +294,14 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	/** Get the location of the avatar where he was before a fight occurred */
-	public int[] getBeforeFightLocation() {
-		return beforeFightLocation;
+	public int[] getSavedLocation() {
+		return savedAvatarLocation;
 	}
 	
 	/** Save the current location of the avatar, called when entering a fight */
-	public void setBeforeFightLocation(int x, int y) {
-		 beforeFightLocation[0] = x;
-		 beforeFightLocation[1] = y;
+	public void setSavedLocation(int x, int y) {
+		 savedAvatarLocation[0] = x;
+		 savedAvatarLocation[1] = y;
 	}
 	
 	public void openLevel(int level) {

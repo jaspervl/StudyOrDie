@@ -16,7 +16,13 @@ public class Boss extends GameObject{
 	private boolean randomBoss = false;
 	private int level;
 
-	
+	/**
+	 * Construct a (random) boss
+	 * @param name		The name of the boss.
+	 * @param hitPoints	The amount of hitpoints the boss has
+	 * @param level		The level which will be opened after winning a fight against this boss
+	 * @param model		The model with all the relevant data
+	 */
 	public Boss(String name, int hitPoints, int level, StudyOrDieModel model) {
 		if (name.equals("Random")) {
 			this.name = generateRandomName();

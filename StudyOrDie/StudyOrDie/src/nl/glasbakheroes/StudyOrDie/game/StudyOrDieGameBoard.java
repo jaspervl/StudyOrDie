@@ -4,6 +4,7 @@ package nl.glasbakheroes.StudyOrDie.game;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -140,13 +141,13 @@ public class StudyOrDieGameBoard extends GameBoard {
 			default:
 				break;
 			}
-			
+			 
 			if (model.fightRandomBoss()) {
 				model.randomEncounterOccured();
 				
 				/* Save the current location of the avatar in the level loader */
 				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ";" + model.getAvatar().getPositionY());
-				model.setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
+				model.setSavedLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
 				/* Create a new boss and fetch it from the model */
 				model.addBoss("Random", 100, 0);
 				Boss randomBoss = model.findRandomBoss();
@@ -160,7 +161,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 	}
 	
-	/**
+	/** 
 	 * Helper method, check wheather the desired movement is possible and what objects are present.
 	 * @param direction	The direction the avatar wants to move.
 	 * @return			Returns true for valid movement, false for invalid movement.
@@ -236,12 +237,11 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/** Boss present, avatar will enter a fight and won't move. */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
-			model.setBeforeFightLocation(avatar.getPositionX(), avatar.getPositionY());
+			model.setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			Bundle extras = new Bundle();
 			extras.putString("bossName", boss.getName());
-			extras.putString("Type", "Boss");
 			combatIntent.putExtras(extras);
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_INTENT);
 			return false;
@@ -278,10 +278,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 						Toast.LENGTH_SHORT).show();
 				return false;
 			}
-			/*
-			 * Selects floor
-			 */
-
+			
+			/* Selects the floor */
 			CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor",
 					"Second floor", "Third floor", "Fourth floor", "Fifth floor", "Sixt floor", "Seventh floor", "Eighth floor", "Ninth floor", "Roof top"  };
 
@@ -292,18 +290,17 @@ public class StudyOrDieGameBoard extends GameBoard {
 				public void onClick(DialogInterface dialog, int chosenFloor) {
 					
 					if (model.isLevelOpen(chosenFloor)) {
+						String message = "";
 						switch (chosenFloor) {
 						case 0:
 							model.setLevel(LevelLoader.GROUND_LEVEL_3);
-							Toast.makeText(activity, "Ground floor", Toast.LENGTH_SHORT)
-							.show();
+							message = "Ground floor";
 							leverloader.loadLevel("Elevator");
 							break;
 						case 1:
 							model.setLevel(LevelLoader.FIRST_FLOOR_1);
-							Toast.makeText(activity, "First floor", Toast.LENGTH_SHORT)
-							.show();
-					         leverloader.loadLevel("Elevator");
+							message = "First floor";
+					        leverloader.loadLevel("Elevator");
 							break;
 							// Not yet implemented
 							case 2 : model.setLevel(LevelLoader.SECOND_FLOOR_2);break;
@@ -316,6 +313,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 							case 9 : model.setLevel(LevelLoader.NINTH_FLOOR_2);break;
 							case 10 : model.setLevel(LevelLoader.TENTH_FLOOR_2);break;
 						}
+						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					} else {
 						Toast.makeText(activity, "Can't go there yet!", Toast.LENGTH_SHORT).show();
 					}
@@ -328,8 +326,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/** Key is present, avatar gets it and can now open a locked door */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Key) {
 			avatar.addKey((Key)(getObject(avatarNewX,avatarNewY)));
+			model.setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 			model.removeKey(model.getLevel());
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
+			model.getLoader().loadLevel("savedLocation");
 			return false;
 
 			/** ADD MORE CLASSES HERE */

@@ -61,11 +61,9 @@ public class CombatActivity extends Activity implements Observer {
 		String bossName = extras.getString("bossName"); 
 		boss = model.getBoss(bossName);
 		
-		
 		bossImage = (ImageView) findViewById(R.id.imgBattleAvatar);
 		bossImage.setImageBitmap(SpriteCache.getInstance().get(boss.getImageId()));
-		
-		
+	
 		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
 		tvBossName = (TextView) findViewById(R.id.tvCombatBossName);
 		barBossHp = (ProgressBar) findViewById(R.id.barBossHp);
@@ -98,7 +96,7 @@ public class CombatActivity extends Activity implements Observer {
 	 */
 	public void killAvatar() {
 		model.setLevel(model.getLevel() - 2);
-		model.getLoader().loadLevel("Fight");
+		model.getLoader().loadLevel("savedLocation");
 		Intent gameOverIntent = new Intent(this, GameOverActivity.class);
 		startActivity(gameOverIntent);
 		delayedFinish();
