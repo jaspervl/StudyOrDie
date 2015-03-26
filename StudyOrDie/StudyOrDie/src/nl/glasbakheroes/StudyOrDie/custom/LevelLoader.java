@@ -140,7 +140,9 @@ public class LevelLoader {
 				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
 
-			/* Create all default objects */
+			/* Create all default objects 
+			 * 
+			 * */
 			board.createWallHorizontal(1, 9, 11);
 			board.createWallHorizontal(15, 22, 11);
 			board.createWallHorizontal(1, 9, 0);
