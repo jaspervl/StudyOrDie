@@ -47,6 +47,9 @@ public class Boss extends GameObject{
 
 	@Override
 	public String getImageId() {
+		if (randomBoss) {
+			return BOSS_IMAGE_HENK;
+		}
 		return BOSS_IMAGE;
 	}
 

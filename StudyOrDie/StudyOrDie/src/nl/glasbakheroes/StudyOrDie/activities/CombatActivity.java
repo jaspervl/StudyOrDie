@@ -5,14 +5,18 @@ package nl.glasbakheroes.StudyOrDie.activities;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.crypto.spec.IvParameterSpec;
+
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import nl.glasbakheroes.StudyOrDie.view.BattleAttackOptionsView;
+import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -54,14 +58,18 @@ public class CombatActivity extends Activity implements Observer {
 		model.addObserver(this);
 		
 		Bundle extras = getIntent().getExtras();
-		String bossImageId = extras.getString("BossImageId");
 		String bossName = extras.getString("bossName"); 
+		boss = model.getBoss(bossName);
+		
+		
+		bossImage = (ImageView) findViewById(R.id.imgBattleAvatar);
+		bossImage.setImageBitmap(SpriteCache.getInstance().get(boss.getImageId()));
+		
 		
 		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
 		tvBossName = (TextView) findViewById(R.id.tvCombatBossName);
 		barBossHp = (ProgressBar) findViewById(R.id.barBossHp);
 		attackOptions = (BattleAttackOptionsView) findViewById(R.id.battleAttackOptionsView1);
-		boss = model.getBoss(bossName);
 		bossMaxHP = boss.getHP();
 		tvBossHP.setText("HP: " + boss.getHP() + "/" + boss.getHP());
 		barBossHp.setMax(boss.getHP());

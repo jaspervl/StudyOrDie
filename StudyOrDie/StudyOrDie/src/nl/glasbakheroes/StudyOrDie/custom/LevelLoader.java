@@ -94,9 +94,9 @@ public class LevelLoader {
 			} else if (spawnArea.equals("Fight")) {
 				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
-		//	if (model.getKeys()[0] == true) {
+			if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(2), 19, 9);
-		//	}
+			}
 			board.addGameObject(new Key(1), 19, 8);
 			
 			/* Create all default objects */

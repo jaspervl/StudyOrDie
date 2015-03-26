@@ -148,7 +148,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 				/* Start new combat activity */
 				Intent randomCombatIntent = new Intent(activity, CombatActivity.class);
 				randomCombatIntent.putExtra("bossName", randomBoss.getName());
-				randomCombatIntent.putExtra("bossImageId", randomBoss.getImageId());
 				activity.startActivity(randomCombatIntent);
 			}
 			updateView();
@@ -237,7 +236,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 			Bundle extras = new Bundle();
 			extras.putString("bossName", boss.getName());
 			extras.putString("Type", "Boss");
-			extras.putString("bossImageId", boss.getImageId());
 			combatIntent.putExtras(extras);
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_INTENT);
 			return false;
