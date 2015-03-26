@@ -48,7 +48,7 @@ public class CoreActivity extends Activity {
 
 	/* Helper variables */
 	private Handler handler;
-	protected String moveDirection = "";
+	protected int moveDirection = 0;
 	private boolean folding = true;
 	private boolean disableMovement = false;
 	private boolean allowFinish = true;
@@ -142,16 +142,16 @@ public class CoreActivity extends Activity {
 				
 				/* Start the moving loops till button is released */
 				if (v == upButton) {
-					moveDirection = "Up";
+					moveDirection = StudyOrDieGameBoard.UP;
 					startMovingLoop();	
 				} else if (v == downButton) {
-					moveDirection = "Down";
+					moveDirection = StudyOrDieGameBoard.DOWN;
 					startMovingLoop();	
 				} else if (v == leftButton) {
-					moveDirection = "Left";
+					moveDirection = StudyOrDieGameBoard.LEFT;
 					startMovingLoop();	
 				} else if (v == rightButton) {
-					moveDirection = "Right";
+					moveDirection = StudyOrDieGameBoard.RIGHT;
 					startMovingLoop();
 					
 					/* Menu button pressed */

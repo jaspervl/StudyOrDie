@@ -28,6 +28,12 @@ public class StudyOrDieGameBoard extends GameBoard {
 	public static final int REQUEST_COMBAT_INTENT = 1337;
 	private static final int GAMEBOARD_WIDTH = 24;
 	private static final int GAMEBOARD_HEIGHT = 12;
+	public static final int UP = 1;
+	public static final int DOWN = 2;
+	public static final int LEFT = 3;
+	public static final int RIGHT = 4;
+	
+	
 	private CoreActivity activity;
 	private StudyOrDieModel model;
 	private Avatar avatar;
@@ -104,30 +110,30 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 * 
 	 * @param direction The direction the avatar wants to move. [Up / Down / Left / Right]
 	 */
-	public void moveAvatar(String direction) {
+	public void moveAvatar(int direction) {
 		/* Checks whether the avatar is too close to boundaries and other objects */
 		if (checkBoundaries(direction)) {
 			/* Set the orientation of the avatar image in a certain direction */
 			avatar.setImage(direction);
 			/* Move the avatar in a certain direction */
 			switch (direction) {
-			case "Up":
+			case UP:
 				moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() - 1);
 				model.addStep();
 				
 				break;
-			case "Down": 
+			case DOWN: 
 				moveObject(avatar, avatar.getPositionX(),
 						avatar.getPositionY() + 1);
 				model.addStep();
 				break;
-			case "Left":
+			case LEFT:
 				moveObject(avatar, avatar.getPositionX() - 1,
 						avatar.getPositionY());
 				model.addStep();
 				break;
-			case "Right":
+			case RIGHT:
 				moveObject(avatar, avatar.getPositionX() + 1,
 						avatar.getPositionY());
 				model.addStep();
@@ -160,12 +166,12 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 * @param direction	The direction the avatar wants to move.
 	 * @return			Returns true for valid movement, false for invalid movement.
 	 */
-	private boolean checkBoundaries(String direction) {
+	private boolean checkBoundaries(int direction) {
 		int avatarNewX = 0;
 		int avatarNewY = 0;
 		
 		switch (direction) {
-		case "Up":
+		case UP:
 			avatarNewY = avatar.getPositionY() -1;
 			if (avatarNewY >= 0 ) {
 				/* Within playing field, inspect the new tile with inspectObject */
@@ -178,7 +184,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return false; 
 			}
 			
-		case "Down":
+		case DOWN:
 			avatarNewY = avatar.getPositionY() +1;
 			if (avatarNewY < getHeight() ) {
 				/* Within playing field, inspect the new tile with inspectObject */
@@ -191,7 +197,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return false;
 			}
 			
-		case "Left":
+		case LEFT:
 			avatarNewX = avatar.getPositionX() -1;
 			if (avatarNewX >= 0 ) {
 				/* Within playing field, inspect the new tile with inspectObject */
@@ -201,7 +207,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return false;
 			}		
 			
-		case "Right":
+		case RIGHT:
 			avatarNewX = avatar.getPositionX() +1;
 			if (avatarNewX < getWidth() ) {
 				/* Within playing field, inspect the new tile with inspectObject */
@@ -221,7 +227,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 * @param avatarNewY	Desired y of the avatar
 	 * @return				True for movement, false for no movement.
 	 */
-	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
+	private boolean inspectObject(int avatarNewX, int avatarNewY, int direction) {
 		 leverloader = model.getLoader();
 		
 		/** No object present, avatar can move. */
@@ -231,6 +237,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/** Boss present, avatar will enter a fight and won't move. */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
+			model.setBeforeFightLocation(avatar.getPositionX(), avatar.getPositionY());
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			Bundle extras = new Bundle();

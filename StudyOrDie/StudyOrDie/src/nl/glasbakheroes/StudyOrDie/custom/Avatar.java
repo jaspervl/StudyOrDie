@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.custom;
 import java.util.ArrayList;
 
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -67,24 +68,24 @@ public class Avatar extends GameObject {
 	 * @param direction
 	 *            The direction the avatar is walking.
 	 */
-	public void setImage(String direction) {
+	public void setImage(int direction) {
 		switch (direction) {
-		case "Up":
+		case StudyOrDieGameBoard.UP:
 			if (!currentImage.equals(AVATAR_BACK)) {
 				currentImage = AVATAR_BACK;
 			}
 			break;
-		case "Down":
+		case StudyOrDieGameBoard.DOWN:
 			if (!currentImage.equals(AVATAR_FRONT)) {
 				currentImage = AVATAR_FRONT;
 			}
 			break;
-		case "Left":
+		case StudyOrDieGameBoard.LEFT:
 			if (!currentImage.equals(AVATAR_LEFT)) {
 				currentImage = AVATAR_LEFT;
 			}
 			break;
-		case "Right":
+		case StudyOrDieGameBoard.RIGHT:
 			if (!currentImage.equals(AVATAR_RIGHT)) {
 				currentImage = AVATAR_RIGHT;
 			}
