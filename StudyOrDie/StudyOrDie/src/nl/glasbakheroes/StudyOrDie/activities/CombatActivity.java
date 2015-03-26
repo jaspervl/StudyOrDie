@@ -46,7 +46,7 @@ public class CombatActivity extends Activity implements Observer {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/* Remove title bar */
-		player = MediaPlayer.create(getApplicationContext(), R.raw.darude);
+		player = MediaPlayer.create(getApplicationContext(), R.raw.battle);
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */
 	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

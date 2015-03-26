@@ -44,9 +44,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 	/**
 	 * Create a horizontal wall in the gameboard.
-	 * @param x1	The x position in the grid to start the wall.	[0-23]
-	 * @param x2	The x position in the grid to end the wall.		[0-23]
-	 * @param y		The y position in the grid to place the wall.	[0-11]
+	 * @param x1	The x position in the grid to start the wall.	
+	 * @param x2	The x position in the grid to end the wall.		
+	 * @param y		The y position in the grid to place the wall.	
 	 */
 	public void createWallHorizontal(int x1, int x2, int y) {
 		int max = 0;
@@ -65,9 +65,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 	
 	/**
 	 * Create a vertical wall in the gameboard.
-	 * @param y1	The y position in the grid to start the wall. 	[0-11]
-	 * @param y2	The y position in the grid to end the wall.		[0-11]
-	 * @param x		The x position in the grid to place the wall.	[0-23]
+	 * @param y1	The y position in the grid to start the wall. 	
+	 * @param y2	The y position in the grid to end the wall.		
+	 * @param x		The x position in the grid to place the wall.
 	 */
 	public void createWallVertical(int y1, int y2, int x) {
 		int max = 0;
@@ -286,14 +286,14 @@ public class StudyOrDieGameBoard extends GameBoard {
 				public void onClick(DialogInterface dialog, int which) {
 					switch (which) {
 					case 0:
-						model.setLevel(3);
-						Toast.makeText(activity, "Floor 1", Toast.LENGTH_SHORT)
+						model.setLevel(LevelLoader.GROUND_LEVEL_3);
+						Toast.makeText(activity, "Ground floor", Toast.LENGTH_SHORT)
 						.show();
 						leverloader.loadLevel("Elevator");
 						break;
 					case 1:
-						model.setLevel(11);
-						Toast.makeText(activity, "Floor 2", Toast.LENGTH_SHORT)
+						model.setLevel(LevelLoader.FIRST_FLOOR_1);
+						Toast.makeText(activity, "First floor", Toast.LENGTH_SHORT)
 						.show();
 				         leverloader.loadLevel("Elevator");
 						break;

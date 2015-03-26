@@ -57,7 +57,7 @@ public class CoreActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		player = MediaPlayer.create(getApplicationContext(), R.raw.darude);
+		player = MediaPlayer.create(getApplicationContext(), R.raw.pokemon_mix);
 		/* Remove title bar */
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */

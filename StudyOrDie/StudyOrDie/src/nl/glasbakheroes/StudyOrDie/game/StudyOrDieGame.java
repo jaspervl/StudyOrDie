@@ -60,7 +60,7 @@ public class StudyOrDieGame extends Game {
 		} else {
 			Log.w("StudyOrDie Game", "New game is being started");
 			model.gameHasBeenInitialized();
-			levelLoader.loadLevel("Bottom");
+			levelLoader.loadLevel("Fight");
 		}
 	}
 	
