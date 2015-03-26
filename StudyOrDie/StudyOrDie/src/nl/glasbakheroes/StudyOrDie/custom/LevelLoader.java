@@ -77,8 +77,8 @@ public class LevelLoader {
 			board.createWallVertical(1, 5, 14);
 			board.createWallVertical(7, 10, 14);
 			board.createWallCorners(0, 23, 0, 11);
-			board.addGameObject(new Door(false), 12, 0);
-			board.addGameObject(new Door(false), 14, 6);
+			board.addGameObject(new Door(), 12, 0);
+			board.addGameObject(new Door(), 14, 6);
 			break;
 			
 			/** case 2 is part 2 of the ground floor */
@@ -90,13 +90,14 @@ public class LevelLoader {
 			} else if (spawnArea.equals("Bottom")) {
 				board.addGameObject(avatar,12, 11);
 			} else if (spawnArea.equals("Key")) {
-				board.addGameObject(avatar, 19, 9);
+				board.addGameObject(avatar, 18, 9);
 			} else if (spawnArea.equals("Fight")) {
 				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
-			if (model.getKeys()[0] == true) {
+		//	if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(2), 19, 9);
-			}
+		//	}
+			board.addGameObject(new Key(1), 19, 8);
 			
 			/* Create all default objects */
 			board.createWallHorizontal(1, 9, 11);
@@ -111,8 +112,8 @@ public class LevelLoader {
 			board.createWallVertical(10, 7, 14);
 			board.createWallCorners(0, 10, 0, 11);
 			board.createWallCorners(14, 23, 0, 11);
-			board.addGameObject(new Door(false), 14, 6);
-			board.addGameObject(new Door(false), 10, 6);
+			board.addGameObject(new Door(), 14, 6);
+			board.addGameObject(new Door(), 10, 6);
 			board.addGameObject(new Prop("TableGreyImac"), 6, 6);
 			break;
 			
@@ -129,7 +130,7 @@ public class LevelLoader {
 			if (model.getDoors()[0] == true) { 
 				board.addGameObject(new Door(true,2), 10, 6);
 			} else {
-				board.addGameObject(new Door(false), 10, 6);
+				board.addGameObject(new Door(), 10, 6);
 			}
 			if (spawnArea.equals("Elevator")) {
 				board.addGameObject(avatar, 1, 2);
@@ -153,7 +154,7 @@ public class LevelLoader {
 			board.createWallVertical(10, 7, 14);
 			board.createWallCorners(0, 10, 0, 11);
 			board.createWallCorners(14, 23, 0, 11);
-			board.addGameObject(new Door(false), 14, 6);
+			board.addGameObject(new Door(true,1), 14, 6);
 			break;
 			
 			/** Case 11 is where the second floor starts */

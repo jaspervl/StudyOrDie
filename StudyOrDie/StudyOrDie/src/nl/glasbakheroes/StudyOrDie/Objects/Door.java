@@ -13,10 +13,7 @@ public class Door extends GameObject {
 	public Door() {
 		locked = false;
 	}
-	public Door(Boolean locked) {
-		this.locked = locked;
-	}
-	public Door(Boolean locked, int doortype) {
+	public Door(boolean locked, int doortype) {
 		this.locked = locked;
 		this.doortype = doortype;
 		

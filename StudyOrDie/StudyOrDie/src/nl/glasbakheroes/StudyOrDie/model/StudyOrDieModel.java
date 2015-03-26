@@ -210,7 +210,8 @@ public class StudyOrDieModel extends Observable {
 		case 12 : keys[1] = false; break;
 		default	: break;
 		}
-		loader.loadLevel("Key");
+		setBeforeFightLocation(avatar.getPositionX(), avatar.getPositionY());
+		loader.loadLevel("Fight");
 	}
 	
 	/** Checking for the value of avatar energy, avatar motivation.

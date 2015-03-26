@@ -288,7 +288,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				public void onClick(DialogInterface dialog, int which) {
 					switch (which) {
 					case 0:
-						model.setLevel(1);
+						model.setLevel(3);
 						Toast.makeText(activity, "Floor 1", Toast.LENGTH_SHORT)
 						.show();
 						leverloader.loadLevel("Elevator");
@@ -317,7 +317,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 			/** Key is present, avatar gets it and can now open a locked door */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Key) {
-			avatar.addKey(new Key(2));
+			avatar.addKey((Key)(getObject(avatarNewX,avatarNewY)));
 			model.removeKey(model.getLevel());
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
