@@ -43,7 +43,7 @@ public class CoreActivity extends Activity {
 	private Button menuButton;
 	private ImageView btnFoldUnfold;
 	private OverworldStatsView statView;
-	private MediaPlayer player = MediaPlayer.create(getApplicationContext(), R.raw.darude);
+	private MediaPlayer player;
 	int length;
 
 	/* Helper variables */
@@ -57,6 +57,7 @@ public class CoreActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		player = MediaPlayer.create(getApplicationContext(), R.raw.darude);
 		/* Remove title bar */
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */
