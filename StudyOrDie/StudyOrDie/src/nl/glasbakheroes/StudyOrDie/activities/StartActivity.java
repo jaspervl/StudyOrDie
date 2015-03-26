@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.activities;
 import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -18,14 +19,12 @@ public class StartActivity extends Activity {
 
 	public static final int RESULT_TO_CORE_ACTIVITY = CoreActivity.REQUEST_START_CODE;
 	public static final int REQUEST_AVATAR_SELECTION = 3;
-	
 	private Button btnNewGame;
 	private Button btnLoad;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		/* Remove title bar */ 
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */

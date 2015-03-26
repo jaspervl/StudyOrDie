@@ -9,6 +9,7 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import nl.glasbakheroes.StudyOrDie.view.OverworldStatsView;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -42,6 +43,8 @@ public class CoreActivity extends Activity {
 	private Button menuButton;
 	private ImageView btnFoldUnfold;
 	private OverworldStatsView statView;
+	private MediaPlayer player = MediaPlayer.create(getApplicationContext(), R.raw.darude);
+	int length;
 
 	/* Helper variables */
 	private Handler handler;
@@ -54,7 +57,6 @@ public class CoreActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		/* Remove title bar */
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */
@@ -69,6 +71,7 @@ public class CoreActivity extends Activity {
 			startMenuShown = true;
 			
 		} 
+		length = 0;
 		allowFinish = false;
 		
 		/* Retrieve the model from the application and create a handler for delayed actions */
@@ -213,6 +216,8 @@ public class CoreActivity extends Activity {
 	protected void onResume() {
 		/* Enable all movement in this activity */
 		disableMovement = false;
+		player.seekTo(length);
+		player.start();
 		super.onResume();
 	}
 	
@@ -221,6 +226,10 @@ public class CoreActivity extends Activity {
 	protected void onPause() {
 		/* Disable all movement in this activity */
 		disableMovement = true;
+		if(player.isPlaying()){
+		player.pause();
+		length= player.getCurrentPosition();
+		}
 		super.onPause();
 	}
 	
@@ -236,4 +245,5 @@ public class CoreActivity extends Activity {
 	/**
 	 * End of dummy methods
 	 */	
+	
 }
