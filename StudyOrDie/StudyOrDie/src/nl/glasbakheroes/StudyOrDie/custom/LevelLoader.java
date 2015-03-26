@@ -113,7 +113,6 @@ public class LevelLoader {
 		switch (model.getLevel()) {
 			/** case 1 is where ground floor starts */
 		case GROUND_LEVEL_1:	
-		
 			/* Create conditional objects */
 			if (spawnArea.equals("Top")) {
 				board.addGameObject(avatar, board.getWidth() / 2, 1);
@@ -123,7 +122,6 @@ public class LevelLoader {
 				board.addGameObject(avatar, model.getSavedLocation()[0], model.getSavedLocation()[1]);
 				Log.w("Saved location:", model.getSavedLocation()[0] + "   " + model.getSavedLocation()[1]);
 			}
-
 			/* Create all default objects */
 			board.createWallHorizontal(1, MAX_BOARD_WIDHT-1, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(1, 11, 0);
@@ -139,7 +137,6 @@ public class LevelLoader {
 			
 			/** case 2 is part 2 of the ground floor */
 		case GROUND_LEVEL_2: 
-			
 			/* Create conditional objects */
 			if (spawnArea.equals("Top")) {
 				board.addGameObject(avatar, 12, 0);
@@ -153,7 +150,6 @@ public class LevelLoader {
 			if (model.getKeys()[0] == true) {
 			board.addGameObject(new Key(1), 19, 8);
 			}
-			
 			/* Create all default objects */
 			board.createWallHorizontal(1, 9, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(15, MAX_BOARD_WIDHT-1, 11);
@@ -174,8 +170,15 @@ public class LevelLoader {
 			
 			/** case 3 is part 3 of the ground floor */
 		case GROUND_LEVEL_3:
-			
 			/* Create conditional objects */
+			if (spawnArea.equals("Elevator")) {
+				board.addGameObject(avatar, 1, 2);
+			} else if (spawnArea.equals("Bottom")) {
+				board.addGameObject(avatar, 12, 11);
+			} else if (spawnArea.equals("savedLocation")) {
+				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
+			}
+			
 			if (model.getBoss("Wombat").getAlive()) {
 				board.addGameObject(model.getBoss("Wombat"), 1, 2);
 				board.addGameObject(new Elevator(true), 1, 1);
@@ -187,19 +190,9 @@ public class LevelLoader {
 			} else {
 				board.addGameObject(new Door(), 10, 6);
 			}
-			if (spawnArea.equals("Elevator")) {
-				board.addGameObject(avatar, 1, 2);
-			} else if (spawnArea.equals("Bottom")) {
-				board.addGameObject(avatar, 12, 11);
-			} else if (spawnArea.equals("savedLocation")) {
-				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
-			}
-
-			/* Create all default objects 
-			 * 
-			 * */
+			/* Create all default objects */
 			board.createWallHorizontal(1, 9, MAX_BOARD_HEIGHT);
-			board.createWallHorizontal(15, MAX_BOARD_WIDHT-1, 11);
+			board.createWallHorizontal(15, MAX_BOARD_WIDHT-1, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(1, 9, 0);
 			board.createWallHorizontal(15, MAX_BOARD_WIDHT-1, 0);
 			board.createWallHorizontal(11, 13, 0);
@@ -211,22 +204,20 @@ public class LevelLoader {
 			board.createWallVertical(MAX_BOARD_HEIGHT-1, 7, 14);
 			board.createWallCorners(0, 10, 0, MAX_BOARD_HEIGHT);
 			board.createWallCorners(14, MAX_BOARD_WIDHT, 0, MAX_BOARD_HEIGHT);
-			board.addGameObject(new Door(true,1), 14, 6);
+			board.addGameObject(new Door(true,2), 14, 6); // Door which does not go with ANY key at this moment
 			break;
 			
 			/** Case 11 is where the second floor starts */
 		case FIRST_FLOOR_1:
-			
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
 				board.addGameObject(avatar, 1, 2);
 			} else if (spawnArea.equals("savedLocation")) {
 				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
 			}
-			
 			/* Create all default objects */
 			board.createWallHorizontal(1, MAX_BOARD_WIDHT-1, 0);
-			board.createWallHorizontal(1, MAX_BOARD_WIDHT-1, 11);
+			board.createWallHorizontal(1, MAX_BOARD_WIDHT-1, MAX_BOARD_HEIGHT);
 			board.createWallVertical(1, MAX_BOARD_HEIGHT-1, 0);
 			board.createWallVertical(1, MAX_BOARD_HEIGHT-1, MAX_BOARD_WIDHT);
 			board.createWallCorners(0, MAX_BOARD_WIDHT, 0, MAX_BOARD_HEIGHT);
