@@ -197,7 +197,8 @@ containing a value of this type.
         public static final int start=0x7f070002;
     }
     public static final class raw {
-        public static final int darude=0x7f040000;
+        public static final int battle=0x7f040000;
+        public static final int darude=0x7f040001;
     }
     public static final class string {
         public static final int action_settings=0x7f06000f;

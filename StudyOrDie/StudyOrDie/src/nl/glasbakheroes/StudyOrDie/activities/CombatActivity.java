@@ -5,8 +5,6 @@ package nl.glasbakheroes.StudyOrDie.activities;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.crypto.spec.IvParameterSpec;
-
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
@@ -16,10 +14,9 @@ import nl.glasbakheroes.StudyOrDie.view.BattleAttackOptionsView;
 import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -42,18 +39,21 @@ public class CombatActivity extends Activity implements Observer {
 	private int bossMaxHP;
 	private BattleAttackOptionsView attackOptions;
 	private ProgressBar barBossHp;
+	private MediaPlayer player;
 
 	/** Will be called when the activity is created [also after it finished / got destroyed] */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		/* Remove title bar */
+		player = MediaPlayer.create(getApplicationContext(), R.raw.darude);
 	    this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    /* Remove notification bar */
 	    this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
 		setContentView(R.layout.activity_combat);
-		
+		player = MediaPlayer.create(getApplicationContext(), R.raw.battle);
+		player.start();
 		model = ((StudyOrDieApplication) getApplication()).getModel();
 		model.addObserver(this);
 		
@@ -168,5 +168,11 @@ public class CombatActivity extends Activity implements Observer {
 	public void update(Observable observable, Object data) {
 		tvBossHP.setText("HP: " + boss.getHP() + "/" + bossMaxHP);
 		barBossHp.setProgress(boss.getHP());
+	}
+	
+	@Override
+	protected void onDestroy() {
+		player.stop();
+		super.onPause();
 	}
 }
