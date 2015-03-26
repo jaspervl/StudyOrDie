@@ -47,11 +47,6 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile("empty", R.drawable.floortile_turqoise);
 				setEmptyTile("empty");
 				
-				spriteCache.loadTile(Avatar.AVATAR_FRONT, R.drawable.char_player_front);
-				spriteCache.loadTile(Avatar.AVATAR_BACK, R.drawable.char_player_back);
-				spriteCache.loadTile(Avatar.AVATAR_LEFT, R.drawable.char_player_left);
-				spriteCache.loadTile(Avatar.AVATAR_RIGHT, R.drawable.char_player_right);
-				
 				spriteCache.loadTile(Wall.WALL_HORIZONTAL_IMAGE, R.drawable.wall_horizontal);
 				spriteCache.loadTile(Wall.WALL_VERTICAL_IMAGE, R.drawable.wall_vertical);
 				spriteCache.loadTile(Wall.WALL_NORTH_WEST, R.drawable.wall_corner_northwest);
@@ -59,8 +54,6 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Wall.WALL_SOUTH_EAST, R.drawable.wall_corner_southeast);
 				spriteCache.loadTile(Wall.WALL_NORTH_EAST, R.drawable.wall_corner_northeast);
 				
-				spriteCache.loadTile(Boss.BOSS_IMAGE, R.drawable.wombat);
-				spriteCache.loadTile(Boss.BOSS_IMAGE_HENK, R.drawable.concierge);
 				spriteCache.loadTile(Door.DOOR_CLOSED_IMAGE, R.drawable.door_orange_south);
 				spriteCache.loadTile(Elevator.ELEVATOR_LOCKED_IMAGE, R.drawable.door_elevator_locked);
 				spriteCache.loadTile(Elevator.ELEVATOR_OPENED_IMAGE, R.drawable.door_elevator_open);
@@ -69,6 +62,16 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY, R.drawable.prop_table_grey);
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY_IMAC, R.drawable.prop_table_grey_imac);
 				spriteCache.loadTile(Prop.PROP_CHAIR_GREEN, R.drawable.prop_chair_green);
+				
+				/* Bosses */
+				spriteCache.loadTile(Boss.BOSS_IMAGE_RUUD, R.drawable.ruud_greven);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_CONCIERGE, R.drawable.concierge);
+				
+				/* Avatar */
+				spriteCache.loadTile(Avatar.AVATAR_FRONT, R.drawable.char_player_front);
+				spriteCache.loadTile(Avatar.AVATAR_BACK, R.drawable.char_player_back);
+				spriteCache.loadTile(Avatar.AVATAR_LEFT, R.drawable.char_player_left);
+				spriteCache.loadTile(Avatar.AVATAR_RIGHT, R.drawable.char_player_right);
 
 
 	}

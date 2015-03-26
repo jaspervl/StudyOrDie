@@ -92,8 +92,7 @@ public class LevelLoader {
 	}
 
 	private void createBosses() {
-		model.addBoss("Wombat", 100, 1);
-		model.addBoss("Ruud", 120, 2);
+		model.addBoss("Ruud", 100, 1);
 	}
 
 	/**
@@ -179,8 +178,8 @@ public class LevelLoader {
 				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
 			}
 			
-			if (model.getBoss("Wombat").getAlive()) {
-				board.addGameObject(model.getBoss("Wombat"), 1, 2);
+			if (model.getBoss("Ruud").getAlive()) {
+				board.addGameObject(model.getBoss("Ruud"), 1, 2);
 				board.addGameObject(new Elevator(true), 1, 1);
 			} else {
 				board.addGameObject(new Elevator(false), 1, 1);

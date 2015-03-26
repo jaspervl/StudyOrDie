@@ -73,7 +73,6 @@ public class CombatActivity extends Activity implements Observer {
 		barBossHp.setMax(boss.getHP());
 		barBossHp.setProgress(boss.getHP());
 		tvBossName.setText(bossName);
-		
 	}
 	
 	/** Call this method when the back button is clicked */
@@ -87,7 +86,7 @@ public class CombatActivity extends Activity implements Observer {
 		boss.killBoss(); 
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		model.openLevel(boss.getLevel());
-		delayedFinish();	
+		delayedFinish();	 
 	}
 	 
 	/**
@@ -135,14 +134,13 @@ public class CombatActivity extends Activity implements Observer {
 	private void bossAttack() {
 		handler.postDelayed(new Runnable() {
 			public void run() {
-
 				String attackName = "";
 				int damage = 0;
 				
 				switch ((int)(Math.random() * 4) + 1) {
 				case 1 : attackName = "Homework"; damage = 7; break;
 				case 2 : attackName = "Door policy"; damage = 5; break;
-				case 3 : attackName = "F grade"; damage = 15; break;
+				case 3 : attackName = boss.getSpecialAttackName(); damage = boss.getSpecialAttackDamage(); break;
 				case 4 : attackName = "Knowledge overload"; damage = 10; break;
 				default : attackName = "No attack" ; damage = 0; break; 	// something went wrong if this occurs
 				}

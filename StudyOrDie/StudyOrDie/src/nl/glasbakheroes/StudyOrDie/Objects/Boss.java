@@ -7,14 +7,16 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /** A boss in the game overworld */
 public class Boss extends GameObject{
-	public static final String BOSS_IMAGE = "Boss";
-	public static final String BOSS_IMAGE_HENK = "Henkie";
+	public static final String BOSS_IMAGE_RUUD = "Ruud";
+	public static final String BOSS_IMAGE_CONCIERGE = "Concierge";
 	private String name;
 	private boolean alive = true;
 	private int hitPoints;
 	private StudyOrDieModel model;
 	private boolean randomBoss = false;
 	private int level;
+	private String specialAttackName = "NONE";
+	private int specialAttackDamage = 0;
 
 	/**
 	 * Construct a (random) boss
@@ -27,14 +29,17 @@ public class Boss extends GameObject{
 		if (name.equals("Random")) {
 			this.name = generateRandomName();
 			randomBoss = true;
+			specialAttackName = "Shoo from this area!";
+			specialAttackDamage = 15;
 		} else {
 			this.name = name;
+			setSpecialAttack();
 		}
 		this.hitPoints = hitPoints;
 		this.model = model;
 		this.level = level;
 	}
-	
+
 	/** Generate a random name for a random boss */
 	private String generateRandomName() {
 		switch ((int)(Math.random() * 10 + 1)) {
@@ -55,9 +60,12 @@ public class Boss extends GameObject{
 	@Override
 	public String getImageId() {
 		if (randomBoss) {
-			return BOSS_IMAGE_HENK;
+			return BOSS_IMAGE_CONCIERGE;
+		} else if (name.equals("Ruud")) {
+			return BOSS_IMAGE_RUUD;
 		}
-		return BOSS_IMAGE;
+		Log.w("Boss", "Boss image not found, nullpointer exception incoming");
+		return null;
 	}
 
 	@Override
@@ -97,6 +105,25 @@ public class Boss extends GameObject{
 
 	public int getLevel() {
 		return level;
+	}
+
+	public String getSpecialAttackName() {
+		return specialAttackName;
+	}
+
+	public int getSpecialAttackDamage() {
+		return specialAttackDamage;
+	}
+	
+	/** Set the special attack damage and name for each boss */
+	private void setSpecialAttack() {
+		if (name.equals("Wombat")) {
+			specialAttackName = "Wingclap";
+			specialAttackDamage = 20;
+		} else if (name.equals("Ruud")) {
+			specialAttackName = "Data loss";
+			specialAttackDamage = 25;
+		}
 	}
 	
 	
