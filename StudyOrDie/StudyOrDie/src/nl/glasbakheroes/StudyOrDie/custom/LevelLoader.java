@@ -95,7 +95,7 @@ public class LevelLoader {
 				board.addGameObject(avatar,  model.getBeforeFightLocation()[0],  model.getBeforeFightLocation()[1]);
 			}
 			if (model.getKeys()[0] == true) {
-			board.addGameObject(new Key(), 19, 9);
+			board.addGameObject(new Key(2), 19, 9);
 			}
 			
 			/* Create all default objects */
@@ -127,7 +127,7 @@ public class LevelLoader {
 				board.addGameObject(new Elevator(false), 1, 1);
 			}
 			if (model.getDoors()[0] == true) { 
-				board.addGameObject(new Door(true), 10, 6);
+				board.addGameObject(new Door(true,2), 10, 6);
 			} else {
 				board.addGameObject(new Door(false), 10, 6);
 			}

@@ -7,24 +7,38 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 public class Door extends GameObject {
 
 	public final static String DOOR_CLOSED_IMAGE = "DoorClosed";
-	private boolean locked = true;
+	private boolean locked;
+	private int doortype;
 	
+	public Door() {
+		locked = false;
+	}
 	public Door(Boolean locked) {
 		this.locked = locked;
 	}
+	public Door(Boolean locked, int doortype) {
+		this.locked = locked;
+		this.doortype = doortype;
+		
+	}
+	
 	
 	@Override
 	public String getImageId() {
 		return DOOR_CLOSED_IMAGE;
 	}
 
-	@Override
-	public void onTouched(GameBoard gameBoard) {
-		// Do nothing for now
-	}
-
 	public boolean isLocked() {
 		return locked;
+	}
+	public int getType()
+	{
+		return doortype;
+	}
+	@Override
+	public void onTouched(GameBoard gameBoard) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

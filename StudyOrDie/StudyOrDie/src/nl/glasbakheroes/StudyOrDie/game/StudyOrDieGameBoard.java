@@ -1,6 +1,8 @@
 
 package nl.glasbakheroes.StudyOrDie.game;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 	private CoreActivity activity;
 	private StudyOrDieModel model;
 	private Avatar avatar;
+	private LevelLoader leverloader;
 	
 	public StudyOrDieGameBoard() {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
@@ -170,9 +173,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
 			} else {
 				/* Edge of the screen, get items from next sublevel */
-				LevelLoader levelLoader = model.getLoader();
+				leverloader = model.getLoader();
 				model.setLevel(model.getLevel() + 1);
-				levelLoader.loadLevel("Bottom");
+				leverloader.loadLevel("Bottom");
 				return false; 
 			}
 			
@@ -183,9 +186,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
 			} else {
 				/* Edge of the screen, get items from next sublevel */
-				LevelLoader levelLoader = model.getLoader();
+				leverloader = model.getLoader();
 				model.setLevel(model.getLevel() - 1);
-				levelLoader.loadLevel("Top");
+				leverloader.loadLevel("Top");
 				return false;
 			}
 			
@@ -220,36 +223,39 @@ public class StudyOrDieGameBoard extends GameBoard {
 	 * @return				True for movement, false for no movement.
 	 */
 	private boolean inspectObject(int avatarNewX, int avatarNewY, String direction) {
-		LevelLoader levelLoader = model.getLoader();
+		 leverloader = model.getLoader();
 		
-			/** No object present, avatar can move. */
+		/** No object present, avatar can move. */
 		if (getObject(avatarNewX, avatarNewY) == null) {
 			return true;
-			
+
 			/** Boss present, avatar will enter a fight and won't move. */
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) { 
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 			Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
-			model.setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
 			Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 			Intent combatIntent = new Intent(activity, CombatActivity.class);
 			Bundle extras = new Bundle();
 			extras.putString("bossName", boss.getName());
+			extras.putString("Type", "Boss");
 			extras.putString("bossImageId", boss.getImageId());
 			combatIntent.putExtras(extras);
 			activity.startActivityForResult(combatIntent, REQUEST_COMBAT_INTENT);
 			return false;
-			
+
 			/** Door present */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Door) {
 			if (((Door) getObject(avatarNewX, avatarNewY)).isLocked()) {
-				if (avatar.getKeys() > 0) {
+				if (avatar.compareKey(((Door) getObject(avatarNewX, avatarNewY))
+								.getType())) {
 					/* If the door is locked and the avatar has a key */
-					Toast.makeText(activity, "Used a key on the door", Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, "Door unlocked!",
+							Toast.LENGTH_SHORT).show();
 					removeObject(getObject(avatarNewX, avatarNewY));
 					model.unlockDoor(model.getLevel());
 				} else {
 					/* door locked, no key */
-					Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
+					Toast.makeText(activity, "Door is locked",
+							Toast.LENGTH_SHORT).show();
 				}
 			} else {
 				/* Normal unlocked door */
@@ -260,41 +266,64 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 			/** Elevator is present, go to the next/last major level */
 		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
-			
+
 			/* If the elevator is locked, player can't go through */
 			Elevator elevator = (Elevator) getObject(avatarNewX, avatarNewY);
 			if (elevator.getLocked()) {
-				Toast.makeText(activity, "Elevator is locked!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, "Elevator is locked!",
+						Toast.LENGTH_SHORT).show();
 				return false;
 			}
-			String elevatorMessage = "";
-			/* When current level ends with a 3, the avatar moves to the next floor.
-			 * When current level ends with a 1, the avatar moves to the last floor.
+			/*
+			 * Selects floor
 			 */
-			if (model.getLevel() % 10 == 3) {
-				elevatorMessage = "Floor number: " + ((model.getLevel() / 10) + 1);
-				model.setLevel(model.getLevel() + 8);
-			} else {
-				elevatorMessage = "Floor number: " + ((model.getLevel() / 10) - 1);
-				model.setLevel(model.getLevel() - 8);
-			}
-			Toast.makeText(activity, elevatorMessage, Toast.LENGTH_SHORT).show();
-			levelLoader.loadLevel("Elevator");
+
+			CharSequence levels[] = new CharSequence[] { "floor1", "floor2",
+					"floor3", "floor4" };
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.setTitle("Select a floor");
+			builder.setItems(levels, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch (which) {
+					case 0:
+						model.setLevel(1);
+						Toast.makeText(activity, "Floor 1", Toast.LENGTH_SHORT)
+						.show();
+						leverloader.loadLevel("Elevator");
+						break;
+					case 1:
+						model.setLevel(11);
+						Toast.makeText(activity, "Floor 2", Toast.LENGTH_SHORT)
+						.show();
+				         leverloader.loadLevel("Elevator");
+						break;
+					// Not yet implemented
+					// case 3 : model.setLevel(3);break;
+					// case 4 : model.setLevel(1);break;
+					// case 5 : model.setLevel(2);break;
+					// case 6 : model.setLevel(3);break;
+					// case 7 : model.setLevel(1);break;
+					// case 8 : model.setLevel(2);break;
+					// case 9 : model.setLevel(3);break;
+					// case 10 : model.setLevel(3);break;
+					}
+				}
+			});
+			leverloader.loadLevel("Elevator");
+			builder.show();
 			return false;
-			
+
 			/** Key is present, avatar gets it and can now open a locked door */
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Key){
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Key) {
+			avatar.addKey(new Key(2));
 			model.removeKey(model.getLevel());
-			avatar.addKey();
 			Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 			return false;
-			
-			
-			
+
 			/** ADD MORE CLASSES HERE */
-			
-			
-			
+
 			/* No tile present to move on, avatar won't move. [Out of bounds] */
 		} else {
 			return false;
