@@ -98,8 +98,8 @@ public class LevelLoader {
 	}
 
 	private void createBosses() {
-		model.addBoss("Wombat", 100);
-		model.addBoss("Ruud", 120);
+		model.addBoss("Wombat", 100, 1);
+		model.addBoss("Ruud", 120, 2);
 	}
 
 	/**

@@ -34,6 +34,7 @@ public class StudyOrDieModel extends Observable {
 	private int lastRandomBossStep = 0; 
 	private boolean gameInitialized = false;
 	private int[] beforeFightLocation = {20, 8};
+	private boolean[] levelOpened = {true, false, false, false, false, false, false, false, false, false, false};
 	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
@@ -70,8 +71,8 @@ public class StudyOrDieModel extends Observable {
 	 * @param name	The name of the boss
 	 * @param hitPoints	The amount of hitpoints the boss starts with
 	 */
-	public void addBoss(String name, int hitPoints) {
-		bosses.add(new Boss(name, hitPoints, this));
+	public void addBoss(String name, int hitPoints, int level) {
+		bosses.add(new Boss(name, hitPoints, level, this));
 	}
 	
 	/** Return the boss with a given name */
@@ -301,6 +302,14 @@ public class StudyOrDieModel extends Observable {
 	public void setBeforeFightLocation(int x, int y) {
 		 beforeFightLocation[0] = x;
 		 beforeFightLocation[1] = y;
+	}
+	
+	public void openLevel(int level) {
+		this.levelOpened[level] = true;
+	}
+	
+	public boolean isLevelOpen(int level) {
+		return this.levelOpened[level];
 	}
 	
 }

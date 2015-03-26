@@ -14,10 +14,10 @@ public class Boss extends GameObject{
 	private int hitPoints;
 	private StudyOrDieModel model;
 	private boolean randomBoss = false;
+	private int level;
 
 	
-	/** Constructor, if the boss name is 'Random' pick a random name and set it */
-	public Boss(String name, int hitPoints, StudyOrDieModel model) {
+	public Boss(String name, int hitPoints, int level, StudyOrDieModel model) {
 		if (name.equals("Random")) {
 			this.name = generateRandomName();
 			randomBoss = true;
@@ -26,6 +26,7 @@ public class Boss extends GameObject{
 		}
 		this.hitPoints = hitPoints;
 		this.model = model;
+		this.level = level;
 	}
 	
 	/** Generate a random name for a random boss */
@@ -86,6 +87,10 @@ public class Boss extends GameObject{
 	/** Check whether the boss is randomly generated one or not */
 	public boolean isRandomBoss() {
 		return randomBoss;
+	}
+
+	public int getLevel() {
+		return level;
 	}
 	
 	

@@ -88,6 +88,7 @@ public class CombatActivity extends Activity implements Observer {
 	public void killBoss() {
 		boss.killBoss(); 
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
+		model.openLevel(boss.getLevel());
 		delayedFinish();	
 	}
 	 

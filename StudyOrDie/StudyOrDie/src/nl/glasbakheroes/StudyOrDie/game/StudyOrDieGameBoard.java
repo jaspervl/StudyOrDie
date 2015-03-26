@@ -33,7 +33,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 	public static final int LEFT = 3;
 	public static final int RIGHT = 4;
 	
-	
 	private CoreActivity activity;
 	private StudyOrDieModel model;
 	private Avatar avatar;
@@ -149,7 +148,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ";" + model.getAvatar().getPositionY());
 				model.setBeforeFightLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
 				/* Create a new boss and fetch it from the model */
-				model.addBoss("Random", 100);
+				model.addBoss("Random", 100, 0);
 				Boss randomBoss = model.findRandomBoss();
 				/* Start new combat activity */
 				Intent randomCombatIntent = new Intent(activity, CombatActivity.class);
@@ -283,36 +282,42 @@ public class StudyOrDieGameBoard extends GameBoard {
 			 * Selects floor
 			 */
 
-			CharSequence levels[] = new CharSequence[] { "floor1", "floor2",
-					"floor3", "floor4" };
+			CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor",
+					"Second floor", "Third floor", "Fourth floor", "Fifth floor", "Sixt floor", "Seventh floor", "Eighth floor", "Ninth floor", "Roof top"  };
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.setTitle("Select a floor");
 			builder.setItems(levels, new DialogInterface.OnClickListener() {
 				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					switch (which) {
-					case 0:
-						model.setLevel(LevelLoader.GROUND_LEVEL_3);
-						Toast.makeText(activity, "Ground floor", Toast.LENGTH_SHORT)
-						.show();
-						leverloader.loadLevel("Elevator");
-						break;
-					case 1:
-						model.setLevel(LevelLoader.FIRST_FLOOR_1);
-						Toast.makeText(activity, "First floor", Toast.LENGTH_SHORT)
-						.show();
-				         leverloader.loadLevel("Elevator");
-						break;
-					// Not yet implemented
-					// case 3 : model.setLevel(3);break;
-					// case 4 : model.setLevel(1);break;
-					// case 5 : model.setLevel(2);break;
-					// case 6 : model.setLevel(3);break;
-					// case 7 : model.setLevel(1);break;
-					// case 8 : model.setLevel(2);break;
-					// case 9 : model.setLevel(3);break;
-					// case 10 : model.setLevel(3);break;
+				public void onClick(DialogInterface dialog, int chosenFloor) {
+					
+					if (model.isLevelOpen(chosenFloor)) {
+						switch (chosenFloor) {
+						case 0:
+							model.setLevel(LevelLoader.GROUND_LEVEL_3);
+							Toast.makeText(activity, "Ground floor", Toast.LENGTH_SHORT)
+							.show();
+							leverloader.loadLevel("Elevator");
+							break;
+						case 1:
+							model.setLevel(LevelLoader.FIRST_FLOOR_1);
+							Toast.makeText(activity, "First floor", Toast.LENGTH_SHORT)
+							.show();
+					         leverloader.loadLevel("Elevator");
+							break;
+							// Not yet implemented
+							case 2 : model.setLevel(LevelLoader.SECOND_FLOOR_2);break;
+							case 3 : model.setLevel(LevelLoader.THIRD_FLOOR_2);break;
+							case 4 : model.setLevel(LevelLoader.FOURTH_FLOOR_2);break;
+							case 5 : model.setLevel(LevelLoader.FIFTH_FLOOR_2);break;
+							case 6 : model.setLevel(LevelLoader.SIXTH_FLOOR_2);break;
+							case 7 : model.setLevel(LevelLoader.SEVENTH_FLOOR_2);break;
+							case 8 : model.setLevel(LevelLoader.EIGHTH_FLOOR_2);break;
+							case 9 : model.setLevel(LevelLoader.NINTH_FLOOR_2);break;
+							case 10 : model.setLevel(LevelLoader.TENTH_FLOOR_2);break;
+						}
+					} else {
+						Toast.makeText(activity, "Can't go there yet!", Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
