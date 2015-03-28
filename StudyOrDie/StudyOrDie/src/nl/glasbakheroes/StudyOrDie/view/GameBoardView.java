@@ -3,8 +3,12 @@ package nl.glasbakheroes.StudyOrDie.view;
 import java.util.Observable;
 import java.util.Observer;
 
+import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,6 +17,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 
 /**
  * View that draws a grid of images, representing the game board.
@@ -312,6 +318,9 @@ public abstract class GameBoardView extends View implements Observer {
 	 */
 	@Override
 	public void onDraw(Canvas canvas) {
+		StudyOrDieModel model = ((StudyOrDieApplication)getContext().getApplicationContext()).getModel();
+		Avatar avatar = model.getAvatar();
+		
 		super.onDraw(canvas);
 
 		// For each tile on the board ...
@@ -320,10 +329,33 @@ public abstract class GameBoardView extends View implements Observer {
 				// ... and for every layer ...
 				for( int layer = 0; layer < NUM_BITMAP_LAYERS; layer++ ) {
 					if (mTileGrid[x][y][layer] != null) {
-						// ... draw the image
-						int drawAtX = borderSizeX + x * mTileSize;
-						int drawAtY = borderSizeY + y * mTileSize;
-						canvas.drawBitmap(mTileGrid[x][y][layer], drawAtX, drawAtY, mPaint);
+						
+//						if (x == avatar.getPositionX() && y == avatar.getPositionY()) {
+//							
+//							
+//							// ... draw the avatar
+//							int drawAtX = borderSizeX + x * mTileSize;
+//							int drawAtY = borderSizeY + y * mTileSize;
+//							int oldX = borderSizeX + (x+1) * mTileSize;
+////							int oldY = borderSizeY + (y-1) * mTileSize;
+//							TranslateAnimation anim = new TranslateAnimation(0, mTileSize, 0, 0) ;
+//							Log.w("AAA", oldX + " --> " + drawAtX + ",   " + drawAtY + " --> " + drawAtY);
+//							anim.setDuration(1000);
+//							anim.setFillAfter(true);
+//							startAnimation(anim);
+//							invalidate();
+//							canvas.drawBitmap(mTileGrid[x][y][layer], drawAtX, drawAtY, mPaint);
+//							    
+//						} else {
+							// ... draw the image
+							int drawAtX = borderSizeX + x * mTileSize;
+							int drawAtY = borderSizeY + y * mTileSize;
+							canvas.drawBitmap(mTileGrid[x][y][layer], drawAtX, drawAtY, mPaint);
+//						}
+						
+						
+						
+					
 					}
 				}
 			}

@@ -43,7 +43,7 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		}
 		else
 		{
-			convertView.getTag();
+			holder = (ViewHolder) convertView.getTag();
 		}
 		
 		
