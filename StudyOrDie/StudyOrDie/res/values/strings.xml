@@ -34,5 +34,6 @@
     <string name="game_over">Get rekt</string>
     <string name="restart">Restart game</string>
     <string name="get_rekt">Game over</string>
+    <string name="respawn">Spawn at start</string>
 
 </resources>

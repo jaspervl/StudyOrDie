@@ -220,30 +220,36 @@ public class Avatar extends GameObject {
 	}
 
 	public void setCurrentEnergy(int currentEnergy) {
-		if (currentEnergy > maxEnergy) {
-			this.currentEnergy = maxEnergy;
-		} else {
-			this.currentEnergy = currentEnergy;
+		if (currentEnergy >= 0) {
+			if (currentEnergy > maxEnergy) {
+				this.currentEnergy = maxEnergy;
+			} else {
+				this.currentEnergy = currentEnergy;
+			}
+			model.update();
 		}
-		model.update();
 	}
 
 	public void setCurrentHP(int currentHP) {
-		if (currentHP > maxHP) {
-			this.currentHP = maxHP;
-		} else {
-			this.currentHP = currentHP;
+		if (currentHP >= 0) {
+			if (currentHP > maxHP) {
+				this.currentHP = maxHP;
+			} else {
+				this.currentHP = currentHP;
+			}
+			model.update();
 		}
-		model.update();
 	}
 
 	public void setCurrentMotivation(int currentMotivation) {
-		if (currentMotivation > maxMotivation) {
-			this.currentMotivation = maxMotivation;
-		} else {
-			this.currentMotivation = currentMotivation;
+		if (currentMotivation >= 0) {
+			if (currentMotivation > maxMotivation) {
+				this.currentMotivation = maxMotivation;
+			} else {
+				this.currentMotivation = currentMotivation;
+			}
+			model.update();
 		}
-		model.update();
 	}
 
 	public void setMaxHP(int maxHP) {
