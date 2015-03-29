@@ -11,42 +11,16 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" />
 
-    <Button
-        android:id="@+id/btnLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    
+       <Button
+        android:id="@+id/btnJoystickStick"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/btnUp"
-        android:layout_marginLeft="20dp"
-        android:alpha="0.3"
-        android:background="@drawable/button_direction_left" />
-
-    <Button
-        android:id="@+id/btnUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnDown"
-        android:layout_centerVertical="true"
-        android:alpha="0.3"
-        android:background="@drawable/button_direction_up" />
-
-    <Button
-        android:id="@+id/btnRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnUp"
-        android:layout_toRightOf="@+id/btnUp"
-        android:alpha="0.3"
-        android:background="@drawable/button_direction_right" />
-
-    <Button
-        android:id="@+id/btnDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRight"
-        android:layout_toRightOf="@+id/btnLeft"
-        android:alpha="0.3"
-        android:background="@drawable/button_direction_down" />
+        android:layout_marginLeft="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/joystick_stick" />
 
     <Button
         android:id="@+id/btnMenu"

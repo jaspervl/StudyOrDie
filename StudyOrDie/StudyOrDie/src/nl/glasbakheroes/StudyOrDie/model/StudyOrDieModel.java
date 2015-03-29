@@ -249,6 +249,7 @@ public class StudyOrDieModel extends Observable {
 	
 	/** Set the timer value to 0 */
 	public void resetTimer() {
+		currentLevel = 1;
 		timerValue = 0;
 	}
 	
@@ -260,7 +261,7 @@ public class StudyOrDieModel extends Observable {
 	public boolean fightRandomBoss() {
 		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 70), 4);
 		if (Math.random() < chance) {
-			return true;
+			return true; // Set to false to disable random boss
 		}
 		return false;
 	}

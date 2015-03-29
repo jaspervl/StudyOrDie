@@ -8,10 +8,14 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoardView;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import nl.glasbakheroes.StudyOrDie.view.OverworldStatsView;
 import android.app.Activity;
+import android.app.usage.UsageEvents.Event;
 import android.content.Intent;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -26,9 +30,10 @@ import android.widget.ImageView;
  * @author Niels Jan & Jasper
  */
 public class CoreActivity extends Activity {
-	/** Instance variables */
+	/** Constants */
 	public static final int REQUEST_START_CODE = 2;
 	private static boolean startMenuShown = false;
+	private MotionEvent touchEvent;
 	
 	/* Major class instances */
 	private StudyOrDieGameBoardView gameView;
@@ -36,10 +41,7 @@ public class CoreActivity extends Activity {
 	private StudyOrDieModel model;
 	
 	/* Interface components */
-	private Button upButton;
-	private Button downButton; 
-	private Button leftButton;
-	private Button rightButton;
+	private Button joystickButton;
 	private Button menuButton;
 	private ImageView btnFoldUnfold;
 	private OverworldStatsView statView;
@@ -82,10 +84,8 @@ public class CoreActivity extends Activity {
 
 		/* Find interface elements */
 		gameView = (StudyOrDieGameBoardView) findViewById(R.id.studyOrDieGameBoardView1);
-		upButton = (Button) findViewById(R.id.btnUp);
-		downButton = (Button) findViewById(R.id.btnDown);
-		leftButton = (Button) findViewById(R.id.btnLeft);
-		rightButton = (Button) findViewById(R.id.btnRight);
+		
+		joystickButton = (Button) findViewById(R.id.btnJoystickStick);
 		menuButton = (Button) findViewById(R.id.btnMenu);
 		btnFoldUnfold = (ImageView) findViewById(R.id.ivFoldUnfold);
 		statView = (OverworldStatsView) findViewById(R.id.overWorldStatView);
@@ -99,85 +99,10 @@ public class CoreActivity extends Activity {
  
 		/* Set listeners for direction-buttons */
 		TouchListener listener = new TouchListener();
-		upButton.setOnTouchListener(listener);
-		downButton.setOnTouchListener(listener);
-		leftButton.setOnTouchListener(listener);
-		rightButton.setOnTouchListener(listener);
+		joystickButton.setOnTouchListener(listener);
 		menuButton.setOnTouchListener(listener); 
 		btnFoldUnfold.setOnTouchListener(listener);
 		
-	}
-	
-	
-	/** Making a new runnable action which can be repeatedly played on 1 thread */
-	Runnable movement = new Runnable() {
-		@Override
-		public void run() {
-			if (!disableMovement) {
-				StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
-				board.moveAvatar(moveDirection);
-				handler.postDelayed(movement, 200);
-			}
-		}
-	};
-
-	/** Starts the movement method for infinite time, untill stop moving is called. */
-	void startMovingLoop() {
-		movement.run();
-	}
-
-	/** Stop the infinite movement loop */
-	void stopMovingLoop() {
-		handler.removeCallbacks(movement);
-	}
-
-	/** Listener for the buttons in the overworld */
-	private class TouchListener implements OnTouchListener {
-
-		@Override
-		public boolean onTouch(View v, MotionEvent event) {
-
-			/* A button is pressed down */
-			if (event.getAction() == MotionEvent.ACTION_DOWN) {
-				
-				/* Start the moving loops till button is released */
-				if (v == upButton) {
-					moveDirection = StudyOrDieGameBoard.UP;
-					startMovingLoop();	
-				} else if (v == downButton) {
-					moveDirection = StudyOrDieGameBoard.DOWN;
-					startMovingLoop();	
-				} else if (v == leftButton) {
-					moveDirection = StudyOrDieGameBoard.LEFT;
-					startMovingLoop();	
-				} else if (v == rightButton) {
-					moveDirection = StudyOrDieGameBoard.RIGHT;
-					startMovingLoop();
-					
-					/* Menu button pressed */
-				} else if (v == menuButton) {
-					Intent menuIntent = new Intent(CoreActivity.this, MenuActivity.class);
-					startActivity(menuIntent);
-				} else if (v == btnFoldUnfold) {
-					if (folding) {
-						btnFoldUnfold.setImageResource(R.drawable.unfold_arrow);
-						statView.setMinimize(folding);
-						folding = false;
-					} else {
-						btnFoldUnfold.setImageResource(R.drawable.fold_arrow);
-						statView.setMinimize(folding);
-						folding = true;
-					}
-				}
-				
-				/* A button is released */
-			} else if (event.getAction() == MotionEvent.ACTION_UP) {
-				if (v != menuButton) {
-					stopMovingLoop();
-				}
-			}
-			return false;
-		}
 	}
 
 	/** Game board view getter. */
@@ -247,4 +172,95 @@ public class CoreActivity extends Activity {
 	 * End of dummy methods
 	 */	
 	
+	/** Listener for the buttons in the overworld */
+	private class TouchListener implements OnTouchListener {
+		
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+
+			/* A button is pressed down */
+			if (event.getAction() == MotionEvent.ACTION_DOWN) {
+				touchEvent = event;
+				
+				if (v == joystickButton) {
+					calculateJoystickPosition();
+					startMovingLoop();
+				
+					/* Menu button pressed */
+				} else if (v == menuButton) {
+					Intent menuIntent = new Intent(CoreActivity.this, MenuActivity.class);
+					startActivity(menuIntent);
+				} else if (v == btnFoldUnfold) {
+					if (folding) {
+						btnFoldUnfold.setImageResource(R.drawable.unfold_arrow);
+						statView.setMinimize(folding);
+						folding = false;
+					} else {
+						btnFoldUnfold.setImageResource(R.drawable.fold_arrow);
+						statView.setMinimize(folding);
+						folding = true;
+					}
+				}
+				
+				/* A button is released */
+			} else if (event.getAction() == MotionEvent.ACTION_UP) {
+				if (v != menuButton) {
+					stopMovingLoop();
+				}
+			} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+				touchEvent = event;
+				calculateJoystickPosition();
+			}
+			return false;
+		}
+
+	}
+
+	/** Calculate the movement direction for the joystick touch event */
+	private void calculateJoystickPosition() {
+		final float JOYSTICK_RADIUS = 140;
+		Float xTouch = touchEvent.getX() - JOYSTICK_RADIUS;
+		Float yTouch = touchEvent.getY() - JOYSTICK_RADIUS;
+
+		if (xTouch > -150 && xTouch < 300 && yTouch > -150 && yTouch < 300) {
+			if (Math.abs(xTouch) > Math.abs(yTouch)) {
+				if (xTouch > 0) {
+					moveDirection = StudyOrDieGameBoard.RIGHT;
+				} else {
+					moveDirection = StudyOrDieGameBoard.LEFT;
+				}
+			} else {
+				if (yTouch < 0) {
+					moveDirection = StudyOrDieGameBoard.UP;
+				} else {
+					moveDirection = StudyOrDieGameBoard.DOWN; 
+				}
+			}
+		}
+	
+	}
+	
+	
+	/** Making a new runnable action which can be repeatedly played on 1 thread */
+	Runnable movement = new Runnable() {
+		@Override
+		public void run() {
+			if (!disableMovement) {
+				StudyOrDieGameBoard board = (StudyOrDieGameBoard) game.getGameBoard();
+				calculateJoystickPosition();
+				board.moveAvatar(moveDirection);
+				handler.postDelayed(movement, 300);
+			}
+		}
+	};
+
+	/** Starts the movement method for infinite time, until stop moving is called. */
+	void startMovingLoop() {
+		movement.run();
+	}
+
+	/** Stop the infinite movement loop */
+	void stopMovingLoop() {
+		handler.removeCallbacks(movement);
+	}
 }
