@@ -181,9 +181,9 @@ public class CoreActivity extends Activity {
 			/* A button is pressed down */
 			if (event.getAction() == MotionEvent.ACTION_DOWN) {
 				touchEvent = event;
+				calculateJoystickPosition();
 				
 				if (v == joystickButton) {
-					calculateJoystickPosition();
 					startMovingLoop();
 				
 					/* Menu button pressed */
@@ -218,11 +218,11 @@ public class CoreActivity extends Activity {
 
 	/** Calculate the movement direction for the joystick touch event */
 	private void calculateJoystickPosition() {
-		final float JOYSTICK_RADIUS = 140;
+		float scaledDensity = getApplicationContext().getResources().getDisplayMetrics().scaledDensity;
+		final float JOYSTICK_RADIUS = 60 * scaledDensity;
 		Float xTouch = touchEvent.getX() - JOYSTICK_RADIUS;
 		Float yTouch = touchEvent.getY() - JOYSTICK_RADIUS;
-
-		if (xTouch > -150 && xTouch < 300 && yTouch > -150 && yTouch < 300) {
+		if (xTouch > -JOYSTICK_RADIUS - 50 && xTouch < JOYSTICK_RADIUS + 50 && yTouch > -JOYSTICK_RADIUS - 50 && yTouch < JOYSTICK_RADIUS + 50) {
 			if (Math.abs(xTouch) > Math.abs(yTouch)) {
 				if (xTouch > 0) {
 					moveDirection = StudyOrDieGameBoard.RIGHT;
@@ -236,8 +236,9 @@ public class CoreActivity extends Activity {
 					moveDirection = StudyOrDieGameBoard.DOWN; 
 				}
 			}
+		} else {
+			stopMovingLoop();
 		}
-	
 	}
 	
 	
