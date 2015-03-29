@@ -248,9 +248,11 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	/** Set the timer value to 0 */
-	public void resetTimer() {
+	public void resetGame() {
 		currentLevel = 1;
+		loader.loadLevel("Bottom");
 		timerValue = 0;
+		totalSteps = 0;
 	}
 	
 	public void randomEncounterOccured() {

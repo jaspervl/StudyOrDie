@@ -41,7 +41,7 @@ public class GameOverActivity extends Activity {
 			public void onClick(View v) {
 				/* Get the model and reset the timer */
 				StudyOrDieModel model = ((StudyOrDieApplication) getApplication()).getModel();
-				model.resetTimer();
+				model.resetGame();
 				
 				finish();
 			}
