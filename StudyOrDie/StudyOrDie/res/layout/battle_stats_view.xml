@@ -16,7 +16,8 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="5"
             android:text="@string/hp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
 
         <ProgressBar
             android:id="@+id/barHP"
@@ -40,7 +41,8 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="5"
             android:text="@string/energy"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
 
         <ProgressBar
             android:id="@+id/barEnergy"
@@ -64,7 +66,8 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="5"
             android:text="@string/motivation"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15sp" />
 
         <ProgressBar
             android:id="@+id/barStat"
