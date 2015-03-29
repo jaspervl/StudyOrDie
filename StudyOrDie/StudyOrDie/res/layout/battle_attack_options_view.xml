@@ -13,16 +13,18 @@
             android:id="@+id/btnAttack1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="@string/attack"
+            android:background="@drawable/attack_throw_exception"
             android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnAttack2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="@string/attack"
+            android:background="@drawable/attack_hard_question"
             android:textSize="12sp" />
 
     </LinearLayout>
@@ -36,16 +38,18 @@
             android:id="@+id/btnAttack3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="@string/attack"
+            android:background="@drawable/attack_apple_talk"
             android:textSize="12sp" />
 
         <Button
             android:id="@+id/btnAttack4"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:text="@string/attack"
+            android:background="@drawable/attack_skip_class"
             android:textSize="12sp" />
 
     </LinearLayout>

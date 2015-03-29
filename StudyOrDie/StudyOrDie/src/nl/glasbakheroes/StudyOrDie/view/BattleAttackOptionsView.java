@@ -56,14 +56,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 		btnAttack1 = (Button) findViewById(R.id.btnAttack1);
 		btnAttack2 = (Button) findViewById(R.id.btnAttack2);
 		btnAttack3 = (Button) findViewById(R.id.btnAttack3);
-		btnAttack4 = (Button) findViewById(R.id.btnAttack4); 
-		
-		/* Define the attack buttons */
-		btnAttack1.setText("Throw exception\nCost: -5E, -5M\n100 Damage");
-		btnAttack2.setText("Hard question\nCost: -10E, +5M\n10 Damage");
-		btnAttack3.setText("Apple talk\nCost: -3E, -5M\n12 Damage");
-		btnAttack4.setText("Skip class\nCost: +5E, -10M\n10 Damage");
-		
+		btnAttack4 = (Button) findViewById(R.id.btnAttack4); 		
 		enableAllButtons();
 	}
 	

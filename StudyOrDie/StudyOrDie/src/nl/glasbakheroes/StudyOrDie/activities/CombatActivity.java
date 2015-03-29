@@ -127,7 +127,6 @@ public class CombatActivity extends Activity implements Observer {
 		if (boss.getHP() > 0 && model.getAvatar().getCurrentHP() > 0) {
 			bossAttack();
 		}
-		
 	}
 	
 	/** Boss will attack and cast a random attack, chosen from 4 presets */
