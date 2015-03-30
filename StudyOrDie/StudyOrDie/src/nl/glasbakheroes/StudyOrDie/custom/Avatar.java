@@ -285,6 +285,8 @@ public class Avatar extends GameObject {
 				this.currentEnergy = currentEnergy;
 			}
 			model.update();
+		} else {
+			this.currentEnergy = 0;
 		}
 	}
 
@@ -296,6 +298,8 @@ public class Avatar extends GameObject {
 				this.currentHP = currentHP;
 			}
 			model.update();
+		} else {
+			this.currentHP = 0;
 		}
 	}
 
@@ -307,6 +311,8 @@ public class Avatar extends GameObject {
 				this.currentMotivation = currentMotivation;
 			}
 			model.update();
+		} else {
+			this.currentMotivation = 0;
 		}
 	}
 

@@ -254,6 +254,7 @@ public class StudyOrDieModel extends Observable {
 		avatar.setCurrentHP(100);
 		avatar.setCurrentEnergy(100);
 		avatar.setCurrentMotivation(100);
+		update();
 	}
 	
 	public void randomEncounterOccured() {
