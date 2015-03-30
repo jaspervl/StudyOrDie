@@ -254,6 +254,14 @@ public class CoreActivity extends Activity {
 			}
 		}
 	};
+	
+	/** Enable and disable movement */
+	public void disableMovement() {
+		disableMovement = true;
+	}
+	public void enableMovement() {
+		disableMovement = false;
+	}
 
 	/** Starts the movement method for infinite time, until stop moving is called. */
 	void startMovingLoop() {

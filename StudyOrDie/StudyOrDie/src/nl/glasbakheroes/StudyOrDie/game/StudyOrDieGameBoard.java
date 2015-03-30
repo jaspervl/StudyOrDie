@@ -269,17 +269,18 @@ public class StudyOrDieGameBoard extends GameBoard {
 			return false;
 
 			/** Elevator is present, go to the next/last major level */
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {			
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {	
+			activity.disableMovement();
 			/* Selects the floor */
 			CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor",
 					"Second floor", "Third floor", "Fourth floor", "Fifth floor", "Sixt floor", "Seventh floor", "Eighth floor", "Ninth floor", "Roof top"  };
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 			builder.setTitle("Select a floor");
+			builder.setCancelable(false);
 			builder.setItems(levels, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int chosenFloor) {
-					
 					if (model.isLevelOpen(chosenFloor)) {
 						String message = "";
 						switch (chosenFloor) {
@@ -307,6 +308,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 					} else {
 						Toast.makeText(activity, "Can't go there yet!", Toast.LENGTH_SHORT).show();
 					}
+					activity.enableMovement();
 				}
 			});
 			builder.show();
