@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#999999"
+    android:background="@drawable/combat_background"
     android:orientation="vertical"
     tools:context="${relativePackage}.${activityClass}" >
 
@@ -26,17 +26,24 @@
                     android:id="@+id/tvCombatBossName"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="5"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="15dp"
                     android:text="Medium Text"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tvBossHp"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="5"
+                    android:paddingTop="15dp"
                     android:text="Medium Text"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="15sp" />
 
                 <ProgressBar
                     android:id="@+id/barBossHp"
@@ -52,9 +59,8 @@
                 android:id="@+id/imgBattleAvatar"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_margin="30dp"
+                android:layout_margin="10dp"
                 android:layout_weight="7"
-                android:background="#999999"
                 android:src="@drawable/wombat" />
 
             <LinearLayout
@@ -66,14 +72,19 @@
                     android:id="@+id/battleAttackOptionsView1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_weight="1" >
+
                 </nl.glasbakheroes.StudyOrDie.view.BattleAttackOptionsView>
 
                 <nl.glasbakheroes.StudyOrDie.view.BattleStatView
                     android:id="@+id/battleStatView1"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
+                    android:layout_marginBottom="15dp"
                     android:layout_weight="1" >
+
                 </nl.glasbakheroes.StudyOrDie.view.BattleStatView>
 
             </LinearLayout>
@@ -84,7 +95,11 @@
             android:id="@+id/battleMenuOptionsView1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
             android:layout_weight="4" >
+
         </nl.glasbakheroes.StudyOrDie.view.BattleMenuOptionsView>
 
     </LinearLayout>
