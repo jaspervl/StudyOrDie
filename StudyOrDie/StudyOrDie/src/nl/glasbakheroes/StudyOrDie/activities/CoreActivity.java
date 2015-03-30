@@ -1,5 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.activities;
 
+import javax.crypto.spec.IvParameterSpec;
+
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGame;
@@ -205,6 +207,7 @@ public class CoreActivity extends Activity {
 				/* A button is released */
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				if (v != menuButton) {
+					joystickButton.setBackgroundResource(R.drawable.joystick_stick);
 					stopMovingLoop();
 				}
 			} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -226,14 +229,18 @@ public class CoreActivity extends Activity {
 			if (Math.abs(xTouch) > Math.abs(yTouch)) {
 				if (xTouch > 0) {
 					moveDirection = StudyOrDieGameBoard.RIGHT;
+					joystickButton.setBackgroundResource(R.drawable.joystick_stick_right);
 				} else {
 					moveDirection = StudyOrDieGameBoard.LEFT;
+					joystickButton.setBackgroundResource(R.drawable.joystick_stick_left);
 				}
 			} else {
 				if (yTouch < 0) {
 					moveDirection = StudyOrDieGameBoard.UP;
+					joystickButton.setBackgroundResource(R.drawable.joystick_stick_up);
 				} else {
 					moveDirection = StudyOrDieGameBoard.DOWN; 
+					joystickButton.setBackgroundResource(R.drawable.joystick_stick_down);
 				}
 			}
 		} else {
