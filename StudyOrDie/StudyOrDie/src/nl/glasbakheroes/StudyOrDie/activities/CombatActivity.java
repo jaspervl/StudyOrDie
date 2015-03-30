@@ -11,9 +11,9 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import nl.glasbakheroes.StudyOrDie.view.BattleAttackOptionsView;
-import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,7 +62,7 @@ public class CombatActivity extends Activity implements Observer {
 		boss = model.getBoss(bossName);
 		
 		bossImage = (ImageView) findViewById(R.id.imgBattleAvatar);
-		bossImage.setImageBitmap(SpriteCache.getInstance().get(boss.getImageId()));
+		setBossImage();
 	
 		tvBossHP = (TextView) findViewById(R.id.tvBossHp);
 		tvBossName = (TextView) findViewById(R.id.tvCombatBossName);
@@ -75,6 +75,16 @@ public class CombatActivity extends Activity implements Observer {
 		tvBossName.setText(bossName);
 	}
 	
+	/** Set full size image in boss image imageView */
+	private void setBossImage() {
+		Resources resources = getApplicationContext().getResources();
+		if (boss.getName().equals("Ruud")) {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.ruud_greven));
+		} else {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.concierge));
+		}
+	}
+
 	/** Call this method when the back button is clicked */
 	@Override
 	public void onBackPressed() { 

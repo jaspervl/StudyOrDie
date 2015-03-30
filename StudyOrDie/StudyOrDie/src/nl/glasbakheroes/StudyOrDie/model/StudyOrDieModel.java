@@ -12,6 +12,7 @@ import nl.glasbakheroes.StudyOrDie.activities.GameOverActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 
 /**
@@ -43,12 +44,12 @@ public class StudyOrDieModel extends Observable {
 	
 	/** Constructor */
 	public StudyOrDieModel() {
-		avatar = new Avatar(this);
-		bosses = new ArrayList<Boss>();
-		itemList = new ArrayList<Item>();
+		this.avatar = new Avatar(this);
+		this.bosses = new ArrayList<Boss>();
+		this.itemList = new ArrayList<Item>();
 		fillItemList(); // Fills the item array
-		handler = new Handler();
-		timer.run();
+		this.handler = new Handler();
+		this.timer.run();
 	} 
 	
 	/** Return the avatar */
@@ -315,5 +316,10 @@ public class StudyOrDieModel extends Observable {
 	public boolean isLevelOpen(int level) {
 		return this.levelOpened[level];
 	}
+	
+	public CoreActivity getActivity() {
+		return activity;
+	}
+	
 	
 }
