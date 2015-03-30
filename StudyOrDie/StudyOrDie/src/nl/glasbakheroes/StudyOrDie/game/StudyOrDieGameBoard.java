@@ -286,12 +286,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 						case 0:
 							model.setLevel(LevelLoader.GROUND_LEVEL_3);
 							message = "Ground floor";
-							leverloader.loadLevel("Elevator");
 							break;
 						case 1:
 							model.setLevel(LevelLoader.FIRST_FLOOR_1);
 							message = "First floor";
-					        leverloader.loadLevel("Elevator");
 							break;
 							// Not yet implemented
 							case 2 : model.setLevel(LevelLoader.SECOND_FLOOR_2);break;
@@ -304,13 +302,13 @@ public class StudyOrDieGameBoard extends GameBoard {
 							case 9 : model.setLevel(LevelLoader.NINTH_FLOOR_2);break;
 							case 10 : model.setLevel(LevelLoader.TENTH_FLOOR_2);break;
 						}
+						leverloader.loadLevel("Elevator");
 						Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 					} else {
 						Toast.makeText(activity, "Can't go there yet!", Toast.LENGTH_SHORT).show();
 					}
 				}
 			});
-			leverloader.loadLevel("Elevator");
 			builder.show();
 			return false;
 

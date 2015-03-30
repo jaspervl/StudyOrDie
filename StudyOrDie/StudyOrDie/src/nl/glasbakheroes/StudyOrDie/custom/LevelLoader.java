@@ -179,7 +179,7 @@ public class LevelLoader {
 			}
 			
 			if (model.getBoss("Ruud").getAlive()) {
-				board.addGameObject(model.getBoss("Ruud"), 1, 2);
+				board.addGameObject(model.getBoss("Ruud"), 1, 6);
 			}
 			if (model.getDoors()[0] == true) { 
 				board.addGameObject(new Door(true,1), 10, 6);
