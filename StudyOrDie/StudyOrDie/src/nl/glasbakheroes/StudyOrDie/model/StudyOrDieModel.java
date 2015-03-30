@@ -12,7 +12,6 @@ import nl.glasbakheroes.StudyOrDie.activities.GameOverActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
-import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 
 /**

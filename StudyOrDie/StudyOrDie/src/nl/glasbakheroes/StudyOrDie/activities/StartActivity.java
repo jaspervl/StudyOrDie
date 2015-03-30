@@ -3,7 +3,6 @@ package nl.glasbakheroes.StudyOrDie.activities;
 import nl.glasbakheroes.StudyOrDie.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;

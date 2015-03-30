@@ -2,7 +2,6 @@ package nl.glasbakheroes.StudyOrDie.model;
 
 import java.util.Observable;
 
-import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import android.util.Log;
 
 /**

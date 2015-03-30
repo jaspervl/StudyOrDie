@@ -6,6 +6,7 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,9 +57,21 @@ public class BattleAttackOptionsView extends LinearLayout {
 		btnAttack1 = (Button) findViewById(R.id.btnAttack1);
 		btnAttack2 = (Button) findViewById(R.id.btnAttack2);
 		btnAttack3 = (Button) findViewById(R.id.btnAttack3);
-		btnAttack4 = (Button) findViewById(R.id.btnAttack4); 		
-		enableAllButtons();
+		btnAttack4 = (Button) findViewById(R.id.btnAttack4); 
+		disableAllButtons();
+		
+		/* Enable all buttons 2 seconds after creating this view */
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				enableAllButtons();
+			}
+		}, 2000);
+		
 	}
+
 	
 	/** Listens for button presses */
 	private class ButtonListener implements OnClickListener {

@@ -4,7 +4,6 @@ package nl.glasbakheroes.StudyOrDie.game;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;

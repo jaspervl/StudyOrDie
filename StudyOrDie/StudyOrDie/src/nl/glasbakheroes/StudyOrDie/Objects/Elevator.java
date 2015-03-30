@@ -10,10 +10,7 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 public class Elevator extends GameObject {
 	public static final String ELEVATOR_IMAGE = "ElevatorOpen";
 
-	public boolean locked;
-
 	public Elevator() {
-		this.locked = locked;
 	}
 
 	@Override
