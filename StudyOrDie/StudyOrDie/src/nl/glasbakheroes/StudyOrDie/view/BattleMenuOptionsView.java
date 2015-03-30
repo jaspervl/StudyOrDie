@@ -3,8 +3,8 @@ package nl.glasbakheroes.StudyOrDie.view;
 import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.activities.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.activities.ItemActivity;
-import nl.glasbakheroes.StudyOrDie.activities.MenuActivity;
-import nl.glasbakheroes.StudyOrDie.activities.StartActivity;
+import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
+import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
@@ -21,6 +22,7 @@ import android.widget.LinearLayout;
 public class BattleMenuOptionsView extends LinearLayout {
 	/** Instance variables */
 	private Button btnItems, btnCharacter, btnForfeit;
+	private ImageView ivCharacter;
 
 	/** Constructors */
 	public BattleMenuOptionsView(Context context, AttributeSet attrs,
@@ -51,6 +53,10 @@ public class BattleMenuOptionsView extends LinearLayout {
 		btnItems = (Button) findViewById(R.id.btnBattleItems);
 		btnCharacter = (Button) findViewById(R.id.btnBattleCharacter);
 		btnForfeit = (Button) findViewById(R.id.btnForfeit);
+		ivCharacter = (ImageView) findViewById(R.id.imgBattleAvatar);
+		
+		StudyOrDieModel model = ((StudyOrDieApplication)getContext().getApplicationContext()).getModel();
+		ivCharacter.setImageBitmap(SpriteCache.getInstance().get(model.getAvatar().getImageId()));
 		
 		/* Set a listener for the forfeit button */
 		ButtonListener listener = new ButtonListener();
