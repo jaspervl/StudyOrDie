@@ -207,7 +207,7 @@ public class CoreActivity extends Activity {
 				/* A button is released */
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				if (v != menuButton) {
-					joystickButton.setBackgroundResource(R.drawable.joystick_stick);
+					clearJoystick();
 					stopMovingLoop();
 				}
 			} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -278,5 +278,9 @@ public class CoreActivity extends Activity {
 	/** Stop the infinite movement loop */
 	void stopMovingLoop() {
 		handler.removeCallbacks(movement);
+	}
+
+	public void clearJoystick() {
+		joystickButton.setBackgroundResource(R.drawable.joystick_stick);
 	}
 }
