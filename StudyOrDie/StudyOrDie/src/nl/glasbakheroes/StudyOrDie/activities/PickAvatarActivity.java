@@ -46,15 +46,25 @@ public class PickAvatarActivity extends Activity {
 		imgAvatar4 = (ImageView)findViewById(R.id.imgAvatar4);
 		etFillName = (EditText)findViewById(R.id.etFillName);
 		
-		ButtonListener listener = new ButtonListener();
-		imgAvatar1.setOnClickListener(listener); 
-		imgAvatar2.setOnClickListener(listener);
-		imgAvatar3.setOnClickListener(listener);
-		imgAvatar4.setOnClickListener(listener);
+		ButtonListener listener1 = new ButtonListener(1);
+		ButtonListener listener2 = new ButtonListener(2);
+		ButtonListener listener3 = new ButtonListener(3);
+		ButtonListener listener4 = new ButtonListener(4);
+
+		imgAvatar1.setOnClickListener(listener1); 
+		imgAvatar2.setOnClickListener(listener2);
+		imgAvatar3.setOnClickListener(listener3);
+		imgAvatar4.setOnClickListener(listener4);
 	}
 	
 	/** Listens to button clicks, which avatar is clicked does not matter at this point in time. */
 	private class ButtonListener implements OnClickListener {
+		
+		int id;
+		
+		public ButtonListener(int num){
+			id = num;
+		}
 
 		@Override
 		public void onClick(View v) {
@@ -62,7 +72,7 @@ public class PickAvatarActivity extends Activity {
 				Toast.makeText(getApplicationContext(), "Please enter a name before picking a avatar", Toast.LENGTH_SHORT).show();
 			} else {
 				model.getAvatar().setName(etFillName.getText() + "");
-//				model.getAvatar().setAvatarImage();  <--- Implement this
+				model.getAvatar().setAvatarImages(this.id);
 				Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 				resultIntent.putExtra("action", "new");
 				setResult(RESULT_TO_STARTACTIVITY, resultIntent);

@@ -68,10 +68,23 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Boss.BOSS_IMAGE_CONCIERGE, R.drawable.concierge);
 				
 				/* Avatar */
-				spriteCache.loadTile(Avatar.AVATAR_FRONT, R.drawable.char_player_front);
-				spriteCache.loadTile(Avatar.AVATAR_BACK, R.drawable.char_player_back);
-				spriteCache.loadTile(Avatar.AVATAR_LEFT, R.drawable.char_player_left);
-				spriteCache.loadTile(Avatar.AVATAR_RIGHT, R.drawable.char_player_right);
+				spriteCache.loadTile(Avatar.AVATAR_FRONT_BLOND, R.drawable.char_player_blond_front0);
+				spriteCache.loadTile(Avatar.AVATAR_BACK_BLOND, R.drawable.char_player_blond_back0);
+				spriteCache.loadTile(Avatar.AVATAR_LEFT_BLOND, R.drawable.char_player_blond_left0);
+				spriteCache.loadTile(Avatar.AVATAR_RIGHT_BLOND, R.drawable.char_player_blond_right0);
+				spriteCache.loadTile(Avatar.AVATAR_FRONT_BROWN, R.drawable.char_player_brown_front0);
+				spriteCache.loadTile(Avatar.AVATAR_BACK_BROWN, R.drawable.char_player_brown_back0);
+				spriteCache.loadTile(Avatar.AVATAR_LEFT_BROWN, R.drawable.char_player_brown_left0);
+				spriteCache.loadTile(Avatar.AVATAR_RIGHT_BROWN, R.drawable.char_player_brown_right0);
+				spriteCache.loadTile(Avatar.AVATAR_FRONT_ASTRO, R.drawable.char_player_astro_front0);
+				spriteCache.loadTile(Avatar.AVATAR_BACK_ASTRO, R.drawable.char_player_astro_back0);
+				spriteCache.loadTile(Avatar.AVATAR_LEFT_ASTRO, R.drawable.char_player_astro_left0);
+				spriteCache.loadTile(Avatar.AVATAR_RIGHT_ASTRO, R.drawable.char_player_astro_right0);
+				spriteCache.loadTile(Avatar.AVATAR_FRONT_SANTA, R.drawable.char_player_santa_front0);
+				spriteCache.loadTile(Avatar.AVATAR_BACK_SANTA, R.drawable.char_player_santa_back0);
+				spriteCache.loadTile(Avatar.AVATAR_LEFT_SANTA, R.drawable.char_player_santa_left0);
+				spriteCache.loadTile(Avatar.AVATAR_RIGHT_SANTA, R.drawable.char_player_santa_right0);
+				
 
 
 	}

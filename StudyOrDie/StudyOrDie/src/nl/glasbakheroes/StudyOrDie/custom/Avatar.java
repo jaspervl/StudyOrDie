@@ -15,12 +15,29 @@ import android.util.Log;
  * @author Niels Jan & Jasper
  */
 public class Avatar extends GameObject {
-	public final static String AVATAR_FRONT = "AvatarFront";
-	public final static String AVATAR_BACK = "AvatarBack";
-	public final static String AVATAR_LEFT = "AvatarLeft";
-	public final static String AVATAR_RIGHT = "AvatarRight";
+	public final static String AVATAR_FRONT_BLOND = "AvatarFrontBlond";
+	public final static String AVATAR_BACK_BLOND = "AvatarBackBlond";
+	public final static String AVATAR_LEFT_BLOND = "AvatarLeftBlond";
+	public final static String AVATAR_RIGHT_BLOND = "AvatarRightBlond";
+	public final static String AVATAR_FRONT_BROWN = "AvatarFrontBrown";
+	public final static String AVATAR_BACK_BROWN = "AvatarBackBrown";
+	public final static String AVATAR_LEFT_BROWN = "AvatarLeftBrown";
+	public final static String AVATAR_RIGHT_BROWN = "AvatarRightBrown";
+	public final static String AVATAR_FRONT_ASTRO = "AvatarFrontAstro";
+	public final static String AVATAR_BACK_ASTRO = "AvatarBackAstro";
+	public final static String AVATAR_LEFT_ASTRO = "AvatarLeftAstro";
+	public final static String AVATAR_RIGHT_ASTRO = "AvatarRightAstro";
+	public final static String AVATAR_FRONT_SANTA = "AvatarFrontSanta";
+	public final static String AVATAR_BACK_SANTA = "AvatarBackSanta";
+	public final static String AVATAR_LEFT_SANTA = "AvatarLeftSanta";
+	public final static String AVATAR_RIGHT_SANTA = "AvatarRightSanta";
 
-	private String currentImage = AVATAR_FRONT;
+	public String imageFront;
+	public String imageBack;
+	public String imageLeft;
+	public String imageRight;
+	
+	private String currentImage;
 	private String name = "Avatar_name";
 	private StudyOrDieModel model;
 
@@ -44,6 +61,43 @@ public class Avatar extends GameObject {
 	 */
 	public Avatar(StudyOrDieModel model) {
 		this.model = model;
+	}
+	
+	public void setAvatarImages(int select){
+		switch(select){
+		case 1: 
+			imageFront = AVATAR_FRONT_BLOND;
+			imageBack = AVATAR_BACK_BLOND;
+			imageLeft = AVATAR_LEFT_BLOND;
+			imageRight = AVATAR_RIGHT_BLOND;
+			currentImage = imageFront;
+			model.update();
+			break;
+		case 2 :
+			imageFront = AVATAR_FRONT_BROWN;
+			imageBack = AVATAR_BACK_BROWN;
+			imageLeft = AVATAR_LEFT_BROWN;
+			imageRight = AVATAR_RIGHT_BROWN;
+			currentImage = imageFront;
+			model.update();
+			break;
+		case 3 :
+			imageFront = AVATAR_FRONT_ASTRO;
+			imageBack = AVATAR_BACK_ASTRO;
+			imageLeft = AVATAR_LEFT_ASTRO;
+			imageRight = AVATAR_RIGHT_ASTRO;
+			currentImage = imageFront;
+			model.update();
+			break;
+		case 4 :
+			imageFront = AVATAR_FRONT_SANTA;
+			imageBack = AVATAR_BACK_SANTA;
+			imageLeft = AVATAR_LEFT_SANTA;
+			imageRight = AVATAR_RIGHT_SANTA;
+			currentImage = imageFront;
+			model.update();
+			break;
+		}
 	}
 
 	@Override
@@ -71,28 +125,32 @@ public class Avatar extends GameObject {
 	public void setImage(int direction) {
 		switch (direction) {
 		case StudyOrDieGameBoard.UP:
-			if (!currentImage.equals(AVATAR_BACK)) {
-				currentImage = AVATAR_BACK;
+			if (!currentImage.equals(imageBack)) {
+				currentImage = imageBack;
 			}
 			break;
 		case StudyOrDieGameBoard.DOWN:
-			if (!currentImage.equals(AVATAR_FRONT)) {
-				currentImage = AVATAR_FRONT;
+			if (!currentImage.equals(imageFront)) {
+				currentImage = imageFront;
 			}
 			break;
 		case StudyOrDieGameBoard.LEFT:
-			if (!currentImage.equals(AVATAR_LEFT)) {
-				currentImage = AVATAR_LEFT;
+			if (!currentImage.equals(imageLeft)) {
+				currentImage = imageLeft;
 			}
 			break;
 		case StudyOrDieGameBoard.RIGHT:
-			if (!currentImage.equals(AVATAR_RIGHT)) {
-				currentImage = AVATAR_RIGHT;
+			if (!currentImage.equals(imageRight)) {
+				currentImage = imageRight;
 			}
 			break;
 		default:
 			break;
 		}
+	}
+	
+	public String getFrontImage(){
+		return imageFront;
 	}
 
 	@Override

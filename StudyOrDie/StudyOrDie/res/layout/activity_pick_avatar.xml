@@ -62,28 +62,28 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/char_player_front" />
+            android:src="@drawable/char_player_blond_front0" />
 
         <ImageView
             android:id="@+id/imgAvatar2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/char_player_front" />
+            android:src="@drawable/char_player_brown_front0" />
 
         <ImageView
             android:id="@+id/imgAvatar3"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/char_player_front" />
+            android:src="@drawable/char_player_astro_front0" />
 
         <ImageView
             android:id="@+id/imgAvatar4"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:src="@drawable/char_player_front" />
+            android:src="@drawable/char_player_santa_front0" />
 
     </LinearLayout>
 
