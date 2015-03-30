@@ -19,12 +19,13 @@ import android.widget.TextView;
  * Displays an item in the detail fragment
  */
 public class ItemFragment extends Fragment {
-	ImageView picture;
-	TextView name;
-	TextView description;
-	TextView stats;
-	Button equipButton;
-	Item currentItem;
+	/** Instance variables*/
+	private ImageView picture;
+	private TextView name;
+	private TextView description;
+	private TextView stats;
+	private Button equipButton;
+	private Item currentItem;
 	private StudyOrDieModel model;
 
 	@Override
@@ -51,6 +52,7 @@ public class ItemFragment extends Fragment {
 				{
 					model.getAvatar().setCurrent(currentItem.getHpModifier(), currentItem.getEnergyModifier(), currentItem.getMotivationModifier());
 					model.removeItem(currentItem);
+					equipButton.setEnabled(false);
 					return;
 				} 
 				currentItem.equip();
@@ -71,6 +73,7 @@ public class ItemFragment extends Fragment {
 
 	public void setVariables(int pos) {
 		currentItem = model.getItemList().get(pos);
+		equipButton.setEnabled(true);
 		name.setText(String.format(currentItem.getName()));
 		description.setText(String.format(currentItem.getDescription()));
 		stats.setText(String.format("HP " + currentItem.getHpModifier()) + String.format("\nEnergy " + currentItem.getEnergyModifier()) + String.format("\nMotivation " + currentItem.getMotivationModifier()));
