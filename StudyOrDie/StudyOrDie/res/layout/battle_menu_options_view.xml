@@ -10,7 +10,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="3"
         android:text="@string/inventory"
-        android:textSize="14sp" />
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/btnBattleCharacter"
@@ -18,7 +18,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="3"
         android:text="@string/character"
-        android:textSize="15sp" />
+        android:textSize="13sp" />
 
     <Button
         android:id="@+id/btnForfeit"
@@ -26,7 +26,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="3"
         android:text="@string/forfeit"
-        android:textSize="15sp" />
+        android:textSize="13sp" />
 
     <ImageView
         android:id="@+id/imgBattleAvatar"

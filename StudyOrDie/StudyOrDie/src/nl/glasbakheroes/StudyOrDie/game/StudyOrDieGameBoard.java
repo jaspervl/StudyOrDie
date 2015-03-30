@@ -269,16 +269,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 			return false;
 
 			/** Elevator is present, go to the next/last major level */
-		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
-
-			/* If the elevator is locked, player can't go through */
-			Elevator elevator = (Elevator) getObject(avatarNewX, avatarNewY);
-			if (elevator.getLocked()) {
-				Toast.makeText(activity, "Elevator is locked!",
-						Toast.LENGTH_SHORT).show();
-				return false;
-			}
-			
+		} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {			
 			/* Selects the floor */
 			CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor",
 					"Second floor", "Third floor", "Fourth floor", "Fifth floor", "Sixt floor", "Seventh floor", "Eighth floor", "Ninth floor", "Roof top"  };

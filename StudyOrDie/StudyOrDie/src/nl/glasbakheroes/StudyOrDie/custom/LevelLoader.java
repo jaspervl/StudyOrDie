@@ -171,7 +171,7 @@ public class LevelLoader {
 		case GROUND_LEVEL_3:
 			/* Create conditional objects */
 			if (spawnArea.equals("Elevator")) {
-				board.addGameObject(avatar, 1, 2);
+				board.addGameObject(avatar, 2, 1);
 			} else if (spawnArea.equals("Bottom")) {
 				board.addGameObject(avatar, 12, 11);
 			} else if (spawnArea.equals("savedLocation")) {
@@ -180,9 +180,6 @@ public class LevelLoader {
 			
 			if (model.getBoss("Ruud").getAlive()) {
 				board.addGameObject(model.getBoss("Ruud"), 1, 2);
-				board.addGameObject(new Elevator(true), 1, 1);
-			} else {
-				board.addGameObject(new Elevator(false), 1, 1);
 			}
 			if (model.getDoors()[0] == true) { 
 				board.addGameObject(new Door(true,1), 10, 6);
@@ -190,6 +187,7 @@ public class LevelLoader {
 				board.addGameObject(new Door(), 10, 6);
 			}
 			/* Create all default objects */
+			board.addGameObject(new Elevator(), 1, 1);
 			board.createWallHorizontal(1, 9, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(15, MAX_BOARD_WIDHT-1, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(1, 9, 0);
@@ -220,7 +218,7 @@ public class LevelLoader {
 			board.createWallVertical(1, MAX_BOARD_HEIGHT-1, 0);
 			board.createWallVertical(1, MAX_BOARD_HEIGHT-1, MAX_BOARD_WIDHT);
 			board.createWallCorners(0, MAX_BOARD_WIDHT, 0, MAX_BOARD_HEIGHT);
-			board.addGameObject(new Elevator(false), 1,1);
+			board.addGameObject(new Elevator(), 1,1);
 			break;
 			/** case 12 is part 2 of the second floor */
 		case 12:
