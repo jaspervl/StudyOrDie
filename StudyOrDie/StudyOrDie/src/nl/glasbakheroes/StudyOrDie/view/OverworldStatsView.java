@@ -109,6 +109,7 @@ public class OverworldStatsView extends LinearLayout implements Observer {
 	
 	/** Put the current data into the interface components */
 	public void updateData() {
+		tvOverworldAvatarName.setText(model.getAvatar().getName());
 		barHP.setMax(avatar.getMaxHP());
 		barHP.setProgress(avatar.getCurrentHP());
 		barEnergy.setMax(avatar.getMaxEnergy());

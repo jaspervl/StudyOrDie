@@ -64,6 +64,9 @@ public class Avatar extends GameObject {
 	}
 	
 	public void setAvatarImages(int select){
+
+		model.setSelectedImage(select);
+		
 		switch(select){
 		case 1: 
 			imageFront = AVATAR_FRONT_BLOND;

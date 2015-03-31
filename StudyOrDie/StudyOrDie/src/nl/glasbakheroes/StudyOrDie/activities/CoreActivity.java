@@ -25,6 +25,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Main activity in the game, represents the overworld
@@ -127,12 +128,18 @@ public class CoreActivity extends Activity {
 			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
-				startNewGame();
+				//
 			} else if (action.equals("load")) {
-				loadGame();  
+				Log.w("Core", "Loadgame called");
+				if (!model.loadGame()) {
+					Toast.makeText(getApplicationContext(), "Loading failed", Toast.LENGTH_SHORT).show();
+					Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
+					startActivityForResult(startScreenIntent, REQUEST_START_CODE);
+					startMenuShown = true;  
+				}
 			} else if (action.equals("abort")) {
 				// Do something when player backs out of start menu.
-				startNewGame();
+				
 			}
 		} else if (requestCode == StudyOrDieGameBoard.REQUEST_COMBAT_INTENT) {
 			// do nothing
@@ -160,19 +167,6 @@ public class CoreActivity extends Activity {
 		}
 		super.onPause();
 	}
-	
-	/**
-	 * Dummy methods at the moment!
-	 */
-	private void startNewGame() {
-		// Start a fresh game.
-	}
-	private void loadGame() {
-		// Start load screen from here.
-	}
-	/**
-	 * End of dummy methods
-	 */	
 	
 	/** Listener for the buttons in the overworld */
 	private class TouchListener implements OnTouchListener {
@@ -250,7 +244,7 @@ public class CoreActivity extends Activity {
 	
 	
 	/** Making a new runnable action which can be repeatedly played on 1 thread */
-	Runnable movement = new Runnable() {
+	Runnable movement = new Runnable() { 
 		@Override
 		public void run() {
 			if (!disableMovement) {
@@ -282,5 +276,10 @@ public class CoreActivity extends Activity {
 
 	public void clearJoystick() {
 		joystickButton.setBackgroundResource(R.drawable.joystick_stick);
+	} 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		model.saveGame();
 	}
 }

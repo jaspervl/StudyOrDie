@@ -1,7 +1,15 @@
 package nl.glasbakheroes.StudyOrDie.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Scanner;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -15,7 +23,9 @@ import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 
 /**
- * Study or Die model - Class contains all the important data in the game. It tells observers to update this data when it has changed.
+ * Study or Die model - Class contains all the important data in the game. It
+ * tells observers to update this data when it has changed.
+ * 
  * @author Niels Jan
  */
 public class StudyOrDieModel extends Observable {
@@ -31,19 +41,20 @@ public class StudyOrDieModel extends Observable {
 	private Handler handler;
 	private int timerValue = -10;
 	private CoreActivity activity;
-	private int lastRandomBossStep = 0; 
+	private int lastRandomBossStep = 0;
 	private boolean gameInitialized = false;
-	private int[] savedAvatarLocation = {20, 8}; 
-	private boolean[] levelOpened = {true, false, false, false, false, false, false, false, false, false, false};
+	private int[] savedAvatarLocation = { 20, 8 };
+	private boolean[] levelOpened = { true, false, false, false, false, false, false, false, false, false, false };
 	private int score = 0;
 	private int levelsOpened = 1;
 	private int currencyBalance = 100;
-	
+	private String saveFileString = "";
+	private int selectedAvatarImage;
+
 	/* 2 arrays which enable or disable special items/npc's for each major level */
-	private boolean[] keys = {true, true};
-	private boolean[] doorLocked = {true, true};
-	
-	
+	private boolean[] keys = { true, true };
+	private boolean[] doorLocked = { true, true };
+
 	/** Constructor */
 	public StudyOrDieModel() {
 		this.avatar = new Avatar(this);
@@ -52,35 +63,41 @@ public class StudyOrDieModel extends Observable {
 		fillItemList(); // Fills the item array
 		this.handler = new Handler();
 		this.timer.run();
-	} 
-	
+	}
+
 	/** Return the avatar */
 	public Avatar getAvatar() {
 		return avatar;
 	}
-	
+
 	/** Return the level loader */
 	public LevelLoader getLoader() {
 		return loader;
 	}
 
-	/** Set the levelloader, this method is called after the onCreate for CoreActivity is called */
+	/**
+	 * Set the levelloader, this method is called after the onCreate for
+	 * CoreActivity is called
+	 */
 	public void setLoader(LevelLoader levelLoader) {
 		loader = levelLoader;
 	}
-	 
+
 	/**
 	 * Adds a boss with a certain name and hitPoints.
-	 * @param name	The name of the boss
-	 * @param hitPoints	The amount of hitpoints the boss starts with
+	 * 
+	 * @param name
+	 *            The name of the boss
+	 * @param hitPoints
+	 *            The amount of hitpoints the boss starts with
 	 */
 	public void addBoss(String name, int hitPoints, int level) {
 		bosses.add(new Boss(name, hitPoints, level, this));
 	}
-	
+
 	/** Return the boss with a given name */
 	public Boss getBoss(String bossName) {
-		for (Boss b : bosses) { 		 
+		for (Boss b : bosses) {
 			if (b.getName().equals(bossName)) {
 				return b;
 			}
@@ -88,7 +105,7 @@ public class StudyOrDieModel extends Observable {
 		Log.w("StudyOrDieModel.getBoss", "Boss not found, NullPointerException incoming");
 		return null;
 	}
-	
+
 	/** Check whether a boss exists or not */
 	public boolean bossExcist(String bossName) {
 		for (Boss b : bosses) {
@@ -103,65 +120,70 @@ public class StudyOrDieModel extends Observable {
 	public ArrayList<Item> getItemList() {
 		return itemList;
 	}
-	
+
 	/** Remove a item from the avatar item list */
-	public void removeItem(Item item)
-	{
+	public void removeItem(Item item) {
 		getItemList().remove(item);
 		update();
 	}
-	
+
 	/** Fill the item array with items */
-	private void fillItemList(){ 	 
+	private void fillItemList() {
 		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false, 10));
 		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false, 60));
-		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false, 50));
+		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false,
+				50));
 		itemList.add(new Item("Tristans terminal", "You didnt practice enough.", 3, 30, -10, false, 70));
 		itemList.add(new Item("CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false, 40));
 		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50));
 		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true, 30));
 		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true, 30));
 		itemList.add(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));
-		itemList.add(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100)); 
+		itemList.add(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100));
 		itemList.add(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true, 40));
 	}
-	
+
 	/** Add a item to the avatar */
 	public void addItemToAvatar(Item item) {
 		avatar.addItem(item);
 		update();
 	}
-	
+
 	/** Remove a item from the avatar */
 	public void unEquipAvatarItem(Item item) {
 		avatar.removeItem(item);
 		update();
 	}
-	
+
 	/** Tell the observers that the data has changed */
 	public void update() {
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	/** Set the current level */
 	public void setLevel(int level) {
 		currentLevel = level;
 	}
-	
+
 	/** Get the current level */
 	public int getLevel() {
 		return currentLevel;
 	}
 
-	/** Set the gameboard in the model class, this method is called after CoreActivity's onCreate method is called. */
+	/**
+	 * Set the gameboard in the model class, this method is called after
+	 * CoreActivity's onCreate method is called.
+	 */
 	public void setBoard(StudyOrDieGameBoard gameBoard) {
 		this.board = gameBoard;
 		board.setAvatar(avatar);
 	}
-	
-	/** Add a step to the total number of steps made in the game by the avatar 
-	 * if there were 10 steps since the last energy-burn. Burn 1 energy*/
+
+	/**
+	 * Add a step to the total number of steps made in the game by the avatar if
+	 * there were 10 steps since the last energy-burn. Burn 1 energy
+	 */
 	public void addStep() {
 		this.totalSteps++;
 		update();
@@ -169,14 +191,16 @@ public class StudyOrDieModel extends Observable {
 			avatar.setCurrentEnergy(avatar.getCurrentEnergy() - 1);
 		}
 	}
-	
+
 	/** Get the total number of steps made until now by the avatar */
 	public int getSteps() {
 		return totalSteps;
 	}
-	
-	/** Add 1 (second) to the timerValue to keep track of the time played 
-	 * Every time 10 seconds pass a motivation point will vanish */
+
+	/**
+	 * Add 1 (second) to the timerValue to keep track of the time played Every
+	 * time 10 seconds pass a motivation point will vanish
+	 */
 	Runnable timer = new Runnable() {
 		@Override
 		public void run() {
@@ -189,39 +213,52 @@ public class StudyOrDieModel extends Observable {
 				exhaustCheck();
 			}
 		}
-	};	
-	
+	};
+
 	/** Gets the approximate time passed in seconds */
 	public int getTime() {
 		return timerValue;
 	}
-	
-	/** Returns the array with booleans for each key to see if it is present or not */
+
+	/**
+	 * Returns the array with booleans for each key to see if it is present or
+	 * not
+	 */
 	public boolean[] getKeys() {
 		return keys;
 	}
-	
-	/** Returns the array with booleans for each door to see whether it is locked or not */
+
+	/**
+	 * Returns the array with booleans for each door to see whether it is locked
+	 * or not
+	 */
 	public boolean[] getDoors() {
 		return doorLocked;
 	}
-	
+
 	/** Remove a key from the game in a certain sub-level */
 	public void removeKey(int subLevel) {
 		switch (subLevel) {
-		case 2 	: keys[0] = false; break;
-		case 12 : keys[1] = false; break;
-		default	: break;
+		case 2:
+			keys[0] = false;
+			break;
+		case 12:
+			keys[1] = false;
+			break;
+		default:
+			break;
 		}
 		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 		loader.loadLevel("Fight");
 	}
-	
-	/** Checking for the value of avatar energy, avatar motivation.
-	 * If both are 0, GAME OVER and start from scratch */
+
+	/**
+	 * Checking for the value of avatar energy, avatar motivation. If both are
+	 * 0, GAME OVER and start from scratch
+	 */
 	private void exhaustCheck() {
 		if (avatar.getCurrentEnergy() <= 0 && avatar.getCurrentMotivation() <= 0) {
-			currentLevel = 1; 
+			currentLevel = 1;
 			loader.loadLevel("Bottom");
 			String name = avatar.getName();
 			avatar = new Avatar(this);
@@ -234,21 +271,26 @@ public class StudyOrDieModel extends Observable {
 			update();
 		}
 	}
-	
+
 	/** 'Unlock' a locked door in a certain sub-level */
 	public void unlockDoor(int subLevel) {
 		switch (subLevel) {
-		case 3 	: doorLocked[0] = false; break;
-		case 13 : doorLocked[1] = false; break;
-		default	: break;
+		case 3:
+			doorLocked[0] = false;
+			break;
+		case 13:
+			doorLocked[1] = false;
+			break;
+		default:
+			break;
 		}
 	}
-	
+
 	/** Set the core activity */
 	public void setActivity(CoreActivity activity) {
 		this.activity = activity;
 	}
-	
+
 	/** Regen avatar */
 	public void spawnAfterFail() {
 		currentLevel = 1;
@@ -258,13 +300,16 @@ public class StudyOrDieModel extends Observable {
 		avatar.setCurrentMotivation(100);
 		update();
 	}
-	
+
 	public void randomEncounterOccured() {
 		raiseScore(10);
 		lastRandomBossStep = totalSteps;
 	}
-	
-	/** Return whether or not the avatar enters a random battle, the chance to enter a fight raises exponential after more steps taken */
+
+	/**
+	 * Return whether or not the avatar enters a random battle, the chance to
+	 * enter a fight raises exponential after more steps taken
+	 */
 	public boolean fightRandomBoss() {
 		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 70), 4);
 		if (Math.random() < chance) {
@@ -272,7 +317,7 @@ public class StudyOrDieModel extends Observable {
 		}
 		return false;
 	}
-	
+
 	/** Find the random boss and return it */
 	public Boss findRandomBoss() {
 		for (Boss b : bosses) {
@@ -288,62 +333,68 @@ public class StudyOrDieModel extends Observable {
 	public void removeBoss(Boss boss) {
 		bosses.remove(boss);
 	}
-	
-	/** Make sure the model knows that the game has already been initialized
-	 * Called from StudyOrDieGame constructor */
+
+	/**
+	 * Make sure the model knows that the game has already been initialized
+	 * Called from StudyOrDieGame constructor
+	 */
 	public void gameHasBeenInitialized() {
 		this.gameInitialized = true;
 	}
-	
-	/** Check if the game has been initialized already
-	 * Called from StudyOrDieGame constructor */
+
+	/**
+	 * Check if the game has been initialized already Called from StudyOrDieGame
+	 * constructor
+	 */
 	public boolean isGameInitialized() {
 		return gameInitialized;
 	}
-	
+
 	/** Get the location of the avatar where he was before a fight occurred */
 	public int[] getSavedLocation() {
 		return savedAvatarLocation;
 	}
-	
+
 	/** Save the current location of the avatar, called when entering a fight */
 	public void setSavedLocation(int x, int y) {
-		 savedAvatarLocation[0] = x;
-		 savedAvatarLocation[1] = y;
+		savedAvatarLocation[0] = x;
+		savedAvatarLocation[1] = y;
 	}
-	
+
 	public void openLevel(int level) {
 		this.levelOpened[level] = true;
 		levelsOpened++;
 	}
-	
+
 	public boolean isLevelOpen(int level) {
 		return this.levelOpened[level];
 	}
-	
+
 	public CoreActivity getActivity() {
 		return activity;
 	}
-	
+
 	public int getScore() {
 		return score;
 	}
-	
+
 	public void raiseScore(int amount) {
 		this.score += amount;
 	}
-	
-	public void lowerScore (int amount) {
+
+	public void lowerScore(int amount) {
 		this.score -= amount;
 	}
-	
+
 	public int getNumberOpenedLevels() {
 		return levelsOpened;
 	}
-	
-	/** Set the currency balance of the player to a new value, 
-	 * if the new balance will be negative, return false for NOT executing the change. 
-	 * if the new balance is 0 or positive, return true for executing the change */
+
+	/**
+	 * Set the currency balance of the player to a new value, if the new balance
+	 * will be negative, return false for NOT executing the change. if the new
+	 * balance is 0 or positive, return true for executing the change
+	 */
 	public boolean setBalance(int newBalance) {
 		if (newBalance >= 0) {
 			this.currencyBalance = newBalance;
@@ -352,8 +403,124 @@ public class StudyOrDieModel extends Observable {
 			return false;
 		}
 	}
-	
+
 	public int getBalance() {
 		return currencyBalance;
+	} 
+
+	public void saveGame() {
+		String filename = "sod_save_game.txt";
+		try {
+			// catches IOException below
+
+			/*
+			 * We have to use the openFileOutput()-method the ActivityContext
+			 * provides, to protect your file from others and This is done for
+			 * security-reasons. We chose MODE_WORLD_READABLE, because we have
+			 * nothing to hide in our file
+			 */
+			FileOutputStream fileOutput = new FileOutputStream(new File(activity.getApplicationContext().getFilesDir(),
+					filename), false);
+			OutputStreamWriter outputWriter = new OutputStreamWriter(fileOutput);
+
+			saveFileString = 	"picture:" + selectedAvatarImage
+								+ ":location:" + savedAvatarLocation[0] + ":" + savedAvatarLocation[1]
+								+ ":timer:" + timerValue
+								+ ":steps:" + totalSteps
+								+ ":level:" + currentLevel
+								+ ":balance:" + currencyBalance
+								+ ":name:" + avatar.getName();
+			
+			Log.w("Model, saved string:", saveFileString);
+
+			// Write the string to the file 
+			outputWriter.write(saveFileString);
+
+			/*
+			 * ensure that everything is really written out and close
+			 */
+			outputWriter.close(); 
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+
+	public boolean loadGame() {
+		boolean succes = false;
+		String filename = "sod_save_game.txt";
+
+		/*
+		 * We have to use the openFileInput()-method the ActivityContext
+		 * provides. Again for security reasons with openFileInput(...)
+		 */
+
+		FileInputStream fIn;
+		try {
+			fIn = new FileInputStream(new File(activity.getApplicationContext().getFilesDir(), filename));
+
+			Scanner scan = new Scanner(fIn);
+			if (!scan.hasNext()) {
+				scan.close();
+				return false;
+			}
+
+			scan.useDelimiter(":");
+			while (scan.hasNext()) {
+				String word = scan.next();
+				if (word.equals("picture")) {
+					if (scan.hasNextInt()) {
+						selectedAvatarImage = scan.nextInt();
+						avatar.setAvatarImages(selectedAvatarImage);
+						Log.w("Model", "Selected avatar: " + selectedAvatarImage);
+					} 
+				} else if (word.equals("location")) {
+					if (scan.hasNextInt()) {
+						int xPos = scan.nextInt();
+						if (scan.hasNextInt()) {
+							int yPos = scan.nextInt();
+							setSavedLocation(xPos, yPos);
+						}
+						Log.w("Model", "saved location: " + savedAvatarLocation[0] + ", " + savedAvatarLocation[1]);
+					}
+				} else if (word.equals("timer")) {
+					if (scan.hasNextInt()) {
+						timerValue = scan.nextInt();
+						Log.w("Model", "Timer: " + timerValue);
+					}
+				} else if (word.equals("steps")) {
+					if (scan.hasNextInt()) {
+						totalSteps = scan.nextInt();
+						Log.w("Model", "Steps: " + totalSteps);
+					}
+				} else if (word.equals("level")) {
+					if (scan.hasNextInt()) {
+						currentLevel = scan.nextInt();
+						Log.w("Model", "Current level: " + currentLevel);
+					}
+				} else if (word.equals("balance")) {
+					if (scan.hasNextInt()) {
+						currencyBalance = scan.nextInt();
+						Log.w("Model", "Current balance: " + currencyBalance);
+					}
+				} else if (word.equals("name")) { 
+					if (scan.hasNext()) {
+						avatar.setName(scan.next());
+						Log.w("Model", "Avatar name: " + avatar.getName());
+					}
+				}
+			}
+			update();
+			scan.close();
+			succes = true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			return succes;
+		}
+	}
+
+	public void setSelectedImage(int imageId) {
+		this.selectedAvatarImage = imageId;
 	}
 }

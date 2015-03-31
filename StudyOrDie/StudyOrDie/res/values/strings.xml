@@ -37,5 +37,6 @@
     <string name="respawn">Spawn at start</string>
     <string name="score">"Score: "</string>
     <string name="mute">Mute sound</string>
+    <string name="resume_game">Resume last game</string>
 
 </resources>

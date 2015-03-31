@@ -265,6 +265,7 @@ containing a value of this type.
         public static final int pick_your_hero=0x7f060014;
         public static final int respawn=0x7f060021;
         public static final int restart=0x7f06001f;
+        public static final int resume_game=0x7f060024;
         public static final int score=0x7f060022;
         public static final int standardstring=0x7f060002;
         public static final int title_activity_combat=0x7f060001;

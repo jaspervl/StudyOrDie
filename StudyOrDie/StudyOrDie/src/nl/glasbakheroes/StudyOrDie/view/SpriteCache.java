@@ -161,9 +161,9 @@ public class SpriteCache {
 		        // height and width larger than the requested height and width.
 		        while ((halfHeight / inSampleSize) > reqHeight
 		                && (halfWidth / inSampleSize) > reqWidth) {
-		            inSampleSize *= 2;
+		            inSampleSize *= 2; 
 		        }
-		    }
+		    } 
 	
 		    return inSampleSize;
 		}
@@ -185,10 +185,10 @@ public class SpriteCache {
 		    options.inSampleSize = calculateInSampleSize(options, tileSize, tileSize);
 
 		    // Log
-			Log.d(TAG, "Loading bitmap " + resourceName + ": " +
-		             "src ( " + options.outWidth + "x" + options.outHeight +" ) -> [" +
-					options.inSampleSize + "] -> dest: (" + 
-		            tileSize + "x" + tileSize + ")" );
+//			Log.d(TAG, "Loading bitmap " + resourceName + ": " +
+//		             "src ( " + options.outWidth + "x" + options.outHeight +" ) -> [" +
+//					options.inSampleSize + "] -> dest: (" + 
+//		            tileSize + "x" + tileSize + ")" );
 
 			// Decode bitmap with inSampleSize set
 		    options.inJustDecodeBounds = false;

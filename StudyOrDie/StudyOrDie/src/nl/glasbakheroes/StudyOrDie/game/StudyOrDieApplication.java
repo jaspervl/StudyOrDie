@@ -18,4 +18,5 @@ public class StudyOrDieApplication extends Application {
 	public StudyOrDieModel getModel() {
 		return model;
 	}
+	
 }

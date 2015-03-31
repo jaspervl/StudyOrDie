@@ -37,8 +37,7 @@
         android:layout_weight="3"
         android:alpha="0.7"
         android:background="@drawable/button_background"
-        android:enabled="false"
-        android:text="@string/load_game"
+        android:text="@string/resume_game"
         android:textColor="#111111" />
 
 </LinearLayout>
