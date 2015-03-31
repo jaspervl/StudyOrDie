@@ -3,21 +3,30 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:baselineAligned="true" >
+    android:background="@drawable/combat_background"
+    android:baselineAligned="true"
+    android:orientation="horizontal" >
 
     <FrameLayout
         android:id="@+id/lvSelectItem"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="7" >
+
     </FrameLayout>
 
     <FrameLayout
         android:id="@+id/detailContainer"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="3" >
+
     </FrameLayout>
 
 </LinearLayout>
