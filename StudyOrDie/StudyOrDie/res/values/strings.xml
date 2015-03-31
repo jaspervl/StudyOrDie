@@ -36,5 +36,6 @@
     <string name="get_rekt">Game over</string>
     <string name="respawn">Spawn at start</string>
     <string name="score">"Score: "</string>
+    <string name="mute">Mute sound</string>
 
 </resources>

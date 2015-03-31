@@ -190,6 +190,7 @@ public class CoreActivity extends Activity {
 				
 					/* Menu button pressed */
 				} else if (v == menuButton) {
+					clearJoystick();
 					Intent menuIntent = new Intent(CoreActivity.this, MenuActivity.class);
 					startActivity(menuIntent);
 				} else if (v == btnFoldUnfold) {
@@ -207,7 +208,6 @@ public class CoreActivity extends Activity {
 				/* A button is released */
 			} else if (event.getAction() == MotionEvent.ACTION_UP) {
 				if (v != menuButton) {
-					clearJoystick();
 					stopMovingLoop();
 				}
 			} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -277,6 +277,7 @@ public class CoreActivity extends Activity {
 
 	/** Stop the infinite movement loop */
 	void stopMovingLoop() {
+		clearJoystick();
 		handler.removeCallbacks(movement);
 	}
 
