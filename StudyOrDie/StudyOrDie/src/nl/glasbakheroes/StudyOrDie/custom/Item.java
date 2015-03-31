@@ -6,11 +6,12 @@ package nl.glasbakheroes.StudyOrDie.custom;
  * 
  * Construct a Item.
  * @param name	The name of the item.
- * @param description	The description of the item.
- * @param hpModifier	The amount of HP the item adds or substracts if negative	
- * @param energyMotifier	The amount of energy the item adds or substracts if negative	
- * @param motivationModifier The amount of HP motivation item adds or substracts if negative	
- * @param consumesOnUse	True if the item is a consumable, false if not.
+ * @param description			The description of the item.
+ * @param hpModifier			The amount of HP the item adds or substracts if negative	
+ * @param energyMotifier		The amount of energy the item adds or substracts if negative	
+ * @param motivationModifier 	The amount of HP motivation item adds or substracts if negative	
+ * @param consumesOnUse			True if the item is a consumable, false if not.
+ * @param costs					The price this item will cost at a vending machine.
  */
 
 public class Item {
@@ -21,8 +22,10 @@ public class Item {
 	private int motivationModifier;
 	private boolean equipped;
 	private boolean consumesOnUse;
+	private int buyCost;
+	private int sellCost;
 	
-	public Item(String name, String description, int hpModifier, int energyModifier, int motivationModifier, boolean consumesOnUse) {
+	public Item(String name, String description, int hpModifier, int energyModifier, int motivationModifier, boolean consumesOnUse, int costs) {
 		this.name = name;
 		this.description = description;
 		this.hpModifier = hpModifier;
@@ -30,7 +33,8 @@ public class Item {
 		this.motivationModifier = motivationModifier;
 		this.equipped = false;
 		this.consumesOnUse = consumesOnUse;
-		
+		this.buyCost = costs;
+		this.sellCost = (int)(costs/2.0);
 	}
 	public String getName() {
 		return name;
@@ -95,5 +99,12 @@ public class Item {
 		return consumesOnUse;
 	}
 	
+	public int getBuyCosts() {
+		return buyCost;
+	}
+	
+	public int getSellCosts() {
+		return sellCost;
+	}
 
 }

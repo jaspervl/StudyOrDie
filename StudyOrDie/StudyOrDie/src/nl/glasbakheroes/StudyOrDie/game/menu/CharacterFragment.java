@@ -79,8 +79,9 @@ public class CharacterFragment extends Fragment implements Observer{
 		avatarName.setText(selectedAvatar.getName());
 		avatarHP.setText(	"HP : " + selectedAvatar.getCurrentHP() + "/"+ selectedAvatar.getMaxHP()
 				 			+ "\nEnergy : " + model.getAvatar().getCurrentEnergy() + "/" + model.getAvatar().getMaxEnergy()
-				 			+ "\nMotivation : " + model.getAvatar().getCurrentMotivation() + "/" + model.getAvatar().getMaxMotivation());
-		// Above is a temporary solution, add textViews and make seperate strings.
+				 			+ "\nMotivation : " + model.getAvatar().getCurrentMotivation() + "/" + model.getAvatar().getMaxMotivation()
+				 			+ "\nCoins: " + model.getBalance());
+
 		
 	}
 
