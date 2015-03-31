@@ -386,8 +386,7 @@ public class StudyOrDieModel extends Observable {
 								+ ":level:" + currentLevel
 								+ ":balance:" + currencyBalance
 								+ ":name:" + avatar.getName()
-								+ ":score:" + score
-								+ ":lastrandom:" + lastRandomBossStep;
+								+ ":score:" + score;
 			
 			for (Item i : itemList) {
 				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
@@ -470,6 +469,7 @@ public class StudyOrDieModel extends Observable {
 				} else if (word.equals("steps")) {
 					if (scan.hasNextInt()) {
 						totalSteps = scan.nextInt();
+						lastRandomBossStep = totalSteps;
 						Log.w("Model", "Steps: " + totalSteps);
 					}
 				} else if (word.equals("level")) {
@@ -491,14 +491,8 @@ public class StudyOrDieModel extends Observable {
 					if (scan.hasNextInt()) {
 						score = scan.nextInt();
 						Log.w("Model", "Set score to: " + score);
-					}
-				} else if (word.equals("lastrandom")) {
-					if (scan.hasNextInt()) {
-						lastRandomBossStep = scan.nextInt();
-					}
-				}
-				
-				else if (word.equals("item")) {
+					}		
+				} else if (word.equals("item")) {
 					String itemName = "";
 					String description = "";
 					int hpMod = 0;
@@ -533,7 +527,7 @@ public class StudyOrDieModel extends Observable {
 				} else if (word.equals("floor")) {
 					if (scan.hasNextInt()) {
 						int floor = scan.nextInt();
-						openLevel(floor);
+						openLevel(floor); 
 						Log.w("Model", "Floor opened: " + floor);
 					}
 				} else if (word.equals("key")) {
@@ -547,6 +541,7 @@ public class StudyOrDieModel extends Observable {
 			loader.loadLevel("savedLocation");
 			scan.close();
 			succes = true;
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
