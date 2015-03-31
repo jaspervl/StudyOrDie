@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
+import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.activities.GameOverActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
@@ -44,16 +45,15 @@ public class StudyOrDieModel extends Observable {
 	private int lastRandomBossStep = 0;
 	private boolean gameInitialized = false;
 	private int[] savedAvatarLocation = { 20, 8 };
-	private boolean[] levelOpened = { true, false, false, false, false, false, false, false, false, false, false };
 	private int score = 0;
 	private int levelsOpened = 1;
 	private int currencyBalance = 100;
 	private String saveFileString = "";
 	private int selectedAvatarImage;
 
-	/* 2 arrays which enable or disable special items/npc's for each major level */
-	private boolean[] keys = { true, true };
-	private boolean[] doorLocked = { true, true };
+//	private boolean[] keys = { true, true , true, true , true , true, true , true , true, true, true};
+//	private boolean[] doorLocked = { true, true , true, true , true , true, true , true , true, true, true};
+	private boolean[] levelOpened = { true, false, false, false, false, false, false, false, false, false, false };
 
 	/** Constructor */
 	public StudyOrDieModel() {
@@ -224,33 +224,33 @@ public class StudyOrDieModel extends Observable {
 	 * Returns the array with booleans for each key to see if it is present or
 	 * not
 	 */
-	public boolean[] getKeys() {
-		return keys;
-	}
+//	public boolean[] getKeys() {
+//		return keys;
+//	}
 
 	/**
 	 * Returns the array with booleans for each door to see whether it is locked
 	 * or not
 	 */
-	public boolean[] getDoors() {
-		return doorLocked;
-	}
+//	public boolean[] getDoors() {
+//		return doorLocked;
+//	}
 
 	/** Remove a key from the game in a certain sub-level */
-	public void removeKey(int subLevel) {
-		switch (subLevel) {
-		case 2:
-			keys[0] = false;
-			break;
-		case 12:
-			keys[1] = false;
-			break;
-		default:
-			break;
-		}
-		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
-		loader.loadLevel("Fight");
-	}
+//	public void removeKey(int subLevel) {
+//		switch (subLevel) {
+//		case 2:
+//			keys[0] = false;
+//			break;
+//		case 12:
+//			keys[1] = false;
+//			break;
+//		default:
+//			break;
+//		}
+//		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
+//		loader.loadLevel("Fight");
+//	}
 
 	/**
 	 * Checking for the value of avatar energy, avatar motivation. If both are
@@ -272,19 +272,19 @@ public class StudyOrDieModel extends Observable {
 		}
 	}
 
-	/** 'Unlock' a locked door in a certain sub-level */
-	public void unlockDoor(int subLevel) {
-		switch (subLevel) {
-		case 3:
-			doorLocked[0] = false;
-			break;
-		case 13:
-			doorLocked[1] = false;
-			break;
-		default:
-			break;
-		}
-	}
+//	/** 'Unlock' a locked door in a certain sub-level */
+//	public void unlockDoor(int subLevel) {
+//		switch (subLevel) {
+//		case 3:
+//			doorLocked[0] = false;
+//			break;
+//		case 13:
+//			doorLocked[1] = false;
+//			break;
+//		default:
+//			break;
+//		}
+//	}
 
 	/** Set the core activity */
 	public void setActivity(CoreActivity activity) {
@@ -436,6 +436,20 @@ public class StudyOrDieModel extends Observable {
 			for (Item i : itemList) {
 				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
 			}
+			for (Boss b : bosses) {
+				if (!b.getAlive()) {
+					Log.w("Model", "Adding " + b.getName() + " to dead bosses");
+					saveFileString += ":boss:" + b.getName();
+				}
+			} 
+			for (int i = 0 ; i < levelOpened.length ; i++) {
+				if (levelOpened[i]) {
+					saveFileString += ":floor:" + i;
+				}
+			}
+			for (Key k : avatar.getKeys()) {
+				saveFileString += ":key:" + k.getType();
+			}
 
 			// Write the string to the file 
 			outputWriter.write(saveFileString);
@@ -543,6 +557,23 @@ public class StudyOrDieModel extends Observable {
 					}
 					itemList.add(new Item(itemName, description, hpMod, eneMod, motMod, consumable, costs));
 					Log.w("Model", "Added item: " + itemName);
+				} else if (word.equals("boss")) {
+					if (scan.hasNext()) { 
+						String bossName = scan.next();
+						getBoss(bossName).killBoss();
+						Log.w("Model", "Boss dead: " + bossName);
+					}
+				} else if (word.equals("floor")) {
+					if (scan.hasNextInt()) {
+						int floor = scan.nextInt();
+						openLevel(floor);
+						Log.w("Model", "Floor opened: " + floor);
+					}
+				} else if (word.equals("key")) {
+					if (scan.hasNextInt()) {
+						int keyType = scan.nextInt();
+						avatar.addKey(new Key(keyType));
+					}
 				}
 			}			
 			update();

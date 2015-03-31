@@ -112,7 +112,7 @@ public class Avatar extends GameObject {
 		for (Key a : numberOfKeys) {
 			if(a.getType() == doortype)
 			{
-				numberOfKeys.remove(a);
+//				numberOfKeys.remove(a);   Don't remove the key ?
 				return true;
 			}
 		}
@@ -332,6 +332,10 @@ public class Avatar extends GameObject {
 	public void addKey(Key object) {
 		numberOfKeys.add(object);
 	}
+	
+	public ArrayList<Key> getKeys() {
+		return numberOfKeys;
+	}
 
 	public void resetStats() {
 		currentHP = 100;
@@ -340,6 +344,15 @@ public class Avatar extends GameObject {
 		maxEnergy = 100;
 		currentMotivation = 100;
 		maxMotivation = 100;
+	}
+
+	public boolean hasKey(int keyType) {
+		for (Key k : numberOfKeys) {
+			if (k.getType() == keyType) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

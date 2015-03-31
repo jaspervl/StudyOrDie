@@ -107,7 +107,7 @@ public class LevelLoader {
 	 */
 	public void loadLevel(String spawnArea) {
 
-		Log.w("Loadlevel called", "form: " + spawnArea);
+		Log.w("Loadlevel called", "from: " + spawnArea);
 		board.removeAllObjects();
 		
 		switch (model.getLevel()) {
@@ -147,10 +147,10 @@ public class LevelLoader {
 			} else if (spawnArea.equals("savedLocation")) {
 				board.addGameObject(avatar,  model.getSavedLocation()[0],  model.getSavedLocation()[1]);
 			}
-			if (model.getKeys()[0] == true) {
-			board.addGameObject(new Key(1), 19, 8);
+			int keyType = 1;
+			if (!avatar.hasKey(keyType)) {
+				board.addGameObject(new Key(keyType), 19, 8);
 			}
-			/* Create all default objects */
 			board.createWallHorizontal(1, 9, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(15, MAX_BOARD_WIDHT-1, 11);
 			board.createWallHorizontal(1, 9, 0);
@@ -182,11 +182,7 @@ public class LevelLoader {
 			if (model.getBoss("Ruud").getAlive()) {
 				board.addGameObject(model.getBoss("Ruud"), 1, 6);
 			}
-			if (model.getDoors()[0] == true) { 
-				board.addGameObject(new Door(true,1), 10, 6);
-			} else {
-				board.addGameObject(new Door(), 10, 6);
-			}
+			board.addGameObject(new Door(true,1), 10, 6);
 			/* Create all default objects */
 			board.addGameObject(new Elevator(), 1, 1);
 			board.createWallHorizontal(1, 9, MAX_BOARD_HEIGHT);

@@ -282,7 +282,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 						/* If the door is locked and the avatar has a key */
 						Toast.makeText(activity, "Door unlocked!", Toast.LENGTH_SHORT).show();
 						removeObject(getObject(avatarNewX, avatarNewY));
-						model.unlockDoor(model.getLevel());
+//						model.unlockDoor(model.getLevel());
 					} else {
 						/* door locked, no key */
 						Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
@@ -363,8 +363,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 				 * Key is present, avatar gets it and can now open a locked door
 				 */
 			} else if (getObject(avatarNewX, avatarNewY) instanceof Key) {
+				model.setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 				avatar.addKey((Key) (getObject(avatarNewX, avatarNewY)));
-				model.removeKey(model.getLevel());
 				Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 				model.getLoader().loadLevel("savedLocation");
 				return false;

@@ -259,7 +259,7 @@ public class CoreActivity extends Activity {
 	/** Enable and disable movement */
 	public void disableMovement() {
 		disableMovement = true;
-	}
+	} 
 	public void enableMovement() {
 		disableMovement = false;
 	}
@@ -277,9 +277,9 @@ public class CoreActivity extends Activity {
 	public void clearJoystick() {
 		joystickButton.setBackgroundResource(R.drawable.joystick_stick);
 	} 
-	@Override
+	@Override 
 	public void onBackPressed() {
-		super.onBackPressed();
 		model.saveGame();
+		super.onBackPressed();
 	}
 }
