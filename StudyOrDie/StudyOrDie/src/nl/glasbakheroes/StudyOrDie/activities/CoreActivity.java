@@ -277,7 +277,6 @@ public class CoreActivity extends Activity {
 
 	/** Stop the infinite movement loop */
 	void stopMovingLoop() {
-		clearJoystick();
 		handler.removeCallbacks(movement);
 	}
 
