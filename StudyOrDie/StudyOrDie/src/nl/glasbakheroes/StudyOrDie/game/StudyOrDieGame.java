@@ -55,7 +55,7 @@ public class StudyOrDieGame extends Game {
 		/* Called when the game already has been initialized */
 		if (model.isGameInitialized()) {
 			Log.w("StudyOrDie Game", "Game is being reloaded, CoreActivity had been destroyed for freeing memory");
-			levelLoader.loadLevel("savedLocation"); 
+			model.loadGame();
 		/* If the game is new, start a new game */
 		} else {
 			Log.w("StudyOrDie Game", "New game is being started");

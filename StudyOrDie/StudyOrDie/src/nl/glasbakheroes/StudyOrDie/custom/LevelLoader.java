@@ -106,7 +106,8 @@ public class LevelLoader {
 	 * 						* Key:			Avatar picked up a key.
 	 */
 	public void loadLevel(String spawnArea) {
-		
+
+		Log.w("Loadlevel called", "form: " + spawnArea);
 		board.removeAllObjects();
 		
 		switch (model.getLevel()) {

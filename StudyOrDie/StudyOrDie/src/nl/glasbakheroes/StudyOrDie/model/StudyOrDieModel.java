@@ -409,6 +409,8 @@ public class StudyOrDieModel extends Observable {
 	} 
 
 	public void saveGame() {
+		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
+		Log.w("Model", "Saving the game");
 		String filename = "sod_save_game.txt";
 		try {
 			// catches IOException below
@@ -431,7 +433,6 @@ public class StudyOrDieModel extends Observable {
 								+ ":balance:" + currencyBalance
 								+ ":name:" + avatar.getName();
 			
-			Log.w("Model, saved string:", saveFileString);
 
 			// Write the string to the file 
 			outputWriter.write(saveFileString);
@@ -439,9 +440,11 @@ public class StudyOrDieModel extends Observable {
 			/*
 			 * ensure that everything is really written out and close
 			 */
+			Log.w("Model", "Saving was a success");
 			outputWriter.close(); 
  
 		} catch (IOException e) {
+			Log.w("Model", "Saving failed");
 			e.printStackTrace();
 		} 
 	}
@@ -479,7 +482,9 @@ public class StudyOrDieModel extends Observable {
 						int xPos = scan.nextInt();
 						if (scan.hasNextInt()) {
 							int yPos = scan.nextInt();
-							setSavedLocation(xPos, yPos);
+							Log.w("Position", xPos + " " + yPos);
+							savedAvatarLocation[0] = xPos;
+							savedAvatarLocation[1] = yPos;
 						}
 						Log.w("Model", "saved location: " + savedAvatarLocation[0] + ", " + savedAvatarLocation[1]);
 					}

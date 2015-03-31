@@ -97,7 +97,6 @@ public class CombatActivity extends Activity implements Observer {
 		model.raiseScore(10);
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		model.openLevel(boss.getLevel());
-		model.getLoader().loadLevel("savedLocation");
 		delayedFinish();	 
 	}
 	 

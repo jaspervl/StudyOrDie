@@ -157,11 +157,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 			}
 
 			if (model.fightRandomBoss()) {
+				model.saveGame();
 				model.randomEncounterOccured();
 				/* Save the current location of the avatar in the level loader */
-				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ";"
-						+ model.getAvatar().getPositionY());
-				model.setSavedLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
+				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ", " + model.getAvatar().getPositionY());
 				/* Create a new boss and fetch it from the model */
 				model.addBoss("Random", 100, 0);
 				Boss randomBoss = model.findRandomBoss();
@@ -266,8 +265,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/** Boss present, avatar will enter a fight and won't move. */
 			if (getObject(avatarNewX, avatarNewY) instanceof Boss) {
 
+				model.saveGame();
 				Log.w("GameBoard.inspectObject", "ENTERING A FIGHT!");
-				model.setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 				Boss boss = (Boss) (getObject(avatarNewX, avatarNewY));
 				Intent combatIntent = new Intent(activity, CombatActivity.class);
 				Bundle extras = new Bundle();
@@ -365,7 +364,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 				 */
 			} else if (getObject(avatarNewX, avatarNewY) instanceof Key) {
 				avatar.addKey((Key) (getObject(avatarNewX, avatarNewY)));
-				model.setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 				model.removeKey(model.getLevel());
 				Toast.makeText(activity, "Found a key!", Toast.LENGTH_SHORT).show();
 				model.getLoader().loadLevel("savedLocation");
