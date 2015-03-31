@@ -249,7 +249,7 @@ public class StudyOrDieModel extends Observable {
 		this.activity = activity;
 	}
 	
-	/** Set the timer value to 0 */
+	/** Regen avatar */
 	public void spawnAfterFail() {
 		currentLevel = 1;
 		loader.loadLevel("Bottom");
