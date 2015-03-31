@@ -338,8 +338,8 @@ public class StudyOrDieModel extends Observable {
 	 * Make sure the model knows that the game has already been initialized
 	 * Called from StudyOrDieGame constructor
 	 */
-	public void gameHasBeenInitialized() {
-		this.gameInitialized = true;
+	public void gameHasBeenInitialized(boolean gameInitialized) {
+		this.gameInitialized = gameInitialized;
 	}
 
 	/**
@@ -433,6 +433,9 @@ public class StudyOrDieModel extends Observable {
 								+ ":balance:" + currencyBalance
 								+ ":name:" + avatar.getName();
 			
+			for (Item i : itemList) {
+				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
+			}
 
 			// Write the string to the file 
 			outputWriter.write(saveFileString);
@@ -451,6 +454,7 @@ public class StudyOrDieModel extends Observable {
 
 	public boolean loadGame() {
 		boolean succes = false;
+		itemList.clear();
 		String filename = "sod_save_game.txt";
 
 		/*
@@ -471,7 +475,7 @@ public class StudyOrDieModel extends Observable {
 			scan.useDelimiter(":");
 			while (scan.hasNext()) {
 				String word = scan.next();
-				if (word.equals("picture")) {
+				if (word.equals("picture")) { 
 					if (scan.hasNextInt()) {
 						selectedAvatarImage = scan.nextInt();
 						avatar.setAvatarImages(selectedAvatarImage);
@@ -513,8 +517,34 @@ public class StudyOrDieModel extends Observable {
 						avatar.setName(scan.next());
 						Log.w("Model", "Avatar name: " + avatar.getName());
 					}
+				} else if (word.equals("item")) {
+					String itemName = "";
+					String description = "";
+					int hpMod = 0;
+					int eneMod = 0;
+					int motMod = 0;
+					boolean consumable = false;
+					int costs = 0;
+					
+					if (scan.hasNext()) {
+						itemName = scan.next();
+					} if (scan.hasNext()) {
+						description = scan.next();
+					} if (scan.hasNextInt()) {
+						hpMod = scan.nextInt();
+					} if (scan.hasNextInt()) {
+						eneMod = scan.nextInt();
+					} if (scan.hasNextInt()) {
+						motMod = scan.nextInt();
+					} if (scan.hasNextBoolean()) {
+						consumable = scan.nextBoolean();
+					} if (scan.hasNextInt()) {
+						costs = scan.nextInt();
+					}
+					itemList.add(new Item(itemName, description, hpMod, eneMod, motMod, consumable, costs));
+					Log.w("Model", "Added item: " + itemName);
 				}
-			}
+			}			
 			update();
 			loader.loadLevel("savedLocation");
 			scan.close();

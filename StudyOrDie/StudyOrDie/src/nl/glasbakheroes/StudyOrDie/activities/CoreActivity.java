@@ -128,7 +128,7 @@ public class CoreActivity extends Activity {
 			
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
-				//
+				model.saveGame();
 			} else if (action.equals("load")) {
 				Log.w("Core", "Loadgame called");
 				if (!model.loadGame()) {

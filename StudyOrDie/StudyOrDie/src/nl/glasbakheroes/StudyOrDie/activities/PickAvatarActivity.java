@@ -71,6 +71,7 @@ public class PickAvatarActivity extends Activity {
 			if ((etFillName.getText() + "").length() == 0) {
 				Toast.makeText(getApplicationContext(), "Please enter a name before picking a avatar", Toast.LENGTH_SHORT).show();
 			} else {
+				model.gameHasBeenInitialized(false);
 				model.getAvatar().setName(etFillName.getText() + "");
 				model.getAvatar().setAvatarImages(this.id);
 				Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);

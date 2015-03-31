@@ -53,13 +53,13 @@ public class StudyOrDieGame extends Game {
 		levelLoader = new LevelLoader(board, model.getAvatar());
 		model.setLoader(levelLoader);
 		/* Called when the game already has been initialized */
-		if (model.isGameInitialized()) {
+		if (model.isGameInitialized()) { 
 			Log.w("StudyOrDie Game", "Game is being reloaded, CoreActivity had been destroyed for freeing memory");
 			model.loadGame();
 		/* If the game is new, start a new game */
 		} else {
 			Log.w("StudyOrDie Game", "New game is being started");
-			model.gameHasBeenInitialized();
+			model.gameHasBeenInitialized(true);
 			levelLoader.loadLevel("savedLocation");
 		}
 	}
