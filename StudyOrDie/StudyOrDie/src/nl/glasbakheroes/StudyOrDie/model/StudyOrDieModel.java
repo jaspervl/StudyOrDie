@@ -511,6 +511,7 @@ public class StudyOrDieModel extends Observable {
 				}
 			}
 			update();
+			loader.loadLevel("savedLocation");
 			scan.close();
 			succes = true;
 		} catch (IOException e) {
