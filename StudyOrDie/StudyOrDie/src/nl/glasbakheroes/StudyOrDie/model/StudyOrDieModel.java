@@ -35,6 +35,8 @@ public class StudyOrDieModel extends Observable {
 	private boolean gameInitialized = false;
 	private int[] savedAvatarLocation = {20, 8}; 
 	private boolean[] levelOpened = {true, false, false, false, false, false, false, false, false, false, false};
+	private int score = 0;
+	private int levelsOpened = 1;
 	
 	/* 2 arrays which enable or disable special items/npc's for each major level */
 	private boolean[] keys = {true, true};
@@ -258,6 +260,7 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	public void randomEncounterOccured() {
+		raiseScore(10);
 		lastRandomBossStep = totalSteps;
 	}
 	
@@ -311,6 +314,7 @@ public class StudyOrDieModel extends Observable {
 	
 	public void openLevel(int level) {
 		this.levelOpened[level] = true;
+		levelsOpened++;
 	}
 	
 	public boolean isLevelOpen(int level) {
@@ -321,5 +325,19 @@ public class StudyOrDieModel extends Observable {
 		return activity;
 	}
 	
+	public int getScore() {
+		return score;
+	}
 	
+	public void raiseScore(int amount) {
+		this.score += amount;
+	}
+	
+	public void lowerScore (int amount) {
+		this.score -= amount;
+	}
+	
+	public int getNumberOpenedLevels() {
+		return levelsOpened;
+	}
 }

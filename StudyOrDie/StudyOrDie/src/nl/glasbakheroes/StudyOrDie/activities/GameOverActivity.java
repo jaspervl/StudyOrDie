@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Activity is called when the avatar has 0 health or (0 energy AND motivation)
@@ -19,6 +20,7 @@ import android.widget.Button;
 public class GameOverActivity extends Activity {
 
 	private Button btnRestart;
+	private TextView tvScore;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,20 @@ public class GameOverActivity extends Activity {
 		/* Link the interface button so it can be clicked
 		 * When the button is clicked, finish the activity */
 		btnRestart = (Button) findViewById(R.id.btnRestart);
+		tvScore = (TextView) findViewById(R.id.tvScoreValue);
+		 
+		StudyOrDieModel model = ((StudyOrDieApplication) getApplication()).getModel();
+		
+		int stepScore = 0;
+		int timeScore = 0;
+
+		stepScore = (int) ((1000.0 / model.getSteps()) * Math.pow(model.getNumberOpenedLevels(), 3));
+		timeScore = (int) ((1000.0 / model.getTime()) * Math.pow(model.getNumberOpenedLevels(), 3));
+		
+		model.raiseScore(stepScore);
+		model.raiseScore(timeScore);
+		
+		tvScore.setText(model.getScore() + "");
 		btnRestart.setOnClickListener(new OnClickListener() {
 			
 			@Override

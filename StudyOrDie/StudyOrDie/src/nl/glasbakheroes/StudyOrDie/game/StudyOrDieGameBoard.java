@@ -158,7 +158,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 			if (model.fightRandomBoss()) {
 				model.randomEncounterOccured();
-
 				/* Save the current location of the avatar in the level loader */
 				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ";"
 						+ model.getAvatar().getPositionY());

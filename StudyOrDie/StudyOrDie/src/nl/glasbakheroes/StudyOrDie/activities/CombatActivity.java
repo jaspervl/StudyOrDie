@@ -94,6 +94,7 @@ public class CombatActivity extends Activity implements Observer {
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
 		boss.killBoss(); 
+		model.raiseScore(10);
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		model.openLevel(boss.getLevel());
 		model.getLoader().loadLevel("savedLocation");
@@ -105,8 +106,9 @@ public class CombatActivity extends Activity implements Observer {
 	 * Public because Views want to use this. (e.g. forfeit button in battle mode)
 	 */
 	public void killAvatar() {
-		model.setLevel(model.getLevel() - 2);
-		model.getLoader().loadLevel("savedLocation");
+		model.lowerScore(20);
+		model.setLevel(1);
+		model.getLoader().loadLevel("Bottom");
 		Intent gameOverIntent = new Intent(this, GameOverActivity.class);
 		startActivity(gameOverIntent);
 		delayedFinish();
