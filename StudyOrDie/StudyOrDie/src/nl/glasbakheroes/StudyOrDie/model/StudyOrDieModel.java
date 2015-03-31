@@ -221,38 +221,6 @@ public class StudyOrDieModel extends Observable {
 	}
 
 	/**
-	 * Returns the array with booleans for each key to see if it is present or
-	 * not
-	 */
-//	public boolean[] getKeys() {
-//		return keys;
-//	}
-
-	/**
-	 * Returns the array with booleans for each door to see whether it is locked
-	 * or not
-	 */
-//	public boolean[] getDoors() {
-//		return doorLocked;
-//	}
-
-	/** Remove a key from the game in a certain sub-level */
-//	public void removeKey(int subLevel) {
-//		switch (subLevel) {
-//		case 2:
-//			keys[0] = false;
-//			break;
-//		case 12:
-//			keys[1] = false;
-//			break;
-//		default:
-//			break;
-//		}
-//		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
-//		loader.loadLevel("Fight");
-//	}
-
-	/**
 	 * Checking for the value of avatar energy, avatar motivation. If both are
 	 * 0, GAME OVER and start from scratch
 	 */
@@ -271,20 +239,6 @@ public class StudyOrDieModel extends Observable {
 			update();
 		}
 	}
-
-//	/** 'Unlock' a locked door in a certain sub-level */
-//	public void unlockDoor(int subLevel) {
-//		switch (subLevel) {
-//		case 3:
-//			doorLocked[0] = false;
-//			break;
-//		case 13:
-//			doorLocked[1] = false;
-//			break;
-//		default:
-//			break;
-//		}
-//	}
 
 	/** Set the core activity */
 	public void setActivity(CoreActivity activity) {
@@ -431,7 +385,9 @@ public class StudyOrDieModel extends Observable {
 								+ ":steps:" + totalSteps
 								+ ":level:" + currentLevel
 								+ ":balance:" + currencyBalance
-								+ ":name:" + avatar.getName();
+								+ ":name:" + avatar.getName()
+								+ ":score:" + score
+								+ ":lastrandom:" + lastRandomBossStep;
 			
 			for (Item i : itemList) {
 				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
@@ -531,7 +487,18 @@ public class StudyOrDieModel extends Observable {
 						avatar.setName(scan.next());
 						Log.w("Model", "Avatar name: " + avatar.getName());
 					}
-				} else if (word.equals("item")) {
+				} else if (word.equals("score")) {
+					if (scan.hasNextInt()) {
+						score = scan.nextInt();
+						Log.w("Model", "Set score to: " + score);
+					}
+				} else if (word.equals("lastrandom")) {
+					if (scan.hasNextInt()) {
+						lastRandomBossStep = scan.nextInt();
+					}
+				}
+				
+				else if (word.equals("item")) {
 					String itemName = "";
 					String description = "";
 					int hpMod = 0;
