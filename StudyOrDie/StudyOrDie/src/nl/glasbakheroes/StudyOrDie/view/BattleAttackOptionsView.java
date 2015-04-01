@@ -113,8 +113,13 @@ public class BattleAttackOptionsView extends LinearLayout {
 			/* Modify the avatar and the boss (through a activity method) according to the button that is clicked */
 			model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() + energyModifier);
 			model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() + motivationModifier);
-			Toast.makeText(activity, "Attack casted: " + attackName, Toast.LENGTH_SHORT).show();
-			activity.performAttack(damage);
+			if (model.getAvatar().getCurrentEnergy() == 0 || model.getAvatar().getCurrentMotivation() == 0) {
+				Toast.makeText(activity, "Attack failed! not enough energy or motivation", Toast.LENGTH_SHORT).show();
+				return;
+			} else {
+				Toast.makeText(activity, "Attack casted: " + attackName, Toast.LENGTH_SHORT).show();
+				activity.performAttack(damage);
+			}
 		}
 	}
 

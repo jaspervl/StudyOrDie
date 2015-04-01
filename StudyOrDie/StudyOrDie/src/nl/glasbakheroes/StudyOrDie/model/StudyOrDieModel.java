@@ -556,7 +556,7 @@ public class StudyOrDieModel extends Observable {
 						avatar.setCurrentMotivation(currentMotivation);
 						Log.w("Model", "Set current Motivation to: " + currentMotivation);
 					}
-				}
+				} 
 			}			
 			update();
 			loader.loadLevel("savedLocation");
