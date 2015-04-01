@@ -33,7 +33,6 @@ public class ListAdapter extends ArrayAdapter<Item> {
 	
 	@Override
 	public View getView(int pos, View convertView, ViewGroup parent){
-		Log.w("ListAdapter", "getView called");
 		Item item = super.getItem(pos);
 		if(convertView == null){
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.simpleitem, parent, false);

@@ -14,6 +14,7 @@ import java.util.Scanner;
 import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
@@ -128,19 +129,23 @@ public class StudyOrDieModel extends Observable {
 	}
 
 	/** Fill the item array with items */
-	private void fillItemList() {
-		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false, 10));
-		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false, 60));
-		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false,
-				50));
-		itemList.add(new Item("Tristans terminal", "You didnt practice enough.", 3, 30, -10, false, 70));
-		itemList.add(new Item("CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false, 40));
+	public void fillItemList() {
+
+		/* Add non-consumables / equipables */
+		itemList.add(new Item("Apply papers", "Welcome at Saxion.", 5, 5, 5, false, 10));
+		
+		// We dont give these away for free anymore! 
+//		itemList.add(new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false, 10));
+//		itemList.add(new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false, 60));
+//		itemList.add(new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false,
+//				50));
+//		itemList.add(new Item("Tristans terminal", "You didnt practice enough.", 3, 30, -10, false, 70));
+//		itemList.add(new Item("CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false, 40));
+		
+		/* Add consumables */
 		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50));
-		itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true, 30));
-		itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true, 30));
 		itemList.add(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));
-		itemList.add(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100));
-		itemList.add(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true, 40));
+		// others moved to addRandomItem(Down)
 	}
 
 	/** Add a item to the avatar */
@@ -293,6 +298,7 @@ public class StudyOrDieModel extends Observable {
 	 * Called from StudyOrDieGame constructor
 	 */
 	public void gameHasBeenInitialized(boolean gameInitialized) {
+		Log.w("Model", "Game has been initialized: " + gameInitialized); 
 		this.gameInitialized = gameInitialized;
 	}
 
@@ -301,7 +307,7 @@ public class StudyOrDieModel extends Observable {
 	 * constructor
 	 */
 	public boolean isGameInitialized() {
-		return gameInitialized;
+		return gameInitialized; 
 	}
 
 	/** Get the location of the avatar where he was before a fight occurred */
@@ -551,5 +557,20 @@ public class StudyOrDieModel extends Observable {
 
 	public void setSelectedImage(int imageId) {
 		this.selectedAvatarImage = imageId;
+	}
+	
+	/** Add random consumable to avatar inventory, called after winning a fight */
+	public void addRandomItem() {
+		String title = "";
+		switch ((int) Math.random() * 6 + 1) {
+			case 1:  itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50)); 			title = "Koffie"; break; 
+			case 2:	itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true, 30));	title = "Energydrink"; break; 
+			case 3:	itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true, 30));					title = "Bier"; break;
+			case 4:	itemList.add(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));		title = "Chocolade"; break;
+			case 5:	itemList.add(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100));			title = "Kipburger"; break;
+			case 6:	itemList.add(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true, 40));						title = "Pepsi"; break;
+		}
+		Toast.makeText(getActivity(), "Looted a " + title, Toast.LENGTH_SHORT).show();
+		
 	}
 }

@@ -57,12 +57,15 @@ public class StudyOrDieGame extends Game {
 			Log.w("StudyOrDie Game", "Game is being reloaded, CoreActivity had been destroyed for freeing memory");
 			model.loadGame();
 		/* If the game is new, start a new game */
-		} else {
+		} else { 
 			Log.w("StudyOrDie Game", "New game is being started");
 			model.gameHasBeenInitialized(true);
 			levelLoader.loadLevel("savedLocation");
+			if (model.getItemList().isEmpty()) {
+				model.fillItemList();
+			}
 		}
-	}
+	} 
 	
 	/** Gives the model */
 	public StudyOrDieModel getModel() {
