@@ -373,14 +373,7 @@ public class StudyOrDieModel extends Observable {
 		Log.w("Model", "Saving the game");
 		String filename = "sod_save_game.txt";
 		try {
-			// catches IOException below
-
-			/*
-			 * We have to use the openFileOutput()-method the ActivityContext
-			 * provides, to protect your file from others and This is done for
-			 * security-reasons. We chose MODE_WORLD_READABLE, because we have
-			 * nothing to hide in our file
-			 */
+		
 			FileOutputStream fileOutput = new FileOutputStream(new File(activity.getApplicationContext().getFilesDir(),
 					filename), false);
 			OutputStreamWriter outputWriter = new OutputStreamWriter(fileOutput);
@@ -392,7 +385,10 @@ public class StudyOrDieModel extends Observable {
 								+ ":level:" + currentLevel
 								+ ":balance:" + currencyBalance
 								+ ":name:" + avatar.getName()
-								+ ":score:" + score;
+								+ ":score:" + score
+								+ ":hp:" + avatar.getCurrentHP()
+								+ ":energy:" + avatar.getCurrentEnergy()
+								+ ":motivation:" + avatar.getCurrentMotivation();
 			
 			for (Item i : itemList) {
 				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
@@ -540,6 +536,25 @@ public class StudyOrDieModel extends Observable {
 					if (scan.hasNextInt()) {
 						int keyType = scan.nextInt();
 						avatar.addKey(new Key(keyType));
+						Log.w("Model", "Added a key, type: " + keyType);
+					}
+				} else if (word.equals("hp")) {
+					if (scan.hasNextInt()) {
+						int currentHp = scan.nextInt();
+						avatar.setCurrentHP(currentHp);
+						Log.w("Model", "Set current HP to: " + currentHp);
+					}
+				} else if (word.equals("energy")) {
+					if (scan.hasNextInt()) {
+						int currentEnergy = scan.nextInt();
+						avatar.setCurrentEnergy(currentEnergy);
+						Log.w("Model", "Set current energy to: " + currentEnergy);
+					}
+				} else if (word.equals("motivation")) {
+					if (scan.hasNextInt()) {
+						int currentMotivation = scan.nextInt();
+						avatar.setCurrentMotivation(currentMotivation);
+						Log.w("Model", "Set current Motivation to: " + currentMotivation);
 					}
 				}
 			}			
