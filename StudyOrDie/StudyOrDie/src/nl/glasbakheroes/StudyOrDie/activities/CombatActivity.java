@@ -17,12 +17,14 @@ import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.GridLayout.Spec;
 
 /**
  * Activity where the avatar battles a boss
@@ -106,6 +108,7 @@ public class CombatActivity extends Activity implements Observer {
 		boss.killBoss(); 
 		model.raiseScore(10);
 		model.addRandomItem();
+		model.getItemList().add(boss.getSpecialItem());
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		delayedFinish();	 
 	}
@@ -155,7 +158,8 @@ public class CombatActivity extends Activity implements Observer {
 			public void run() {
 				String attackName = "";
 				int damage = 0;
-				int factor = (model.getLevel() % 10) +1;
+				int factor = (model.getLevel() / 10) +1;
+				Log.w("Factor", factor + "");
 				
 				switch ((int)(Math.random() * 4) + 1) {
 				case 1 : attackName = "Homework"; damage = 7 * factor ; break;

@@ -44,9 +44,6 @@ public class LevelLoader {
 	public static final int FOURTH_FLOOR_3 = 43;
 	public static final int FOURTH_FLOOR_4 = 44;
 
-	public static final int TEACHERS_ROOM_UPPER = 51;
-	public static final int TEACHERS_ROOM_LOWER = 52;
-
 	/* Gameboard measurement constants */
 	private static final int MAX_BOARD_WIDTH = StudyOrDieGameBoard.GAMEBOARD_WIDTH -1;
 	private static final int MAX_BOARD_HEIGHT = StudyOrDieGameBoard.GAMEBOARD_HEIGHT -1;
@@ -317,6 +314,9 @@ public class LevelLoader {
 			break;
 
 		case FOURTH_FLOOR_1:
+			if (model.getBoss("Jan").getAlive()) {
+				board.addGameObject(model.getBoss("Jan"), MAX_BOARD_WIDTH-1, 5);
+			}
 			board.createWallHorizontal(1, MAX_BOARD_WIDTH - 1, 0);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(true,1), 14, MAX_BOARD_HEIGHT / 2);
@@ -324,7 +324,7 @@ public class LevelLoader {
 
 		case FOURTH_FLOOR_2:
 			board.createWallHorizontal(11, MAX_BOARD_WIDTH - 1, 0);
-			board.createWallVertical(1 , MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
+			board.createWallVertical(1 , MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH); 
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.createWallVertical(3, MAX_BOARD_HEIGHT, 11);
 			createRoom(0,6,0,MAX_BOARD_HEIGHT, new Door(),6,MAX_BOARD_HEIGHT / 2);
@@ -358,13 +358,6 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			placeKey(20,6,3);
-			break;
-
-		case TEACHERS_ROOM_UPPER:
-			// implement upper teachers room content
-			break;
-		case TEACHERS_ROOM_LOWER:
-			// implement lower teachers room content
 			break;
 		default:
 			break;

@@ -1,6 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.Objects;
 
 import android.util.Log;
+import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -24,6 +25,7 @@ public class Boss extends GameObject{
 	private String specialAttackName = "NONE";
 	private int specialAttackDamage = 0;
 	private String weakness = "";
+	private Item specialItem;
 
 	/**
 	 * Construct a (random) boss
@@ -138,30 +140,43 @@ public class Boss extends GameObject{
 			specialAttackName = "Terminating your terminal";
 			specialAttackDamage = 20;
 			weakness = "Skip class";
+			specialItem = new Item("Tristans terminal", "You didnt practice enough.", 3, 30, -10, false, 70);
 		} else if (name.equals("Ruud")) {
 			specialAttackName = "Data loss";
 			specialAttackDamage = 25;
 			weakness = "Apple talk";
+			specialItem = new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false, 60);
 		} else if (name.equals("Frank")) {
 			specialAttackName = "Hard question";
 			specialAttackDamage = 30;
 			weakness = "Hard question";
+			specialItem = new Item("CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false, 40);
 		} else if (name.equals("Evert")) {
 			specialAttackName = "More exercises";
 			specialAttackDamage = 35;
 			weakness = "Throw exception";
+			specialItem = new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false, 50);
 		} else if (name.equals("Syntaxis")) {
 			specialAttackName = "Monthly bill";
 			specialAttackDamage = 40;
 			weakness = "None";
+			specialItem = new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false, 10);
 		} else if (name.equals("Jan")) {
 			specialAttackName = "Supply more documents!";
 			specialAttackDamage = 50;
 			weakness = "None";
+			specialItem = new Item("Highscore", "Brag to your friends!", 100, 100, 100, false, 500);
+		} else {
+			specialItem = new Item("Broom", "Clean your dorm room!", 10, -5, -5, false, 20);
 		}
 	}
 
+	
 	public String getWeakness() {
 		return weakness;
 	}	
+	
+	public Item getSpecialItem() {
+		return specialItem;
+	}
 }
