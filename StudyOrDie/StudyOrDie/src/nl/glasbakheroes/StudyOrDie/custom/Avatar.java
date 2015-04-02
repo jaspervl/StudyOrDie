@@ -51,7 +51,7 @@ public class Avatar extends GameObject {
 	/* The current items equipped by the avatar */
 	private ArrayList<Item> equipped = new ArrayList<>();
 	/* Amount of keys the avatar (picked up - amount used) */
-	private ArrayList<Key> numberOfKeys = new ArrayList<Key>();
+	private ArrayList<Key> keys = new ArrayList<Key>();
 
 	/**
 	 * Constructor
@@ -109,7 +109,7 @@ public class Avatar extends GameObject {
 	}
 
 	public boolean compareKey(int doortype) {
-		for (Key a : numberOfKeys) {
+		for (Key a : keys) {
 			if(a.getType() == doortype)
 			{
 //				numberOfKeys.remove(a);   Don't remove the key ?
@@ -330,11 +330,11 @@ public class Avatar extends GameObject {
 	}
 
 	public void addKey(Key object) {
-		numberOfKeys.add(object);
+		keys.add(object);
 	}
 	
 	public ArrayList<Key> getKeys() {
-		return numberOfKeys;
+		return keys;
 	}
 
 	public void resetStats() {
@@ -347,7 +347,7 @@ public class Avatar extends GameObject {
 	}
 
 	public boolean hasKey(int keyType) {
-		for (Key k : numberOfKeys) {
+		for (Key k : keys) {
 			if (k.getType() == keyType) {
 				return true;
 			}

@@ -296,10 +296,9 @@ public class StudyOrDieGameBoard extends GameBoard {
 				/** Elevator is present, go to the next/last major level */
 			} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
 				activity.disableMovement();
-				/* Selects the floor */
+				/* Selects the floor */ 
 				CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor", "Second floor",
-						"Third floor", "Fourth floor", "Fifth floor", "Sixt floor", "Seventh floor", "Eighth floor",
-						"Ninth floor", "Roof top" };
+						"Third floor", "Fourth floor"};
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 				builder.setTitle("Select a floor");
@@ -307,7 +306,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 				builder.setItems(levels, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int chosenFloor) {
-						if (model.isLevelOpen(chosenFloor)) {
+//						if (model.isLevelOpen(chosenFloor)) {
+						if (true) {
 							String message = "";
 							switch (chosenFloor) {
 							case 0:
@@ -327,7 +327,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 								message = "Third floor";
 								break;
 							case 4:
-								model.setLevel(LevelLoader.FOURTH_FLOOR_3);
+								model.setLevel(LevelLoader.FOURTH_FLOOR_4);
 								message = "Fourth floor, home of Syntaxis";
 								break;
 							}

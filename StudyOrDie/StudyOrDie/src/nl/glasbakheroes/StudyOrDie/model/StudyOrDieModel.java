@@ -272,7 +272,7 @@ public class StudyOrDieModel extends Observable {
 	public boolean fightRandomBoss() {
 		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 70), 4);
 		if (Math.random() < chance) {
-			return true; // Set to false to disable random boss
+			return false; // Set to false to disable random boss
 		}
 		return false;
 	}
