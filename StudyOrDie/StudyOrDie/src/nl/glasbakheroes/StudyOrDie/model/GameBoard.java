@@ -60,7 +60,7 @@ public abstract class GameBoard extends Observable {
 	public void addGameObject(GameObject obj, int x, int y) {
 		if( gameBoard[x][y] != null ) {
 			// Do nothing
-			Log.w(TAG, "DESTINATION ALREADY CONTAINS AN OBJECT, NOT ADDING LATEST OBJECT @" + x + "," + y);
+//			Log.w(TAG, "DESTINATION ALREADY CONTAINS AN OBJECT, NOT ADDING LATEST OBJECT @" + x + "," + y);
 //			throw new IllegalArgumentException("Destination already contains an object");
 		} else {
 			gameBoard[x][y] = obj;
