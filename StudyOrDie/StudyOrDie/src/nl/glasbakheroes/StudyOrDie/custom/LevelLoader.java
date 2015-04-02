@@ -218,14 +218,14 @@ public class LevelLoader {
 			board.createWallVertical(1, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
-			board.createWallVertical(0, 2, 7);
-			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
+			board.createWallVertical(0, 3, 7);
+			board.createWallVertical(MAX_BOARD_HEIGHT - 2, MAX_BOARD_HEIGHT, 7);
 			board.addGameObject(new Elevator(), 1, 1);
 			break;
 		case FIRST_FLOOR_2:
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
-			board.createWallVertical(0, 2, 7);
+			board.createWallVertical(0, 3, 7);
 			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
 			createRoom(13, MAX_BOARD_WIDTH, 8, 10, new Door(true,1), 22, 10);
 			board.addGameObject(new Door(), 13, MAX_BOARD_HEIGHT);
@@ -236,15 +236,27 @@ public class LevelLoader {
 				board.addGameObject(avatar, 1, 2);
 			}
 			/* Create all default objects */
-			board.createWallHorizontal(1, MAX_BOARD_WIDTH - 1, 0);
-			board.createWallHorizontal(1, MAX_BOARD_WIDTH - 1, MAX_BOARD_HEIGHT);
-			board.createWallVertical(1, MAX_BOARD_HEIGHT - 1, 0);
-			board.createWallVertical(1, MAX_BOARD_HEIGHT - 1, MAX_BOARD_WIDTH);
-			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
-			board.addGameObject(new Elevator(), 1, 1);
+			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
+			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
+			board.createWallVertical(0, 3, 7);
+			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
+			board.createWallVertical(0, MAX_BOARD_HEIGHT, 13);
 			break;
 			
 		case FIRST_FLOOR_4:
+			board.addGameObject(new Door(), 13, 1);
+			board.createWallVertical(0, MAX_BOARD_HEIGHT - 1, 0);
+			board.createWallVertical(0, MAX_BOARD_HEIGHT - 1, MAX_BOARD_WIDTH);
+			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
+			board.createWallHorizontal(0, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT);
+			board.createWallVertical(0, 3, 7);
+			board.createWallVertical(MAX_BOARD_HEIGHT - 2, MAX_BOARD_HEIGHT, 7);
+			board.addGameObject(new Door(true,2), 8, MAX_BOARD_HEIGHT - 3);
+			board.createWallHorizontal(9, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT - 3);
+			board.createWallVertical(0, 2, 13);
+			board.createWallCorners(13, MAX_BOARD_WIDTH, 0, 3);
+			board.createWallCorners(7, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT);
+			board.createWallHorizontal(13, MAX_BOARD_WIDTH, 3);
 			break;
 
 		case SECOND_FLOOR_1:
