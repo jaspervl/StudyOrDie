@@ -195,8 +195,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			} else {
 				/* Edge of the screen, get items from next sublevel */
 				leverloader = model.getLoader();
-				model.setLevel(model.getLevel() + 1);
-				leverloader.loadLevel("Bottom");
+				model.setLevel(model.getLevel() - 1);
+				leverloader.loadLevel("newLocation");
 				return false;
 			}
 
@@ -208,8 +208,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			} else {
 				/* Edge of the screen, get items from next sublevel */
 				leverloader = model.getLoader();
-				model.setLevel(model.getLevel() - 1);
-				leverloader.loadLevel("Top");
+				model.setLevel(model.getLevel() + 1);
+				leverloader.loadLevel("newLocation");
 				return false;
 			}
 
@@ -282,7 +282,6 @@ public class StudyOrDieGameBoard extends GameBoard {
 						/* If the door is locked and the avatar has a key */
 						Toast.makeText(activity, "Door unlocked!", Toast.LENGTH_SHORT).show();
 						removeObject(getObject(avatarNewX, avatarNewY));
-//						model.unlockDoor(model.getLevel());
 					} else {
 						/* door locked, no key */
 						Toast.makeText(activity, "Door is locked", Toast.LENGTH_SHORT).show();
@@ -312,40 +311,24 @@ public class StudyOrDieGameBoard extends GameBoard {
 							String message = "";
 							switch (chosenFloor) {
 							case 0:
-								model.setLevel(LevelLoader.GROUND_LEVEL_3);
+								model.setLevel(LevelLoader.GROUND_LEVEL_4);
 								message = "Ground floor";
 								break;
 							case 1:
-								model.setLevel(LevelLoader.FIRST_FLOOR_1);
+								model.setLevel(LevelLoader.FIRST_FLOOR_3);
 								message = "First floor";
 								break;
-							// Not yet implemented
 							case 2:
-								model.setLevel(LevelLoader.SECOND_FLOOR_2);
+								model.setLevel(LevelLoader.SECOND_FLOOR_3);
+								message = "Second floor";
 								break;
 							case 3:
-								model.setLevel(LevelLoader.THIRD_FLOOR_2);
+								model.setLevel(LevelLoader.THIRD_FLOOR_3);
+								message = "Third floor";
 								break;
 							case 4:
-								model.setLevel(LevelLoader.FOURTH_FLOOR_2);
-								break;
-							case 5:
-								model.setLevel(LevelLoader.FIFTH_FLOOR_2);
-								break;
-							case 6:
-								model.setLevel(LevelLoader.SIXTH_FLOOR_2);
-								break;
-							case 7:
-								model.setLevel(LevelLoader.SEVENTH_FLOOR_2);
-								break;
-							case 8:
-								model.setLevel(LevelLoader.EIGHTH_FLOOR_2);
-								break;
-							case 9:
-								model.setLevel(LevelLoader.NINTH_FLOOR_2);
-								break;
-							case 10:
-								model.setLevel(LevelLoader.TENTH_FLOOR_2);
+								model.setLevel(LevelLoader.FOURTH_FLOOR_3);
+								message = "Fourth floor, home of Syntaxis";
 								break;
 							}
 							leverloader.loadLevel("Elevator");
