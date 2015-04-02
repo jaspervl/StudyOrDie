@@ -44,35 +44,8 @@ public class LevelLoader {
 	public static final int FOURTH_FLOOR_3 = 43;
 	public static final int FOURTH_FLOOR_4 = 44;
 
-	public static final int FIFTH_FLOOR_1 = 51;
-	public static final int FIFTH_FLOOR_2 = 52;
-	public static final int FIFTH_FLOOR_3 = 53;
-	public static final int FIFTH_FLOOR_4 = 54;
-
-	public static final int SIXTH_FLOOR_1 = 61;
-	public static final int SIXTH_FLOOR_2 = 62;
-	public static final int SIXTH_FLOOR_3 = 63;
-	public static final int SIXTH_FLOOR_4 = 64;
-
-	public static final int SEVENTH_FLOOR_1 = 71;
-	public static final int SEVENTH_FLOOR_2 = 72;
-	public static final int SEVENTH_FLOOR_3 = 73;
-	public static final int SEVENTH_FLOOR_4 = 74;
-
-	public static final int EIGHTH_FLOOR_1 = 81;
-	public static final int EIGHTH_FLOOR_2 = 82;
-	public static final int EIGHTH_FLOOR_3 = 83;
-	public static final int EIGHTH_FLOOR_4 = 84;
-
-	public static final int NINTH_FLOOR_1 = 91;
-	public static final int NINTH_FLOOR_2 = 92;
-	public static final int NINTH_FLOOR_3 = 93;
-	public static final int NINTH_FLOOR_4 = 94;
-
-	public static final int TENTH_FLOOR_1 = 101;
-	public static final int TENTH_FLOOR_2 = 102;
-	public static final int TENTH_FLOOR_3 = 103;
-	public static final int TENTH_FLOOR_4 = 104;
+	public static final int TEACHERS_ROOM_UPPER = 51;
+	public static final int TEACHERS_ROOM_LOWER = 52;
 
 	/* Gameboard measurement constants */
 	private static final int MAX_BOARD_WIDTH = 23;
@@ -359,6 +332,12 @@ public class LevelLoader {
 			placeKey(20,6,3);
 			break;
 
+		case TEACHERS_ROOM_1:
+			// implement upper teachers room content
+			break;
+		case TEACHERS_ROOM_2:
+			// implement lower teachers room content
+			break;
 		default:
 			break;
 		}
