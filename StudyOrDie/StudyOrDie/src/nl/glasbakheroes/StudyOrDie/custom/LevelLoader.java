@@ -168,10 +168,7 @@ public class LevelLoader {
 
 		/** case 2 is part 2 of the ground floor */
 		case GROUND_LEVEL_2:
-			int keyType = 1;
-			if (!avatar.hasKey(keyType)) {
-				board.addGameObject(new Key(keyType), 21, 6);
-			}
+			placeKey(21, 6, 1);
 			
 			
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
@@ -254,13 +251,13 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, 0);
-			board.addGameObject(new Key(2), 19, 6);
+			placeKey(19, 6, 2);
 
 			break;
 		case SECOND_FLOOR_2:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 1), 14, MAX_BOARD_HEIGHT / 2);
-			board.addGameObject(new Key(3), 20, 4);
+			placeKey(20, 4, 4);
 
 			break;
 		case SECOND_FLOOR_3:
@@ -271,20 +268,20 @@ public class LevelLoader {
 			board.addGameObject(new Elevator(), 9, 1);
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 2), 14, MAX_BOARD_HEIGHT / 2);
-			board.addGameObject(new Key(4), 17, 8);
+			placeKey(17, 8, 5);
 
 			break;
 		case SECOND_FLOOR_4:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
-			board.addGameObject(new Key(2), 19, 6);
+			placeKey(19, 6, 6);
 			break;
 
 		case THIRD_FLOOR_1:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
-			board.createWallHorizontal(10, 14, 0);
+			placeKey(10, 14, 7);
 			break;
 
 		case THIRD_FLOOR_2:
@@ -322,7 +319,7 @@ public class LevelLoader {
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.createWallVertical(3, MAX_BOARD_HEIGHT, 11);
 			createRoom(0,6,0,MAX_BOARD_HEIGHT, new Door(),6,MAX_BOARD_HEIGHT / 2);
-			board.addGameObject(new Key(2), 20, 7);
+			placeKey(20, 7, 8);
 			
 			break;
 
@@ -347,9 +344,7 @@ public class LevelLoader {
 			board.createWallHorizontal(10, 15, MAX_BOARD_HEIGHT);
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
-			if (!avatar.hasKey(3)) {
-				board.addGameObject(new Key(3), 20, 6);
-			}
+			placeKey(20,6,3);
 			break;
 
 		default:
@@ -357,5 +352,17 @@ public class LevelLoader {
 		}
 
 		board.updateView();
+	}
+	
+	/**
+	 * Place a key on the gameboard if the avatar didnt loot it yet.
+	 * @param x	 The x position to place the key
+	 * @param y	The y position to place the key
+	 * @param keyType	The integer type of the key
+	 */
+	public void placeKey(int x, int y, int keyType) {
+		if (!avatar.hasKey(keyType)) {
+			board.addGameObject(new Key(keyType), x, y);
+		}
 	}
 }
