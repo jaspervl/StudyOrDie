@@ -332,10 +332,10 @@ public class LevelLoader {
 			placeKey(20,6,3);
 			break;
 
-		case TEACHERS_ROOM_1:
+		case TEACHERS_ROOM_UPPER:
 			// implement upper teachers room content
 			break;
-		case TEACHERS_ROOM_2:
+		case TEACHERS_ROOM_LOWER:
 			// implement lower teachers room content
 			break;
 		default:
