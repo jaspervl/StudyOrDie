@@ -59,4 +59,5 @@ public class ListAdapter extends ArrayAdapter<Item> {
 		holder.name.setText(String.format(item.getName()));
 		return convertView;
 	}
+	
 }

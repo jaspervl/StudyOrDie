@@ -110,7 +110,7 @@ public class Boss extends GameObject{
 	
 	public void setHP(int hp) {
 		this.hitPoints = hp;
-		model.update();
+		model.update(); 
 	}
 	
 	public int getHP() {

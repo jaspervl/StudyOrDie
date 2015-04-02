@@ -132,13 +132,10 @@ public class StudyOrDieModel extends Observable {
 	public void fillItemList() {
 
 		/* Add non-consumables / equipables */
-		itemList.add(new Item("Apply papers", "Welcome at Saxion.", 5, 5, 5, false, 10));
-		
-
-		
+		addItemToList(new Item("Apply papers", "Welcome at Saxion.", 5, 5, 5, false, 10));
 		/* Add consumables */
-		itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50));
-		itemList.add(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));
+		addItemToList(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50));
+		addItemToList(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));
 	}
 
 	/** Add a item to the avatar */
@@ -418,7 +415,6 @@ public class StudyOrDieModel extends Observable {
 
 	public boolean loadGame() {
 		boolean succes = false;
-		itemList.clear();
 		String filename = "sod_save_game.txt";
 
 		/*
@@ -511,7 +507,7 @@ public class StudyOrDieModel extends Observable {
 					} if (scan.hasNextInt()) {
 						costs = scan.nextInt();
 					}
-					itemList.add(new Item(itemName, description, hpMod, eneMod, motMod, consumable, costs));
+					addItemToList(new Item(itemName, description, hpMod, eneMod, motMod, consumable, costs));
 					Log.w("Model", "Added item: " + itemName);
 				} else if (word.equals("boss")) {
 					if (scan.hasNext()) { 
@@ -571,13 +567,27 @@ public class StudyOrDieModel extends Observable {
 	public void addRandomItem() {
 		String title = "";
 		switch ( (int) ( Math.random() * 6 + 1)) {
-			case 1: itemList.add(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50)); 			title = "Koffie"; break; 
-			case 2:	itemList.add(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true, 30));	title = "Energydrink"; break; 
-			case 3:	itemList.add(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true, 30));					title = "Bier"; break;
-			case 4:	itemList.add(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));		title = "Chocolade"; break;
-			case 5:	itemList.add(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100));			title = "Kipburger"; break;
-			case 6:	itemList.add(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true, 40));						title = "Pepsi"; break;
+			case 1: addItemToList(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50)); 			title = "Koffie"; break; 
+			case 2:	addItemToList(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true, 30));	title = "Energydrink"; break; 
+			case 3:	addItemToList(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true, 30));					title = "Bier"; break;
+			case 4:	addItemToList(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));		title = "Chocolade"; break;
+			case 5:	addItemToList(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100));			title = "Kipburger"; break;
+			case 6:	addItemToList(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true, 40));						title = "Pepsi"; break;
+			default : Log.w("Model", "Random item has not been added, error");
 		}
 		Toast.makeText(getActivity(), "Check your inventory!", Toast.LENGTH_SHORT).show();
+	}
+
+	/** Check if item doesn't already exist in list and add it */
+	public void addItemToList(Item item) {
+		boolean add = true;
+		for (Item i : itemList) {
+			if (i.getName().equals(item.getName())) {
+				add = false;
+			}
+		}
+		if (add) {
+			itemList.add(item);
+		}
 	}
 }

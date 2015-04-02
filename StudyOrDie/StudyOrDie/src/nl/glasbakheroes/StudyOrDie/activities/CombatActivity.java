@@ -105,10 +105,11 @@ public class CombatActivity extends Activity implements Observer {
 	
 	/** Kill the boss and return this result to the coreActivity */
 	public void killBoss() {
-		boss.killBoss(); 
 		model.raiseScore(10);
 		model.addRandomItem();
-		model.getItemList().add(boss.getSpecialItem());
+		model.addItemToList(boss.getSpecialItem());
+		model.update();
+		boss.killBoss(); 
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
 		delayedFinish();	 
 	}

@@ -39,7 +39,7 @@ public class ItemFragment extends Fragment {
 		equipButton = (Button) v.findViewById(R.id.btnEquipButton);
 		stats = (TextView) v.findViewById(R.id.tvAddStat);
 		
-		if (model.getItemList().get(0) == null) {
+		if (model.getItemList().isEmpty()) {
 			return v;
 		}
 		setVariables(0);
