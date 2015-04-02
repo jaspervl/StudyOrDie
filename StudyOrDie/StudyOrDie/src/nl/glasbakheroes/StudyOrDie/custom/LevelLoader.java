@@ -220,7 +220,6 @@ public class LevelLoader {
 			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
 			board.createWallVertical(0, 3, 7);
 			board.createWallVertical(MAX_BOARD_HEIGHT - 2, MAX_BOARD_HEIGHT, 7);
-			board.addGameObject(new Elevator(), 1, 1);
 			break;
 		case FIRST_FLOOR_2:
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
@@ -232,10 +231,11 @@ public class LevelLoader {
 			break;
 		case FIRST_FLOOR_3:
 			/* Create conditional objects */
-			if (spawnArea.equals("Elevator")) {
-				board.addGameObject(avatar, 1, 2);
-			}
 			/* Create all default objects */
+			if (spawnArea.equals("Elevator")) {
+				board.addGameObject(avatar, 7, 4);
+			}
+			board.addGameObject(new Elevator(), 7, 3);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
 			board.createWallVertical(0, 3, 7);
