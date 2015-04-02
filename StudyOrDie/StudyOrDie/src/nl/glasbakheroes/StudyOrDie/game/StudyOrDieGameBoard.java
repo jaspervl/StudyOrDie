@@ -298,7 +298,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				activity.disableMovement();
 				/* Selects the floor */ 
 				CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor", "Second floor",
-						"Third floor", "Fourth floor"};
+						"Third floor", "Fourth floor", "Cancel"};
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 				builder.setTitle("Select a floor");
@@ -330,7 +330,10 @@ public class StudyOrDieGameBoard extends GameBoard {
 								model.setLevel(LevelLoader.FOURTH_FLOOR_4);
 								message = "Fourth floor, home of Syntaxis";
 								break;
-							}
+							case 5:
+								message = "Elevator leaves without you! Let's hope it will ever return";
+								break;
+							} 
 							leverloader.loadLevel("Elevator");
 							Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
 						} else {
