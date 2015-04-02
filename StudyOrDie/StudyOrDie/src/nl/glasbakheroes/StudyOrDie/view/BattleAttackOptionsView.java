@@ -90,6 +90,8 @@ public class BattleAttackOptionsView extends LinearLayout {
 		/* Set the local variables according to the value of the button that is clicked */
 		@Override
 		public void onClick(View v) {
+			int plusE = 0;
+			int plusM = 0;
 			Boss boss = activity.getBoss();
 			addToMessage = "";
 			if (v == btnAttack1) {
@@ -106,6 +108,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 				damage = 10;
 				energyModifier = -10;
 				motivationModifier = +5;
+				plusM = 5;
 				if (boss.getWeakness().equals("Hard question")) {
 					damage = (int) (damage * 1.2);
 					addToMessage = ", it is SUPER effective!";
@@ -123,9 +126,10 @@ public class BattleAttackOptionsView extends LinearLayout {
 				attackName = "Skip class";
 				damage = 10;
 				energyModifier = +5;
+				plusE = 5;
 				motivationModifier = -10;
 				if (boss.getWeakness().equals("Skip class")) {
-					damage = (int) (damage * 1.2);
+					damage = (int) (damage * 2);
 					addToMessage = ", it is SUPER effective!";
 				}
 			}
@@ -134,6 +138,8 @@ public class BattleAttackOptionsView extends LinearLayout {
 			model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() + energyModifier);
 			model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() + motivationModifier);
 			if (model.getAvatar().getCurrentEnergy() == 0 || model.getAvatar().getCurrentMotivation() == 0) {
+				model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() - plusM);
+				model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() - plusE);
 				Toast.makeText(activity, "Attack failed! not enough energy or motivation", Toast.LENGTH_SHORT).show();
 				return;
 			} else {
