@@ -55,7 +55,6 @@ public class GameOverActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				/* Get the model and reset the timer */
 				StudyOrDieModel model = ((StudyOrDieApplication) getApplication()).getModel();
 				model.spawnAfterFail();
 				finish();

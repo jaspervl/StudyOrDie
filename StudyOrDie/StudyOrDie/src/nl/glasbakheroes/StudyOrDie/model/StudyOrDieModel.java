@@ -243,10 +243,10 @@ public class StudyOrDieModel extends Observable {
 	/** Regen avatar */
 	public void spawnAfterFail() {
 		currentLevel = 1;
-		loader.loadLevel("Bottom");
 		avatar.setCurrentHP(100);
 		avatar.setCurrentEnergy(100);
 		avatar.setCurrentMotivation(100);
+		loader.loadLevel("NewGame");
 		update();
 	}
 

@@ -75,7 +75,6 @@ public class CoreActivity extends Activity {
 			Intent startScreenIntent = new Intent(CoreActivity.this, StartActivity.class);
 			startActivityForResult(startScreenIntent, REQUEST_START_CODE);
 			startMenuShown = true;
-			
 		} 
 		length = 0;
 		allowFinish = false;

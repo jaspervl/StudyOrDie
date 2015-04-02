@@ -132,6 +132,9 @@ public class LevelLoader {
 		switch (model.getLevel()) {
 		/** case 1 is where ground floor starts */
 		case GROUND_LEVEL_1:
+			if (spawnArea.equals("NewGame")) {
+				board.addGameObject(avatar, 20, 5);
+			}
 		
 			/* Create all default objects */
 			board.addGameObject(new Door(), 8, MAX_BOARD_HEIGHT);

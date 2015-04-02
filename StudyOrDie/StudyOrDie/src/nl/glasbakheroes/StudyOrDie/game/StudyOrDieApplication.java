@@ -19,4 +19,8 @@ public class StudyOrDieApplication extends Application {
 		return model;
 	}
 	
+	public void regenModel() {
+		this.model = new StudyOrDieModel();
+	}
+	
 }
