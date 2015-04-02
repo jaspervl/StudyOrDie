@@ -48,8 +48,8 @@ public class LevelLoader {
 	public static final int TEACHERS_ROOM_LOWER = 52;
 
 	/* Gameboard measurement constants */
-	private static final int MAX_BOARD_WIDTH = 23;
-	private static final int MAX_BOARD_HEIGHT = 11;
+	private static final int MAX_BOARD_WIDTH = 61;
+	private static final int MAX_BOARD_HEIGHT = 62;
 
 	/* Imported variables */
 	private StudyOrDieModel model;
