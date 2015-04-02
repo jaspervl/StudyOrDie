@@ -147,7 +147,15 @@ public class LevelLoader {
 		case GROUND_LEVEL_2:
 			placeKey(21, 6, 1);
 			
-			
+			placeKey(10, 1, 1);
+			placeKey(10, 2, 2);
+			placeKey(10, 3, 3);
+			placeKey(10, 4, 4);
+			placeKey(10, 5, 5);
+			placeKey(10, 6, 6);
+			placeKey(10, 7, 7);
+			placeKey(10, 8, 8);
+			placeKey(10, 9, 9);
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
 			board.addGameObject(new Door(), 9, 0);
@@ -169,6 +177,7 @@ public class LevelLoader {
 			board.addGameObject(new Elevator(), MAX_BOARD_WIDTH-1, 1);
 			board.addGameObject(new Elevator(), MAX_BOARD_WIDTH-2, 1);
 			board.createWallHorizontal(MAX_BOARD_WIDTH-2, MAX_BOARD_WIDTH-9, 1);
+			board.createWallHorizontal(MAX_BOARD_WIDTH-2, MAX_BOARD_WIDTH-9, MAX_BOARD_HEIGHT);
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			createSquare(0,7,0,MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(14, MAX_BOARD_WIDTH, 0);
