@@ -311,7 +311,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 							String message = "";
 							switch (chosenFloor) {
 							case 0:
-								model.setLevel(LevelLoader.GROUND_LEVEL_4);
+								model.setLevel(LevelLoader.GROUND_LEVEL_3);
 								message = "Ground floor";
 								break;
 							case 1:

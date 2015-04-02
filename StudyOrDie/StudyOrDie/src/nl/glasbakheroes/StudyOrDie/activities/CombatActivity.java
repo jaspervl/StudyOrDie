@@ -128,7 +128,7 @@ public class CombatActivity extends Activity implements Observer {
 	 * Perform a attack against the saved boss
 	 */
 	public void performAttack(int damage) {
-		attackOptions.disableAllButtons();		
+		attackOptions.disableAllButtons();	
 		boss.setHP(boss.getHP() - damage);
 		if (boss.getHP() <= 0) {
 			attackOptions.disableAllButtons();
@@ -146,17 +146,17 @@ public class CombatActivity extends Activity implements Observer {
 			public void run() {
 				String attackName = "";
 				int damage = 0;
+				int factor = (model.getLevel() % 10) +1;
 				
 				switch ((int)(Math.random() * 4) + 1) {
-				case 1 : attackName = "Homework"; damage = 7; break;
-				case 2 : attackName = "Door policy"; damage = 5; break;
+				case 1 : attackName = "Homework"; damage = 7 * factor ; break;
+				case 2 : attackName = "Door policy"; damage = 5 * factor; break;
 				case 3 : attackName = boss.getSpecialAttackName(); damage = boss.getSpecialAttackDamage(); break;
-				case 4 : attackName = "Knowledge overload"; damage = 10; break;
+				case 4 : attackName = "Knowledge overload"; damage = 10 * factor; break;
 				default : attackName = "No attack" ; damage = 0; break; 	// something went wrong if this occurs
 				}
-				Toast.makeText(getApplicationContext(), 
-						boss.getName() + " attacks with " + attackName + " and does " + damage + " damage!",
-						Toast.LENGTH_SHORT).show();
+				
+				Toast.makeText(getApplicationContext(), boss.getName() + " attacks with " + attackName + " and does " + damage + " damage!", Toast.LENGTH_SHORT).show();
 				model.getAvatar().setCurrentHP(model.getAvatar().getCurrentHP() - damage);
 				handler.postDelayed(new Runnable() {
 					public void run() {
@@ -181,5 +181,9 @@ public class CombatActivity extends Activity implements Observer {
 	protected void onDestroy() {
 		player.stop();
 		super.onPause();
+	}
+	
+	public Boss getBoss() {
+		return boss;
 	}
 }

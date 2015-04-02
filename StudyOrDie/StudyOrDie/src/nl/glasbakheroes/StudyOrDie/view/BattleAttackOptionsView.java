@@ -1,6 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.view;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.activities.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -24,6 +25,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 	/** Instance variables */
 	private Button btnAttack1, btnAttack2, btnAttack3, btnAttack4;
 	private StudyOrDieModel model;
+	private String addToMessage = "";
 
 	/** Constructors */
 	public BattleAttackOptionsView(Context context, AttributeSet attrs,
@@ -88,26 +90,44 @@ public class BattleAttackOptionsView extends LinearLayout {
 		/* Set the local variables according to the value of the button that is clicked */
 		@Override
 		public void onClick(View v) {
+			Boss boss = activity.getBoss();
+			addToMessage = "";
 			if (v == btnAttack1) {
 				attackName = "Throw exception";
 				damage = 100; 	// 100 for testing 
 				energyModifier = -5;
 				motivationModifier = -5;
+				if (boss.getWeakness().equals("Throw exception")) {
+					damage = (int) (damage * 1.2);
+					addToMessage = ", it is SUPER effective!";
+				}
 			} else if (v == btnAttack2) {
 				attackName = "Hard question";
 				damage = 10;
 				energyModifier = -10;
 				motivationModifier = +5;
+				if (boss.getWeakness().equals("Hard question")) {
+					damage = (int) (damage * 1.2);
+					addToMessage = ", it is SUPER effective!";
+				}
 			} else if (v == btnAttack3) {
 				attackName = "Apple talk";
 				damage = 12;
 				energyModifier = -3;
 				motivationModifier = -5;
+				if (boss.getWeakness().equals("Apple talk")) {
+					damage = (int) (damage * 1.2);
+					addToMessage = ", it is SUPER effective!";
+				}
 			} else if (v == btnAttack4) {
 				attackName = "Skip class";
 				damage = 10;
 				energyModifier = +5;
 				motivationModifier = -10;
+				if (boss.getWeakness().equals("Skip class")) {
+					damage = (int) (damage * 1.2);
+					addToMessage = ", it is SUPER effective!";
+				}
 			}
 			
 			/* Modify the avatar and the boss (through a activity method) according to the button that is clicked */
@@ -117,7 +137,9 @@ public class BattleAttackOptionsView extends LinearLayout {
 				Toast.makeText(activity, "Attack failed! not enough energy or motivation", Toast.LENGTH_SHORT).show();
 				return;
 			} else {
-				Toast.makeText(activity, "Attack casted: " + attackName, Toast.LENGTH_SHORT).show();
+				Toast.makeText(activity, "Attack casted: " + attackName + addToMessage, Toast.LENGTH_SHORT).show();
+				
+				
 				activity.performAttack(damage);
 			}
 		}

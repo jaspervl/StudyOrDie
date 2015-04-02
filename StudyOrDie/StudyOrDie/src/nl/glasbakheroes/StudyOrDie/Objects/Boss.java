@@ -17,6 +17,7 @@ public class Boss extends GameObject{
 	private int level;
 	private String specialAttackName = "NONE";
 	private int specialAttackDamage = 0;
+	private String weakness = "";
 
 	/**
 	 * Construct a (random) boss
@@ -33,7 +34,7 @@ public class Boss extends GameObject{
 			specialAttackDamage = 15;
 		} else {
 			this.name = name;
-			setSpecialAttack();
+			setBossTraits();
 		}
 		this.hitPoints = hitPoints;
 		this.model = model;
@@ -52,7 +53,7 @@ public class Boss extends GameObject{
 		case 7: return "Peter";
 		case 8: return "Kees";
 		case 9: return "Nick";
-		case 10: return "Niels";
+		case 10: return "Jasper";
 		default: return "Sjoerd";
 		}
 	}
@@ -115,16 +116,36 @@ public class Boss extends GameObject{
 		return specialAttackDamage;
 	}
 	
-	/** Set the special attack damage and name for each boss */
-	private void setSpecialAttack() {
-		if (name.equals("Wombat")) {
-			specialAttackName = "Wingclap";
+	/** Set the special traits for each boss */
+	private void setBossTraits() {
+		if (name.equals("Tristan")) {
+			specialAttackName = "Terminating your terminal";
 			specialAttackDamage = 20;
+			weakness = "Skip class";
 		} else if (name.equals("Ruud")) {
 			specialAttackName = "Data loss";
 			specialAttackDamage = 25;
+			weakness = "Apple talk";
+		} else if (name.equals("Frank")) {
+			specialAttackName = "Hard question";
+			specialAttackDamage = 30;
+			weakness = "Hard question";
+		} else if (name.equals("Evert")) {
+			specialAttackName = "More exercises";
+			specialAttackDamage = 35;
+			weakness = "Throw exception";
+		} else if (name.equals("Syntaxis")) {
+			specialAttackName = "Monthly bill";
+			specialAttackDamage = 40;
+			weakness = "None";
+		} else if (name.equals("Jan")) {
+			specialAttackName = "Supply more documents!";
+			specialAttackDamage = 50;
+			weakness = "None";
 		}
 	}
-	
-	
+
+	public String getWeakness() {
+		return weakness;
+	}	
 }
