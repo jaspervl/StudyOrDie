@@ -137,19 +137,22 @@ public class StudyOrDieGameBoard extends GameBoard {
 			switch (direction) {
 			case UP:
 				moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() - 1);
+				Log.w("New avatar position:", avatar.getPositionX() + ", " + avatar.getPositionY());
 				model.addStep();
-
 				break;
 			case DOWN:
 				moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() + 1);
+				Log.w("New avatar position:", avatar.getPositionX() + ", " + avatar.getPositionY());
 				model.addStep();
 				break;
 			case LEFT:
 				moveObject(avatar, avatar.getPositionX() - 1, avatar.getPositionY());
+				Log.w("New avatar position:", avatar.getPositionX() + ", " + avatar.getPositionY());
 				model.addStep();
 				break;
 			case RIGHT:
 				moveObject(avatar, avatar.getPositionX() + 1, avatar.getPositionY());
+				Log.w("New avatar position:", avatar.getPositionX() + ", " + avatar.getPositionY());
 				model.addStep();
 				break;
 			default:

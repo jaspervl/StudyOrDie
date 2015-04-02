@@ -67,7 +67,11 @@ public class LevelLoader {
 
 	private void createBosses() {
 		model.addBoss("Ruud", 100, 1);
-
+		model.addBoss("Frank", 120, 2);
+		model.addBoss("Tristan", 130, 3);
+		model.addBoss("Evert", 140, 4);
+		model.addBoss("Syntaxis", 150, 5);
+		model.addBoss("Jan", 200, 6);
 	}
 	private void createBasicLevel(){
 		board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
@@ -161,10 +165,6 @@ public class LevelLoader {
 				board.addGameObject(avatar, MAX_BOARD_WIDTH-2, 2);
 			}
 			
-			if (model.getBoss("Ruud").getAlive()) {
-				board.addGameObject(model.getBoss("Ruud"), 20, 6);
-			}
-			
 			/* Create all default objects */
 			board.addGameObject(new Elevator(), MAX_BOARD_WIDTH-1, 1);
 			board.addGameObject(new Elevator(), MAX_BOARD_WIDTH-2, 1);
@@ -180,7 +180,10 @@ public class LevelLoader {
 			break;
 			
 		case GROUND_LEVEL_4:
-			
+
+			if (model.getBoss("Ruud").getAlive()) {
+				board.addGameObject(model.getBoss("Ruud"), MAX_BOARD_WIDTH-1, 5);
+			}
 			board.createWallHorizontal(6, 20, MAX_BOARD_HEIGHT);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(true,1), 14, MAX_BOARD_HEIGHT / 2);
@@ -217,6 +220,10 @@ public class LevelLoader {
 			break;
 			
 		case FIRST_FLOOR_4:
+			
+			if (model.getBoss("Frank").getAlive()) {
+				board.addGameObject(model.getBoss("Frank"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-1);
+			}
 			board.addGameObject(new Door(), 13, 1);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT - 1, 0);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT - 1, MAX_BOARD_WIDTH);
@@ -233,6 +240,10 @@ public class LevelLoader {
 			break;
 
 		case SECOND_FLOOR_1:
+			
+			if (model.getBoss("Tristan").getAlive()) {
+				board.addGameObject(model.getBoss("Tristan"), MAX_BOARD_WIDTH-1, 1);
+			}
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, 0);
@@ -287,6 +298,10 @@ public class LevelLoader {
 			break;
 
 		case THIRD_FLOOR_4:
+			if (model.getBoss("Evert").getAlive()) {
+				board.addGameObject(model.getBoss("Evert"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-1);
+			}
+			
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
@@ -309,6 +324,9 @@ public class LevelLoader {
 			break;
 
 		case FOURTH_FLOOR_3:
+			if (model.getBoss("Syntaxis").getAlive()) {
+				board.addGameObject(model.getBoss("Syntaxis"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-3);
+			}
 			board.createWallHorizontal(1, 10, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(15, MAX_BOARD_WIDTH - 1, MAX_BOARD_HEIGHT);
 			board.createWallVertical(0 , MAX_BOARD_HEIGHT - 3, 11);
@@ -319,6 +337,7 @@ public class LevelLoader {
 			break;
 
 		case FOURTH_FLOOR_4:
+			
 			
 			if (spawnArea.equals("Elevator")) {
 				board.addGameObject(avatar, 9, 2);

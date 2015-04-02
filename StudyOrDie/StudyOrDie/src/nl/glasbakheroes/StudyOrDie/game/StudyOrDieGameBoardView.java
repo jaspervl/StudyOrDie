@@ -65,6 +65,11 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				/* Bosses */
 				spriteCache.loadTile(Boss.BOSS_IMAGE_RUUD, R.drawable.ruud_greven);
 				spriteCache.loadTile(Boss.BOSS_IMAGE_CONCIERGE, R.drawable.concierge);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_FRANK, R.drawable.frank_van_doorn);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_TRISTAN, R.drawable.tristan_pothoven);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_EVERT, R.drawable.evert_duipmans);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_SYNTAXIS, R.drawable.syntaxis_voorzitter);
+				spriteCache.loadTile(Boss.BOSS_IMAGE_JAN, R.drawable.jan_stroet);
 				
 				/* Avatar */
 				spriteCache.loadTile(Avatar.AVATAR_FRONT_BLOND, R.drawable.char_player_blond_front0);

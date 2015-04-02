@@ -8,7 +8,13 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 /** A boss in the game overworld */
 public class Boss extends GameObject{
 	public static final String BOSS_IMAGE_RUUD = "Ruud";
+	public static final String BOSS_IMAGE_FRANK = "Frank";
 	public static final String BOSS_IMAGE_CONCIERGE = "Concierge";
+	public static final String BOSS_IMAGE_TRISTAN = "Tristan";
+	public static final String BOSS_IMAGE_EVERT = "Evert";
+	public static final String BOSS_IMAGE_SYNTAXIS = "Syntaxis";
+	public static final String BOSS_IMAGE_JAN = "Jan";
+	
 	private String name;
 	private boolean alive = true;
 	private int hitPoints;
@@ -64,6 +70,16 @@ public class Boss extends GameObject{
 			return BOSS_IMAGE_CONCIERGE;
 		} else if (name.equals("Ruud")) {
 			return BOSS_IMAGE_RUUD;
+		} else if (name.equals("Frank")) {
+			return BOSS_IMAGE_FRANK;
+		} else if (name.equals("Tristan")) {
+			return BOSS_IMAGE_TRISTAN;
+		} else if (name.equals("Evert")) {
+			return BOSS_IMAGE_EVERT;
+		} else if (name.equals("Syntaxis")) {
+			return BOSS_IMAGE_SYNTAXIS;
+		} else if (name.equals("Jan")) {
+			return BOSS_IMAGE_JAN;
 		}
 		Log.w("Boss", "Boss image not found, nullpointer exception incoming");
 		return null;

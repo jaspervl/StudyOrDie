@@ -91,7 +91,9 @@ public class StudyOrDieModel extends Observable {
 	 *            The name of the boss
 	 * @param hitPoints
 	 *            The amount of hitpoints the boss starts with
-	 */
+	 * @param level
+	 * 			  The major level this boss unlocks upon being beaten.
+	 */ 
 	public void addBoss(String name, int hitPoints, int level) {
 		bosses.add(new Boss(name, hitPoints, level, this));
 	}

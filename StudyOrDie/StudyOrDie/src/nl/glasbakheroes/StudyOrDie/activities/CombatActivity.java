@@ -80,7 +80,17 @@ public class CombatActivity extends Activity implements Observer {
 		Resources resources = getApplicationContext().getResources();
 		if (boss.getName().equals("Ruud")) {
 			bossImage.setImageDrawable(resources.getDrawable(R.drawable.ruud_greven));
-		} else {
+		} else if (boss.getName().equals("Frank")) {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.frank_van_doorn));
+		} else if (boss.getName().equals("Tristan")) {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.tristan_pothoven));
+		} else if (boss.getName().equals("Evert")) {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.evert_duipmans));
+		} else if (boss.getName().equals("Syntaxis")) {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.syntaxis_voorzitter));
+		} else if (boss.getName().equals("Jan")) {
+			bossImage.setImageDrawable(resources.getDrawable(R.drawable.jan_stroet));
+		}	else {
 			bossImage.setImageDrawable(resources.getDrawable(R.drawable.concierge));
 		}
 	}
@@ -95,8 +105,8 @@ public class CombatActivity extends Activity implements Observer {
 	public void killBoss() {
 		boss.killBoss(); 
 		model.raiseScore(10);
+		model.addRandomItem();
 		Toast.makeText(getApplicationContext(), boss.getName() + " has been defeated!", Toast.LENGTH_SHORT).show();
-		model.openLevel(boss.getLevel());
 		delayedFinish();	 
 	}
 	 
@@ -107,7 +117,6 @@ public class CombatActivity extends Activity implements Observer {
 	public void killAvatar() {
 		model.lowerScore(20);
 		Intent gameOverIntent = new Intent(this, GameOverActivity.class);
-		model.addRandomItem();
 		startActivity(gameOverIntent);
 		delayedFinish();
 	}
