@@ -217,9 +217,21 @@ public class LevelLoader {
 			break;
 		/** Case 11 is where the second floor starts */
 		case FIRST_FLOOR_1:
-			
+			board.createWallVertical(1, MAX_BOARD_HEIGHT, 0);
+			board.createWallVertical(1, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
+			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
+			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
+			board.createWallVertical(0, 2, 7);
+			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
+			board.addGameObject(new Elevator(), 1, 1);
 			break;
 		case FIRST_FLOOR_2:
+			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
+			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
+			board.createWallVertical(0, 2, 7);
+			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
+			createRoom(13, MAX_BOARD_WIDTH, 8, 10, new Door(true,1), 22, 10);
+			board.addGameObject(new Door(), 13, MAX_BOARD_HEIGHT);
 			break;
 		case FIRST_FLOOR_3:
 			/* Create conditional objects */
