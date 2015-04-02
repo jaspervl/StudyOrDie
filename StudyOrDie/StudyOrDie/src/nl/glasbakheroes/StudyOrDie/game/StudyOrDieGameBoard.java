@@ -27,8 +27,8 @@ import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 public class StudyOrDieGameBoard extends GameBoard {
 
 	public static final int REQUEST_COMBAT_INTENT = 1337;
-	private static final int GAMEBOARD_WIDTH = 24;
-	private static final int GAMEBOARD_HEIGHT = 12;
+	public static final int GAMEBOARD_WIDTH = 24;
+	public static final int GAMEBOARD_HEIGHT = 12;
 	public static final int UP = 1;
 	public static final int DOWN = 2;
 	public static final int LEFT = 3;
