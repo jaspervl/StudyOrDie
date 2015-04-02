@@ -158,13 +158,12 @@ public class LevelLoader {
 				Log.w("Saved location:", model.getSavedLocation()[0] + "   "
 						+ model.getSavedLocation()[1]);
 			}
-			board.createWallHorizontal(10, 15, MAX_BOARD_HEIGHT);
-			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
-					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
+		
 			/* Create all default objects */
-			//board.addGameObject(new Door(), 8, MAX_BOARD_HEIGHT);
-			//board.addGameObject(new Door(), 9, MAX_BOARD_HEIGHT);
-			//createRoom(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT, null, 0, 0);
+			board.addGameObject(new Door(), 8, MAX_BOARD_HEIGHT);
+			board.addGameObject(new Door(), 9, MAX_BOARD_HEIGHT);
+			createRoom(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT, null, 0, 0);
+			
 			break;
 
 		/** case 2 is part 2 of the ground floor */
@@ -182,7 +181,7 @@ public class LevelLoader {
 			}
 			int keyType = 1;
 			if (!avatar.hasKey(keyType)) {
-				board.addGameObject(new Key(keyType), 19, 8);
+				board.addGameObject(new Key(keyType), 21, 6);
 			}
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
@@ -216,15 +215,18 @@ public class LevelLoader {
 			board.createWallHorizontal(14, MAX_BOARD_WIDTH, 0);
 			board.createWallHorizontal(16, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
-			board.addGameObject(new Elevator(), 1, 1);
+			// Add stuff on the ground
 			
 			
 			break;
 			
 		case GROUND_LEVEL_4:
+			
+			
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(true,1), 14, MAX_BOARD_HEIGHT / 2);
-			
+			board.addGameObject(new Elevator(), 1, 1);
+			board.addGameObject(new Elevator(), 2, 1);
 			break;
 		/** Case 11 is where the second floor starts */
 		case FIRST_FLOOR_1:
@@ -261,17 +263,22 @@ public class LevelLoader {
 		case SECOND_FLOOR_2:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 1), 14, MAX_BOARD_HEIGHT / 2);
+			board.addGameObject(new Key(3), 20, 4);
 
 			break;
 		case SECOND_FLOOR_3:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 2), 14, MAX_BOARD_HEIGHT / 2);
+			board.addGameObject(new Elevator(), 8, 1);
+			board.addGameObject(new Elevator(), 9, 1);
+			board.addGameObject(new Key(4), 17, 8);
 
 			break;
 		case SECOND_FLOOR_4:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
+			board.addGameObject(new Key(2), 19, 6);
 			break;
 
 		case THIRD_FLOOR_1:
@@ -310,6 +317,7 @@ public class LevelLoader {
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.createWallVertical(3, MAX_BOARD_HEIGHT, 11);
 			createRoom(0,6,0,MAX_BOARD_HEIGHT, new Door(),6,MAX_BOARD_HEIGHT / 2);
+			board.addGameObject(new Key(2), 20, 7);
 			
 			break;
 
@@ -327,6 +335,7 @@ public class LevelLoader {
 			board.createWallHorizontal(10, 15, MAX_BOARD_HEIGHT);
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
+			board.addGameObject(new Key(3), 20, 6);
 			break;
 
 		default:
