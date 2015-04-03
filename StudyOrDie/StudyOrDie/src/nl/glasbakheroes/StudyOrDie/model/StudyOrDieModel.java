@@ -18,7 +18,7 @@ import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
-import nl.glasbakheroes.StudyOrDie.activities.GameOverActivity;
+import nl.glasbakheroes.StudyOrDie.activities.InformationActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
@@ -52,7 +52,8 @@ public class StudyOrDieModel extends Observable {
 	private String saveFileString = "";
 	private int selectedAvatarImage;
 
-	private boolean[] levelOpened = { true, false, false, false, false, false, false, false, false, false, false };
+	private boolean[] storyLineShowed = { true, false, false, false, false };
+	private boolean[] levelOpened = { true, false, false, false, false };
 
 	/** Constructor */
 	public StudyOrDieModel() {
@@ -229,7 +230,7 @@ public class StudyOrDieModel extends Observable {
 			timerValue = 0;
 			avatar.setName(name);
 			avatar.resetStats();
-			Intent gameOverIntent = new Intent(activity, GameOverActivity.class);
+			Intent gameOverIntent = new Intent(activity, InformationActivity.class);
 			activity.startActivity(gameOverIntent);
 			update();
 		}
@@ -589,5 +590,16 @@ public class StudyOrDieModel extends Observable {
 		if (add) {
 			itemList.add(item);
 		}
+	}
+
+	public boolean[] getStoryLineShowed() {
+		return storyLineShowed;
+	}
+
+	public void setStoryLineShowed(int level) {
+		if (level == 0) {
+			this.storyLineShowed[0] = true;
+		}
+		this.storyLineShowed[level] = true;
 	}
 }

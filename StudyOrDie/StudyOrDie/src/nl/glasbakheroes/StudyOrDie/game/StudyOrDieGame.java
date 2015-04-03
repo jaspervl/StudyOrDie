@@ -59,7 +59,7 @@ public class StudyOrDieGame extends Game {
 		/* If the game is new, start a new game */
 		} else { 
 			Log.w("StudyOrDie Game", "New game is being started");
-			model.gameHasBeenInitialized(true);
+//			model.gameHasBeenInitialized(true);
 			levelLoader.loadLevel("NewGame");
 			if (model.getItemList().isEmpty()) {
 				model.fillItemList();

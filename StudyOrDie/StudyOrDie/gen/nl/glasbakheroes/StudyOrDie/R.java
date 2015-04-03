@@ -215,7 +215,7 @@ containing a value of this type.
     }
     public static final class layout {
         public static final int activity_combat=0x7f030000;
-        public static final int activity_game_over=0x7f030001;
+        public static final int activity_information=0x7f030001;
         public static final int activity_item=0x7f030002;
         public static final int activity_menu=0x7f030003;
         public static final int activity_pick_avatar=0x7f030004;

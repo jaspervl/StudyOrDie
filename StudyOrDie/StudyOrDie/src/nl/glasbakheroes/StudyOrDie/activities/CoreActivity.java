@@ -3,6 +3,7 @@ package nl.glasbakheroes.StudyOrDie.activities;
 import javax.crypto.spec.IvParameterSpec;
 
 import nl.glasbakheroes.StudyOrDie.R;
+import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGame;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
@@ -128,6 +129,7 @@ public class CoreActivity extends Activity {
 			/* Call methods corresponding with the data */
 			if (action.equals("new")) {
 				model.saveGame();
+				model.getLoader().loadLevel("newGame");
 			} else if (action.equals("load")) {
 				Log.w("Core", "Loadgame called");
 				if (!model.loadGame()) {

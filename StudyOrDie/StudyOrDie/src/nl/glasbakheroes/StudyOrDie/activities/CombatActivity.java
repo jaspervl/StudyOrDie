@@ -120,7 +120,8 @@ public class CombatActivity extends Activity implements Observer {
 	 */
 	public void killAvatar() {
 		model.lowerScore(20);
-		Intent gameOverIntent = new Intent(this, GameOverActivity.class);
+		Intent gameOverIntent = new Intent(this, InformationActivity.class);
+		gameOverIntent.putExtra("info", "Fail");
 		startActivity(gameOverIntent);
 		delayedFinish();
 	}
