@@ -157,6 +157,7 @@ public class LevelLoader {
 			board.addGameObject(new Door(), 8, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 9, MAX_BOARD_HEIGHT);
 			createRoom(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT, null, 0, 0);
+			fillCollegeRoom();
 			
 			break;
 
@@ -398,6 +399,16 @@ public class LevelLoader {
 		board.updateView();
 	}
 	
+	private void fillCollegeRoom() {
+		board.addGameObject(new Prop("ImacTable"), 3, 6); // doesnt work?
+		board.addGameObject(new Prop("Speach"), 2, 4);
+		for (int i = 5 ; i < MAX_BOARD_WIDTH -1 ; i += 2) {
+			for (int j = 1 ; j < MAX_BOARD_HEIGHT -1 ; j +=2) {
+				board.addGameObject(new Prop("CollegeSeat"), i, j);
+			}
+		}
+	}
+
 	private void createCantineTables(int x1, int x2, int y1, int y2) {
 		if (x1-x2 == 0) {
 			for (int i = 0; i < (y2 - y1) ; i += 2) {

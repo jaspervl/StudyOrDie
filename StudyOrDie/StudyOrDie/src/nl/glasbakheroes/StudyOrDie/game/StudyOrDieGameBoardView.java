@@ -63,6 +63,8 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY_IMAC, R.drawable.prop_table_grey_imac);
 				spriteCache.loadTile(Prop.PROP_CHAIR_GREEN, R.drawable.prop_chair_green);
 				spriteCache.loadTile(Prop.PROP_TABLE_CANTINE, R.drawable.prop_table_cantine);
+				spriteCache.loadTile(Prop.PROP_COLLEGE_SEAT, R.drawable.prop_college_seat);
+				spriteCache.loadTile(Prop.PROP_SPEACH, R.drawable.prop_speach);
 				
 				/* Bosses */
 				spriteCache.loadTile(Boss.BOSS_IMAGE_RUUD, R.drawable.ruud_greven);
