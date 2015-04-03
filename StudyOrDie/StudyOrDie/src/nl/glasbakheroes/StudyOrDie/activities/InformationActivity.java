@@ -48,23 +48,32 @@ public class InformationActivity extends Activity {
 		info = getIntent().getStringExtra("info");
 		
 		if (info.equals("Fail")) {
-			int stepScore = 0;
-			int timeScore = 0;
 
-			stepScore = (int) ((1000.0 / model.getSteps()) * Math.pow(model.getNumberOpenedLevels(), 3));
-			timeScore = (int) ((1000.0 / model.getTime()) * Math.pow(model.getNumberOpenedLevels(), 3));
+			/* Re-arrange the interface */
+			btnRestart.setText("Spawn at start");
+			tvScore.setTextSize(25);
+			tvScoreLabel.setVisibility(View.VISIBLE);
+			tvFail.setVisibility(View.VISIBLE);
 			
+			/* Calculate score from steps and time */
+			int stepScore = (int) ((1000.0 / model.getSteps()) * Math.pow(model.getNumberOpenedLevels(), 3));
+			int timeScore = (int) ((1000.0 / model.getTime()) * Math.pow(model.getNumberOpenedLevels(), 3));
+			/* Raise the score by the adequate value */
 			model.raiseScore(stepScore);
 			model.raiseScore(timeScore);
-			
+		
 			tvScore.setText(model.getScore() + "");
+			
 		} else if (info.equals("Story")) {
+			
+			/* Re-arrange the interface */
+			btnRestart.setText("Skip");
 			tvScore.setTextSize(14);
 			tvScoreLabel.setVisibility(View.GONE);
 			tvFail.setVisibility(View.GONE);
 			
 			switch (model.getLevel() / 10) {
-			case 0: tvScore.setText(
+				case 0: tvScore.setText(
 					"Goedemorgen " +  model.getAvatar().getName() + ", je bent wakker geworden na een hoorcollege Creatief Probleem Oplossen." +
 					"Iedereen is al weg, en je hebt de helft van de uitleg gemist doordat je in slaap bent gevallen.\n" +
 					"Omdat je graag het tentamen wil halen, ga je op zoek naar Frank om meer uitleg te vragen.\n" +
@@ -73,16 +82,25 @@ public class InformationActivity extends Activity {
 					"Gelukkig is de studiefinanciering vandaag weer binnen gekomen, en hebben ze een nieuwe automaat neergezet bij de infobalie. " +
 					"Hierin zitten voorwerpen die je kunnen helpen om wakker en gemotiveerd te blijven.\n" +
 					"Helaas zit de deur hiervoor op slot, zoek dus eerst de sleutel voor de deur. Veel succes!"); break;
-			case 1:  tvScore.setText(
+					
+				case 1:  tvScore.setText(
 					"Het volgende vak wat op de planning staat is Mobile Computing. Door je zoektocht naar Frank ben je te laat voor de les, " +
 					"en de deur zit dicht. Door Tristans deurbeleid mag je er niet zomaar meer in.\n" +
 					"Nu moet je dus een manier zoeken om er toch in te komen, en daarna sta je tegenover hem! " +
 					"We weten nog niet echt wat er gebeurt als je uiteindelijk tegenover Tristan staat, " +
 					"hij heeft er waarschijnlijk weinig zin in om je er nog aan mee te laten doen.\n" +
 					"Ondertussen zijn ook hier de conciërges bezig met hun werk, zorg dat je ze niet in de weg loopt! Veel succes!"); break;
+					
+				case 2: 
+					tvScore.setText(""); break;
+					
+				case 3: 
+					tvScore.setText(""); break;
+					
+				case 4: 
+					tvScore.setText(""); break;
+			
 			} 
-			btnRestart.setTextSize(12);
-			btnRestart.setText("Skip");
 		
 		}
 		
