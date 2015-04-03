@@ -44,7 +44,7 @@ public class Boss extends GameObject{
 			this.name = name;
 			setBossTraits();
 		}
-		this.hitPoints = hitPoints;
+		this.hitPoints = hitPoints * model.getDifficulty();
 		this.model = model;
 		this.level = level;
 	}

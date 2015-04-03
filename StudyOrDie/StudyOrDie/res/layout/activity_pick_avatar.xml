@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="9" >
+        android:layout_weight="16" >
 
         <TextView
             android:id="@+id/tvFillName"
@@ -46,7 +46,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginLeft="10dp"
-        android:layout_weight="11"
+        android:layout_weight="16"
         android:background="@drawable/button_background"
         android:text="@string/pick_avatar"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -55,7 +55,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="4" >
+        android:layout_weight="10" >
 
         <ImageView
             android:id="@+id/imgAvatar1"
@@ -84,6 +84,37 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:src="@drawable/char_player_santa_front0" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="6" >
+
+        <Button
+            android:id="@+id/btnEasy"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:text="@string/easy" />
+
+        <Button
+            android:id="@+id/btnMedium"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:text="@string/medium" />
+
+        <Button
+            android:id="@+id/btnHard"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_background"
+            android:text="@string/Hard" />
 
     </LinearLayout>
 

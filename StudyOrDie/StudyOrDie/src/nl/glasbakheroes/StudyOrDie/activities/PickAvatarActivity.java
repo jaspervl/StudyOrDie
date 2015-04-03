@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class PickAvatarActivity extends Activity {
 	private EditText etFillName;
 	Handler handler = new Handler();
 	private StudyOrDieModel model;
+	private Button btnEasy, btnMedium, btnHard;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,19 @@ public class PickAvatarActivity extends Activity {
 		setContentView(R.layout.activity_pick_avatar);
 		
 		model = ((StudyOrDieApplication)getApplication()).getModel();
-		
+
+		etFillName = (EditText)findViewById(R.id.etFillName);
 		imgAvatar1 = (ImageView)findViewById(R.id.imgAvatar1);
 		imgAvatar2 = (ImageView)findViewById(R.id.imgAvatar2);
 		imgAvatar3 = (ImageView)findViewById(R.id.imgAvatar3);
 		imgAvatar4 = (ImageView)findViewById(R.id.imgAvatar4);
-		etFillName = (EditText)findViewById(R.id.etFillName);
+		btnEasy = (Button) findViewById(R.id.btnEasy);
+		btnMedium = (Button) findViewById(R.id.btnMedium);
+		btnHard = (Button) findViewById(R.id.btnHard);
+		
+		btnMedium.setAlpha(0.5F);
+		btnHard.setAlpha(0.5F);
+		model.setDifficulty(1);
 		
 		ButtonListener listener1 = new ButtonListener(1);
 		ButtonListener listener2 = new ButtonListener(2);
@@ -55,13 +64,40 @@ public class PickAvatarActivity extends Activity {
 		imgAvatar2.setOnClickListener(listener2);
 		imgAvatar3.setOnClickListener(listener3);
 		imgAvatar4.setOnClickListener(listener4);
+		
+		DifficultyListener diffListener= new DifficultyListener();
+		btnEasy.setOnClickListener(diffListener);
+		btnMedium.setOnClickListener(diffListener);
+		btnHard.setOnClickListener(diffListener);
+	}
+	
+	private class DifficultyListener implements OnClickListener {
+
+		@Override
+		public void onClick(View v) {
+			btnEasy.setAlpha(0.5F);
+			btnMedium.setAlpha(0.5F);
+			btnHard.setAlpha(0.5F);
+			
+			if (v == btnEasy) {
+				model.setDifficulty(1);
+				btnEasy.setAlpha(1F);
+			} else if (v == btnMedium) {
+				model.setDifficulty(2);
+				btnMedium.setAlpha(1F);
+			} else if (v == btnHard){
+				model.setDifficulty(3);
+				btnHard.setAlpha(1F);
+			}
+ 		}
+		
 	}
 	
 	/** Listens to button clicks, which avatar is clicked does not matter at this point in time. */
 	private class ButtonListener implements OnClickListener {
 		
 		int id;
-		
+			
 		public ButtonListener(int num){
 			id = num;
 		}
@@ -75,6 +111,7 @@ public class PickAvatarActivity extends Activity {
 				model.setStoryLineShowed(0);
 				model.getAvatar().setName(etFillName.getText() + "");
 				model.getAvatar().setAvatarImages(this.id);
+				model.getLoader().createBosses();
 				Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 				resultIntent.putExtra("action", "new");
 				setResult(RESULT_TO_STARTACTIVITY, resultIntent);

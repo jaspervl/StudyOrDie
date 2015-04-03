@@ -2,6 +2,7 @@ package nl.glasbakheroes.StudyOrDie.custom;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.ExifInterface;
 import android.util.Log;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
@@ -63,10 +64,9 @@ public class LevelLoader {
 		this.avatar = avatar;
 		model = ((StudyOrDieApplication) this.board.getActivity()
 				.getApplication()).getModel();
-		createBosses();
 	}
 
-	private void createBosses() {
+	public void createBosses() {
 		model.addBoss("Ruud", 100, 1);
 		model.addBoss("Frank", 120, 2);
 		model.addBoss("Tristan", 130, 3);
@@ -142,13 +142,17 @@ public class LevelLoader {
 		switch (model.getLevel()) {
 		/** case 1 is where ground floor starts */
 		case GROUND_LEVEL_1:
-			if (spawnArea.equals("newGame")) {
+			if (spawnArea.equals("newGame")) { 
 				board.addGameObject(avatar, 20, 5);
 				Intent storyIntent = new Intent(model.getActivity() ,InformationActivity.class);
 				storyIntent.putExtra("info", "Story");
 				model.getActivity().startActivity(storyIntent);
 				model.setStoryLineShowed(model.getLevel() / 10);
+			} else if (spawnArea.equals("fail")) {
+				board.addGameObject(avatar, 20, 5);
 			}
+			
+			
 		
 			/* Create all default objects */
 			board.addGameObject(new Door(), 8, MAX_BOARD_HEIGHT);

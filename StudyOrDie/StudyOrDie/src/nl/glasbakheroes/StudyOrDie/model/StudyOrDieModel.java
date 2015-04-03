@@ -51,6 +51,7 @@ public class StudyOrDieModel extends Observable {
 	private int currencyBalance = 100;
 	private String saveFileString = "";
 	private int selectedAvatarImage;
+	private int difficulty = 0;
 
 	private boolean[] storyLineShowed = { true, false, false, false, false };
 	private boolean[] levelOpened = { true, false, false, false, false };
@@ -94,7 +95,9 @@ public class StudyOrDieModel extends Observable {
 	 * 			  The major level this boss unlocks upon being beaten.
 	 */ 
 	public void addBoss(String name, int hitPoints, int level) {
-		bosses.add(new Boss(name, hitPoints, level, this));
+		if (!bossExcist(name)) {
+			bosses.add(new Boss(name, hitPoints, level, this));
+		}
 	}
 
 	/** Return the boss with a given name */
@@ -247,7 +250,7 @@ public class StudyOrDieModel extends Observable {
 		avatar.setCurrentHP(100);
 		avatar.setCurrentEnergy(100);
 		avatar.setCurrentMotivation(100);
-		loader.loadLevel("NewGame");
+		loader.loadLevel("Fail");
 		update();
 	}
 
@@ -379,7 +382,8 @@ public class StudyOrDieModel extends Observable {
 								+ ":score:" + score
 								+ ":hp:" + avatar.getCurrentHP()
 								+ ":energy:" + avatar.getCurrentEnergy()
-								+ ":motivation:" + avatar.getCurrentMotivation();
+								+ ":motivation:" + avatar.getCurrentMotivation()
+								+ ":difficulty:" + getDifficulty();
 			
 			for (Item i : itemList) {
 				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
@@ -397,6 +401,11 @@ public class StudyOrDieModel extends Observable {
 			}
 			for (Key k : avatar.getKeys()) {
 				saveFileString += ":key:" + k.getType();
+			}
+			for (int i = 0 ; i < storyLineShowed.length ; i++) {
+				if (storyLineShowed[i]) {
+					saveFileString += ":story:" + i;
+				}
 			}
 
 			// Write the string to the file 
@@ -436,7 +445,14 @@ public class StudyOrDieModel extends Observable {
 			scan.useDelimiter(":");
 			while (scan.hasNext()) {
 				String word = scan.next();
-				if (word.equals("picture")) { 
+				
+				if (word.equals("difficulty")) {
+					if (scan.hasNextInt()) {
+						difficulty = scan.nextInt();
+						Log.w("Model", "Set difficulty to: " + difficulty);
+						loader.createBosses();
+					}
+				} else if (word.equals("picture")) { 
 					if (scan.hasNextInt()) {
 						selectedAvatarImage = scan.nextInt();
 						avatar.setAvatarImages(selectedAvatarImage);
@@ -552,8 +568,14 @@ public class StudyOrDieModel extends Observable {
 						avatar.setCurrentMotivation(currentMotivation);
 						Log.w("Model", "Set current Motivation to: " + currentMotivation);
 					}
-				} 
-			}			
+				} else if (word.equals("story")) {
+					if (scan.hasNextInt()) {
+						int floor = scan.nextInt();
+						storyLineShowed[floor] = true;
+						Log.w("Model", "Noted floor " + floor + " as story line showed already");
+					}
+				}
+			}
 			update();
 			loader.loadLevel("savedLocation");
 			scan.close();
@@ -604,5 +626,13 @@ public class StudyOrDieModel extends Observable {
 
 	public void setStoryLineShowed(int level) {
 		this.storyLineShowed[level] = true;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
 	}
 }
