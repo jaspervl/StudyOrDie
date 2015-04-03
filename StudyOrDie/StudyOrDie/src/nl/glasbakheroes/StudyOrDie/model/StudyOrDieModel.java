@@ -445,14 +445,20 @@ public class StudyOrDieModel extends Observable {
 				} else if (word.equals("location")) {
 					if (scan.hasNextInt()) {
 						int xPos = scan.nextInt();
+						if (xPos == 0) {
+							xPos = 10;
+						}
 						if (scan.hasNextInt()) {
-							int yPos = scan.nextInt();
+							int yPos = scan.nextInt();	
+							if (yPos == 0) {
+								yPos = 5;
+							}
 							Log.w("Position", xPos + " " + yPos);
 							savedAvatarLocation[0] = xPos;
 							savedAvatarLocation[1] = yPos;
 						}
 						Log.w("Model", "saved location: " + savedAvatarLocation[0] + ", " + savedAvatarLocation[1]);
-					}
+					} 
 				} else if (word.equals("timer")) {
 					if (scan.hasNextInt()) {
 						timerValue = scan.nextInt();
@@ -597,9 +603,6 @@ public class StudyOrDieModel extends Observable {
 	}
 
 	public void setStoryLineShowed(int level) {
-		if (level == 0) {
-			this.storyLineShowed[0] = true;
-		}
 		this.storyLineShowed[level] = true;
 	}
 }

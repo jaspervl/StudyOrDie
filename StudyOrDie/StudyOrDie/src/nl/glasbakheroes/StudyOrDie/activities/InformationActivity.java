@@ -73,9 +73,17 @@ public class InformationActivity extends Activity {
 					"Gelukkig is de studiefinanciering vandaag weer binnen gekomen, en hebben ze een nieuwe automaat neergezet bij de infobalie. " +
 					"Hierin zitten voorwerpen die je kunnen helpen om wakker en gemotiveerd te blijven.\n" +
 					"Helaas zit de deur hiervoor op slot, zoek dus eerst de sleutel voor de deur. Veel succes!"); break;
+			case 1:  tvScore.setText(
+					"Het volgende vak wat op de planning staat is Mobile Computing. Door je zoektocht naar Frank ben je te laat voor de les, " +
+					"en de deur zit dicht. Door Tristans deurbeleid mag je er niet zomaar meer in.\n" +
+					"Nu moet je dus een manier zoeken om er toch in te komen, en daarna sta je tegenover hem! " +
+					"We weten nog niet echt wat er gebeurt als je uiteindelijk tegenover Tristan staat, " +
+					"hij heeft er waarschijnlijk weinig zin in om je er nog aan mee te laten doen.\n" +
+					"Ondertussen zijn ook hier de conciërges bezig met hun werk, zorg dat je ze niet in de weg loopt! Veel succes!"); break;
 			} 
 			btnRestart.setTextSize(12);
 			btnRestart.setText("Skip");
+		
 		}
 		
 		

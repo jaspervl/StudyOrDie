@@ -60,7 +60,7 @@ public class StudyOrDieGame extends Game {
 		} else { 
 			Log.w("StudyOrDie Game", "New game is being started");
 //			model.gameHasBeenInitialized(true);
-			levelLoader.loadLevel("NewGame");
+			levelLoader.loadLevel("savedLocation");
 			if (model.getItemList().isEmpty()) {
 				model.fillItemList();
 			}

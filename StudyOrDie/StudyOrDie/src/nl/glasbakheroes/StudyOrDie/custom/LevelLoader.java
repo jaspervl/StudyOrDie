@@ -132,6 +132,12 @@ public class LevelLoader {
 				board.addGameObject(avatar, avatar.getPositionX(), 0);
 			}
 		}
+		if (!model.getStoryLineShowed()[model.getLevel() / 10] && (model.getLevel() / 10) != 0) {
+			Intent storyIntent = new Intent(model.getActivity() ,InformationActivity.class);
+			storyIntent.putExtra("info", "Story");
+			model.getActivity().startActivity(storyIntent);
+			model.setStoryLineShowed(model.getLevel() / 10);
+		}
 		
 		switch (model.getLevel()) {
 		/** case 1 is where ground floor starts */
