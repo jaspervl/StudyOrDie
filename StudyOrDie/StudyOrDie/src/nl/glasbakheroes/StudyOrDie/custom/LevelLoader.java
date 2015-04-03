@@ -339,7 +339,7 @@ public class LevelLoader {
 			}
 			board.createWallHorizontal(1, MAX_BOARD_WIDTH - 1, 0);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
-			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(true,1), 14, MAX_BOARD_HEIGHT / 2);
+			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(), 14, MAX_BOARD_HEIGHT / 2);
 			break;
 
 		case FOURTH_FLOOR_2:

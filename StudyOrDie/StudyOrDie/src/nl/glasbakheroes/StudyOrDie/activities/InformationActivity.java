@@ -23,7 +23,7 @@ public class InformationActivity extends Activity {
 	private TextView tvScore;
 	private String info;
 	private TextView tvScoreLabel;
-	private TextView tvFail;
+	private TextView tvTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,9 @@ public class InformationActivity extends Activity {
 		btnRestart = (Button) findViewById(R.id.btnRestart);
 		tvScore = (TextView) findViewById(R.id.tvScoreValue);
 		tvScoreLabel = (TextView) findViewById(R.id.tvScoreLabel);
-		tvFail = (TextView) findViewById(R.id.tvGameOver);
+		tvTitle = (TextView) findViewById(R.id.tvGameOver);
 
-		StudyOrDieModel model = ((StudyOrDieApplication) getApplication()).getModel();
+		final StudyOrDieModel model = ((StudyOrDieApplication) getApplication()).getModel();
 		
 		/* Get intent information */
 		info = getIntent().getStringExtra("info");
@@ -53,7 +53,9 @@ public class InformationActivity extends Activity {
 			btnRestart.setText("Spawn at start");
 			tvScore.setTextSize(25);
 			tvScoreLabel.setVisibility(View.VISIBLE);
-			tvFail.setVisibility(View.VISIBLE);
+			tvScoreLabel.setText("Score: ");
+			tvTitle.setVisibility(View.VISIBLE);
+			tvTitle.setText("You failed!");
 			
 			/* Calculate score from steps and time */
 			int stepScore = (int) ((1000.0 / model.getSteps()) * Math.pow(model.getNumberOpenedLevels(), 3));
@@ -70,7 +72,7 @@ public class InformationActivity extends Activity {
 			btnRestart.setText("Skip");
 			tvScore.setTextSize(14);
 			tvScoreLabel.setVisibility(View.GONE);
-			tvFail.setVisibility(View.GONE);
+			tvTitle.setVisibility(View.GONE);
 			
 			switch (model.getLevel() / 10) {
 				case 0: tvScore.setText(
@@ -102,6 +104,23 @@ public class InformationActivity extends Activity {
 			
 			} 
 		
+		} else if (info.equals("win")) {
+			/* Re-arrange the interface */
+			btnRestart.setText("Exit");
+			tvScore.setTextSize(25);
+			tvScoreLabel.setVisibility(View.VISIBLE);
+			tvScoreLabel.setText("Score: ");
+			tvTitle.setVisibility(View.VISIBLE);
+			tvTitle.setText("You won! Game ends here");
+			
+			/* Calculate score from steps and time */
+			int stepScore = (int) ((1000.0 / model.getSteps()) * Math.pow(model.getNumberOpenedLevels(), 3));
+			int timeScore = (int) ((1000.0 / model.getTime()) * Math.pow(model.getNumberOpenedLevels(), 3));
+			/* Raise the score by the adequate value */
+			model.raiseScore(stepScore);
+			model.raiseScore(timeScore);
+		
+			tvScore.setText(model.getScore() + "");
 		}
 		
 		
@@ -115,8 +134,12 @@ public class InformationActivity extends Activity {
 					finish();
 				} else if (info.equals("Story")) {
 					finish();
+				} else if (info.equals("win")) {
+					finish();
+					model.update();
+					// implement game end stuff here
 				}
-			}
+			} 
 		});
 	}
 

@@ -133,6 +133,11 @@ public class CombatActivity extends Activity implements Observer {
 				Intent returnCoreIntent = new Intent(CombatActivity.this, CoreActivity.class);
 				returnCoreIntent.putExtra("result", "Dummy");
 				setResult(StudyOrDieGameBoard.REQUEST_COMBAT_INTENT, returnCoreIntent);
+				if (boss.getName().equals("Jan")) {
+					Intent gameFinishIntent = new Intent(CombatActivity.this, InformationActivity.class);
+					gameFinishIntent.putExtra("info", "win");
+					startActivity(gameFinishIntent);
+				}
 				finish();
 			}
 		}, 2000);
