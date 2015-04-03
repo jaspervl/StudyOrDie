@@ -8,6 +8,7 @@ public class Prop extends GameObject{
 	public static final String PROP_TABLE_GREY_IMAC = "ImacTable";
 	public static final String PROP_TABLE_GREY = "EmptyGreyTable";
 	public static final String PROP_CHAIR_GREEN = "GreenChair";
+	public static final String PROP_TABLE_CANTINE = "TableCantine";
 	public String propImageID;
 	
 	
@@ -21,6 +22,7 @@ public class Prop extends GameObject{
 		case "TableGreyImac" : return PROP_TABLE_GREY_IMAC;
 		case "TableGreyEmpty" : return PROP_TABLE_GREY;
 		case "ChairGreen" : return PROP_CHAIR_GREEN;
+		case "TableCantine" : return PROP_TABLE_CANTINE;
 		default : return null;
 		}
 	}

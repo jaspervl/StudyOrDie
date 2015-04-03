@@ -222,6 +222,9 @@ public class LevelLoader {
 			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
 			board.createWallVertical(0, 3, 7);
 			board.createWallVertical(MAX_BOARD_HEIGHT - 2, MAX_BOARD_HEIGHT, 7);
+			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
+			createCantineTables(6, 6, 1, 5);
+			createCantineTables(6, 6, 9, 11);
 			break;
 		case FIRST_FLOOR_2:
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
@@ -230,6 +233,9 @@ public class LevelLoader {
 			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
 			createRoom(13, MAX_BOARD_WIDTH, 8, 10, new Door(true,1), 22, 10);
 			board.addGameObject(new Door(), 13, MAX_BOARD_HEIGHT);
+			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
+			createCantineTables(6, 6, 1, 5);
+			createCantineTables(6, 6, 9, 11);
 			break;
 		case FIRST_FLOOR_3:
 			/* Create conditional objects */
@@ -243,6 +249,9 @@ public class LevelLoader {
 			board.createWallVertical(0, 3, 7);
 			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, 13);
+			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
+			createCantineTables(6, 6, 1, 5);
+			createCantineTables(6, 6, 9, 11);
 			break;
 			
 		case FIRST_FLOOR_4:
@@ -263,6 +272,9 @@ public class LevelLoader {
 			board.createWallCorners(13, MAX_BOARD_WIDTH, 0, 3);
 			board.createWallCorners(7, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(13, MAX_BOARD_WIDTH, 3);
+			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
+			createCantineTables(6, 6, 1, 5);
+			createCantineTables(6, 6, 9, 11);
 			break;
 
 		case SECOND_FLOOR_1:
@@ -386,6 +398,18 @@ public class LevelLoader {
 		board.updateView();
 	}
 	
+	private void createCantineTables(int x1, int x2, int y1, int y2) {
+		if (x1-x2 == 0) {
+			for (int i = 0; i < (y2 - y1) ; i += 2) {
+				board.addGameObject(new Prop("TableCantine"), x1, y1 + i);
+			}
+		} else if (y1-y2 == 0) {
+			for (int i = 0; i < (x2 - x1) ; i += 2) {
+				board.addGameObject(new Prop("TableCantine"), x1 + i, y1);
+			}
+		}
+	}
+
 	/**
 	 * Place a key on the gameboard if the avatar didnt loot it yet.
 	 * @param x	 The x position to place the key
