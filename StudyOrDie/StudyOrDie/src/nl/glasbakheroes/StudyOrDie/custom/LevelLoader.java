@@ -467,10 +467,7 @@ public class LevelLoader {
 
 	private void createCantineTables(int x1, int x2, int y1, int y2) {
 		if (x1-x2 == 0) {
-			for (int i = 0; i < (y2 - y1) ; i++) {
-				if (i%3 == 0) {
-					i++;
-				}
+			for (int i = 0; i < (y2 - y1) ; i += 2) {
 				board.addGameObject(new Prop("TableCantine"), x1, y1 + i);
 			}
 		} else if (y1-y2 == 0) {
