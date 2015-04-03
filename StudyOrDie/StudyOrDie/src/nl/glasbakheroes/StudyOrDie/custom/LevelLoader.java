@@ -281,18 +281,20 @@ public class LevelLoader {
 		case SECOND_FLOOR_1:
 			
 			if (model.getBoss("Ruud").getAlive()) {
-				board.addGameObject(model.getBoss("Ruud"), MAX_BOARD_WIDTH-1, 1);
+				board.addGameObject(model.getBoss("Ruud"), MAX_BOARD_WIDTH-3, 1);
 			}
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, 0);
 			placeKey(19, 6, 2);
+			createRightClassRoom();
 
 			break;
 		case SECOND_FLOOR_2:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 1), 14, MAX_BOARD_HEIGHT / 2);
 			placeKey(20, 4, 4);
+			createRightClassRoom();
 
 			break;
 		case SECOND_FLOOR_3:
@@ -304,6 +306,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 2), 14, MAX_BOARD_HEIGHT / 2);
 			placeKey(17, 8, 5);
+			createRightClassRoom();
 
 			break;
 		case SECOND_FLOOR_4:
@@ -311,18 +314,21 @@ public class LevelLoader {
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
 			placeKey(19, 6, 6);
+			createRightClassRoom();
 			break;
 
 		case THIRD_FLOOR_1:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			placeKey(10, 14, 7);
+			createRightClassRoom();
 			break;
 
 		case THIRD_FLOOR_2:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
-	
+
+			createRightClassRoom();
 			break;
 
 		case THIRD_FLOOR_3:
@@ -334,6 +340,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 
+			createRightClassRoom();
 			break;
 
 		case THIRD_FLOOR_4:
@@ -344,6 +351,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
+			board.addGameObject(new Prop("TeacherDesk"), 20, 2);
 			break;
 
 		case FOURTH_FLOOR_1:
@@ -399,8 +407,41 @@ public class LevelLoader {
 		board.updateView();
 	}
 	
+	private void createRightClassRoom() {
+		board.addGameObject(new Prop("TeacherDesk"), 20, 2);
+		board.addGameObject(new Prop("TeacherDesk"), 21, 2);
+		board.addGameObject(new Prop("ClassChair"), 21, 1);
+		
+		board.addGameObject(new Prop("ClassTable"), 16, 2);
+		board.addGameObject(new Prop("ClassTable"), 16, 3);
+		board.addGameObject(new Prop("ClassTable"), 17, 2);
+		board.addGameObject(new Prop("ClassTable"), 17, 3);
+		board.addGameObject(new Prop("ClassChair"), 16, 1);
+		board.addGameObject(new Prop("ClassChair"), 17, 1);
+		board.addGameObject(new Prop("ClassChair"), 16, 4);
+		board.addGameObject(new Prop("ClassChair"), 17, 4);
+		
+		board.addGameObject(new Prop("ClassTable"), 16, 7);
+		board.addGameObject(new Prop("ClassTable"), 16, 8);
+		board.addGameObject(new Prop("ClassTable"), 17, 7);
+		board.addGameObject(new Prop("ClassTable"), 17, 8);
+		board.addGameObject(new Prop("ClassChair"), 16, 6);
+		board.addGameObject(new Prop("ClassChair"), 17, 6);
+		board.addGameObject(new Prop("ClassChair"), 16, 9);
+		board.addGameObject(new Prop("ClassChair"), 17, 9);
+		
+		board.addGameObject(new Prop("ClassTable"), 20, 7);
+		board.addGameObject(new Prop("ClassTable"), 20, 8);
+		board.addGameObject(new Prop("ClassTable"), 21, 7);
+		board.addGameObject(new Prop("ClassTable"), 21, 8);
+		board.addGameObject(new Prop("ClassChair"), 20, 6);
+		board.addGameObject(new Prop("ClassChair"), 21, 6);
+		board.addGameObject(new Prop("ClassChair"), 20, 9);
+		board.addGameObject(new Prop("ClassChair"), 21, 9);
+	}
+
 	private void fillCollegeRoom() {
-		board.addGameObject(new Prop("ImacTable"), 3, 6); // doesnt work?
+		board.addGameObject(new Prop("ImacTable"), 3, 6); 
 		board.addGameObject(new Prop("Speach"), 2, 4);
 		for (int i = 5 ; i < MAX_BOARD_WIDTH -1 ; i += 2) {
 			for (int j = 1 ; j < MAX_BOARD_HEIGHT -1 ; j +=2) {

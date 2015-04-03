@@ -11,6 +11,9 @@ public class Prop extends GameObject{
 	public static final String PROP_TABLE_CANTINE = "TableCantine";
 	public static final String PROP_COLLEGE_SEAT = "CollegeSeat";
 	public static final String PROP_SPEACH = "Speach";
+	public static final String PROP_TEACHER_DESK = "TeacherDesk";
+	public static final String PROP_CLASS_CHAIR = "ClassChair";
+	public static final String PROP_CLASS_TABLE = "ClassTable";
 	public String propImageID;
 	
 	
@@ -27,6 +30,9 @@ public class Prop extends GameObject{
 		case "TableCantine" : return PROP_TABLE_CANTINE;
 		case "CollegeSeat" : return PROP_COLLEGE_SEAT;
 		case "Speach" : return PROP_SPEACH;
+		case "TeacherDesk" : return PROP_TEACHER_DESK;
+		case "ClassChair" : return PROP_CLASS_CHAIR;
+		case "ClassTable" : return PROP_CLASS_TABLE;
 		default : return null;
 		}
 	}
