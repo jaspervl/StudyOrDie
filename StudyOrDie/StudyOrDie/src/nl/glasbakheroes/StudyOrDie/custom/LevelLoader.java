@@ -182,6 +182,8 @@ public class LevelLoader {
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
 			board.createWallHorizontal(0, 7, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(14, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT);
+			createBenches(2);
+			createBenches(MAX_BOARD_WIDTH-2);
 			break;
 
 		/** case 3 is part 3 of the ground floor */
@@ -201,7 +203,7 @@ public class LevelLoader {
 			board.createWallHorizontal(14, MAX_BOARD_WIDTH, 0);
 			board.createWallHorizontal(16, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
-			
+			createBenches(8);
 			
 			break;
 			
@@ -253,6 +255,9 @@ public class LevelLoader {
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
+			for (int i = 0 ; i < 5 ; i++) {
+				board.addGameObject(new Prop("Furnace"), 16 + i, 3);
+			}
 			break;
 			
 		case FIRST_FLOOR_4:
@@ -409,6 +414,14 @@ public class LevelLoader {
 		board.updateView();
 	}
 	
+	private void createBenches(int x) {
+		for (int i = 1 ; i <= MAX_BOARD_HEIGHT -1 ; i++) {
+			if (i%3 != 0) {
+				board.addGameObject(new Prop("Bench"), x, i);
+			}
+		}
+	}
+
 	private void createRightClassRoom() {
 		board.addGameObject(new Prop("TeacherDesk"), 20, 2);
 		board.addGameObject(new Prop("TeacherDesk"), 21, 2);
@@ -454,11 +467,14 @@ public class LevelLoader {
 
 	private void createCantineTables(int x1, int x2, int y1, int y2) {
 		if (x1-x2 == 0) {
-			for (int i = 0; i < (y2 - y1) ; i += 2) {
+			for (int i = 0; i < (y2 - y1) ; i++) {
+				if (i%3 == 0) {
+					i++;
+				}
 				board.addGameObject(new Prop("TableCantine"), x1, y1 + i);
 			}
 		} else if (y1-y2 == 0) {
-			for (int i = 0; i < (x2 - x1) ; i += 2) {
+			for (int i = 0; i < (x2 - x1) ; i ++) {
 				board.addGameObject(new Prop("TableCantine"), x1 + i, y1);
 			}
 		}
