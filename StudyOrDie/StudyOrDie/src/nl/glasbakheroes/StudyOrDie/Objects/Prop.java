@@ -25,8 +25,8 @@ public class Prop extends GameObject{
 	@Override
 	public String getImageId() { 
 		switch (propImageID) {
-		case "TableGreyImac" : return PROP_TABLE_GREY_IMAC;
-		case "TableGreyEmpty" : return PROP_TABLE_GREY;
+		case "ImacTable" : return PROP_TABLE_GREY_IMAC;
+		case "EmptyGreyTable" : return PROP_TABLE_GREY;
 		case "ChairGreen" : return PROP_CHAIR_GREEN;
 		case "TableCantine" : return PROP_TABLE_CANTINE;
 		case "CollegeSeat" : return PROP_COLLEGE_SEAT;

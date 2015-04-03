@@ -415,27 +415,27 @@ public class LevelLoader {
 		board.addGameObject(new Prop("ClassChair"), 21, 1);
 		
 		board.addGameObject(new Prop("ClassTable"), 16, 2);
-		board.addGameObject(new Prop("ClassTable"), 16, 3);
+		board.addGameObject(new Prop("ImacTable"), 16, 3);
 		board.addGameObject(new Prop("ClassTable"), 17, 2);
-		board.addGameObject(new Prop("ClassTable"), 17, 3);
+		board.addGameObject(new Prop("ImacTable"), 17, 3);
 		board.addGameObject(new Prop("ClassChair"), 16, 1);
 		board.addGameObject(new Prop("ClassChair"), 17, 1);
 		board.addGameObject(new Prop("ClassChairBack"), 16, 4);
 		board.addGameObject(new Prop("ClassChairBack"), 17, 4);
 		
 		board.addGameObject(new Prop("ClassTable"), 16, 7);
-		board.addGameObject(new Prop("ClassTable"), 16, 8);
+		board.addGameObject(new Prop("ImacTable"), 16, 8);
 		board.addGameObject(new Prop("ClassTable"), 17, 7);
-		board.addGameObject(new Prop("ClassTable"), 17, 8);
+		board.addGameObject(new Prop("ImacTable"), 17, 8);
 		board.addGameObject(new Prop("ClassChair"), 16, 6);
 		board.addGameObject(new Prop("ClassChair"), 17, 6);
 		board.addGameObject(new Prop("ClassChairBack"), 16, 9);
 		board.addGameObject(new Prop("ClassChairBack"), 17, 9);
 		
 		board.addGameObject(new Prop("ClassTable"), 20, 7);
-		board.addGameObject(new Prop("ClassTable"), 20, 8);
+		board.addGameObject(new Prop("ImacTable"), 20, 8);
 		board.addGameObject(new Prop("ClassTable"), 21, 7);
-		board.addGameObject(new Prop("ClassTable"), 21, 8);
+		board.addGameObject(new Prop("ImacTable"), 21, 8);
 		board.addGameObject(new Prop("ClassChair"), 20, 6);
 		board.addGameObject(new Prop("ClassChair"), 21, 6);
 		board.addGameObject(new Prop("ClassChairBack"), 20, 9);
