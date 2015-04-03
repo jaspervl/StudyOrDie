@@ -214,6 +214,7 @@ public class LevelLoader {
 			board.createWallHorizontal(6, 20, MAX_BOARD_HEIGHT);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(true,1), 14, MAX_BOARD_HEIGHT / 2);
+			createRightClassRoom();
 			break;
 		/** Case 11 is where the second floor starts */
 		case FIRST_FLOOR_1:
@@ -346,13 +347,13 @@ public class LevelLoader {
 
 		case THIRD_FLOOR_4:
 			if (model.getBoss("Evert").getAlive()) {
-				board.addGameObject(model.getBoss("Evert"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-1);
+				board.addGameObject(model.getBoss("Evert"), MAX_BOARD_WIDTH-3, 1);
 			}
 			
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
-			board.addGameObject(new Prop("TeacherDesk"), 20, 2);
+			createRightClassRoom();
 			break;
 
 		case FOURTH_FLOOR_1:
@@ -400,6 +401,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			placeKey(20,6,3);
+			createRightClassRoom();
 			break;
 		default:
 			break;
