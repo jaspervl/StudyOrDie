@@ -67,12 +67,12 @@ public class LevelLoader {
 	}
 
 	public void createBosses() {
-		model.addBoss("Ruud", 100, 1);
-		model.addBoss("Frank", 120, 2);
-		model.addBoss("Tristan", 130, 3);
-		model.addBoss("Evert", 140, 4);
+		model.addBoss("Frank", 100, 1);
+		model.addBoss("Tristan", 110, 2);
+		model.addBoss("Ruud", 120, 3);
+		model.addBoss("Evert", 130, 4);
 		model.addBoss("Syntaxis", 150, 5);
-		model.addBoss("Jan", 200, 6);
+		model.addBoss("Jan", 200, 5);
 	}
 	private void createBasicLevel(){
 		board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
@@ -152,7 +152,6 @@ public class LevelLoader {
 				board.addGameObject(avatar, 20, 5);
 			}
 			
-			
 		
 			/* Create all default objects */
 			board.addGameObject(new Door(), 8, MAX_BOARD_HEIGHT);
@@ -208,8 +207,8 @@ public class LevelLoader {
 			
 		case GROUND_LEVEL_4:
 
-			if (model.getBoss("Ruud").getAlive()) {
-				board.addGameObject(model.getBoss("Ruud"), MAX_BOARD_WIDTH-1, 5);
+			if (model.getBoss("Frank").getAlive()) {
+				board.addGameObject(model.getBoss("Frank"), MAX_BOARD_WIDTH-1, 5);
 			}
 			board.createWallHorizontal(6, 20, MAX_BOARD_HEIGHT);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
@@ -248,8 +247,8 @@ public class LevelLoader {
 			
 		case FIRST_FLOOR_4:
 			
-			if (model.getBoss("Frank").getAlive()) {
-				board.addGameObject(model.getBoss("Frank"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-1);
+			if (model.getBoss("Tristan").getAlive()) {
+				board.addGameObject(model.getBoss("Tristan"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-1);
 			}
 			board.addGameObject(new Door(), 13, 1);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT - 1, 0);
@@ -268,8 +267,8 @@ public class LevelLoader {
 
 		case SECOND_FLOOR_1:
 			
-			if (model.getBoss("Tristan").getAlive()) {
-				board.addGameObject(model.getBoss("Tristan"), MAX_BOARD_WIDTH-1, 1);
+			if (model.getBoss("Ruud").getAlive()) {
+				board.addGameObject(model.getBoss("Ruud"), MAX_BOARD_WIDTH-1, 1);
 			}
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
