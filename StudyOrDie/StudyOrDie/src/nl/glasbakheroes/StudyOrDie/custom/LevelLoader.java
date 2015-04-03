@@ -320,6 +320,7 @@ public class LevelLoader {
 		case THIRD_FLOOR_1:
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
+			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
 			placeKey(10, 14, 7);
 			createRightClassRoom();
 			break;
