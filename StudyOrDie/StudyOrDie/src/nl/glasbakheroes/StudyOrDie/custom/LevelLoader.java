@@ -326,7 +326,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(true, 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
-			placeKey(10, 14, 7);
+			placeKey(10, 10, 7);
 			createRightClassRoom();
 			break;
 
@@ -442,7 +442,7 @@ public class LevelLoader {
 		board.addGameObject(new Prop("ImacTable"), 17, 8);
 		board.addGameObject(new Prop("ClassChair"), 16, 6);
 		board.addGameObject(new Prop("ClassChair"), 17, 6);
-		board.addGameObject(new Prop("ClassChairBack"), 16, 9);
+		board.addGameObject(new Prop("ClassChairBack"), 16, 9); 
 		board.addGameObject(new Prop("ClassChairBack"), 17, 9);
 		
 		board.addGameObject(new Prop("ClassTable"), 20, 7);
