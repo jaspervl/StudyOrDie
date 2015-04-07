@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
+import nl.glasbakheroes.StudyOrDie.Objects.ItemWrap;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.activities.InformationActivity;
@@ -52,6 +53,7 @@ public class StudyOrDieModel extends Observable {
 	private String saveFileString = "";
 	private int selectedAvatarImage;
 	private int difficulty = 0;
+	private ArrayList<Item> lootableItems = new ArrayList<Item>();
 
 	private boolean[] storyLineShowed = { true, false, false, false, false };
 	private boolean[] levelOpened = { true, false, false, false, false };
@@ -64,6 +66,7 @@ public class StudyOrDieModel extends Observable {
 		fillItemList(); // Fills the item array
 		this.handler = new Handler();
 		this.timer.run();
+		createItems();
 	}
 
 	/** Return the avatar */
@@ -411,8 +414,11 @@ public class StudyOrDieModel extends Observable {
 						+ ":" + i.getEnergyModifier() + ":"
 						+ i.getMotivationModifier() + ":" + i.isConsumable()
 						+ ":" + i.getBuyCosts();
-			}
-			for (Boss b : bosses) {
+			} for (Item i : lootableItems) {
+				if (i.isLooted()) {
+					saveFileString += ":lootable:" + i.getName();
+				}
+			} for (Boss b : bosses) {
 				if (!b.getAlive()) {
 					Log.w("Model", "Adding " + b.getName() + " to dead bosses");
 					saveFileString += ":boss:" + b.getName();
@@ -543,6 +549,7 @@ public class StudyOrDieModel extends Observable {
 					int motMod = 0;
 					boolean consumable = false;
 					int costs = 0;
+					
 					if (scan.hasNextInt()) {
 						equip = scan.nextInt();
 					}
@@ -570,7 +577,16 @@ public class StudyOrDieModel extends Observable {
 					addItemToList(new Item(equip, itemName, description, hpMod,
 							eneMod, motMod, consumable, costs));
 					Log.w("Model", "Added item: " + itemName);
-				} else if (word.equals("boss")) {
+				} else if (word.equals("lootable")) {
+					if  (scan.hasNext()) {
+						String itemName = scan.next();
+						getLootableItem(itemName).setLooted(true);
+						Log.w("Model", "Lootable set as looted: " + itemName );
+					}
+				}
+				
+				
+				else if (word.equals("boss")) {
 					if (scan.hasNext()) {
 						String bossName = scan.next();
 						getBoss(bossName).killBoss();
@@ -702,4 +718,34 @@ public class StudyOrDieModel extends Observable {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
+
+	public ArrayList<Item> getLootableItems() {
+		return lootableItems;
+	}
+
+	public void addLootableItem(Item item) {
+		if (item == null) {
+			return;
+		}
+		for (Item i : lootableItems) {
+			if (i.getName().equals(item.getName())) {
+				return;
+			}
+		}
+		this.lootableItems.add(item);
+	}
+	
+	public Item getLootableItem(String name) {
+		for (Item i : lootableItems) {
+			if (i.getName().equals(name)) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	private void createItems() {
+		this.addLootableItem(new Item(2,"Excaliniet","Piece of junk",-5,-5,5,false,19));
+	}
+	
 }

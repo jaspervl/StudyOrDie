@@ -25,6 +25,7 @@ public class Item {
 	private boolean consumesOnUse;
 	private int buyCost;
 	private int sellCost;
+	private boolean looted = false;
 	
 	
 	/**
@@ -131,6 +132,12 @@ public class Item {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public boolean isLooted() {
+		return looted;
+	}
+	public void setLooted(boolean looted) {
+		this.looted = looted;
 	}
 
 }

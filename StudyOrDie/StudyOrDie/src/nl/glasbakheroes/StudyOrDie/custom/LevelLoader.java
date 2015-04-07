@@ -78,6 +78,7 @@ public class LevelLoader {
 		model.addBoss("Syntaxis", 150, 5);
 		model.addBoss("Jan", 200, 5);
 	}
+
 	private void createBasicLevel(){
 		board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 		board.createWallHorizontal(1, 10, 0);
@@ -181,7 +182,9 @@ public class LevelLoader {
 			ArrayList<Item> arrlist = new ArrayList<Item>();
 			arrlist.add(new Item(Item.HAND,"Excalibur","You are not prepared",5,3,4,false, 5));
 			board.addGameObject(new VendingMachine(arrlist), 11, 5);
-			board.addGameObject(new ItemWrap(new Item(2,"Excaliniet","Piece of junk",-5,-5,5,false,19)), 11, 7);
+		
+			placeLootableItem(12, 6, model.getLootableItem("Excaliniet"));
+			
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
 			board.addGameObject(new Door(), 9, 0);
@@ -494,6 +497,14 @@ public class LevelLoader {
 	public void placeKey(int x, int y, int keyType) {
 		if (!avatar.hasKey(keyType)) {
 			board.addGameObject(new Key(keyType), x, y);
+		}
+	}
+	
+	public void placeLootableItem(int x, int y, Item item) {
+		if (item != null) {
+			if (!item.isLooted()) {
+				board.addGameObject(new ItemWrap(item), x, y);
+			}
 		}
 	}
 }

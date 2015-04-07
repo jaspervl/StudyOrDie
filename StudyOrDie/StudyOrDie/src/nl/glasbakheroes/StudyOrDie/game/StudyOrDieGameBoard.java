@@ -306,18 +306,19 @@ public class StudyOrDieGameBoard extends GameBoard {
 				}
 				return false;
 
-				/** Elevator is present, go to the next/last major level */
+				/** Item present */
 			} else if(getObject(avatarNewX,avatarNewY) instanceof ItemWrap){
 				Item item = ((ItemWrap)getObject(avatarNewX,avatarNewY)).getItem();
 				model.addItemToList(item);
 				removeObject(getObject(avatarNewX,avatarNewY));
+				item.setLooted(true);
 				return false;
 				
 			}
+			
+			/** Vending machine present */
 			else if(getObject(avatarNewX,avatarNewY) instanceof VendingMachine){
 				
-						
-
 				final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 				final VendingMachine machine = ((VendingMachine)getObject(avatarNewX,avatarNewY));
 				builder.setTitle("VendingMachine");
@@ -392,7 +393,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				builder.show();
 				return false;
 				
-			}else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
+			} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
 				activity.disableMovement();
 				/* Selects the floor */ 
 				CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor", "Second floor",
