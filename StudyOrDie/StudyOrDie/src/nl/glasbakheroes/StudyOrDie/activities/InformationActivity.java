@@ -7,9 +7,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -69,6 +71,10 @@ public class InformationActivity extends Activity {
 		} else if (info.equals("Story")) {
 			
 			/* Re-arrange the interface */
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				    LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+				params.weight = 30f;
+				btnRestart.setLayoutParams(params);
 			btnRestart.setText("Skip");
 			tvScore.setTextSize(14);
 			tvScoreLabel.setVisibility(View.GONE);
