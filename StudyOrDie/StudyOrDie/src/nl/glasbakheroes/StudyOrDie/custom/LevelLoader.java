@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.ExifInterface;
 import android.util.Log;
+import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.ItemWrap;
@@ -18,6 +19,7 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieGameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
+import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
 
 /**
  * Level loader, class where all levels are saved at. Will be called by the
@@ -144,6 +146,14 @@ public class LevelLoader {
 			model.setStoryLineShowed(model.getLevel() / 10);
 		}
 		
+		switch(model.getLevel() / 10) {
+		case 0 : 	model.getActivity().getGameBoardView().setEmptyTile("empty_0"); break;
+		case 1 : 	model.getActivity().getGameBoardView().setEmptyTile("empty_1"); break;
+		case 2 : 	model.getActivity().getGameBoardView().setEmptyTile("empty_2"); break;
+		case 3 : 	model.getActivity().getGameBoardView().setEmptyTile("empty_3"); break;
+		case 4 : 	model.getActivity().getGameBoardView().setEmptyTile("empty_4"); break;
+		}
+		
 		switch (model.getLevel()) {
 		/** case 1 is where ground floor starts */
 		case GROUND_LEVEL_1:
@@ -230,6 +240,7 @@ public class LevelLoader {
 			break;
 		/** Case 11 is where the second floor starts */
 		case FIRST_FLOOR_1:
+			
 			board.createWallVertical(1, MAX_BOARD_HEIGHT, 0);
 			board.createWallVertical(1, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
@@ -254,6 +265,7 @@ public class LevelLoader {
 		case FIRST_FLOOR_3:
 			/* Create conditional objects */
 			/* Create all default objects */
+
 			if (spawnArea.equals("Elevator")) {
 				board.addGameObject(avatar, 7, 4);
 			}

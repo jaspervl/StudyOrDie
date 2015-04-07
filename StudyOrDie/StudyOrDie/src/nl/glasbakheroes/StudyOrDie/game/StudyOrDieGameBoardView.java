@@ -46,8 +46,11 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 
 				// Load the 'empty' cell bitmap and tell the tile view that this is the
 				// image to use for cells without GameObject
-				spriteCache.loadTile("empty", R.drawable.floortile_turqoise);
-				setEmptyTile("empty");
+				spriteCache.loadTile("empty_0", R.drawable.floortile_turqoise);
+				spriteCache.loadTile("empty_1", R.drawable.floortile_lightgreen);
+				spriteCache.loadTile("empty_2", R.drawable.floortile_orange);
+				spriteCache.loadTile("empty_3", R.drawable.floortile_turqoise);
+				spriteCache.loadTile("empty_4", R.drawable.floortile_red);
 				
 				spriteCache.loadTile(Wall.WALL_HORIZONTAL_IMAGE, R.drawable.wall_horizontal);
 				spriteCache.loadTile(Wall.WALL_VERTICAL_IMAGE, R.drawable.wall_vertical);
