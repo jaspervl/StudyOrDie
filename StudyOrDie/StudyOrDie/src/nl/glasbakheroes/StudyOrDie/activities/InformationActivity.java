@@ -79,8 +79,8 @@ public class InformationActivity extends Activity {
 					"Goedemorgen " +  model.getAvatar().getName() + ", je bent wakker geworden na een hoorcollege Creatief Probleem Oplossen." +
 					"Iedereen is al weg, en je hebt de helft van de uitleg gemist doordat je in slaap bent gevallen.\n" +
 					"Omdat je graag het tentamen wil halen, ga je op zoek naar Frank om meer uitleg te vragen.\n" +
-					"Het probleem is alleen dat er conciërges van het Saxion bezig zijn met het herinrichten van het gebouw," +
-					" daarbij kunnen ze geen studenten gebruiken. Ze proberen je dus constant weg te jagen. Versla de conciërges en vind Frank!\n" +
+					"Het probleem is alleen dat er concierges van het Saxion bezig zijn met het herinrichten van het gebouw," +
+					" daarbij kunnen ze geen studenten gebruiken. Ze proberen je dus constant weg te jagen. Versla de concierges en vind Frank!\n" +
 					"Gelukkig is de studiefinanciering vandaag weer binnen gekomen, en hebben ze een nieuwe automaat neergezet bij de infobalie. " +
 					"Hierin zitten voorwerpen die je kunnen helpen om wakker en gemotiveerd te blijven.\n" +
 					"Helaas zit de deur hiervoor op slot, zoek dus eerst de sleutel voor de deur. Veel succes!"); break;
@@ -91,13 +91,13 @@ public class InformationActivity extends Activity {
 					"Nu moet je dus een manier zoeken om er toch in te komen, en daarna sta je tegenover hem! " +
 					"We weten nog niet echt wat er gebeurt als je uiteindelijk tegenover Tristan staat, " +
 					"hij heeft er waarschijnlijk weinig zin in om je er nog aan mee te laten doen.\n" +
-					"Ondertussen zijn ook hier de conciërges bezig met hun werk, zorg dat je ze niet in de weg loopt! Veel succes!"); break;
+					"Ondertussen zijn ook hier de concierges bezig met hun werk, zorg dat je ze niet in de weg loopt! Veel succes!"); break;
 					
 				case 2: tvScore.setText(
 					"Je hebt een tussenuur en je komt er met de opdracht van Introductie Programmeren nog niet helemaal uit, " +
 					"je hebt hulp nodig.\n Hiervoor ga je Ruud opzoeken. Je hebt het net aan Tristan gevraagd, en hij zei dat Ruud " +
 					"zich ergens op de 2e verdieping bevindt.\n Het blijkt nog een aardige zoektocht te worden," +
-					" succes en pas wederom op voor de conciërges!"); break;
+					" succes en pas wederom op voor de concierges!"); break;
 					
 				case 3:	tvScore.setText(
 					"Ruud had blijkbaar geen tijd om je te helpen, maar hij vertelde je dat Evert een verdieping hoger zit " +
