@@ -94,26 +94,26 @@ public class InformationActivity extends Activity {
 					"Ondertussen zijn ook hier de conciërges bezig met hun werk, zorg dat je ze niet in de weg loopt! Veel succes!"); break;
 					
 				case 2: tvScore.setText(
-					"Je hebt een tussenuur en je komt er met de opdracht van Introductie Programmeren nog niet helemaal uit, \n" +
-					"je hebt hulp nodig. Hiervoor ga je Ruud opzoeken. Je hebt het net aan Tristan gevraagd, en hij zei dat Ruud \n" +
-					"zich ergens op de 2e verdieping bevindt. Het blijkt nog een aardige zoektocht te worden,\n" +
-					"succes en pas wederom op voor de conciërges!"); break;
+					"Je hebt een tussenuur en je komt er met de opdracht van Introductie Programmeren nog niet helemaal uit, " +
+					"je hebt hulp nodig.\n Hiervoor ga je Ruud opzoeken. Je hebt het net aan Tristan gevraagd, en hij zei dat Ruud " +
+					"zich ergens op de 2e verdieping bevindt.\n Het blijkt nog een aardige zoektocht te worden," +
+					" succes en pas wederom op voor de conciërges!"); break;
 					
 				case 3:	tvScore.setText(
-					"Ruud had blijkbaar geen tijd om je te helpen, maar hij vertelde je dat Evert een verdieping hoger zit \n" +
-					"en dat hij waarschijnlijk wel tijd heeft. Hij wist alleen niet precies waar. \n" +
-					"Omdat je er zelf echt niet uit komt en je toch graag de opdrachten af wil maken ga je maar weer op zoek, \n" +
-					"in de hoop dat Evert je wel kan helpen. Ondertussen ben je er eigenlijk ook wel een beetje klaar mee, \n" +
+					"Ruud had blijkbaar geen tijd om je te helpen, maar hij vertelde je dat Evert een verdieping hoger zit " +
+					"en dat hij waarschijnlijk wel tijd heeft.\n Hij wist alleen niet precies waar. \n" +
+					"Omdat je er zelf echt niet uit komt en je toch graag de opdrachten af wil maken ga je maar weer op zoek, " +
+					"in de hoop dat Evert je wel kan helpen.\n Ondertussen ben je er eigenlijk ook wel een beetje klaar mee, " +
 					"zodra je dit hebt gedaan wordt het tijd voor koffie!"); break;
 					
 				case 4:	tvScore.setText(
 					"Gelukkig, Evert heeft je geholpen en je kan weer verder met je programmeerwerk. \n" +
-					"Maar eerst is het tijd om even pauze te houden. Hier op de 4e verdieping zit studievereniging Syntaxis \n" +
-					"en omdat je lid bent mag je hier gratis koffie halen. Alleen wat blijkt nou, de voorzitter van Syntaxis \n" + 
+					"Maar eerst is het tijd om even pauze te houden. Hier op de 4e verdieping zit studievereniging Syntaxis " +
+					"en omdat je lid bent mag je hier gratis koffie halen.\n Alleen wat blijkt nou, de voorzitter van Syntaxis " + 
 					"heeft zichzelf opgesloten in het hok, waar ook de koffieautomaat staat. \n" +
 					"In de wandelgangen gaat het gerucht dat er ergens een reservesleutel verborgen is voor dit soort gevallen. \n" +
 					"Succes met zoeken. Misschien kan je dan de voorzitter ook nog overtuigen dat hij zich niet weer moet opsluiten. \n" +
-					"Ondertussen heb je ook te horen gekregen dat Jan je zoekt om nog een en ander over het project te bespreken \n" +
+					"Ondertussen heb je ook te horen gekregen dat Jan je zoekt om nog een en ander over het project te bespreken. \n" +
 					"Na de koffie ga je naar hem op zoek, waarschijnlijk zit hij in de docentenkamer. Schijnbaar heeft hij nog een leuk idee voor jullie project..."); break;
 			
 			} 
