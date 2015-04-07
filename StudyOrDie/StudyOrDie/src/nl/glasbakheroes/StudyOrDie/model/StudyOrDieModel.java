@@ -153,6 +153,22 @@ public class StudyOrDieModel extends Observable {
 		avatar.removeItem(item);
 		update();
 	}
+	
+	public CharSequence[] returnItemNames()
+	{
+		CharSequence[] items = new CharSequence[itemList.size()];
+		for(Item a : itemList)
+		{
+			String padding = "";
+			int i = 0;
+			while(i < (20 - a.getName().length())){
+				padding += " ";
+				i++;
+			}
+			items[itemList.indexOf(a)] = a.getName() + padding + a.getSellCosts();
+		}
+		return items;
+	}
 
 	/** Tell the observers that the data has changed */
 	public void update() {

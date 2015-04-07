@@ -11,10 +11,12 @@ import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
+import nl.glasbakheroes.StudyOrDie.Objects.VendingMachine;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.activities.CombatActivity;
 import nl.glasbakheroes.StudyOrDie.activities.CoreActivity;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
+import nl.glasbakheroes.StudyOrDie.custom.Item;
 import nl.glasbakheroes.StudyOrDie.custom.LevelLoader;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
@@ -136,19 +138,23 @@ public class StudyOrDieGameBoard extends GameBoard {
 			/* Move the avatar in a certain direction */
 			switch (direction) {
 			case UP:
-				moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() - 1);
+				moveObject(avatar, avatar.getPositionX(),
+						avatar.getPositionY() - 1);
 				model.addStep();
 				break;
 			case DOWN:
-				moveObject(avatar, avatar.getPositionX(), avatar.getPositionY() + 1);
+				moveObject(avatar, avatar.getPositionX(),
+						avatar.getPositionY() + 1);
 				model.addStep();
 				break;
 			case LEFT:
-				moveObject(avatar, avatar.getPositionX() - 1, avatar.getPositionY());
+				moveObject(avatar, avatar.getPositionX() - 1,
+						avatar.getPositionY());
 				model.addStep();
 				break;
 			case RIGHT:
-				moveObject(avatar, avatar.getPositionX() + 1, avatar.getPositionY());
+				moveObject(avatar, avatar.getPositionX() + 1,
+						avatar.getPositionY());
 				model.addStep();
 				break;
 			default:
@@ -159,12 +165,15 @@ public class StudyOrDieGameBoard extends GameBoard {
 				model.saveGame();
 				model.randomEncounterOccured();
 				/* Save the current location of the avatar in the level loader */
-				Log.w("Loader", "Last avatar position: " + model.getAvatar().getPositionX() + ", " + model.getAvatar().getPositionY());
+				Log.w("Loader", "Last avatar position: "
+						+ model.getAvatar().getPositionX() + ", "
+						+ model.getAvatar().getPositionY());
 				/* Create a new boss and fetch it from the model */
 				model.addBoss("Random", 100, 0);
 				Boss randomBoss = model.findRandomBoss();
 				/* Start new combat activity */
-				Intent randomCombatIntent = new Intent(activity, CombatActivity.class);
+				Intent randomCombatIntent = new Intent(activity,
+						CombatActivity.class);
 				randomCombatIntent.putExtra("bossName", randomBoss.getName());
 				activity.startActivity(randomCombatIntent);
 			}
@@ -190,7 +199,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			avatarNewY = avatar.getPositionY() - 1;
 			if (avatarNewY >= 0) {
 				/* Within playing field, inspect the new tile with inspectObject */
-				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
+				return inspectObject(avatar.getPositionX(), avatarNewY,
+						direction);
 			} else {
 				/* Edge of the screen, get items from next sublevel */
 				leverloader = model.getLoader();
@@ -203,7 +213,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			avatarNewY = avatar.getPositionY() + 1;
 			if (avatarNewY < getHeight()) {
 				/* Within playing field, inspect the new tile with inspectObject */
-				return inspectObject(avatar.getPositionX(), avatarNewY, direction);
+				return inspectObject(avatar.getPositionX(), avatarNewY,
+						direction);
 			} else {
 				/* Edge of the screen, get items from next sublevel */
 				leverloader = model.getLoader();
@@ -216,7 +227,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			avatarNewX = avatar.getPositionX() - 1;
 			if (avatarNewX >= 0) {
 				/* Within playing field, inspect the new tile with inspectObject */
-				return inspectObject(avatarNewX, avatar.getPositionY(), direction);
+				return inspectObject(avatarNewX, avatar.getPositionY(),
+						direction);
 			} else {
 				/*
 				 * Edge of the screen, level shift are only made on the top and
@@ -229,7 +241,8 @@ public class StudyOrDieGameBoard extends GameBoard {
 			avatarNewX = avatar.getPositionX() + 1;
 			if (avatarNewX < getWidth()) {
 				/* Within playing field, inspect the new tile with inspectObject */
-				return inspectObject(avatarNewX, avatar.getPositionY(), direction);
+				return inspectObject(avatarNewX, avatar.getPositionY(),
+						direction);
 			} else {
 				/*
 				 * Edge of the screen, level shift are only made on the top and
@@ -293,7 +306,85 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return false;
 
 				/** Elevator is present, go to the next/last major level */
-			} else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
+			} else if(getObject(avatarNewX,avatarNewY) instanceof VendingMachine){
+				
+						
+
+				final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+				final VendingMachine machine = ((VendingMachine)getObject(avatarNewX,avatarNewY));
+				builder.setTitle("VendingMachine");
+				builder.setCancelable(false);
+				builder.setItems(new CharSequence[]{"Sell","Buy"}, new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						if(which == 0)
+						{
+							AlertDialog.Builder builder2 = new AlertDialog.Builder(activity);
+							builder2.setTitle("Sell    Coins");
+							builder2.setPositiveButton("Back", new DialogInterface.OnClickListener() {
+						           public void onClick(DialogInterface dialog, int id) {
+						        	   builder.show();
+						           }
+						       });
+							builder2.setItems(model.returnItemNames(), new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int chosenItem) {
+									Item item = model.getItemList().get(chosenItem);
+									model.setBalance(model.getBalance() + item.getSellCosts());
+									machine.addShopItem(item);
+									model.removeItem(item);
+									builder.show();
+								}
+							});
+							builder2.show();
+							
+						}
+						else
+						{
+							AlertDialog.Builder builder2 = new AlertDialog.Builder(activity);
+							builder2.setTitle("Buy  			   Coins");
+							builder2.setPositiveButton("Back", new DialogInterface.OnClickListener() {
+						           public void onClick(DialogInterface dialog, int id) {
+						        	   builder.show();
+						           }
+						           
+						       });
+							builder2.setItems(machine.getShopList(), new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int chosenItem) {
+								
+									if(model.getBalance() > machine.getItem(chosenItem).getBuyCosts()){
+										model.addItemToList(machine.getItem(chosenItem));
+										model.setBalance(model.getBalance() - machine.getItem(chosenItem).getBuyCosts());
+										machine.deleteItem(chosenItem);
+										Toast.makeText(activity, "Item added!", Toast.LENGTH_SHORT).show();
+										builder.show();
+									}
+									else
+									{
+										Toast.makeText(activity, "Insufficient money", Toast.LENGTH_SHORT).show();
+										builder.show();
+									}
+									
+									
+									
+								}
+							});
+							builder2.show();
+						}
+						
+					}
+				});
+				  builder.setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   
+			           }
+			       });
+				builder.show();
+				return false;
+				
+			}else if (getObject(avatarNewX, avatarNewY) instanceof Elevator) {
 				activity.disableMovement();
 				/* Selects the floor */ 
 				CharSequence levels[] = new CharSequence[] { "Ground floor", "First floor", "Second floor",

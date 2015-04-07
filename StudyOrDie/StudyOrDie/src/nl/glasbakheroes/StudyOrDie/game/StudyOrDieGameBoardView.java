@@ -8,6 +8,7 @@ import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.Objects.Prop;
+import nl.glasbakheroes.StudyOrDie.Objects.VendingMachine;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
 import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import android.content.Context;
@@ -57,6 +58,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Door.DOOR_CLOSED_IMAGE, R.drawable.door_orange_south);
 				spriteCache.loadTile(Elevator.ELEVATOR_IMAGE, R.drawable.door_elevator_open);
 				spriteCache.loadTile(Key.KEY_IMAGE, R.drawable.prop_keycard_blue);
+				spriteCache.loadTile(VendingMachine.VENDING_IMAGE, R.drawable.vendingmachine);
 				
 				/* Props */
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY, R.drawable.prop_table_grey);

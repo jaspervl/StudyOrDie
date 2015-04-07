@@ -1,5 +1,7 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.media.ExifInterface;
@@ -8,6 +10,7 @@ import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
 import nl.glasbakheroes.StudyOrDie.Objects.Prop;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
+import nl.glasbakheroes.StudyOrDie.Objects.VendingMachine;
 import nl.glasbakheroes.StudyOrDie.activities.InformationActivity;
 import nl.glasbakheroes.StudyOrDie.activities.StartActivity;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
@@ -174,6 +177,9 @@ public class LevelLoader {
 			placeKey(10, 7, 7);
 			placeKey(10, 8, 8);
 			placeKey(10, 9, 9);
+			ArrayList<Item> arrlist = new ArrayList<Item>();
+			arrlist.add(new Item("Excalibur","You are not prepared",5,3,4,false, 5));
+			board.addGameObject(new VendingMachine(arrlist), 11, 5);
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
 			board.addGameObject(new Door(), 9, 0);

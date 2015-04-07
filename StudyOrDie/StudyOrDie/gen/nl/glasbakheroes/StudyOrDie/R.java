@@ -137,18 +137,19 @@ containing a value of this type.
         public static final int tristan_pothoven=0x7f020068;
         public static final int unfold_arrow=0x7f020069;
         public static final int van_galenstraat_background=0x7f02006a;
-        public static final int wall_corner_northeast=0x7f02006b;
-        public static final int wall_corner_northwest=0x7f02006c;
-        public static final int wall_corner_southeast=0x7f02006d;
-        public static final int wall_corner_southwest=0x7f02006e;
-        public static final int wall_end_east=0x7f02006f;
-        public static final int wall_end_north=0x7f020070;
-        public static final int wall_end_south=0x7f020071;
-        public static final int wall_end_west=0x7f020072;
-        public static final int wall_horizontal=0x7f020073;
-        public static final int wall_pillar=0x7f020074;
-        public static final int wall_vertical=0x7f020075;
-        public static final int wombat=0x7f020076;
+        public static final int vendingmachine=0x7f02006b;
+        public static final int wall_corner_northeast=0x7f02006c;
+        public static final int wall_corner_northwest=0x7f02006d;
+        public static final int wall_corner_southeast=0x7f02006e;
+        public static final int wall_corner_southwest=0x7f02006f;
+        public static final int wall_end_east=0x7f020070;
+        public static final int wall_end_north=0x7f020071;
+        public static final int wall_end_south=0x7f020072;
+        public static final int wall_end_west=0x7f020073;
+        public static final int wall_horizontal=0x7f020074;
+        public static final int wall_pillar=0x7f020075;
+        public static final int wall_vertical=0x7f020076;
+        public static final int wombat=0x7f020077;
     }
     public static final class id {
         public static final int GridLayout1=0x7f08002b;
