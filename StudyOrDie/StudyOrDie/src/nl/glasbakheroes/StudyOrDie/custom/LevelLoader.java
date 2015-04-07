@@ -8,6 +8,7 @@ import android.media.ExifInterface;
 import android.util.Log;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
+import nl.glasbakheroes.StudyOrDie.Objects.ItemWrap;
 import nl.glasbakheroes.StudyOrDie.Objects.Prop;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.Objects.VendingMachine;
@@ -178,8 +179,9 @@ public class LevelLoader {
 			placeKey(10, 8, 8);
 			placeKey(10, 9, 9);
 			ArrayList<Item> arrlist = new ArrayList<Item>();
-			arrlist.add(new Item("Excalibur","You are not prepared",5,3,4,false, 5));
+			arrlist.add(new Item(Item.HAND,"Excalibur","You are not prepared",5,3,4,false, 5));
 			board.addGameObject(new VendingMachine(arrlist), 11, 5);
+			board.addGameObject(new ItemWrap(new Item(2,"Excaliniet","Piece of junk",-5,-5,5,false,19)), 11, 7);
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
 			board.addGameObject(new Door(), 9, 0);

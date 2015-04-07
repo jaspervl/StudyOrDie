@@ -92,8 +92,8 @@ public class StudyOrDieModel extends Observable {
 	 * @param hitPoints
 	 *            The amount of hitpoints the boss starts with
 	 * @param level
-	 * 			  The major level this boss unlocks upon being beaten.
-	 */ 
+	 *            The major level this boss unlocks upon being beaten.
+	 */
 	public void addBoss(String name, int hitPoints, int level) {
 		if (!bossExcist(name)) {
 			bosses.add(new Boss(name, hitPoints, level, this));
@@ -107,7 +107,8 @@ public class StudyOrDieModel extends Observable {
 				return b;
 			}
 		}
-		Log.w("StudyOrDieModel.getBoss", "Boss not found, NullPointerException incoming");
+		Log.w("StudyOrDieModel.getBoss",
+				"Boss not found, NullPointerException incoming");
 		return null;
 	}
 
@@ -136,10 +137,13 @@ public class StudyOrDieModel extends Observable {
 	public void fillItemList() {
 
 		/* Add non-consumables / equipables */
-		addItemToList(new Item("Apply papers", "Welcome at Saxion.", 5, 5, 5, false, 10));
+		addItemToList(new Item(Item.HAND, "Apply papers", "Welcome at Saxion.",
+				5, 5, 5, false, 10));
 		/* Add consumables */
-		addItemToList(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50));
-		addItemToList(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));
+		addItemToList(new Item(Item.HAND, "Koffie",
+				"Take a sip and feel renewed!", 2, 20, 2, true, 50));
+		addItemToList(new Item(Item.HAND, "Chocolade",
+				"Keep it away from my apple", -30, 20, 2, true, 10));
 	}
 
 	/** Add a item to the avatar */
@@ -153,19 +157,18 @@ public class StudyOrDieModel extends Observable {
 		avatar.removeItem(item);
 		update();
 	}
-	
-	public CharSequence[] returnItemNames()
-	{
+
+	public CharSequence[] returnItemNames() {
 		CharSequence[] items = new CharSequence[itemList.size()];
-		for(Item a : itemList)
-		{
+		for (Item a : itemList) {
 			String padding = "";
 			int i = 0;
-			while(i < (20 - a.getName().length())){
+			while (i < (20 - a.getName().length())) {
 				padding += " ";
 				i++;
 			}
-			items[itemList.indexOf(a)] = a.getName() + padding + a.getSellCosts();
+			items[itemList.indexOf(a)] = a.getName() + padding
+					+ a.getSellCosts();
 		}
 		return items;
 	}
@@ -240,7 +243,8 @@ public class StudyOrDieModel extends Observable {
 	 * 0, GAME OVER and start from scratch
 	 */
 	private void exhaustCheck() {
-		if (avatar.getCurrentEnergy() <= 0 && avatar.getCurrentMotivation() <= 0) {
+		if (avatar.getCurrentEnergy() <= 0
+				&& avatar.getCurrentMotivation() <= 0) {
 			currentLevel = 1;
 			loader.loadLevel("Bottom");
 			String name = avatar.getName();
@@ -249,7 +253,8 @@ public class StudyOrDieModel extends Observable {
 			timerValue = 0;
 			avatar.setName(name);
 			avatar.resetStats();
-			Intent gameOverIntent = new Intent(activity, InformationActivity.class);
+			Intent gameOverIntent = new Intent(activity,
+					InformationActivity.class);
 			activity.startActivity(gameOverIntent);
 			update();
 		}
@@ -280,7 +285,8 @@ public class StudyOrDieModel extends Observable {
 	 * enter a fight raises exponential after more steps taken
 	 */
 	public boolean fightRandomBoss() {
-		double chance = Math.pow(((double) (totalSteps - lastRandomBossStep) / 70), 4);
+		double chance = Math.pow(
+				((double) (totalSteps - lastRandomBossStep) / 70), 4);
 		if (Math.random() < chance) {
 			return false; // Set to false to disable random boss
 		}
@@ -308,7 +314,7 @@ public class StudyOrDieModel extends Observable {
 	 * Called from StudyOrDieGame constructor
 	 */
 	public void gameHasBeenInitialized(boolean gameInitialized) {
-		Log.w("Model", "Game has been initialized: " + gameInitialized); 
+		Log.w("Model", "Game has been initialized: " + gameInitialized);
 		this.gameInitialized = gameInitialized;
 	}
 
@@ -317,7 +323,7 @@ public class StudyOrDieModel extends Observable {
 	 * constructor
 	 */
 	public boolean isGameInitialized() {
-		return gameInitialized; 
+		return gameInitialized;
 	}
 
 	/** Get the location of the avatar where he was before a fight occurred */
@@ -376,41 +382,43 @@ public class StudyOrDieModel extends Observable {
 
 	public int getBalance() {
 		return currencyBalance;
-	} 
+	}
 
 	public void saveGame() {
 		setSavedLocation(avatar.getPositionX(), avatar.getPositionY());
 		Log.w("Model", "Saving the game");
 		String filename = "sod_save_game.txt";
 		try {
-		
-			FileOutputStream fileOutput = new FileOutputStream(new File(activity.getApplicationContext().getFilesDir(),
-					filename), false);
+
+			FileOutputStream fileOutput = new FileOutputStream(new File(
+					activity.getApplicationContext().getFilesDir(), filename),
+					false);
 			OutputStreamWriter outputWriter = new OutputStreamWriter(fileOutput);
 
-			saveFileString = 	"picture:" + selectedAvatarImage
-								+ ":location:" + savedAvatarLocation[0] + ":" + savedAvatarLocation[1]
-								+ ":timer:" + timerValue
-								+ ":steps:" + totalSteps
-								+ ":level:" + currentLevel
-								+ ":balance:" + currencyBalance
-								+ ":name:" + avatar.getName()
-								+ ":score:" + score
-								+ ":hp:" + avatar.getCurrentHP()
-								+ ":energy:" + avatar.getCurrentEnergy()
-								+ ":motivation:" + avatar.getCurrentMotivation()
-								+ ":difficulty:" + getDifficulty();
-			
+			saveFileString = "picture:" + selectedAvatarImage + ":location:"
+					+ savedAvatarLocation[0] + ":" + savedAvatarLocation[1]
+					+ ":timer:" + timerValue + ":steps:" + totalSteps
+					+ ":level:" + currentLevel + ":balance:" + currencyBalance
+					+ ":name:" + avatar.getName() + ":score:" + score + ":hp:"
+					+ avatar.getCurrentHP() + ":energy:"
+					+ avatar.getCurrentEnergy() + ":motivation:"
+					+ avatar.getCurrentMotivation() + ":difficulty:"
+					+ getDifficulty();
+
 			for (Item i : itemList) {
-				saveFileString += ":item:" + i.getName() + ":" + i.getDescription() + ":" + i.getHpModifier() + ":" + i.getEnergyModifier() + ":" + i.getMotivationModifier() + ":" + i.isConsumable() + ":" + i.getBuyCosts();
+				saveFileString += ":item:" + i.getType() + ":" + i.getName()
+						+ ":" + i.getDescription() + ":" + i.getHpModifier()
+						+ ":" + i.getEnergyModifier() + ":"
+						+ i.getMotivationModifier() + ":" + i.isConsumable()
+						+ ":" + i.getBuyCosts();
 			}
 			for (Boss b : bosses) {
 				if (!b.getAlive()) {
 					Log.w("Model", "Adding " + b.getName() + " to dead bosses");
 					saveFileString += ":boss:" + b.getName();
 				}
-			} 
-			for (int i = 0 ; i < levelOpened.length ; i++) {
+			}
+			for (int i = 0; i < levelOpened.length; i++) {
 				if (levelOpened[i]) {
 					saveFileString += ":floor:" + i;
 				}
@@ -418,25 +426,25 @@ public class StudyOrDieModel extends Observable {
 			for (Key k : avatar.getKeys()) {
 				saveFileString += ":key:" + k.getType();
 			}
-			for (int i = 0 ; i < storyLineShowed.length ; i++) {
+			for (int i = 0; i < storyLineShowed.length; i++) {
 				if (storyLineShowed[i]) {
 					saveFileString += ":story:" + i;
 				}
 			}
 
-			// Write the string to the file 
+			// Write the string to the file
 			outputWriter.write(saveFileString);
 
 			/*
 			 * ensure that everything is really written out and close
 			 */
 			Log.w("Model", "Saving was a success");
-			outputWriter.close(); 
- 
+			outputWriter.close();
+
 		} catch (IOException e) {
 			Log.w("Model", "Saving failed");
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	public boolean loadGame() {
@@ -450,7 +458,8 @@ public class StudyOrDieModel extends Observable {
 
 		FileInputStream fIn;
 		try {
-			fIn = new FileInputStream(new File(activity.getApplicationContext().getFilesDir(), filename));
+			fIn = new FileInputStream(new File(activity.getApplicationContext()
+					.getFilesDir(), filename));
 
 			Scanner scan = new Scanner(fIn);
 			if (!scan.hasNext()) {
@@ -461,19 +470,20 @@ public class StudyOrDieModel extends Observable {
 			scan.useDelimiter(":");
 			while (scan.hasNext()) {
 				String word = scan.next();
-				
+
 				if (word.equals("difficulty")) {
 					if (scan.hasNextInt()) {
 						difficulty = scan.nextInt();
 						Log.w("Model", "Set difficulty to: " + difficulty);
 						loader.createBosses();
 					}
-				} else if (word.equals("picture")) { 
+				} else if (word.equals("picture")) {
 					if (scan.hasNextInt()) {
 						selectedAvatarImage = scan.nextInt();
 						avatar.setAvatarImages(selectedAvatarImage);
-						Log.w("Model", "Selected avatar: " + selectedAvatarImage);
-					} 
+						Log.w("Model", "Selected avatar: "
+								+ selectedAvatarImage);
+					}
 				} else if (word.equals("location")) {
 					if (scan.hasNextInt()) {
 						int xPos = scan.nextInt();
@@ -481,7 +491,7 @@ public class StudyOrDieModel extends Observable {
 							xPos = 10;
 						}
 						if (scan.hasNextInt()) {
-							int yPos = scan.nextInt();	
+							int yPos = scan.nextInt();
 							if (yPos == 0) {
 								yPos = 5;
 							}
@@ -489,8 +499,10 @@ public class StudyOrDieModel extends Observable {
 							savedAvatarLocation[0] = xPos;
 							savedAvatarLocation[1] = yPos;
 						}
-						Log.w("Model", "saved location: " + savedAvatarLocation[0] + ", " + savedAvatarLocation[1]);
-					} 
+						Log.w("Model", "saved location: "
+								+ savedAvatarLocation[0] + ", "
+								+ savedAvatarLocation[1]);
+					}
 				} else if (word.equals("timer")) {
 					if (scan.hasNextInt()) {
 						timerValue = scan.nextInt();
@@ -512,7 +524,7 @@ public class StudyOrDieModel extends Observable {
 						currencyBalance = scan.nextInt();
 						Log.w("Model", "Current balance: " + currencyBalance);
 					}
-				} else if (word.equals("name")) { 
+				} else if (word.equals("name")) {
 					if (scan.hasNext()) {
 						avatar.setName(scan.next());
 						Log.w("Model", "Avatar name: " + avatar.getName());
@@ -521,8 +533,9 @@ public class StudyOrDieModel extends Observable {
 					if (scan.hasNextInt()) {
 						score = scan.nextInt();
 						Log.w("Model", "Set score to: " + score);
-					}		
+					}
 				} else if (word.equals("item")) {
+					int equip = 0;
 					String itemName = "";
 					String description = "";
 					int hpMod = 0;
@@ -530,26 +543,35 @@ public class StudyOrDieModel extends Observable {
 					int motMod = 0;
 					boolean consumable = false;
 					int costs = 0;
-					
+					if (scan.hasNextInt()) {
+						equip = scan.nextInt();
+					}
 					if (scan.hasNext()) {
 						itemName = scan.next();
-					} if (scan.hasNext()) {
+					}
+					if (scan.hasNext()) {
 						description = scan.next();
-					} if (scan.hasNextInt()) {
+					}
+					if (scan.hasNextInt()) {
 						hpMod = scan.nextInt();
-					} if (scan.hasNextInt()) {
+					}
+					if (scan.hasNextInt()) {
 						eneMod = scan.nextInt();
-					} if (scan.hasNextInt()) {
+					}
+					if (scan.hasNextInt()) {
 						motMod = scan.nextInt();
-					} if (scan.hasNextBoolean()) {
+					}
+					if (scan.hasNextBoolean()) {
 						consumable = scan.nextBoolean();
-					} if (scan.hasNextInt()) {
+					}
+					if (scan.hasNextInt()) {
 						costs = scan.nextInt();
 					}
-					addItemToList(new Item(itemName, description, hpMod, eneMod, motMod, consumable, costs));
+					addItemToList(new Item(equip, itemName, description, hpMod,
+							eneMod, motMod, consumable, costs));
 					Log.w("Model", "Added item: " + itemName);
 				} else if (word.equals("boss")) {
-					if (scan.hasNext()) { 
+					if (scan.hasNext()) {
 						String bossName = scan.next();
 						getBoss(bossName).killBoss();
 						Log.w("Model", "Boss dead: " + bossName);
@@ -557,7 +579,7 @@ public class StudyOrDieModel extends Observable {
 				} else if (word.equals("floor")) {
 					if (scan.hasNextInt()) {
 						int floor = scan.nextInt();
-						openLevel(floor); 
+						openLevel(floor);
 						Log.w("Model", "Floor opened: " + floor);
 					}
 				} else if (word.equals("key")) {
@@ -576,19 +598,22 @@ public class StudyOrDieModel extends Observable {
 					if (scan.hasNextInt()) {
 						int currentEnergy = scan.nextInt();
 						avatar.setCurrentEnergy(currentEnergy);
-						Log.w("Model", "Set current energy to: " + currentEnergy);
+						Log.w("Model", "Set current energy to: "
+								+ currentEnergy);
 					}
 				} else if (word.equals("motivation")) {
 					if (scan.hasNextInt()) {
 						int currentMotivation = scan.nextInt();
 						avatar.setCurrentMotivation(currentMotivation);
-						Log.w("Model", "Set current Motivation to: " + currentMotivation);
+						Log.w("Model", "Set current Motivation to: "
+								+ currentMotivation);
 					}
 				} else if (word.equals("story")) {
 					if (scan.hasNextInt()) {
 						int floor = scan.nextInt();
 						storyLineShowed[floor] = true;
-						Log.w("Model", "Noted floor " + floor + " as story line showed already");
+						Log.w("Model", "Noted floor " + floor
+								+ " as story line showed already");
 					}
 				}
 			}
@@ -596,7 +621,7 @@ public class StudyOrDieModel extends Observable {
 			loader.loadLevel("savedLocation");
 			scan.close();
 			succes = true;
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -607,20 +632,46 @@ public class StudyOrDieModel extends Observable {
 	public void setSelectedImage(int imageId) {
 		this.selectedAvatarImage = imageId;
 	}
-	
+
 	/** Add random consumable to avatar inventory, called after winning a fight */
 	public void addRandomItem() {
 		String title = "";
-		switch ( (int) ( Math.random() * 6 + 1)) {
-			case 1: addItemToList(new Item("Koffie", "Take a sip and feel renewed!", 2, 20, 2, true, 50)); 			title = "Koffie"; break; 
-			case 2:	addItemToList(new Item("Energydrink", "Woah this seems very powerful!", 0, 15, -5, true, 30));	title = "Energydrink"; break; 
-			case 3:	addItemToList(new Item("Bier", "Keep the spirits high.", -5, 5, 15, true, 30));					title = "Bier"; break;
-			case 4:	addItemToList(new Item("Chocolade", "Keep it away from my apple", -30, 20, 2, true, 10));		title = "Chocolade"; break;
-			case 5:	addItemToList(new Item("Kipburger", "3x beter dan hamburger", -5, 100, 100, true, 100));			title = "Kipburger"; break;
-			case 6:	addItemToList(new Item("Pepsi", "Feel the taste.", 10, 10, 10, true, 40));						title = "Pepsi"; break;
-			default : Log.w("Model", "Random item has not been added, error");
+		switch ((int) (Math.random() * 6 + 1)) {
+		case 1:
+			addItemToList(new Item(Item.HAND,"Koffie", "Take a sip and feel renewed!", 2,
+					20, 2, true, 50));
+			title = "Koffie";
+			break;
+		case 2:
+			addItemToList(new Item(Item.HAND,"Energydrink",
+					"Woah this seems very powerful!", 0, 15, -5, true, 30));
+			title = "Energydrink";
+			break;
+		case 3:
+			addItemToList(new Item(Item.HAND,"Bier", "Keep the spirits high.", -5, 5, 15,
+					true, 30));
+			title = "Bier";
+			break;
+		case 4:
+			addItemToList(new Item(Item.HAND,"Chocolade", "Keep it away from my apple",
+					-30, 20, 2, true, 10));
+			title = "Chocolade";
+			break;
+		case 5:
+			addItemToList(new Item(Item.HAND,"Kipburger", "3x beter dan hamburger", -5,
+					100, 100, true, 100));
+			title = "Kipburger";
+			break;
+		case 6:
+			addItemToList(new Item(Item.HAND,"Pepsi", "Feel the taste.", 10, 10, 10,
+					true, 40));
+			title = "Pepsi";
+			break;
+		default:
+			Log.w("Model", "Random item has not been added, error");
 		}
-		Toast.makeText(getActivity(), "Check your inventory!", Toast.LENGTH_SHORT).show();
+		Toast.makeText(getActivity(), "Check your inventory!",
+				Toast.LENGTH_SHORT).show();
 	}
 
 	/** Check if item doesn't already exist in list and add it */

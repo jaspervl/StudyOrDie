@@ -6,6 +6,7 @@ import nl.glasbakheroes.StudyOrDie.view.SpriteCache;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
+import nl.glasbakheroes.StudyOrDie.Objects.ItemWrap;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.Objects.Prop;
 import nl.glasbakheroes.StudyOrDie.Objects.VendingMachine;
@@ -59,6 +60,12 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Elevator.ELEVATOR_IMAGE, R.drawable.door_elevator_open);
 				spriteCache.loadTile(Key.KEY_IMAGE, R.drawable.prop_keycard_blue);
 				spriteCache.loadTile(VendingMachine.VENDING_IMAGE, R.drawable.vendingmachine);
+				
+				spriteCache.loadTile(ItemWrap.HEAD_IMAGE, R.drawable.helm);
+				spriteCache.loadTile(ItemWrap.HAND_IMAGE, R.drawable.sword);
+				spriteCache.loadTile(ItemWrap.BODY_IMAGE, R.drawable.armor);
+				spriteCache.loadTile(ItemWrap.LEGS_IMAGE, R.drawable.legs);
+				spriteCache.loadTile(ItemWrap.FEET_IMAGE, R.drawable.feet);
 				
 				/* Props */
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY, R.drawable.prop_table_grey);

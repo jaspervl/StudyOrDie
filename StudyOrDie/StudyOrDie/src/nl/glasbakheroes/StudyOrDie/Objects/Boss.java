@@ -140,34 +140,34 @@ public class Boss extends GameObject{
 			specialAttackName = "Terminating your terminal";
 			specialAttackDamage = 20;
 			weakness = "Skip class";
-			specialItem = new Item("Tristans terminal", "You didnt practice enough.", 3, 30, -10, false, 70);
+			specialItem = new Item(Item.HAND,"Tristans terminal", "You didnt practice enough.", 3, 30, -10, false, 70);
 		} else if (name.equals("Ruud")) {
 			specialAttackName = "Data loss";
 			specialAttackDamage = 25;
 			weakness = "Apple talk";
-			specialItem = new Item("Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false, 60);
+			specialItem = new Item(Item.HAND,"Ruuds Iphone", "Feel the power of the crapple!", 15, 5, 5, false, 60);
 		} else if (name.equals("Frank")) {
 			specialAttackName = "Hard question";
 			specialAttackDamage = 30;
 			weakness = "Hard question";
-			specialItem = new Item("CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false, 40);
+			specialItem = new Item(Item.HAND,"CPO Book", "You feel yourself becoming very creative.", 25, -10, -20, false, 40);
 		} else if (name.equals("Evert")) {
 			specialAttackName = "More exercises";
 			specialAttackDamage = 35;
 			weakness = "Throw exception";
-			specialItem = new Item("Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false, 50);
+			specialItem = new Item(Item.HAND,"Big Java Book", "The power is in the reading between the lines.", 30, -10, -10, false, 50);
 		} else if (name.equals("Syntaxis")) {
 			specialAttackName = "Monthly bill";
 			specialAttackDamage = 40;
 			weakness = "None";
-			specialItem = new Item("Spiekbriefje", "Take a peek.", 5, 10, 0, false, 10);
+			specialItem = new Item(Item.HAND,"Spiekbriefje", "Take a peek.", 5, 10, 0, false, 10);
 		} else if (name.equals("Jan")) {
 			specialAttackName = "Supply more documents!";
 			specialAttackDamage = 50;
 			weakness = "None";
-			specialItem = new Item("Highscore", "Brag to your friends!", 100, 100, 100, false, 500);
+			specialItem = new Item(Item.HEAD,"Highscore", "Brag to your friends!", 100, 100, 100, false, 500);
 		} else {
-			specialItem = new Item("Broom", "Clean your dorm room!", 10, -5, -5, false, 20);
+			specialItem = new Item(Item.HAND,"Broom", "Clean your dorm room!", 10, -5, -5, false, 20);
 		}
 	}
 

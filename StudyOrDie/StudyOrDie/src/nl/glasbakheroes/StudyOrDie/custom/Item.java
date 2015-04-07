@@ -4,17 +4,18 @@ package nl.glasbakheroes.StudyOrDie.custom;
  * 
  * @author Jasper
  * 
- * Construct a Item.
- * @param name	The name of the item.
- * @param description			The description of the item.
- * @param hpModifier			The amount of HP the item adds or substracts if negative	
- * @param energyMotifier		The amount of energy the item adds or substracts if negative	
- * @param motivationModifier 	The amount of HP motivation item adds or substracts if negative	
- * @param consumesOnUse			True if the item is a consumable, false if not.
- * @param costs					The price this item will cost at a vending machine.
+ * Our item class which contains information for the items the avatar can wield and use.
  */
 
 public class Item {
+	// Indicate position of equipment slot
+	public static final int HEAD = 1;
+	public static final int HAND = 2;
+	public static final int BODY = 3;
+	public static final int LEGS = 4;
+	public static final int FEET = 5;
+	
+	private int type;
 	private String name;
 	private String description;
 	private int hpModifier;
@@ -25,7 +26,26 @@ public class Item {
 	private int buyCost;
 	private int sellCost;
 	
-	public Item(String name, String description, int hpModifier, int energyModifier, int motivationModifier, boolean consumesOnUse, int costs) {
+	
+	/**
+	 * 
+	 * Construct a Item.
+	 * @param type 					The type of item. This determines which slot the item will be equipped in.
+	 * @param name					The display name of the item.
+	 * @param description			The description of the item.
+	 * @param hpModifier			The amount of HP the item adds or substracts if negative	
+	 * @param energyMotifier		The amount of energy the item adds or substracts if negative	
+	 * @param motivationModifier 	The amount of HP motivation item adds or substracts if negative	
+	 * @param consumesOnUse			True if the item is a consumable, false if not.
+	 * @param costs					The price this item will cost at a vending machine.
+	 */
+	public Item(int type,String name, String description, int hpModifier, int energyModifier, int motivationModifier, boolean consumesOnUse, int costs) {
+		if(type == 1){
+			type = 1;
+		}else if(type > 5){
+			type = 5;
+		}
+		this.type = type;
 		this.name = name;
 		this.description = description;
 		this.hpModifier = hpModifier;
@@ -105,6 +125,12 @@ public class Item {
 	
 	public int getSellCosts() {
 		return sellCost;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 
 }

@@ -10,6 +10,7 @@ import nl.glasbakheroes.StudyOrDie.R;
 import nl.glasbakheroes.StudyOrDie.Objects.Boss;
 import nl.glasbakheroes.StudyOrDie.Objects.Door;
 import nl.glasbakheroes.StudyOrDie.Objects.Elevator;
+import nl.glasbakheroes.StudyOrDie.Objects.ItemWrap;
 import nl.glasbakheroes.StudyOrDie.Objects.Key;
 import nl.glasbakheroes.StudyOrDie.Objects.VendingMachine;
 import nl.glasbakheroes.StudyOrDie.Objects.Wall;
@@ -306,7 +307,14 @@ public class StudyOrDieGameBoard extends GameBoard {
 				return false;
 
 				/** Elevator is present, go to the next/last major level */
-			} else if(getObject(avatarNewX,avatarNewY) instanceof VendingMachine){
+			} else if(getObject(avatarNewX,avatarNewY) instanceof ItemWrap){
+				Item item = ((ItemWrap)getObject(avatarNewX,avatarNewY)).getItem();
+				model.addItemToList(item);
+				removeObject(getObject(avatarNewX,avatarNewY));
+				return false;
+				
+			}
+			else if(getObject(avatarNewX,avatarNewY) instanceof VendingMachine){
 				
 						
 
