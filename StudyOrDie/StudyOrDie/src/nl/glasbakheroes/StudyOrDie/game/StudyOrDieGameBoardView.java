@@ -62,7 +62,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Door.DOOR_CLOSED_IMAGE, R.drawable.door_orange_south);
 				spriteCache.loadTile(Elevator.ELEVATOR_IMAGE, R.drawable.door_elevator_open);
 				spriteCache.loadTile(Key.KEY_IMAGE, R.drawable.prop_keycard_blue);
-				spriteCache.loadTile(VendingMachine.VENDING_IMAGE, R.drawable.vendingmachine);
+				spriteCache.loadTile(VendingMachine.VENDING_IMAGE, R.drawable.prop_vendingmachine);
 				
 				spriteCache.loadTile(ItemWrap.HEAD_IMAGE, R.drawable.helm);
 				spriteCache.loadTile(ItemWrap.HAND_IMAGE, R.drawable.sword);
@@ -73,16 +73,40 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				/* Props */
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY, R.drawable.prop_table_grey);
 				spriteCache.loadTile(Prop.PROP_TABLE_GREY_IMAC, R.drawable.prop_table_grey_imac);
-				spriteCache.loadTile(Prop.PROP_CHAIR_GREEN, R.drawable.prop_chair_green);
-				spriteCache.loadTile(Prop.PROP_TABLE_CANTINE, R.drawable.prop_table_cantine);
-				spriteCache.loadTile(Prop.PROP_COLLEGE_SEAT, R.drawable.prop_college_seat);
-				spriteCache.loadTile(Prop.PROP_SPEECH, R.drawable.prop_college_speech);
-				spriteCache.loadTile(Prop.PROP_TEACHER_DESK, R.drawable.prop_teacher_desk);
-				spriteCache.loadTile(Prop.PROP_CLASS_CHAIR, R.drawable.prop_class_chair);
-				spriteCache.loadTile(Prop.PROP_CLASS_CHAIR_BACK, R.drawable.prop_class_chair_back);
-				spriteCache.loadTile(Prop.PROP_CLASS_TABLE, R.drawable.prop_class_table);
-				spriteCache.loadTile(Prop.PROP_BENCH, R.drawable.prop_bench);
+				spriteCache.loadTile(Prop.PROP_TABLE_GREY_LEFT, R.drawable.prop_table_grey_left);
+				spriteCache.loadTile(Prop.PROP_TABLE_GREY_RIGHT, R.drawable.prop_table_grey_right);
+				spriteCache.loadTile(Prop.PROP_TABLE_GREY_LAPTOPBACK, R.drawable.prop_table_grey_laptopback);
+				spriteCache.loadTile(Prop.PROP_TABLE_GREY_LAPTOPFRONT, R.drawable.prop_table_grey_laptopfront);
+				spriteCache.loadTile(Prop.PROP_TABLE_GREY_BOOKPENCIL, R.drawable.prop_table_grey_bookpencil);
+				
+				spriteCache.loadTile(Prop.PROP_TABLE_BROWN, R.drawable.prop_table_brown);
+				spriteCache.loadTile(Prop.PROP_TABLE_BROWN_LEFT, R.drawable.prop_table_brown_left);
+				spriteCache.loadTile(Prop.PROP_TABLE_BROWN_LEFT_LAPTOP, R.drawable.prop_table_brown_left_laptop);
+				spriteCache.loadTile(Prop.PROP_TABLE_BROWN_RIGHT, R.drawable.prop_table_brown_right);
+				spriteCache.loadTile(Prop.PROP_TABLE_BROWN_RIGHT_BOOKPENCIL, R.drawable.prop_table_brown_right_bookpencil);
+				spriteCache.loadTile(Prop.PROP_TABLE_BROWN_RIGHT_LAPTOPBACK, R.drawable.prop_table_brown_right_laptopback);
+
 				spriteCache.loadTile(Prop.PROP_FURNACE, R.drawable.prop_furnace);
+				spriteCache.loadTile(Prop.PROP_TABLE_CANTINE, R.drawable.prop_lunchtable);
+				spriteCache.loadTile(Prop.PROP_TABLE_CANTINE_BURGER, R.drawable.prop_lunchtable_burger);
+				spriteCache.loadTile(Prop.PROP_BENCH_LUNCHTABLE, R.drawable.prop_bench_lunchtable_double);
+				spriteCache.loadTile(Prop.PROP_BENCH_LUNCHTABLE_BOTTOM, R.drawable.prop_bench_lunchtable_bottom);
+				spriteCache.loadTile(Prop.PROP_BENCH_LUNCHTABLE_TOP, R.drawable.prop_bench_lunchtable_top);
+				
+				spriteCache.loadTile(Prop.PROP_COLLEGE_SEAT, R.drawable.prop_college_seat);
+				spriteCache.loadTile(Prop.PROP_SPEECH, R.drawable.prop_spreekstoel);
+				spriteCache.loadTile(Prop.PROP_TEACHER_DESK, R.drawable.prop_teacher_desk);
+				spriteCache.loadTile(Prop.PROP_CLASS_CHAIR, R.drawable.prop_chair_desk_front);
+				spriteCache.loadTile(Prop.PROP_CLASS_CHAIR_BACK, R.drawable.prop_chair_desk_back);
+				spriteCache.loadTile(Prop.PROP_CLASS_TABLE, R.drawable.prop_table_grey);
+				
+				spriteCache.loadTile(Prop.PROP_CHAIR_GREEN, R.drawable.prop_chair_green);
+				spriteCache.loadTile(Prop.PROP_BENCH, R.drawable.prop_bench_green_left);
+				spriteCache.loadTile(Prop.PROP_BENCH_RIGHT, R.drawable.prop_bench_green_right);
+				spriteCache.loadTile(Prop.PROP_PLANT1, R.drawable.prop_plant1);
+				spriteCache.loadTile(Prop.PROP_PLANT2, R.drawable.prop_plant2);
+
+				
 				
 				
 				/* Bosses */
