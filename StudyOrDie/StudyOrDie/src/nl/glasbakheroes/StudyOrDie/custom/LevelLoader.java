@@ -189,9 +189,6 @@ public class LevelLoader {
 			placeKey(10, 7, 7);
 			placeKey(10, 8, 8);
 			placeKey(10, 9, 9);
-			ArrayList<Item> arrlist = new ArrayList<Item>();
-			arrlist.add(new Item(Item.HAND,"Excalibur","You are not prepared",5,3,4,false, 5));
-			board.addGameObject(new VendingMachine(arrlist), 11, 5);
 		
 			placeLootableItem(12, 6, model.getLootableItem("Excaliniet"));
 			

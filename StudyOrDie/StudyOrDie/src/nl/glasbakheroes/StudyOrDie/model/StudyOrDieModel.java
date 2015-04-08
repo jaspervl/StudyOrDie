@@ -745,7 +745,7 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	private void createItems() {
-		this.addLootableItem(new Item(2,"Excaliniet","Piece of junk",-5,-5,5,false,19));
+		this.addLootableItem(new Item(Item.BODY,"Excaliniet","Piece of junk",-5,-5,5,false,19));
 	}
 	
 }

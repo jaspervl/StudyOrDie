@@ -137,6 +137,7 @@ public class CombatActivity extends Activity implements Observer {
 					Intent gameFinishIntent = new Intent(CombatActivity.this, InformationActivity.class);
 					gameFinishIntent.putExtra("info", "win");
 					startActivity(gameFinishIntent);
+					model.getLoader().loadLevel("savedLocation");
 				}
 				finish();
 			}
