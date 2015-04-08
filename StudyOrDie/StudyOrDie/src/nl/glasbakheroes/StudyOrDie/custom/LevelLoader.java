@@ -180,6 +180,9 @@ public class LevelLoader {
 		case GROUND_LEVEL_2:
 		
 			placeLootableItem(12, 6, model.getLootableItem("Excaliniet"));
+			board.addGameObject(new Prop("Plant1"), 7, 10);
+			board.addGameObject(new Prop("Plant1"), 14, 10);
+
 			
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
@@ -211,7 +214,9 @@ public class LevelLoader {
 			board.createWallHorizontal(16, MAX_BOARD_WIDTH, MAX_BOARD_HEIGHT);
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
 			createBenches(8);
-			
+			board.addGameObject(new Prop("Plant2"), 8, 6);
+			board.addGameObject(new Prop("Plant2"), 22, 6);
+
 			break;
 			
 		case GROUND_LEVEL_4:
@@ -224,6 +229,9 @@ public class LevelLoader {
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(1), 14, MAX_BOARD_HEIGHT / 2);
 			createRightClassRoom();
 			placeKey(1, 5, 1);
+			board.addGameObject(new Prop("Plant1"), 8, 1);
+			board.addGameObject(new Prop("Plant1"), 13, 1);
+
 			break;
 		/** Case 11 is where the second floor starts */
 		case FIRST_FLOOR_1:
@@ -237,7 +245,19 @@ public class LevelLoader {
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
-			placeKey(1, 4, 2);
+			board.addGameObject(new Prop("CantineBankBottom"), 6, 8);
+			board.addGameObject(new Prop("CantineBankTop"), 1, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 2);
+			board.addGameObject(new Prop("CantineBank"), 1, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 6);
+			board.addGameObject(new Prop("CantineBank"), 1, 8);
+			board.addGameObject(new Prop("CantineBank"), 6, 2);
+
+
+			
+			placeKey(3, 4, 2);
 			break;
 		case FIRST_FLOOR_2:
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, 0);
@@ -249,6 +269,15 @@ public class LevelLoader {
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
+			board.addGameObject(new Prop("CantineBankBottom"), 6, 8);
+			board.addGameObject(new Prop("CantineBankTop"), 1, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 2);
+			board.addGameObject(new Prop("CantineBank"), 1, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 6);
+			board.addGameObject(new Prop("CantineBank"), 1, 8);
+			board.addGameObject(new Prop("CantineBank"), 6, 2);
 			placeKey(14, 9, 3);
 			break;
 		case FIRST_FLOOR_3:
@@ -267,6 +296,17 @@ public class LevelLoader {
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
+			
+			board.addGameObject(new Prop("CantineBankBottom"), 6, 8);
+			board.addGameObject(new Prop("CantineBankTop"), 1, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 2);
+			board.addGameObject(new Prop("CantineBank"), 1, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 6);
+			board.addGameObject(new Prop("CantineBank"), 1, 8);
+			board.addGameObject(new Prop("CantineBank"), 6, 2);
+
 			for (int i = 0 ; i < 5 ; i++) {
 				board.addGameObject(new Prop("Furnace"), 16 + i, 3);
 			}
@@ -293,6 +333,15 @@ public class LevelLoader {
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
+			board.addGameObject(new Prop("CantineBankBottom"), 6, 8);
+			board.addGameObject(new Prop("CantineBankTop"), 1, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 10);
+			board.addGameObject(new Prop("CantineBankTop"), 6, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 2);
+			board.addGameObject(new Prop("CantineBank"), 1, 4);
+			board.addGameObject(new Prop("CantineBank"), 1, 6);
+			board.addGameObject(new Prop("CantineBank"), 1, 8);
+			board.addGameObject(new Prop("CantineBank"), 6, 2);
 			break;
 
 		case SECOND_FLOOR_1:
@@ -305,6 +354,7 @@ public class LevelLoader {
 			board.createWallHorizontal(10, 14, 0);
 			
 			createRightClassRoom();
+			createStudyRoom1();
 
 			break;
 		case SECOND_FLOOR_2:
@@ -312,6 +362,7 @@ public class LevelLoader {
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
 			placeKey(20, 4, 4);
 			createRightClassRoom();
+			createStudyRoom2();
 
 			break;
 		case SECOND_FLOOR_3:
@@ -323,6 +374,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
 			createRightClassRoom();
+			createStudyRoom3();
 
 			break;
 		case SECOND_FLOOR_4:
@@ -330,6 +382,7 @@ public class LevelLoader {
 					new Door( 4), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
 			createRightClassRoom();
+			createStudyRoom1();
 			placeKey(22, 10, 5);
 			break;
 
@@ -338,6 +391,7 @@ public class LevelLoader {
 					new Door( 3), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
 			createRightClassRoom();
+			createStudyRoom2();
 			placeKey(5, 10, 6);
 			break;
 
@@ -345,6 +399,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door( 3), 14, MAX_BOARD_HEIGHT / 2);
 
+			createStudyRoom3();
 			createRightClassRoom();
 			break;
 
@@ -358,6 +413,7 @@ public class LevelLoader {
 					new Door(), 14, MAX_BOARD_HEIGHT / 2);
 
 			createRightClassRoom();
+			createStudyRoom1();
 			break;
 
 		case THIRD_FLOOR_4:
@@ -369,15 +425,21 @@ public class LevelLoader {
 					new Door( 6), 14, MAX_BOARD_HEIGHT / 2);
 			board.createWallHorizontal(10, 14, MAX_BOARD_HEIGHT);
 			createRightClassRoom();
+			createStudyRoom2();
 			break;
 
 		case FOURTH_FLOOR_1:
 			if (model.getBoss("Jan").getAlive()) {
-				board.addGameObject(model.getBoss("Jan"), MAX_BOARD_WIDTH-1, 5);
+				board.addGameObject(model.getBoss("Jan"), 20, 10);
 			}
 			board.createWallHorizontal(1, MAX_BOARD_WIDTH - 1, 0);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door( 8), 14, MAX_BOARD_HEIGHT / 2);
+			createItRoom(2,1);
+			createItRoom(16,1);
+			createItRoom(20,1);
+			board.addGameObject(new Prop("Plant2"), 1, 1);
+			board.addGameObject(new Prop("Plant2"), 1, 5);
 			break;
 
 		case FOURTH_FLOOR_2:
@@ -386,7 +448,13 @@ public class LevelLoader {
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.createWallVertical(3, MAX_BOARD_HEIGHT, 11);
 			createRoom(0,6,0,MAX_BOARD_HEIGHT, new Door(),6,MAX_BOARD_HEIGHT / 2);
-			
+			board.addGameObject(new Prop("Plant2"),11,2);
+			createStudyAreaRow3(12,3);
+			createStudyAreaRow2(12,6);
+			createStudyAreaRow1(12,9);
+			createItRoom(2,1);
+			board.addGameObject(new Prop("Plant1"), 1, 1);
+			board.addGameObject(new Prop("Plant1"), 1, 5);
 			break;
 
 		case FOURTH_FLOOR_3:
@@ -403,6 +471,15 @@ public class LevelLoader {
 			placeKey(5, 10, 7);
 			placeKey(22, 7, 8);
 			board.createWallVertical(7, 8, 21);
+			createStudyAreaRow1(12,0);
+			createItRoom(2,1);
+			board.addGameObject(new Prop("Plant2"), 1, 1);
+			board.addGameObject(new Prop("Plant2"), 1, 5);
+			
+			
+			
+			
+			
 			break;
 
 		case FOURTH_FLOOR_4:
@@ -418,6 +495,7 @@ public class LevelLoader {
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door(3), 14, MAX_BOARD_HEIGHT / 2);
 			createRightClassRoom();
+			createStudyRoom3();
 			break;
 		default:
 			break;
@@ -475,6 +553,130 @@ public class LevelLoader {
 				board.addGameObject(new Prop("CollegeSeat"), i, j);
 			}
 		}
+	}
+	private void createStudyRoom1() {
+		board.addGameObject(new Prop("ClassChair"), 2, 1);
+		board.addGameObject(new Prop("ClassChair"), 3, 1);
+		board.addGameObject(new Prop("ClassChair"), 2, 8);
+		board.addGameObject(new Prop("ClassChair"), 3, 8);
+		board.addGameObject(new Prop("ClassChairBack"), 2, 3);
+		board.addGameObject(new Prop("ClassChairBack"), 3, 3);
+		board.addGameObject(new Prop("ClassChairBack"), 2, 10);		
+		board.addGameObject(new Prop("ClassChairBack"), 3, 10);
+		board.addGameObject(new Prop("BrownTableLeft"), 2, 2);
+		board.addGameObject(new Prop("BrownTableRightBookpencil"), 3, 2);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), 2, 9);
+		board.addGameObject(new Prop("BrownTableRight"), 3, 9);		
+}
+	private void createStudyRoom2() {
+		board.addGameObject(new Prop("ClassChair"), 2, 1);
+		board.addGameObject(new Prop("ClassChair"), 3, 1);
+		board.addGameObject(new Prop("ClassChair"), 2, 8);
+		board.addGameObject(new Prop("ClassChair"), 3, 8);
+		board.addGameObject(new Prop("ClassChairBack"), 2, 3);
+		board.addGameObject(new Prop("ClassChairBack"), 3, 3);
+		board.addGameObject(new Prop("ClassChairBack"), 2, 10);		
+		board.addGameObject(new Prop("ClassChairBack"), 3, 10);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), 2, 2);
+		board.addGameObject(new Prop("BrownTableRightBookpencil"), 3, 2);
+		board.addGameObject(new Prop("BrownTableLeft"), 2, 9);
+		board.addGameObject(new Prop("BrownTableRightLaptopback"), 3, 9);		
+}
+	private void createStudyRoom3() {
+		board.addGameObject(new Prop("ClassChair"), 2, 1);
+		board.addGameObject(new Prop("ClassChair"), 3, 1);
+		board.addGameObject(new Prop("ClassChair"), 2, 8);
+		board.addGameObject(new Prop("ClassChair"), 3, 8);
+		board.addGameObject(new Prop("ClassChairBack"), 2, 3);
+		board.addGameObject(new Prop("ClassChairBack"), 3, 3);
+		board.addGameObject(new Prop("ClassChairBack"), 2, 10);		
+		board.addGameObject(new Prop("ClassChairBack"), 3, 10);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), 2, 2);
+		board.addGameObject(new Prop("BrownTableRight"), 3, 2);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), 2, 9);
+		board.addGameObject(new Prop("BrownTableRightBookpencil"), 3, 9);		
+}
+	private void createStudyAreaRow1(int sX, int sY) {
+		int sY1 = sY + 1;
+		int sY2 = sY + 2;
+		board.addGameObject(new Prop("ClassChair"), sX, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 1, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 5, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 6, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 9, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 10, sY);
+		board.addGameObject(new Prop("ClassChairBack"), sX, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 1, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 5, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 6, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 9, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 10, sY2);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), sX, sY1);
+		board.addGameObject(new Prop("BrownTableRight"), sX + 1, sY1);
+		board.addGameObject(new Prop("BrownTableLeft"), sX + 5, sY1);
+		board.addGameObject(new Prop("BrownTableRightBookpencil"), sX + 6, sY1);
+		board.addGameObject(new Prop("BrownTableLeft"), sX + 9, sY1);
+		board.addGameObject(new Prop("BrownTableRightLaptopback"), sX + 10, sY1);
+	}
+	private void createStudyAreaRow2(int sX, int sY) {
+		int sY1 = sY + 1;
+		int sY2 = sY + 2;
+		board.addGameObject(new Prop("ClassChair"), sX, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 1, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 5, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 6, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 9, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 10, sY);
+		board.addGameObject(new Prop("ClassChairBack"), sX, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 1, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 5, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 6, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 9, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 10, sY2);
+		board.addGameObject(new Prop("BrownTableLeft"), sX, sY1);
+		board.addGameObject(new Prop("BrownTableRightBookpencil"), sX + 1, sY1);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), sX + 5, sY1);
+		board.addGameObject(new Prop("BrownTableRightBookpencil"), sX + 6, sY1);
+		board.addGameObject(new Prop("BrownTableLeft"), sX + 9, sY1);
+		board.addGameObject(new Prop("BrownTableRight"), sX + 10, sY1);
+	}
+	private void createStudyAreaRow3(int sX, int sY) {
+		int sY1 = sY + 1;
+		int sY2 = sY + 2;
+		board.addGameObject(new Prop("ClassChair"), sX, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 1, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 5, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 6, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 9, sY);
+		board.addGameObject(new Prop("ClassChair"), sX + 10, sY);
+		board.addGameObject(new Prop("ClassChairBack"), sX, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 1, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 5, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 6, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 9, sY2);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 10, sY2);
+		board.addGameObject(new Prop("BrownTableLeft"), sX, sY1);
+		board.addGameObject(new Prop("BrownTableRightLaptopback"), sX + 1, sY1);
+		board.addGameObject(new Prop("BrownTableLeft"), sX + 5, sY1);
+		board.addGameObject(new Prop("BrownTableRight"), sX + 6, sY1);
+		board.addGameObject(new Prop("BrownTableLeftLaptop"), sX + 9, sY1);
+		board.addGameObject(new Prop("BrownTableRightLaptopback"), sX + 10, sY1);
+	}
+	
+
+	private void createItRoom(int sX, int sY){
+		board.addGameObject(new Prop("ImacTable"), sX, sY);
+		board.addGameObject(new Prop("ImacTable"), sX, sY + 3);
+		board.addGameObject(new Prop("ImacTable"), sX, sY + 6);
+		board.addGameObject(new Prop("ImacTable"), sX + 2, sY);
+		board.addGameObject(new Prop("ImacTable"), sX + 2, sY + 3);
+		board.addGameObject(new Prop("ImacTable"), sX + 2, sY + 6);
+		board.addGameObject(new Prop("ClassChairBack"), sX, sY + 1);
+		board.addGameObject(new Prop("ClassChairBack"), sX, sY + 4);
+		board.addGameObject(new Prop("ClassChairBack"), sX, sY + 7);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 2, sY + 1);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 2, sY + 4);
+		board.addGameObject(new Prop("ClassChairBack"), sX + 2, sY + 7);
 	}
 
 	private void createCantineTables(int x1, int x2, int y1, int y2) {
