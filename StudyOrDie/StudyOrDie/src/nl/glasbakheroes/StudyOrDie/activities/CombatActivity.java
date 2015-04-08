@@ -170,10 +170,10 @@ public class CombatActivity extends Activity implements Observer {
 				Log.w("Factor", factor + "");
 				
 				switch ((int)(Math.random() * 4) + 1) {
-				case 1 : attackName = "Homework"; damage = 7 * factor ; break;
-				case 2 : attackName = "Door policy"; damage = 5 * factor; break;
+				case 1 : attackName = "Homework"; damage = 5 * factor ; break;
+				case 2 : attackName = "Door policy"; damage = 3 * factor; break;
 				case 3 : attackName = boss.getSpecialAttackName(); damage = boss.getSpecialAttackDamage(); break;
-				case 4 : attackName = "Knowledge overload"; damage = 10 * factor; break;
+				case 4 : attackName = "Knowledge overload"; damage = 7 * factor; break;
 				default : attackName = "No attack" ; damage = 0; break; 	// something went wrong if this occurs
 				}
 				

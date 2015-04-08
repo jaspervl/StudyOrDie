@@ -289,9 +289,9 @@ public class StudyOrDieModel extends Observable {
 	 */
 	public boolean fightRandomBoss() {
 		double chance = Math.pow(
-				((double) (totalSteps - lastRandomBossStep) / 70), 4);
+				((double) (totalSteps - lastRandomBossStep) / 120), 3);
 		if (Math.random() < chance) {
-			return false; // Set to false to disable random boss
+			return true; // Set to false to disable random boss
 		}
 		return false;
 	}
@@ -693,13 +693,15 @@ public class StudyOrDieModel extends Observable {
 	/** Check if item doesn't already exist in list and add it */
 	public void addItemToList(Item item) {
 		boolean add = true;
-		for (Item i : itemList) {
-			if (i.getName().equals(item.getName())) {
-				add = false;
+		if (item != null) {
+			for (Item i : itemList) {
+				if (i.getName().equals(item.getName())) {
+					add = false;
+				}
 			}
-		}
-		if (add) {
-			itemList.add(item);
+			if (add) {
+				itemList.add(item);
+			}
 		}
 	}
 
