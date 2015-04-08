@@ -312,8 +312,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				model.addItemToList(item);
 				removeObject(getObject(avatarNewX,avatarNewY));
 				item.setLooted(true);
-				return false;
-				
+				return false;		
 			}
 			
 			/** Vending machine present */
@@ -327,8 +326,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						if(which == 0)
-						{
+						if(which == 0) {
 							AlertDialog.Builder builder2 = new AlertDialog.Builder(activity);
 							builder2.setTitle("Sell    Coins");
 							builder2.setPositiveButton("Back", new DialogInterface.OnClickListener() {
@@ -349,15 +347,13 @@ public class StudyOrDieGameBoard extends GameBoard {
 							builder2.show();
 							
 						}
-						else
-						{
+						else {
 							AlertDialog.Builder builder2 = new AlertDialog.Builder(activity);
 							builder2.setTitle("Buy  			   Coins");
 							builder2.setPositiveButton("Back", new DialogInterface.OnClickListener() {
 						           public void onClick(DialogInterface dialog, int id) {
 						        	   builder.show();
-						           }
-						           
+						           }    
 						       });
 							builder2.setItems(machine.getShopList(), new DialogInterface.OnClickListener() {
 								@Override
@@ -370,19 +366,14 @@ public class StudyOrDieGameBoard extends GameBoard {
 										Toast.makeText(activity, "Item added!", Toast.LENGTH_SHORT).show();
 										builder.show();
 									}
-									else
-									{
+									else {
 										Toast.makeText(activity, "Insufficient money", Toast.LENGTH_SHORT).show();
 										builder.show();
 									}
-									
-									
-									
 								}
 							});
 							builder2.show();
-						}
-						
+						}	
 					}
 				});
 				  builder.setPositiveButton("Quit", new DialogInterface.OnClickListener() {
