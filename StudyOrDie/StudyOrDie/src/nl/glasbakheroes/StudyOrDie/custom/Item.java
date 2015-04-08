@@ -20,7 +20,7 @@ public class Item {
 	private String description;
 	private int hpModifier;
 	private int energyModifier;
-	private int motivationModifier;
+	private int motivationModifier; 
 	private boolean equipped;
 	private boolean consumesOnUse;
 	private int buyCost;
@@ -41,9 +41,9 @@ public class Item {
 	 * @param costs					The price this item will cost at a vending machine.
 	 */
 	public Item(int type,String name, String description, int hpModifier, int energyModifier, int motivationModifier, boolean consumesOnUse, int costs) {
-		if(type == 1){
-			type = 1;
-		}else if(type > 5){
+		if (type < 0) {
+			type = 0;
+		} else if (type > 5) {
 			type = 5;
 		}
 		this.type = type;

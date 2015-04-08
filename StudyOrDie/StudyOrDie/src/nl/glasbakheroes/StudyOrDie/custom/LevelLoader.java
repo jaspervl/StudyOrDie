@@ -155,7 +155,7 @@ public class LevelLoader {
 		}
 		
 		switch (model.getLevel()) {
-		/** case 1 is where ground floor starts */
+		/** case 1 is where ground floor starts */ 
 		case GROUND_LEVEL_1:
 			if (spawnArea.equals("newGame")) { 
 				board.addGameObject(avatar, 20, 5);
@@ -178,17 +178,6 @@ public class LevelLoader {
 
 		/** case 2 is part 2 of the ground floor */
 		case GROUND_LEVEL_2:
-			placeKey(21, 6, 1);
-			
-			placeKey(10, 1, 1);
-			placeKey(10, 2, 2);
-			placeKey(10, 3, 3);
-			placeKey(10, 4, 4);
-			placeKey(10, 5, 5);
-			placeKey(10, 6, 6);
-			placeKey(10, 7, 7);
-			placeKey(10, 8, 8);
-			placeKey(10, 9, 9);
 		
 			placeLootableItem(12, 6, model.getLootableItem("Excaliniet"));
 			
