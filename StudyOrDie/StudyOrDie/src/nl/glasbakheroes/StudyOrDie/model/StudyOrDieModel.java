@@ -86,6 +86,26 @@ public class StudyOrDieModel extends Observable {
 	public void setLoader(LevelLoader levelLoader) {
 		loader = levelLoader;
 	}
+	
+	public ArrayList<Item> firstList()
+	{
+		ArrayList<Item> temp = new ArrayList<>();
+		temp.add(new Item(Item.HAND,"Everts piano", "He plays jazz and yes this fits in your hand",20,20,20,false,60));
+		temp.add(new Item(Item.BODY,"Trenchcoat", "Smells like 40 years of regret",20,-10,5,false,50));
+		temp.add(new Item(Item.FEET,"High heels", "Show how manly you are",-5,-5,40,false,10));
+		temp.add(new Item(Item.HEAD,"A duck ", "Don't ask me,you bought it",0,-5,20,false,100));
+		return temp;
+	}
+	
+	public ArrayList<Item> secondList()
+	{
+		ArrayList<Item> temp = new ArrayList<>();
+		temp.add(new Item(Item.HEAD,"Sombrero", "Not sure whether I spelled that right.Ops",5,3,10,false,20));
+		temp.add(new Item(Item.HAND,"Pencil", "Who would sell these in a vending machine?",20,-4,-10,false,5));
+		temp.add(new Item(Item.FOOD,"Bread", "A regular piece of bread",5,3,10,false,4));
+		temp.add(new Item(Item.LEGS,"A piece of fabric", "That can't be sanitary",5,3,10,false,1));
+		return temp;
+	}
 
 	/**
 	 * Adds a boss with a certain name and hitPoints.

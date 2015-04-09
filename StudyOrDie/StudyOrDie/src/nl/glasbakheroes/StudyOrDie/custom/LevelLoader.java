@@ -301,10 +301,10 @@ public class LevelLoader {
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
 
-			board.addGameObject(new VendingMachine(model.getItemList()), 18, 8);
-			board.addGameObject(new VendingMachine(model.getLootableItems()), 17, 8);
-			board.addGameObject(new VendingMachine(model.getItemList()), 16, 8);
-			board.addGameObject(new VendingMachine(model.getLootableItems()), 15, 8);
+			board.addGameObject(new VendingMachine(model.firstList()), 18, 8);
+			board.addGameObject(new VendingMachine(model.secondList()), 17, 8);
+			board.addGameObject(new VendingMachine(model.firstList()), 16, 8);
+			board.addGameObject(new VendingMachine(model.secondList()), 15, 8);
 			
 			board.addGameObject(new Prop("CantineBankBottom"), 6, 8);
 			board.addGameObject(new Prop("CantineBankTop"), 1, 10);
