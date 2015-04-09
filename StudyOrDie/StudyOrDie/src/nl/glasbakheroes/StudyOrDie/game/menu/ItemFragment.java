@@ -76,6 +76,10 @@ public class ItemFragment extends Fragment {
 		return v;
 	}
 
+	/**
+	 *  Changes the item details depending on which item was clicked. 
+	 * @param pos
+	 */
 	public void setVariables(int pos) {
 		currentItem = model.getItemList().get(pos);
 		equipButton.setEnabled(true);

@@ -38,7 +38,10 @@ public class ItemWrap extends GameObject {
 		}
 		
 	}
-	
+	/**
+	 * Returns the item the wrapper contains
+	 * @return
+	 */
 	public Item getItem()
 	{
 		return item;

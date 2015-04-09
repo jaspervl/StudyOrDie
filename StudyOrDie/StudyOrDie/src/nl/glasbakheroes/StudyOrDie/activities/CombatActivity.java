@@ -27,7 +27,7 @@ import android.widget.Toast;
 import android.widget.GridLayout.Spec;
 
 /**
- * Activity where the avatar battles a boss
+ * Activity where the avatar battles a boss or janitor
  * @author Niels Jan
  */
 public class CombatActivity extends Activity implements Observer {
@@ -193,6 +193,9 @@ public class CombatActivity extends Activity implements Observer {
 		}, 3000);
 	}
 
+	/**
+	 * Displays the bosses HP
+	 */
 	@Override
 	public void update(Observable observable, Object data) {
 		tvBossHP.setText("HP: " + boss.getHP() + "/" + bossMaxHP);

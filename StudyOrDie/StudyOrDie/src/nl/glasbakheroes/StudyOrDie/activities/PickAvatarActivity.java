@@ -25,7 +25,7 @@ public class PickAvatarActivity extends Activity {
 	public static final int RESULT_TO_STARTACTIVITY = StartActivity.REQUEST_AVATAR_SELECTION;
 	private ImageView imgAvatar1, imgAvatar2, imgAvatar3, imgAvatar4;
 	private EditText etFillName;
-	Handler handler = new Handler();
+	private Handler handler = new Handler();
 	private StudyOrDieModel model;
 	private Button btnEasy, btnMedium, btnHard;
 	
@@ -70,7 +70,9 @@ public class PickAvatarActivity extends Activity {
 		btnMedium.setOnClickListener(diffListener);
 		btnHard.setOnClickListener(diffListener);
 	}
-	
+	/**
+	 * Listener to determine the difficulty
+	 */
 	private class DifficultyListener implements OnClickListener {
 
 		@Override
@@ -110,7 +112,7 @@ public class PickAvatarActivity extends Activity {
 				model.setStoryLineShowed(0);
 				model.getAvatar().setName(etFillName.getText() + "");
 				model.getAvatar().setAvatarImages(this.id);
-				model.getLoader().createBosses();
+				model.createBosses();
 				Intent resultIntent = new Intent(PickAvatarActivity.this, CoreActivity.class);
 				resultIntent.putExtra("action", "new");
 				setResult(RESULT_TO_STARTACTIVITY, resultIntent);

@@ -14,11 +14,15 @@ public class StudyOrDieApplication extends Application {
 	public StudyOrDieApplication() {
 		this.model = new StudyOrDieModel();
 	}
-	
+	/**
+	 * Returns the current global instance of model
+	 */
 	public StudyOrDieModel getModel() {
 		return model;
 	}
-	
+	/**
+	 * makes a new instance of model
+	 */
 	public void regenModel() {
 		this.model = new StudyOrDieModel();
 	}

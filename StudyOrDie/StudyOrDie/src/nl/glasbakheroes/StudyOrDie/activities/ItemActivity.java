@@ -17,9 +17,9 @@ import android.view.WindowManager;
  *	Activity that handles the inventory screen. A player can use / equip items
  */
 public class ItemActivity extends Activity implements TransmitInfo {
-	ListFragment item;
-	ItemFragment detail;
-	int position;
+	private ListFragment item;
+	private ItemFragment detail;
+	private int position;
 	
 	/**
 	 * Initialize variables  & binds fragments to the containers.
@@ -63,6 +63,9 @@ public class ItemActivity extends Activity implements TransmitInfo {
 		detail.setVariables(key);;
 	}
 
+	/**
+	 * Removes an item
+	 */
 	@Override
 	public void actionUpdate(Item currentItem) {
 		item.remove(currentItem);

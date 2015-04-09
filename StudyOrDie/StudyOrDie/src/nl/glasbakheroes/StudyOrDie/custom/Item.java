@@ -9,7 +9,7 @@ package nl.glasbakheroes.StudyOrDie.custom;
  */
 
 public class Item {
-	// Indicate position of equipment slot
+	// Indicate position of equipment slot which will be used when equipping an item or displaying it on the ground
 	public static final int FOOD = 0;
 	public static final int HEAD = 1;
 	public static final int BODY = 2;
@@ -17,6 +17,9 @@ public class Item {
 	public static final int LEGS = 4;
 	public static final int FEET = 5;
 	
+	/*
+	 * Instance variables
+	 */
 	private int type;
 	private String name;
 	private String description;
@@ -57,6 +60,9 @@ public class Item {
 		this.buyCost = costs;
 		this.sellCost = (int)(costs/2.0);
 	}
+	/*
+	 * Accessors & Mutators
+	 */
 	public String getName() {
 		return name;
 	}

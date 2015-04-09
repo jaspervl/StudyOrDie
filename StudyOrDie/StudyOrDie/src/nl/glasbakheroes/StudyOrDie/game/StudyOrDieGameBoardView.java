@@ -37,6 +37,9 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 		}
 	}
 
+	/**
+	 * Loads all our images
+	 */
 	private void initGameView() {
 		
 		Log.d(TAG, "Loading all images");

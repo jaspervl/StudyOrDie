@@ -26,6 +26,9 @@ import android.widget.TextView;
  *
  */
 public class ArmorFragment extends Fragment implements Observer{
+	/*
+	 * Private instance variables
+	 */
 	private StudyOrDieModel model;
 	private Avatar selectedAvatar;
 	private TextView head;
@@ -35,6 +38,9 @@ public class ArmorFragment extends Fragment implements Observer{
 	private TextView feet;
 	
 
+	/**
+	 * View to be returned
+	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_armor, container , false);
 		// Inflating views, retrieving model and adding this instance as observer to the model

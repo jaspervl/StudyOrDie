@@ -15,7 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * Activity is called when the avatar has 0 health or (0 energy AND motivation)
+ * Three ways to appropiately call this activity
+ * 
+ * 1.Activity is called when the avatar has 0 health or (0 energy AND motivation). Shows the fail screen
+ * 2.Activity is called when the avatar beats the last boss (Jan). Shows the win screen
+ * 3.Activity is called when the avatar enters a new level and it included a part of the story line.
  * 
  * @author EnJee
  */

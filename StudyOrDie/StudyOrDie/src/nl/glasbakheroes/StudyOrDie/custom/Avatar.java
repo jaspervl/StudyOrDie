@@ -49,13 +49,12 @@ public class Avatar extends GameObject {
 	private int currentMotivation = 100;
 	private int maxMotivation = 100;
 	/* The current items equipped by the avatar */
-	private ArrayList<Item> equipped = new ArrayList<>();
 	private Item head;
 	private Item body;
 	private Item hand;
 	private Item legs;
 	private Item feet;
-	/* Amount of keys the avatar (picked up - amount used) */
+	/* Holds the keys which the avatar picks up */
 	private ArrayList<Key> keys = new ArrayList<Key>();
 
 	/**
@@ -122,6 +121,10 @@ public class Avatar extends GameObject {
 		return currentImage;
 	}
 
+	/**
+	 * Gets called when an item is being unequiped without being replaced by another item
+	 * @param type  : slot of the item
+	 */
 	public void setEmpty(int type) {
 		Item item = new Item(type, "Empty", "", 0, 0, 0, false, 0);
 		switch (type) {
@@ -142,7 +145,9 @@ public class Avatar extends GameObject {
 			break;
 		}
 	}
-	
+	/**
+	 * Called when a piece of equipment changes
+	 */
 	private void updateStats()
 	{
 		resetMax();

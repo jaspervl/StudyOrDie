@@ -72,15 +72,9 @@ public class LevelLoader {
 				.getApplication()).getModel();
 	}
 
-	public void createBosses() {
-		model.addBoss("Frank", 100, 1);
-		model.addBoss("Tristan", 110, 2);
-		model.addBoss("Ruud", 120, 3);
-		model.addBoss("Evert", 130, 4);
-		model.addBoss("Syntaxis", 150, 5);
-		model.addBoss("Jan", 200, 5);
-	}
-
+	/**
+	 * Creates a level (Based on a normal room of floor 2/3
+	 */
 	private void createBasicLevel(){
 		board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 		board.createWallHorizontal(1, 10, 0);
@@ -89,11 +83,28 @@ public class LevelLoader {
 		board.createWallVertical(1, 2, 6);
 		board.createWallVertical(9, MAX_BOARD_HEIGHT - 1, 6);
 	}
+	/**
+	 * Helper method to create a basic level with a room
+	 * @param x1
+	 * @param x2
+	 * @param y1
+	 * @param y2
+	 * @param door
+	 * @param x
+	 * @param y
+	 */
 	private void createBasicLevel(int x1, int x2, int y1, int y2, Door door,
 			int x, int y) {
 		createBasicLevel();
 		createRoom(x1, x2, y1, y2, door, x, y);
 	}
+	/**
+	 * Helper method to create a square
+	 * @param x1
+	 * @param x2
+	 * @param y1
+	 * @param y2
+	 */
 	private void createSquare(int x1,int x2,int y1,int y2)
 	{
 		board.createWallCorners(x1, x2, y1, y2);
@@ -103,6 +114,16 @@ public class LevelLoader {
 		board.createWallHorizontal(x1, x2, y2);
 	}
 
+	/**
+	 * Helper method to create a room 
+	 * @param x1
+	 * @param x2
+	 * @param y1
+	 * @param y2
+	 * @param door
+	 * @param x
+	 * @param y
+	 */
 	private void createRoom(int x1, int x2, int y1, int y2, Door door, int x,
 			int y) {
 		if(door !=null){
@@ -117,12 +138,9 @@ public class LevelLoader {
 	/**
 	 * Load a new level with the correct items on the correct tile.
 	 * 
-	 * @param spawnArea
-	 *            The area where the Avatar has to spawn (came from): * Top:
-	 *            Avatar came from a level from the top. * Bottom: Avatar came
-	 *            from a level from the bottom. * savedLocation:The previous
-	 *            avatar location. * Elevator: Avatar came from the elevator. *
-	 *            Key: Avatar picked up a key.
+	 * @param spawnArea  Determines the avatars spawn location.
+	 *            
+	 *      This part contains a lot of hardcoded material so it might be hard to read through @jasper      
 	 */
 	public void loadLevel(String spawnArea) {
 
@@ -716,7 +734,12 @@ public class LevelLoader {
 			board.addGameObject(new Key(keyType), x, y);
 		}
 	}
-	
+	/**
+	 * Helper method to place an item on the ground
+	 * @param x
+	 * @param y
+	 * @param item
+	 */
 	public void placeLootableItem(int x, int y, Item item) {
 		if (item != null) {
 			if (!item.isLooted()) {

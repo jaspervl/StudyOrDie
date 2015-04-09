@@ -95,7 +95,9 @@ public class Boss extends GameObject{
 	public String getName() {
 		return name;
 	}
-	
+	/**
+	 *  Kills a boss
+	 */
 	public void killBoss() {
 		if (randomBoss) {
 			model.removeBoss(this);
@@ -103,7 +105,9 @@ public class Boss extends GameObject{
 			alive = false;
 		}
 	}
-	
+	/*
+	 * Setters/getters
+	 */
 	public boolean getAlive() {
 		return alive;
 	}

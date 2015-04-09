@@ -3,8 +3,16 @@ package nl.glasbakheroes.StudyOrDie.Objects;
 import nl.glasbakheroes.StudyOrDie.model.GameBoard;
 import nl.glasbakheroes.StudyOrDie.model.GameObject;
 
+/**
+ * 
+ * A non interactable item which can be placed on the gameboard.
+ * 
+ */
 public class Prop extends GameObject{
 
+	/*
+	 * Image strings to be used as props
+	 */
 	public static final String PROP_CHAIR_GREEN = "GreenChair";
 	public static final String PROP_TABLE_CANTINE = "TableCantine";
 	public static final String PROP_TABLE_CANTINE_BURGER = "TableCantineBurger";
@@ -44,7 +52,10 @@ public class Prop extends GameObject{
 	
 	public String propImageID;
 	
-	
+	/**
+	 * Constructor
+	 * @param image
+	 */
 	public Prop(String image){
 		this.propImageID = image;
 	}

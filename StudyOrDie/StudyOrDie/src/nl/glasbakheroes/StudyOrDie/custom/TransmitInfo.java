@@ -1,7 +1,9 @@
 package nl.glasbakheroes.StudyOrDie.custom;
 
 /*
- * @author simpel interface voor fragment communicatie
+ * @author Jasper
+ * 
+ * simpel interface voor fragment communicatie
  */
 public interface TransmitInfo {
 		public void getInfo(int key);

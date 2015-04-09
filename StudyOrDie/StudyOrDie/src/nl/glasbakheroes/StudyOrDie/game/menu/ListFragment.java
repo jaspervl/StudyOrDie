@@ -20,10 +20,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 /**
- * ListView in which you can select what sub-menu to open
- * Current submenu's
- * 
- * 1.Inventory(Item screen)
+ * ListView that tells which item has been clicked. Information is handled through the activity
  * @author Jasper
  */
 public class ListFragment extends Fragment implements Observer {

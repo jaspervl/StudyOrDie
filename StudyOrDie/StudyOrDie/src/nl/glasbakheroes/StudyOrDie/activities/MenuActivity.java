@@ -13,11 +13,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 /**
- * The menu screen activity
+ * The menu screen activity. Holds the characterfragment which displays information regarding the avatar.
+ * Also contains a button to navigate to the item menu
  * @author Jasper
  */
 public class MenuActivity extends Activity {
-	Button temp;
+	private Button temp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,9 @@ public class MenuActivity extends Activity {
 		
 		setContentView(R.layout.activity_menu);
 
+		/*
+		 * Making the transaction
+		 */
 		FragmentManager manager = getFragmentManager();
  
 		CharacterFragment menu = new CharacterFragment(); 

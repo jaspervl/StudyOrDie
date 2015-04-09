@@ -79,6 +79,14 @@ public class StudyOrDieModel extends Observable {
 		return loader;
 	}
 
+	public void createBosses() {
+		this.addBoss("Frank", 100, 1);
+		this.addBoss("Tristan", 110, 2);
+		this.addBoss("Ruud", 120, 3);
+		this.addBoss("Evert", 130, 4);
+		this.addBoss("Syntaxis", 150, 5);
+		this.addBoss("Jan", 200, 5);
+	}
 	/**
 	 * Set the levelloader, this method is called after the onCreate for
 	 * CoreActivity is called
@@ -507,7 +515,7 @@ public class StudyOrDieModel extends Observable {
 					if (scan.hasNextInt()) {
 						difficulty = scan.nextInt();
 						Log.w("Model", "Set difficulty to: " + difficulty);
-						loader.createBosses();
+						this.createBosses();
 					}
 				} else if (word.equals("picture")) {
 					if (scan.hasNextInt()) {
@@ -772,6 +780,9 @@ public class StudyOrDieModel extends Observable {
 		return null;
 	}
 	
+	/**
+	 * Predefined items
+	 */
 	private void createItems() {
 		this.addLootableItem(new Item(Item.HAND,"Propedeuse","Je bent al een heel eind",10,10,10,false,100));
 		this.addLootableItem(new Item(Item.BODY,"Syntaxis t-shirt","Past als gegoten",5,0,5,false,50));

@@ -7,6 +7,10 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 public class Door extends GameObject {
 
 	public final static String DOOR_CLOSED_IMAGE = "DoorClosed";
+	/*
+	 * Locked determines whether a door is open or not. If an integer is passed in the contructor it'll automatically be set to true
+	 * doortype determines the type of key to open this particular door.
+	 */
 	private boolean locked;
 	private int doortype;
 	
@@ -24,6 +28,9 @@ public class Door extends GameObject {
 		return DOOR_CLOSED_IMAGE;
 	}
 
+	/*
+	 * getters
+	 */
 	public boolean isLocked() {
 		return locked;
 	}

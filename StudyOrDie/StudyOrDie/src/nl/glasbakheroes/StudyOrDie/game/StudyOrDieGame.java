@@ -7,7 +7,7 @@ import nl.glasbakheroes.StudyOrDie.model.Game;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 
 /**
- * The actual game.
+ * The actual game. 
  * @author Niels Jan & Jasper
  */
 public class StudyOrDieGame extends Game {

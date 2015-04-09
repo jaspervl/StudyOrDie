@@ -11,7 +11,7 @@ public class Wall extends GameObject {
 	public static final String WALL_SOUTH_WEST = "WallSW";
 	public static final String WALL_SOUTH_EAST = "WallSE";
 	public static final String WALL_NORTH_EAST = "WallNE";
-	public String orientation;
+	private String orientation;
 
 	public Wall(String orientation) {
 		this.orientation = orientation;

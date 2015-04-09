@@ -26,6 +26,9 @@ import android.widget.TextView;
  * @author Jasper
  */
 public class CharacterFragment extends Fragment implements Observer{
+	/*
+	 * Instance variables
+	 */
 	private ArmorFragment armorDisplay;
 	private ImageView avatarDisplay;
 	private TextView avatarName;
@@ -35,6 +38,9 @@ public class CharacterFragment extends Fragment implements Observer{
 	private Button btnMute;
 	private AudioManager audioManager;
 	
+	/**
+	 * View to be returned
+	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_character, container , false);
 		
