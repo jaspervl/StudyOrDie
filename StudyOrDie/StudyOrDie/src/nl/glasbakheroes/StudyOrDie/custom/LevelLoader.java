@@ -223,6 +223,9 @@ public class LevelLoader {
 			if (model.getBoss("Frank").getAlive()) {
 				board.addGameObject(model.getBoss("Frank"), MAX_BOARD_WIDTH-1, 5);
 			}
+			
+			placeLootableItem(22, 10, model.getLootableItem("Syntaxis pet"));
+			
 			board.createWallHorizontal(6, 20, MAX_BOARD_HEIGHT);
 			createRoom(0,7,0,MAX_BOARD_HEIGHT, new Door(),7,MAX_BOARD_HEIGHT / 2);
 			createRoom(14,MAX_BOARD_WIDTH,0,MAX_BOARD_HEIGHT, new Door(1), 14, MAX_BOARD_HEIGHT / 2);
@@ -263,6 +266,8 @@ public class LevelLoader {
 			board.createWallVertical(0, MAX_BOARD_HEIGHT, MAX_BOARD_WIDTH);
 			board.createWallVertical(0, 3, 7);
 			board.createWallVertical(MAX_BOARD_HEIGHT - 3, MAX_BOARD_HEIGHT, 7);
+			
+			placeLootableItem(15, 9, model.getLootableItem("Snickers"));
 			createRoom(13, MAX_BOARD_WIDTH, 8, 10, new Door(2), 22, 10);
 			board.addGameObject(new Door(), 13, MAX_BOARD_HEIGHT);
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
@@ -373,6 +378,7 @@ public class LevelLoader {
 			if (spawnArea.equals("Elevator")) {
 				board.addGameObject(avatar, 9, 2);
 			}
+			placeLootableItem(22, 1, model.getLootableItem("Syntaxis t-shirt"));
 			board.addGameObject(new Elevator(), 8, 1);
 			board.addGameObject(new Elevator(), 9, 1);
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
@@ -424,6 +430,7 @@ public class LevelLoader {
 			if (model.getBoss("Evert").getAlive()) {
 				board.addGameObject(model.getBoss("Evert"), MAX_BOARD_WIDTH-3, 1);
 			}
+			placeLootableItem(22, 1, model.getLootableItem("Swag pants"));
 			
 			createBasicLevel(14, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT,
 					new Door( 6), 14, MAX_BOARD_HEIGHT / 2);
@@ -465,6 +472,9 @@ public class LevelLoader {
 			if (model.getBoss("Syntaxis").getAlive()) {
 				board.addGameObject(model.getBoss("Syntaxis"), MAX_BOARD_WIDTH-1, MAX_BOARD_HEIGHT-3);
 			}
+			
+
+			placeLootableItem(22, 10, model.getLootableItem("Propedeuse"));
 			board.createWallHorizontal(1, 10, MAX_BOARD_HEIGHT);
 			board.createWallHorizontal(15, MAX_BOARD_WIDTH - 1, MAX_BOARD_HEIGHT);
 			board.createWallVertical(0 , MAX_BOARD_HEIGHT - 3, 11);
@@ -472,7 +482,7 @@ public class LevelLoader {
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			createRoom(0,6,0,MAX_BOARD_HEIGHT, new Door(),6,MAX_BOARD_HEIGHT / 2);
 			createRoom(16,MAX_BOARD_WIDTH,6,MAX_BOARD_HEIGHT, new Door(7),18,6);
-			placeKey(5, 10, 7);
+			placeKey(1, 3, 7);
 			placeKey(22, 7, 8);
 			board.createWallVertical(7, 8, 21);
 			createStudyAreaRow1(12,0);
