@@ -179,10 +179,9 @@ public class LevelLoader {
 		/** case 2 is part 2 of the ground floor */
 		case GROUND_LEVEL_2:
 		
-			placeLootableItem(12, 6, model.getLootableItem("Excaliniet"));
+			placeLootableItem(12, 6, model.getLootableItem("Nike schoenen"));
 			board.addGameObject(new Prop("Plant1"), 7, 10);
 			board.addGameObject(new Prop("Plant1"), 14, 10);
-
 			
 			board.createWallCorners(0, MAX_BOARD_WIDTH, 0, MAX_BOARD_HEIGHT);
 			board.addGameObject(new Door(), 8, 0);
@@ -296,6 +295,11 @@ public class LevelLoader {
 			createCantineTables(1, 1, 1, MAX_BOARD_HEIGHT -1);
 			createCantineTables(6, 6, 1, 5);
 			createCantineTables(6, 6, 9, 11);
+
+			board.addGameObject(new VendingMachine(model.getItemList()), 18, 8);
+			board.addGameObject(new VendingMachine(model.getLootableItems()), 17, 8);
+			board.addGameObject(new VendingMachine(model.getItemList()), 16, 8);
+			board.addGameObject(new VendingMachine(model.getLootableItems()), 15, 8);
 			
 			board.addGameObject(new Prop("CantineBankBottom"), 6, 8);
 			board.addGameObject(new Prop("CantineBankTop"), 1, 10);

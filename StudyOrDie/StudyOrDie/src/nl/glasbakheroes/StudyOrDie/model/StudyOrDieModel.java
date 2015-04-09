@@ -753,7 +753,12 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	private void createItems() {
-		this.addLootableItem(new Item(Item.HAND,"Excaliniet","Piece of junk",-5,-5,5,false,19));
+		this.addLootableItem(new Item(Item.HAND,"Propedeuse","Je bent al een heel eind",10,10,10,false,100));
+		this.addLootableItem(new Item(Item.BODY,"Syntaxis t-shirt","Past als gegoten",5,0,5,false,50));
+		this.addLootableItem(new Item(Item.FEET,"Nike schoenen","Stampen als een dolle",0,10,5,false,50));
+		this.addLootableItem(new Item(Item.LEGS,"Swag pants","Zo, dit zit relaxt",5,10,0,false,50));
+		this.addLootableItem(new Item(Item.HEAD,"Syntaxis pet","Een van de meest coole petten ever",0,0,10,false,50));
+		this.addLootableItem(new Item(Item.FOOD,"Snickers","Stilt stevige trek",20,20,20,false,20));
 	}
 	
 }

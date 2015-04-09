@@ -62,6 +62,7 @@ public class ArmorFragment extends Fragment implements Observer{
 		if(selectedAvatar == null){
 			return;
 		}
+		
 		head.setText(String.valueOf(selectedAvatar.getHead().getInfo()));
 		body.setText(String.valueOf(selectedAvatar.getBody().getInfo()));
 		hand.setText(String.valueOf(selectedAvatar.getHand().getInfo()));
