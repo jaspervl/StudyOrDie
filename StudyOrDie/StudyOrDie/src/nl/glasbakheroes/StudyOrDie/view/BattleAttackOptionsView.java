@@ -96,7 +96,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 			addToMessage = "";
 			if (v == btnAttack1) {
 				attackName = "Throw exception";
-				damage = 100; 	// 100 for testing 
+				damage = 20; 	// 100 for testing 
 				energyModifier = -5;
 				motivationModifier = -5;
 				if (boss.getWeakness().equals("Throw exception")) {
@@ -137,7 +137,7 @@ public class BattleAttackOptionsView extends LinearLayout {
 			/* Modify the avatar and the boss (through a activity method) according to the button that is clicked */
 			model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() + energyModifier);
 			model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() + motivationModifier);
-			if (model.getAvatar().getCurrentEnergy() == 0 || model.getAvatar().getCurrentMotivation() == 0) {
+			if (model.getAvatar().getCurrentEnergy() <= 1 || model.getAvatar().getCurrentMotivation() <= 1) {
 				model.getAvatar().setCurrentMotivation(model.getAvatar().getCurrentMotivation() - plusM);
 				model.getAvatar().setCurrentEnergy(model.getAvatar().getCurrentEnergy() - plusE);
 				Toast.makeText(activity, "Attack failed! not enough energy or motivation", Toast.LENGTH_SHORT).show();

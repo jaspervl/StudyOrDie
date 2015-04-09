@@ -402,7 +402,7 @@ public class LevelLoader {
 			board.createWallHorizontal(0, MAX_BOARD_WIDTH, 0);
 			createRightClassRoom();
 			createStudyRoom2();
-			placeKey(5, 10, 6);
+			placeKey(22, 1, 6);
 			break;
 
 		case THIRD_FLOOR_2:

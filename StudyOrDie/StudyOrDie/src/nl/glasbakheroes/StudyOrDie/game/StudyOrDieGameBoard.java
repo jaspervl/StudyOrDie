@@ -170,7 +170,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 						+ model.getAvatar().getPositionX() + ", "
 						+ model.getAvatar().getPositionY());
 				/* Create a new boss and fetch it from the model */
-				model.addBoss("Random", 100, 0);
+				model.addBoss("Random", 50, 0);
 				Boss randomBoss = model.findRandomBoss();
 				/* Start new combat activity */
 				Intent randomCombatIntent = new Intent(activity,
@@ -312,6 +312,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				model.addItemToList(item);
 				removeObject(getObject(avatarNewX,avatarNewY));
 				item.setLooted(true);
+				model.getLoader().loadLevel("savedLocation");
 				return false;		
 			}
 			
@@ -396,8 +397,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 				builder.setItems(levels, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int chosenFloor) {
-//						if (model.isLevelOpen(chosenFloor)) {
-						if (true) {
+						if (model.isLevelOpen(chosenFloor)) {
 							String message = "";
 							switch (chosenFloor) {
 							case 0:
