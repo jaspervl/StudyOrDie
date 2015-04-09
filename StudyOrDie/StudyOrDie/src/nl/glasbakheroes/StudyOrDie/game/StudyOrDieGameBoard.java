@@ -308,6 +308,7 @@ public class StudyOrDieGameBoard extends GameBoard {
 
 				/** Item present */
 			} else if(getObject(avatarNewX,avatarNewY) instanceof ItemWrap){
+				model.setSavedLocation(model.getAvatar().getPositionX(), model.getAvatar().getPositionY());
 				Item item = ((ItemWrap)getObject(avatarNewX,avatarNewY)).getItem();
 				model.addItemToList(item);
 				removeObject(getObject(avatarNewX,avatarNewY));
