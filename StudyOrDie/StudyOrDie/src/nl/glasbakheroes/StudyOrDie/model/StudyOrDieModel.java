@@ -472,12 +472,7 @@ public class StudyOrDieModel extends Observable {
 				}
 			}
 
-			// Write the string to the file
 			outputWriter.write(saveFileString);
-
-			/*
-			 * ensure that everything is really written out and close
-			 */
 			Log.w("Model", "Saving was a success");
 			outputWriter.close();
 
@@ -490,11 +485,6 @@ public class StudyOrDieModel extends Observable {
 	public boolean loadGame() {
 		boolean succes = false;
 		String filename = "sod_save_game.txt";
-
-		/*
-		 * We have to use the openFileInput()-method the ActivityContext
-		 * provides. Again for security reasons with openFileInput(...)
-		 */
 
 		FileInputStream fIn;
 		try {
