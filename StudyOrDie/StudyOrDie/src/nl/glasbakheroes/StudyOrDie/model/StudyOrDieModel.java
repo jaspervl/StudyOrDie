@@ -660,32 +660,32 @@ public class StudyOrDieModel extends Observable {
 		String title = "";
 		switch ((int) (Math.random() * 6 + 1)) {
 		case 1:
-			addItemToList(new Item(Item.HAND,"Koffie", "Take a sip and feel renewed!", 2,
+			addItemToList(new Item(Item.FOOD,"Koffie", "Take a sip and feel renewed!", 2,
 					20, 2, true, 50));
 			title = "Koffie";
 			break;
 		case 2:
-			addItemToList(new Item(Item.HAND,"Energydrink",
+			addItemToList(new Item(Item.FOOD,"Energydrink",
 					"Woah this seems very powerful!", 0, 15, -5, true, 30));
 			title = "Energydrink";
 			break;
 		case 3:
-			addItemToList(new Item(Item.HAND,"Bier", "Keep the spirits high.", -5, 5, 15,
+			addItemToList(new Item(Item.FOOD,"Bier", "Keep the spirits high.", -5, 5, 15,
 					true, 30));
 			title = "Bier";
 			break;
 		case 4:
-			addItemToList(new Item(Item.HAND,"Chocolade", "Keep it away from my apple",
+			addItemToList(new Item(Item.FOOD,"Chocolade", "Keep it away from my apple",
 					-30, 20, 2, true, 10));
 			title = "Chocolade";
 			break;
 		case 5:
-			addItemToList(new Item(Item.HAND,"Kipburger", "3x beter dan hamburger", -5,
+			addItemToList(new Item(Item.FOOD,"Kipburger", "3x beter dan hamburger", -5,
 					100, 100, true, 100));
 			title = "Kipburger";
 			break;
 		case 6:
-			addItemToList(new Item(Item.HAND,"Pepsi", "Feel the taste.", 10, 10, 10,
+			addItemToList(new Item(Item.FOOD,"Pepsi", "Feel the taste.", 10, 10, 10,
 					true, 40));
 			title = "Pepsi";
 			break;
