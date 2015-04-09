@@ -143,7 +143,7 @@ public class Item {
 	
 	public String getInfo()
 	{
-		return this.name +"\n HP+ : " + this.hpModifier + "\n Energy+ : " + this.energyModifier + "\n Motivation+ : " + this.motivationModifier;
+		return this.name +"\n HP+ : " + this.hpModifier +  "     Motivation+ : " + this.motivationModifier+ "\n Energy+ : " + this.energyModifier;
 	}
 
 }

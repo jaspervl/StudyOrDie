@@ -9,6 +9,7 @@ import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -40,6 +41,11 @@ public class ArmorFragment extends Fragment implements Observer{
 		hand = (TextView)v.findViewById(R.id.mHandDescription);
 		legs = (TextView)v.findViewById(R.id.mLegsDescription);
 		feet = (TextView)v.findViewById(R.id.mFeetDescription);
+		head.setTextColor(Color.BLACK);
+		body.setTextColor(Color.BLACK);
+		hand.setTextColor(Color.BLACK);
+		legs.setTextColor(Color.BLACK);
+		feet.setTextColor(Color.BLACK);
 		setter();		
 		return v;
 	}
