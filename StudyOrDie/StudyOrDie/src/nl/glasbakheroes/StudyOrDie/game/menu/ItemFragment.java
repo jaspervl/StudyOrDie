@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 /**
- * 			
- * @author Jasper
- * Displays an item in the detail fragment
+ * 
+ * @author Jasper Displays an item in the detail fragment
  */
 public class ItemFragment extends Fragment {
-	/** Instance variables*/
+	/** Instance variables */
 	private ImageView picture;
 	private TextView name;
 	private TextView description;
@@ -29,16 +29,18 @@ public class ItemFragment extends Fragment {
 	private StudyOrDieModel model;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_item, container, false);
-		
-		model = ((StudyOrDieApplication) v.getContext().getApplicationContext()).getModel();
-		
+
+		model = ((StudyOrDieApplication) v.getContext().getApplicationContext())
+				.getModel();
 		name = (TextView) v.findViewById(R.id.tvItemName);
 		description = (TextView) v.findViewById(R.id.tvDescription);
 		equipButton = (Button) v.findViewById(R.id.btnEquipButton);
 		stats = (TextView) v.findViewById(R.id.tvAddStat);
-		
+		picture = (ImageView) v.findViewById(R.id.ivItemPicture);
+
 		if (model.getItemList().isEmpty()) {
 			return v;
 		}
@@ -47,22 +49,25 @@ public class ItemFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				StudyOrDieModel model = ((StudyOrDieApplication)getActivity().getApplication()).getModel();
-				if(currentItem.isConsumable())
-				{
-					model.getAvatar().setCurrent(currentItem.getHpModifier(), currentItem.getEnergyModifier(), currentItem.getMotivationModifier());
+				StudyOrDieModel model = ((StudyOrDieApplication) getActivity()
+						.getApplication()).getModel();
+				if (currentItem.isConsumable()) {
+					model.getAvatar().setCurrent(currentItem.getHpModifier(),
+							currentItem.getEnergyModifier(),
+							currentItem.getMotivationModifier());
 					model.removeItem(currentItem);
 					equipButton.setEnabled(false);
 					return;
-				} 
-				currentItem.equip();
-				if (currentItem.getEquipped()) {
-					model.addItemToAvatar(currentItem); 
-					equipButton.setText(String.format("Unequip"));
-				} else {
-					model.unEquipAvatarItem(currentItem); 
-					equipButton.setText(String.format("Equip"));
 				}
+			
+				if (model.isEquipped(currentItem)) {
+					model.unEquipAvatarItem(currentItem);
+					equipButton.setText(String.format("Equip"));
+				} else {
+					model.addItemToAvatar(currentItem);
+					equipButton.setText(String.format("Unequip"));
+				}
+				
 
 			}
 
@@ -76,17 +81,44 @@ public class ItemFragment extends Fragment {
 		equipButton.setEnabled(true);
 		name.setText(String.format(currentItem.getName()));
 		description.setText(String.format(currentItem.getDescription()));
-		stats.setText(String.format("HP " + currentItem.getHpModifier()) + String.format("\nEnergy " + currentItem.getEnergyModifier()) + String.format("\nMotivation " + currentItem.getMotivationModifier()));
+		stats.setText(String.format("HP " + currentItem.getHpModifier())
+				+ String.format("\nEnergy " + currentItem.getEnergyModifier())
+				+ String.format("\nMotivation "
+						+ currentItem.getMotivationModifier()));
 		// Make 3 textviews for this 'thing' above.
-		if (currentItem.getEquipped()) {
+		if(currentItem != null){
+		if (model.isEquipped(currentItem)) {
 			equipButton.setText(String.format("Unequip"));
 		} else {
 			equipButton.setText(String.format("Equip"));
 		}
-		
-		if(currentItem.isConsumable())
-		{
+		}
+
+		if (currentItem.isConsumable()) {
 			equipButton.setText("Use");
+		}
+		
+		if(currentItem != null){
+		switch (currentItem.getType()) {
+		case 0:
+			picture.setBackgroundResource(R.drawable.bread);
+			break;
+		case 1:
+			picture.setBackgroundResource(R.drawable.helm);
+			break;
+		case 2:
+			picture.setBackgroundResource(R.drawable.armor);
+			break;
+		case 3:
+			picture.setBackgroundResource(R.drawable.sword);
+			break;
+		case 4:
+			picture.setBackgroundResource(R.drawable.legs);
+			break;
+		case 5:
+			picture.setBackgroundResource(R.drawable.feet);
+			break;
+		}
 		}
 
 	}

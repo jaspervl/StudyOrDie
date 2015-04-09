@@ -8,6 +8,8 @@ import nl.glasbakheroes.StudyOrDie.custom.Avatar;
 import nl.glasbakheroes.StudyOrDie.game.StudyOrDieApplication;
 import nl.glasbakheroes.StudyOrDie.model.StudyOrDieModel;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import android.widget.TextView;
  * @author Jasper
  */
 public class CharacterFragment extends Fragment implements Observer{
+	private ArmorFragment armorDisplay;
 	private ImageView avatarDisplay;
 	private TextView avatarName;
 	private TextView avatarHP;
@@ -70,7 +73,13 @@ public class CharacterFragment extends Fragment implements Observer{
 		});
 		/* End of mute button section */
 		
-		setter();		
+		setter();
+		FragmentManager manager = getFragmentManager();
+		armorDisplay = new ArmorFragment();
+		FragmentTransaction transaction = manager.beginTransaction();
+		transaction.add(R.id.mArmorContainer, armorDisplay);
+		transaction.commit();
+		
 		return v;
 	}
 	

@@ -64,6 +64,7 @@ public class StudyOrDieGameBoardView extends GameBoardView {
 				spriteCache.loadTile(Key.KEY_IMAGE, R.drawable.prop_keycard_blue);
 				spriteCache.loadTile(VendingMachine.VENDING_IMAGE, R.drawable.prop_vendingmachine);
 				
+				spriteCache.loadTile(ItemWrap.FOOD_IMAGE, R.drawable.bread);
 				spriteCache.loadTile(ItemWrap.HEAD_IMAGE, R.drawable.helm);
 				spriteCache.loadTile(ItemWrap.HAND_IMAGE, R.drawable.sword);
 				spriteCache.loadTile(ItemWrap.BODY_IMAGE, R.drawable.armor);

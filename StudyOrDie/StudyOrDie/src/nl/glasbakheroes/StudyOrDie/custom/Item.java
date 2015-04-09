@@ -9,9 +9,10 @@ package nl.glasbakheroes.StudyOrDie.custom;
 
 public class Item {
 	// Indicate position of equipment slot
+	public static final int FOOD = 0;
 	public static final int HEAD = 1;
-	public static final int HAND = 2;
-	public static final int BODY = 3;
+	public static final int BODY = 2;
+	public static final int HAND = 3;
 	public static final int LEGS = 4;
 	public static final int FEET = 5;
 	
@@ -138,6 +139,11 @@ public class Item {
 	}
 	public void setLooted(boolean looted) {
 		this.looted = looted;
+	}
+	
+	public String getInfo()
+	{
+		return this.name +"\n HP+ : " + this.hpModifier + "\n Energy+ : " + this.energyModifier + "\n Motivation+ : " + this.motivationModifier;
 	}
 
 }

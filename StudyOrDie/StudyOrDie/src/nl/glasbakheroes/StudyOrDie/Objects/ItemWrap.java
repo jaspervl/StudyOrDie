@@ -12,6 +12,7 @@ import nl.glasbakheroes.StudyOrDie.model.GameObject;
 public class ItemWrap extends GameObject {
 	private Item item;
 	// static strings to be used for loading images (keys)
+	public static final String FOOD_IMAGE = "Food";
 	public static final String HEAD_IMAGE = "Head";
 	public static final String HAND_IMAGE = "Hand";
 	public static final String BODY_IMAGE = "Body";
@@ -26,9 +27,10 @@ public class ItemWrap extends GameObject {
 	@Override
 	public String getImageId() {
 		switch(item.getType()){
+		case 0: return FOOD_IMAGE;
 		case 1: return HEAD_IMAGE;
-		case 2: return HAND_IMAGE;
-		case 3: return BODY_IMAGE;
+		case 2: return BODY_IMAGE;
+		case 3: return HAND_IMAGE;
 		case 4: return LEGS_IMAGE;
 		case 5: return FEET_IMAGE;
 		default: return HEAD_IMAGE;

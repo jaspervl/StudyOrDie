@@ -14,8 +14,7 @@
             android:id="@+id/ivItemPicture"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="3"
-            android:src="@drawable/prop_imac" />
+            android:layout_weight="3" />
 
         <TextView
             android:id="@+id/tvItemName"

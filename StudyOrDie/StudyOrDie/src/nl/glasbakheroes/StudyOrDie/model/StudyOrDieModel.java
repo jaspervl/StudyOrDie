@@ -143,9 +143,9 @@ public class StudyOrDieModel extends Observable {
 		addItemToList(new Item(Item.HAND, "Apply papers", "Welcome at Saxion.",
 				5, 5, 5, false, 10));
 		/* Add consumables */
-		addItemToList(new Item(Item.HAND, "Koffie",
+		addItemToList(new Item(Item.FOOD, "Koffie",
 				"Take a sip and feel renewed!", 2, 20, 2, true, 50));
-		addItemToList(new Item(Item.HAND, "Chocolade",
+		addItemToList(new Item(Item.FOOD, "Chocolade",
 				"Keep it away from my apple", -30, 20, 2, true, 10));
 	}
 
@@ -159,6 +159,12 @@ public class StudyOrDieModel extends Observable {
 	public void unEquipAvatarItem(Item item) {
 		avatar.removeItem(item);
 		update();
+	}
+	
+	public boolean isEquipped(Item item)
+	{
+		return avatar.isEquipped(item);
+		
 	}
 
 	public CharSequence[] returnItemNames() {
@@ -747,7 +753,7 @@ public class StudyOrDieModel extends Observable {
 	}
 	
 	private void createItems() {
-		this.addLootableItem(new Item(Item.BODY,"Excaliniet","Piece of junk",-5,-5,5,false,19));
+		this.addLootableItem(new Item(Item.HAND,"Excaliniet","Piece of junk",-5,-5,5,false,19));
 	}
 	
 }

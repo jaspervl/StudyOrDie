@@ -36,7 +36,7 @@ public class Avatar extends GameObject {
 	public String imageBack;
 	public String imageLeft;
 	public String imageRight;
-	
+
 	private String currentImage;
 	private String name = "Avatar_name";
 	private StudyOrDieModel model;
@@ -50,6 +50,11 @@ public class Avatar extends GameObject {
 	private int maxMotivation = 100;
 	/* The current items equipped by the avatar */
 	private ArrayList<Item> equipped = new ArrayList<>();
+	private Item head;
+	private Item body;
+	private Item hand;
+	private Item legs;
+	private Item feet;
 	/* Amount of keys the avatar (picked up - amount used) */
 	private ArrayList<Key> keys = new ArrayList<Key>();
 
@@ -61,14 +66,23 @@ public class Avatar extends GameObject {
 	 */
 	public Avatar(StudyOrDieModel model) {
 		this.model = model;
+		fill();
 	}
-	
-	public void setAvatarImages(int select){
+	private void fill()
+	{
+		head = new Item(1, "Empty", "", 0, 0, 0, false, 0);
+		body = new Item(2, "Empty", "", 0, 0, 0, false, 0);
+		hand = new Item(3, "Empty", "", 0, 0, 0, false, 0);
+		legs = new Item(4, "Empty", "", 0, 0, 0, false, 0);
+		feet = new Item(5, "Empty", "", 0, 0, 0, false, 0);
+	}
+
+	public void setAvatarImages(int select) {
 
 		model.setSelectedImage(select);
-		
-		switch(select){
-		case 1: 
+
+		switch (select) {
+		case 1:
 			imageFront = AVATAR_FRONT_BLOND;
 			imageBack = AVATAR_BACK_BLOND;
 			imageLeft = AVATAR_LEFT_BLOND;
@@ -76,7 +90,7 @@ public class Avatar extends GameObject {
 			currentImage = imageFront;
 			model.update();
 			break;
-		case 2 :
+		case 2:
 			imageFront = AVATAR_FRONT_BROWN;
 			imageBack = AVATAR_BACK_BROWN;
 			imageLeft = AVATAR_LEFT_BROWN;
@@ -84,7 +98,7 @@ public class Avatar extends GameObject {
 			currentImage = imageFront;
 			model.update();
 			break;
-		case 3 :
+		case 3:
 			imageFront = AVATAR_FRONT_ASTRO;
 			imageBack = AVATAR_BACK_ASTRO;
 			imageLeft = AVATAR_LEFT_ASTRO;
@@ -92,7 +106,7 @@ public class Avatar extends GameObject {
 			currentImage = imageFront;
 			model.update();
 			break;
-		case 4 :
+		case 4:
 			imageFront = AVATAR_FRONT_SANTA;
 			imageBack = AVATAR_BACK_SANTA;
 			imageLeft = AVATAR_LEFT_SANTA;
@@ -108,11 +122,51 @@ public class Avatar extends GameObject {
 		return currentImage;
 	}
 
+	public void setEmpty(int type) {
+		Item item = new Item(type, "Empty", "", 0, 0, 0, false, 0);
+		switch (type) {
+		case 1:
+			head = item;
+			break;
+		case 2:
+			body = item;
+			break;
+		case 3:
+			hand = item;
+			break;
+		case 4:
+			legs = item;
+			break;
+		case 5:
+			feet = item;
+			break;
+		}
+	}
+	
+	private void updateStats()
+	{
+		resetMax();
+		if(head != null){
+		setMax(head.getHpModifier(),head.getEnergyModifier(),head.getMotivationModifier());
+		}
+		if(body != null){
+		setMax(body.getHpModifier(),body.getEnergyModifier(),body.getMotivationModifier());
+		}
+		if(hand != null){
+		setMax(hand.getHpModifier(),hand.getEnergyModifier(),hand.getMotivationModifier());
+		}
+		if(legs != null){
+		setMax(legs.getHpModifier(),legs.getEnergyModifier(),legs.getMotivationModifier());
+		}
+		if(feet != null){
+		setMax(feet.getHpModifier(),feet.getEnergyModifier(),feet.getMotivationModifier());
+		}
+	}
+
 	public boolean compareKey(int doortype) {
 		for (Key a : keys) {
-			if(a.getType() == doortype)
-			{
-//				numberOfKeys.remove(a);   Don't remove the key ?
+			if (a.getType() == doortype) {
+				// numberOfKeys.remove(a); Don't remove the key ?
 				return true;
 			}
 		}
@@ -151,8 +205,8 @@ public class Avatar extends GameObject {
 			break;
 		}
 	}
-	
-	public String getFrontImage(){
+
+	public String getFrontImage() {
 		return imageFront;
 	}
 
@@ -162,7 +216,6 @@ public class Avatar extends GameObject {
 	}
 
 	/** Accessors and mutators */
-	
 
 	public String getName() {
 		return name;
@@ -173,6 +226,15 @@ public class Avatar extends GameObject {
 		this.name = name;
 		model.update();
 	}
+	public boolean isEquipped(Item item)
+	{
+		if(head == item||body == item||hand == item||legs == item||feet == item)
+		{
+			return true;
+		}
+		return false;
+		
+	}
 
 	/** Add a item to the currently equipped item list */
 	public void addItem(Item item) {
@@ -180,15 +242,51 @@ public class Avatar extends GameObject {
 		 * Add the item to the equipped list if there isn't one with the same
 		 * name already
 		 */
-		if (!itemExists(item.getName())) {
-			equipped.add(item);
+		switch (item.getType()) {
+		case 1:
+			if (head != null) {
+				head.equip();
+			}
+			head = item;
+			break;
+		case 2:
+			if (body != null) {
+				body.equip();
+			}
+			body = item;
+			break;
+		case 3:
+			if (hand != null) {
+				body.equip();
+			}
+			hand = item;
+			break;
+		case 4:
+			if (legs != null) {
+				legs.equip();
+			}
+			legs = item;
+			break;
+		case 5:
+			if (feet != null) {
+				feet.equip();
+			}
+			feet = item;
+			break;
 		}
 		/* Adjust the HP with item values */
-		maxHP += item.getHpModifier();
-		maxEnergy += item.getEnergyModifier();
-		maxMotivation += item.getMotivationModifier();
+		updateStats();
 		/* Check for crazy stats */
 		checkStats();
+	}
+	private void setMax(int hp,int energy,int motivation)
+	{
+	    hp += getMaxHP();
+	    energy += getMaxEnergy();
+	    motivation += getMaxMotivation();
+		setMaxHP(hp);
+		setMaxEnergy(energy);
+		setMaxMotivation(motivation);
 	}
 
 	/** Remove a item from the currently equipped item list */
@@ -197,17 +295,13 @@ public class Avatar extends GameObject {
 		 * Remove the item from the equipped list if there is one with the
 		 * requested name
 		 */
-		if (itemExists(item.getName())) {
-			for (Item i : equipped) {
-				if (i == item) {
-					equipped.remove(item);
-				}
-			}
-		}
 		/* Adjust the HP with item values */
-		maxHP -= item.getHpModifier();
-		maxEnergy -= item.getEnergyModifier();
-		maxMotivation -= item.getMotivationModifier();
+
+		
+		setEmpty(item.getType());
+		
+
+		updateStats();
 		/* Check for crazy stats */
 		checkStats();
 	}
@@ -226,16 +320,6 @@ public class Avatar extends GameObject {
 		if (maxMotivation < currentMotivation) {
 			currentMotivation = maxMotivation;
 		}
-	}
-
-	/** Check whether the item exists in the equipped item list or not */
-	private boolean itemExists(String name) {
-		for (Item item : equipped) {
-			if (item.getName().equals(name)) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -259,7 +343,24 @@ public class Avatar extends GameObject {
 	public int getCurrentHP() {
 		return currentHP;
 	}
+	
+	
 
+	public Item getHead() {
+		return head;
+	}
+	public Item getBody() {
+		return body;
+	}
+	public Item getHand() {
+		return hand;
+	}
+	public Item getLegs() {
+		return legs;
+	}
+	public Item getFeet() {
+		return feet;
+	}
 	public int getMaxHP() {
 		return maxHP;
 	}
@@ -328,13 +429,23 @@ public class Avatar extends GameObject {
 		this.maxEnergy = maxEnergy;
 		model.update();
 	}
+	public void setMaxMotivation(int maxMotivation)
+	{
+		this.maxMotivation = maxMotivation;
+		model.update();
+	}
 
 	public void addKey(Key object) {
 		keys.add(object);
 	}
-	
+
 	public ArrayList<Key> getKeys() {
 		return keys;
+	}
+	private void resetMax(){
+		maxHP = 100;
+		maxEnergy = 100;
+		maxMotivation = 100;
 	}
 
 	public void resetStats() {
