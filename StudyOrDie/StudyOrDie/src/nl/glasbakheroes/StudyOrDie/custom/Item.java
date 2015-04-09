@@ -4,7 +4,8 @@ package nl.glasbakheroes.StudyOrDie.custom;
  * 
  * @author Jasper
  * 
- * Our item class which contains information for the items the avatar can wield and use.
+ * Our item class which contains information for the items the avatar can wear or use
+ * 
  */
 
 public class Item {
@@ -22,7 +23,6 @@ public class Item {
 	private int hpModifier;
 	private int energyModifier;
 	private int motivationModifier; 
-	private boolean equipped;
 	private boolean consumesOnUse;
 	private int buyCost;
 	private int sellCost;
@@ -53,7 +53,6 @@ public class Item {
 		this.hpModifier = hpModifier;
 		this.energyModifier = energyModifier;
 		this.motivationModifier = motivationModifier;
-		this.equipped = false;
 		this.consumesOnUse = consumesOnUse;
 		this.buyCost = costs;
 		this.sellCost = (int)(costs/2.0);
@@ -99,22 +98,7 @@ public class Item {
 	}
 	
 	
-	public boolean getEquipped()
-	{
-		return equipped;
-	}
-	
-	public void equip()
-	{
-		if (this.equipped)
-		{
-			this.equipped = false;
-		}
-		else
-		{
-			this.equipped = true;
-		}
-	}
+
 	
 	public boolean isConsumable()
 	{

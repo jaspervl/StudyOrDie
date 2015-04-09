@@ -61,7 +61,7 @@ public class Boss extends GameObject{
 		case 7: return "Peter";
 		case 8: return "Kees";
 		case 9: return "Nick";
-		case 10: return "Jasper";
+		case 10: return "Niels";
 		default: return "Sjoerd";
 		}
 	}

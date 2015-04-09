@@ -245,31 +245,31 @@ public class Avatar extends GameObject {
 		switch (item.getType()) {
 		case 1:
 			if (head != null) {
-				head.equip();
+
 			}
 			head = item;
 			break;
 		case 2:
 			if (body != null) {
-				body.equip();
+				
 			}
 			body = item;
 			break;
 		case 3:
 			if (hand != null) {
-				body.equip();
+				
 			}
 			hand = item;
 			break;
 		case 4:
 			if (legs != null) {
-				legs.equip();
+				
 			}
 			legs = item;
 			break;
 		case 5:
 			if (feet != null) {
-				feet.equip();
+				
 			}
 			feet = item;
 			break;

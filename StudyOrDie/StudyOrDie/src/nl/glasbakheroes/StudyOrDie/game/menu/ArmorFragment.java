@@ -20,6 +20,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Displays your current equiped items and their stats
+ * @author Jasper
+ *
+ */
 public class ArmorFragment extends Fragment implements Observer{
 	private StudyOrDieModel model;
 	private Avatar selectedAvatar;
@@ -32,7 +37,7 @@ public class ArmorFragment extends Fragment implements Observer{
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_armor, container , false);
-		
+		// Inflating views, retrieving model and adding this instance as observer to the model
 		StudyOrDieApplication app = ( StudyOrDieApplication ) getActivity().getApplication();
 		model = app.getModel();
 		model.addObserver(this);
@@ -49,7 +54,9 @@ public class ArmorFragment extends Fragment implements Observer{
 		setter();		
 		return v;
 	}
-	
+	/**
+	 * Inputs the current equipment details into the views
+	 */
 	private void setter(){
 		selectedAvatar = model.getAvatar();
 		if(selectedAvatar == null){
@@ -63,7 +70,9 @@ public class ArmorFragment extends Fragment implements Observer{
 
 		
 	}
-
+/**
+ * Making sure to update whenever the model changes
+ */
 	@Override
 	public void update(Observable observable, Object data) {
 		setter();

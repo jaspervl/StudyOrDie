@@ -22,7 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Character menu fragment, displays the avatar details
+ * Character menu fragment, displays the avatar details and access to the item menu
  * @author Jasper
  */
 public class CharacterFragment extends Fragment implements Observer{
@@ -74,6 +74,7 @@ public class CharacterFragment extends Fragment implements Observer{
 		/* End of mute button section */
 		
 		setter();
+		/* Displays the armor fragment with details about a players gear */
 		FragmentManager manager = getFragmentManager();
 		armorDisplay = new ArmorFragment();
 		FragmentTransaction transaction = manager.beginTransaction();
@@ -83,6 +84,9 @@ public class CharacterFragment extends Fragment implements Observer{
 		return v;
 	}
 	
+	/**
+	 *  Updates the details regarding the stats
+	 */
 	private void setter(){
 		selectedAvatar = model.getAvatar();
 		avatarName.setText(selectedAvatar.getName());
