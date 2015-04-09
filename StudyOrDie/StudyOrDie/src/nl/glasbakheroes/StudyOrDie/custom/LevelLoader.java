@@ -135,12 +135,13 @@ public class LevelLoader {
 		board.createWallVertical(y1, y2, x1);
 		board.createWallVertical(y1, y2, x2);
 	}
+	
 	/**
 	 * Load a new level with the correct items on the correct tile.
 	 * 
 	 * @param spawnArea  Determines the avatars spawn location.
 	 *            
-	 *      This part contains a lot of hardcoded material so it might be hard to read through @jasper      
+	 *      This part contains a lot of hardcoded material so it might be hard to read through @jasper      <agreed @Niels_Jan
 	 */
 	public void loadLevel(String spawnArea) {
 
@@ -507,11 +508,7 @@ public class LevelLoader {
 			createItRoom(2,1);
 			board.addGameObject(new Prop("Plant2"), 1, 1);
 			board.addGameObject(new Prop("Plant2"), 1, 5);
-			
-			
-			
-			
-			
+				
 			break;
 
 		case FOURTH_FLOOR_4:
