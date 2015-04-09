@@ -13,7 +13,7 @@
             android:id="@+id/imageView1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/helm" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:id="@+id/imageView2"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/armor" />
 
         <TextView
@@ -59,7 +59,7 @@
             android:id="@+id/mHandSlot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/sword" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:id="@+id/mLegsSlot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/legs" />
 
         <TextView
@@ -105,7 +105,7 @@
             android:id="@+id/mFeetSlot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/feet" />
 
         <TextView
